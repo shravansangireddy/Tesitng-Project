@@ -1,0 +1,62 @@
+[
+  {
+    "prompt": "Pip has 8 berries. Nova brings 5 more. How many berries do they have?",
+    "answer": "13",
+    "options": [
+      "11",
+      "12",
+      "13",
+      "14"
+    ],
+    "hint": "Bring the two groups together: 8 + 5.",
+    "explanation": "8 + 5 = 13 berries. Sharing makes snack time better!"
+  },
+  {
+    "prompt": "There are 12 birds. 4 fly away. How many are left?",
+    "answer": "8",
+    "options": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "hint": "Start with 12 and take away 4.",
+    "explanation": "12 − 4 = 8 birds are still there."
+  },
+  {
+    "prompt": "3 friends each have 4 stickers. How many stickers in all?",
+    "answer": "12",
+    "options": [
+      "7",
+      "10",
+      "12",
+      "14"
+    ],
+    "hint": "Count 3 groups of 4.",
+    "explanation": "4 + 4 + 4 = 12. That is also 3 × 4!"
+  },
+  {
+    "prompt": "Share 20 apples equally among 5 baskets. How many in each basket?",
+    "answer": "4",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "hint": "Which number multiplied by 5 is 20?",
+    "explanation": "20 ÷ 5 = 4 apples in each basket."
+  },
+  {
+    "prompt": "A book has 30 pages. You read 18. How many pages are left?",
+    "answer": "12",
+    "options": [
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "hint": "Take the pages already read away from the total.",
+    "explanation": "30 − 18 = 12 pages left. One page at a time!"
+  }
+]

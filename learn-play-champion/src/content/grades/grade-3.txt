@@ -1,0 +1,215 @@
+{
+  "grade": "3",
+  "overview": "Word parts, literal and nonliteral language, evidence and character choices, paragraph structure, multiplication and division facts, fractions, rounding, area, perimeter, and elapsed time.",
+  "lessons": {
+    "informational": {
+      "title": "Rain in the School Garden",
+      "skill": "Use text evidence to explain a main idea and cause and effect",
+      "guide": {
+        "standards": ["RI.3.1", "RI.3.2", "RI.3.3"],
+        "learn": "A main idea brings details together. When explaining an answer, point to a sentence that supports it. Cause tells why something happens; effect tells what happens as a result.",
+        "together": "Draw arrows from each cause to its effect in the text. Explain the main idea using two details. Discuss how the garden and the barrel help in different ways; do not drink collected rainwater."
+      },
+      "passage": "A school garden can use rain in two ways. A rain barrel collects water from a roof through a downspout. A screen keeps leaves out of the barrel. Later, an adult uses the stored water on the garden soil. This reduces the amount of tap water needed for watering.\nA rain garden works differently. It is a shallow planted area where rainwater can gather briefly and soak into the ground. Plant roots help hold soil in place. The garden slows water that might otherwise run across pavement.\nNeither feature makes water safe to drink. Together, they help a school make useful choices about rainwater.",
+      "questions": [
+        ["Which main idea fits the whole text?", "A school can collect and slow rainwater in useful ways.", ["A school can collect and slow rainwater in useful ways.", "All rainwater is safe to drink.", "Roof water should always go onto pavement."], "Connect the barrel and garden details.", "The barrel stores water and the garden slows it, supporting this main idea."],
+        ["Which detail explains how a barrel reduces tap-water use?", "An adult uses stored water on garden soil.", ["An adult uses stored water on garden soil.", "The roof is above the ground.", "The garden has roots."], "Look for what replaces tap water.", "Watering with stored rainwater means less tap water is needed."],
+        ["What is an effect of plant roots in the rain garden?", "They help hold soil in place.", ["They help hold soil in place.", "They turn water into food for people.", "They fill the barrel from below."], "Find the sentence about roots.", "The text directly says roots help hold soil in place."],
+        ["How is a rain garden different from the barrel?", "Water soaks into the ground instead of being stored in a container.", ["Water soaks into the ground instead of being stored in a container.", "It makes drinking water.", "It needs no plants."], "Compare what happens to water in each.", "The barrel stores water; the planted area lets it soak into the ground."],
+        ["Which statement is supported by the final paragraph?", "Neither feature makes water safe to drink.", ["Neither feature makes water safe to drink.", "Both features clean water for drinking.", "Only the barrel is safe to drink from."], "Reread the warning.", "The final paragraph explicitly says neither makes water safe to drink."]
+      ]
+    },
+    "writing": {
+      "title": "Organize & Develop Ideas",
+      "skill": "Plan reasons, grouped facts, dialogue, and conclusions",
+      "guide": {
+        "standards": ["W.3.1", "W.3.2", "W.3.3", "SL.3.1"],
+        "learn": "Group related facts so a reader can follow them. Support an opinion with reasons and connect them with words such as because or therefore. In a narrative, dialogue and actions can show feelings. These choices rehearse techniques, not full writing mastery.",
+        "together": "Across three sessions, write a garden opinion with organized reasons, an explanation of a rain barrel using grouped facts, and a garden story with dialogue and event order. Give each a conclusion or ending. Bring a draft to a discussion with a grown-up, ask a clarifying question, and revise. No draft is collected or automatically assessed."
+      },
+      "questions": [
+        ["Which reason best supports adding a reading corner?", "It would give readers a quiet place to focus.", ["It would give readers a quiet place to focus.", "The ceiling is white.", "A triangle has three sides."], "Choose a reason connected to reading.", "A quiet place to focus supports the proposed reading corner."],
+        ["A paragraph is about how a barrel collects rain. Which detail belongs?", "A downspout carries roof water into the barrel.", ["A downspout carries roof water into the barrel.", "My favorite game uses cards.", "The lunch menu changes."], "Keep the facts in the same group.", "The downspout detail explains rain collection."],
+        ["Which linking phrase shows a result?", "therefore", ["therefore", "beside the chair", "yesterday morning"], "Choose a word meaning as a result.", "Therefore connects a reason or cause to a result."],
+        ["Which line uses dialogue to show a character's worry?", "\"What if our seed never grows?\" Jo asked.", ["\"What if our seed never grows?\" Jo asked.", "There was a seed.", "The pot was round."], "Find spoken words that suggest a feeling.", "Jo's question reveals worry about the seed."],
+        ["Which conclusion fits an explanation of saving rainwater?", "These steps let us store rain for later watering.", ["These steps let us store rain for later watering.", "Now I will change the topic to shoes.", "First, gather the supplies."], "A conclusion pulls the explanation together.", "This sentence summarizes the purpose of the steps."]
+      ]
+    },
+    "place": {
+      "title": "Round & Reason",
+      "skill": "Round whole numbers and use place-value strategies",
+      "guide": {
+        "standards": ["3.NBT.1", "3.NBT.2", "3.NBT.3"],
+        "learn": "To round, locate the two nearest tens or hundreds and choose the closer one; halfway rounds to the greater one. Place value also helps with operations: 6 groups of 40 is 6 groups of 4 tens, or 24 tens.",
+        "together": "Draw a number line from 300 to 400 and place 347 and 365. Explain each rounded value. Use tens drawings to explain 6 x 40 rather than only adding a zero."
+      },
+      "questions": [
+        ["347 rounded to the nearest ten is...", "350", ["340", "350", "400"], "347 is 3 from 350 and 7 from 340.", "350 is the closer ten."],
+        ["347 rounded to the nearest hundred is...", "300", ["300", "340", "400"], "Compare the distance to 300 and 400.", "347 is 47 from 300 and 53 from 400, so it rounds to 300."],
+        ["365 rounded to the nearest ten is...", "370", ["360", "365", "370"], "It is halfway between 360 and 370.", "At a halfway point, round to the greater ten, 370."],
+        ["6 x 40 = ?", "240", ["24", "240", "2,400"], "Six groups of four tens make 24 tens.", "6 x 40 = 24 tens = 240."],
+        ["Which place-value strategy correctly adds 230 + 140?", "23 tens + 14 tens = 37 tens", ["23 tens + 14 tens = 37 tens", "23 ones + 14 ones = 370 ones", "2 hundreds + 1 hundred = 30"], "Both numbers can be counted in tens.", "37 tens are 370, which is 230 + 140."]
+      ]
+    },
+    "fractions": {
+      "title": "Fractions on a Number Line",
+      "skill": "Identify unit fractions, equivalence, and comparisons",
+      "guide": {
+        "standards": ["3.NF.1", "3.NF.2", "3.NF.3"],
+        "learn": "A denominator tells how many equal parts are in one whole. A numerator counts those parts. On a number line from 0 to 1 split into four equal intervals, the first point after 0 is 1/4. Use the same-size whole when comparing.",
+        "together": "Draw a number line from 0 to 1 and divide it into four equal intervals. Mark 1/4, 2/4, 3/4, and 4/4. Add halves to show that 2/4 and 1/2 share a point."
+      },
+      "questions": [
+        ["One of four equal parts of a whole is...", "1/4", ["1/4", "4/1", "1/3"], "One part is counted out of four.", "The numerator is 1 and the denominator is 4."],
+        ["0 to 1 is split into four equal intervals. Which point is third after 0?", "3/4", ["1/4", "3/4", "4/3"], "Count three intervals of size 1/4.", "Three fourths is the third point after 0."],
+        ["Which fraction is at the same point as 1/2?", "2/4", ["1/4", "2/4", "3/4"], "Two of four equal intervals reach the halfway point.", "2/4 and 1/2 are equivalent."],
+        ["For the same whole, which is greater: 3/4 or 1/4?", "3/4", ["3/4", "1/4", "They are equal"], "The parts are the same size, so compare their number.", "Three fourths is more than one fourth."],
+        ["Which fraction equals one whole?", "4/4", ["1/4", "3/4", "4/4"], "Use all four equal parts.", "Four fourths reaches 1 on the number line."]
+      ]
+    },
+    "measurement": {
+      "title": "Minutes, Mass & Liquid",
+      "skill": "Solve elapsed-time and same-unit measurement problems",
+      "guide": {
+        "standards": ["3.MD.1", "3.MD.2"],
+        "learn": "Break elapsed time into steps to the next hour and then onward. Use liters for liquid volume and grams or kilograms for mass. Add or subtract measurements only when the units match.",
+        "together": "Draw a number line from 2:45 to 3:10 and label each time jump. With an adult, inspect labels showing grams, kilograms, or liters and explain what each measures."
+      },
+      "questions": [
+        ["A reading session starts at 2:45 and ends at 3:10. How long is it?", "25 minutes", ["15 minutes", "25 minutes", "35 minutes"], "There are 15 minutes to 3:00, then 10 more.", "15 + 10 = 25 minutes."],
+        ["What time is 35 minutes after 9:40?", "10:15", ["9:75", "10:15", "10:35"], "Use 20 minutes to reach 10:00.", "After 20 minutes, 15 minutes remain; the time is 10:15."],
+        ["Two containers hold 3 liters and 4 liters. How much altogether?", "7 liters", ["1 liter", "7 liters", "12 liters"], "Both measurements use liters.", "3 + 4 = 7 liters."],
+        ["A bag holds 800 grams of rice. After 250 grams are used, how much remains?", "550 grams", ["550 grams", "650 grams", "1,050 grams"], "Subtract the used amount.", "800 - 250 = 550 grams."],
+        ["Which unit is suitable for the mass of a watermelon?", "kilograms", ["kilograms", "liters", "minutes"], "Choose a mass unit for a fairly heavy object.", "Kilograms measure mass; liters measure liquid volume and minutes measure time."]
+      ]
+    },
+    "data": {
+      "title": "Read the Graph Key",
+      "skill": "Interpret a scaled bar graph and solve comparison questions",
+      "guide": {
+        "standards": ["3.MD.3"],
+        "learn": "A graph key can make each block stand for more than one item. Here one block represents 2 seedlings. Multiply the block count by 2 before comparing categories. These are sample counts.",
+        "together": "Draw a scaled bar graph for these seedlings on paper. Label each block as 2. Write a two-step question comparing the total in two categories with the third category."
+      },
+      "chart": {"type": "bar", "title": "Sample seedlings grown", "labels": ["Beans", "Peas", "Corn"], "counts": [3, 5, 4], "unit": "seedlings", "scale": 2},
+      "questions": [
+        ["Five blocks are shown for Peas. How many pea seedlings is that?", "10", ["5", "7", "10"], "Each block represents 2.", "5 x 2 = 10 pea seedlings."],
+        ["How many more corn seedlings than bean seedlings are shown?", "2", ["1", "2", "7"], "Corn shows 8 and Beans shows 6.", "8 - 6 = 2 more corn seedlings."],
+        ["How many seedlings are shown altogether?", "24", ["12", "22", "24"], "Add 6, 10, and 8.", "6 + 10 + 8 = 24 seedlings."],
+        ["How many more seedlings do Beans and Corn together have than Peas?", "4", ["2", "4", "14"], "First add 6 and 8, then subtract 10.", "6 + 8 - 10 = 4 more seedlings."],
+        ["What does one filled block represent?", "2 seedlings", ["1 seedling", "2 seedlings", "5 seedlings"], "Read the graph key.", "The key says each block represents 2 seedlings."]
+      ]
+    },
+    "sight": {
+      "title": "Word Study Safari",
+      "skill": "Read multisyllabic words and recognize meaningful word parts",
+      "questions": [
+        ["Which smaller word is found in hopeful?", "hope", ["hop", "hope", "help"], "Remove the suffix -ful.", "Hopeful contains the base word hope."],
+        ["How many syllables are in fantastic?", "3", ["2", "3", "4"], "Say fan-tas-tic.", "Fantastic has three syllables."],
+        ["Which word has the same vowel sound as moon?", "spoon", ["spoon", "book", "stone"], "Listen to the oo sound, not only its letters.", "Moon and spoon have the same long oo sound."],
+        ["Which word starts with a prefix meaning before?", "preview", ["review", "preview", "viewer"], "The prefix pre- means before.", "A preview is a view before the main event."],
+        ["Which two words sound alike but have different meanings?", "sea and see", ["sea and see", "cat and cap", "run and ran"], "These are called homophones.", "Sea and see sound alike but mean different things."]
+      ]
+    },
+    "vocabulary": {
+      "title": "Words in Context",
+      "skill": "Prefixes, suffixes, shades of meaning, and figurative expressions",
+      "questions": [
+        ["What does careless mean?", "without care", ["full of care", "without care", "care again"], "The suffix -less means without.", "Careless means without care or attention."],
+        ["In 'The arid soil cracked after weeks without rain,' arid means...", "dry", ["dry", "wet", "frozen"], "Use the clue weeks without rain.", "Arid means very dry."],
+        ["Which word is strongest in meaning?", "sprint", ["walk", "stroll", "sprint"], "Which action is fastest?", "Sprint means run very fast; walk and stroll are slower."],
+        ["What does 'keep an eye on the soup' mean?", "watch the soup", ["put an eye in it", "watch the soup", "hide the soup"], "This phrase is not meant literally.", "Keep an eye on means watch or pay attention to something."],
+        ["What does reusable mean?", "able to be used again", ["never used", "able to be used again", "hard to use"], "Re- means again; -able means able to be.", "Reusable means able to be used again."]
+      ]
+    },
+    "spelling": {
+      "title": "Prefixes & Plurals",
+      "skill": "Spell words with suffix changes and common irregular patterns",
+      "questions": [
+        ["Type the plural of baby.", "babies", null, "Change consonant + y to ies.", "Baby becomes babies: b-a-b-i-e-s."],
+        ["Type the word for moving quickly: run + ing.", "running", null, "Double the final n before ing.", "Running is spelled r-u-n-n-i-n-g."],
+        ["Type the word meaning not possible.", "impossible", null, "Add im to possible.", "Impossible is spelled i-m-p-o-s-s-i-b-l-e."],
+        ["Type the plural of leaf.", "leaves", null, "For this word, f changes to ves.", "Leaves is spelled l-e-a-v-e-s."],
+        ["Type the word for the opposite of forget.", "remember", null, "Start re and finish member.", "Remember is spelled r-e-m-e-m-b-e-r."]
+      ]
+    },
+    "reading": {
+      "title": "A Bridge for Beetles",
+      "skill": "Infer character traits, trace cause and effect, and identify a theme",
+      "passage": "After a storm, a shallow stream crossed the garden path. Lila noticed beetles trying to climb a muddy stone. Each time they climbed, the water pushed them back.\nShe wanted to help without touching the insects. First, she laid a smooth leaf over the stream. It floated away. Next, she balanced a thin stick between two dry stones. The stick stayed in place, but the beetles could not reach its high end.\nLila lowered one end to the path. A beetle climbed up, crossed the stream, and disappeared beneath a fern. Soon another followed. Lila left the bridge where it was and went inside, already wondering what other small problems she might solve.",
+      "questions": [
+        ["Why did Lila change her first bridge?", "The leaf floated away.", ["The leaf floated away.", "The beetles ate it.", "The path became dry."], "Find what happened to the leaf.", "Water carried the leaf away, so it did not work as a bridge."],
+        ["Which trait best describes Lila?", "persistent", ["careless", "persistent", "uninterested"], "She keeps changing her design after problems.", "Lila is persistent because she keeps trying until the bridge works."],
+        ["Why did she lower one end of the stick?", "so beetles could reach it", ["to hide it", "so beetles could reach it", "to make it float"], "The beetles could not reach the high end.", "Lowering the end made an entrance the beetles could climb onto."],
+        ["Which event happened last?", "A second beetle crossed.", ["Lila used a leaf.", "A second beetle crossed.", "Lila found the stream."], "Follow the order in the final paragraph.", "Another beetle followed after the first crossed the repaired bridge."],
+        ["Which lesson fits the story?", "Improve an idea when it does not work.", ["Never change a plan.", "Improve an idea when it does not work.", "Always touch wild insects."], "Think about Lila's attempts and changes.", "Lila solves the problem by testing and improving her idea."]
+      ]
+    },
+    "sentence": {
+      "title": "Paragraph Builder",
+      "skill": "Subjects, conjunctions, pronouns, and paragraph organization",
+      "questions": [
+        ["What is the subject of 'The small turtle crossed the path'?", "The small turtle", ["The small turtle", "crossed", "the path"], "The subject tells who or what does the action.", "The small turtle is doing the crossing."],
+        ["Choose a conjunction that shows contrast: 'I was tired, ___ I finished.'", "but", ["but", "because", "or"], "The second idea happens despite the first.", "But connects contrasting ideas."],
+        ["Replace Maya in 'Maya carried her bag' with a pronoun.", "She", ["She", "They", "It"], "Use a singular pronoun for Maya.", "She carried her bag uses a pronoun in place of Maya."],
+        ["Which sentence is a good topic sentence for a paragraph about caring for a pet?", "Pets need daily care.", ["My pencil is blue.", "Pets need daily care.", "The moon is bright."], "A topic sentence introduces the paragraph's main idea.", "Pets need daily care introduces details about feeding, water, and exercise."],
+        ["Which sentence uses quotation marks correctly?", "\"Come here,\" said Ben.", ["\"Come here,\" said Ben.", "Come \"here, said Ben.", "Come here, \"said Ben.\""], "Quotation marks surround the words spoken.", "Come here is the spoken part, so those words are inside quotation marks."]
+      ]
+    },
+    "arithmetic": {
+      "title": "Three-Digit Number Sprint",
+      "skill": "Add and subtract within 1,000 and evaluate simple expressions",
+      "questions": [
+        ["348 + 276 = ?", "624", ["514", "624", "614"], "Regroup ones and tens when needed.", "8 + 6 = 14; 40 + 70 + 10 = 120; 300 + 200 + 120 + 4 = 624."],
+        ["702 - 458 = ?", "244", ["244", "354", "254"], "Think 702 - 400 - 50 - 8.", "702 - 400 = 302; minus 50 is 252; minus 8 is 244."],
+        ["125 + 200 + 75 = ?", "400", ["300", "400", "500"], "Combine 125 and 75 first.", "125 + 75 = 200, then 200 + 200 = 400."],
+        ["600 - 175 = ?", "425", ["425", "435", "525"], "Subtract 100, then 75.", "600 - 100 = 500; 500 - 75 = 425."],
+        ["24 + 3 × 4 = ?", "36", ["108", "36", "31"], "Multiply before adding.", "3 × 4 = 12; 24 + 12 = 36."]
+      ]
+    },
+    "multiply": {
+      "title": "Times & Division Adventure",
+      "skill": "Multiplication and division facts within 100",
+      "questions": [
+        ["7 × 6 = ?", "42", ["36", "42", "48"], "Try 7 × 5, then one more group of 7.", "35 + 7 = 42."],
+        ["56 ÷ 8 = ?", "7", ["6", "7", "8"], "Which number times 8 is 56?", "8 × 7 = 56, so 56 ÷ 8 = 7."],
+        ["9 × 4 = ?", "36", ["32", "36", "40"], "Try 10 × 4, then subtract 4.", "40 - 4 = 36."],
+        ["72 ÷ 9 = ?", "8", ["7", "8", "9"], "Use a related multiplication fact.", "9 × 8 = 72, so the quotient is 8."],
+        ["6 × ? = 54", "9", ["7", "8", "9"], "Count multiples of six.", "6 × 9 = 54."]
+      ]
+    },
+    "patterns": {
+      "title": "Fractions & Rounding",
+      "skill": "Unit fractions, equivalent fractions, rounding, and number patterns",
+      "questions": [
+        ["One of four equal parts of a whole is written...", "1/4", ["1/2", "1/4", "4/1"], "The bottom number tells how many equal parts.", "One selected part out of four equal parts is 1/4."],
+        ["Which fraction is equivalent to 1/2?", "2/4", ["1/4", "2/4", "3/4"], "Two fourths cover the same amount as one half.", "2/4 and 1/2 represent the same amount."],
+        ["Round 347 to the nearest ten.", "350", ["340", "350", "300"], "The ones digit is 7, so round up.", "347 is closer to 350 than to 340."],
+        ["What comes next: 6, 12, 18, 24, ...?", "30", ["28", "30", "36"], "Add six each time.", "24 + 6 = 30."],
+        ["Which is greater: 3/8 or 5/8?", "5/8", ["3/8", "5/8", "They are equal"], "The parts have the same size; compare how many.", "Five eighths is greater than three eighths."]
+      ]
+    },
+    "problems": {
+      "title": "Multi-Step Math Stories",
+      "skill": "Use all four operations and elapsed-time reasoning",
+      "questions": [
+        ["Four boxes hold 6 markers each. How many markers?", "24", ["10", "24", "30"], "Multiply equal groups.", "4 × 6 = 24 markers."],
+        ["A club has 36 students in teams of 4. How many teams?", "9", ["8", "9", "10"], "Find how many groups of 4 make 36.", "36 ÷ 4 = 9 teams."],
+        ["A show begins at 2:15 and lasts 40 minutes. When does it end?", "2:55", ["2:45", "2:55", "3:15"], "Add four groups of ten minutes.", "Forty minutes after 2:15 is 2:55."],
+        ["You buy 3 notebooks for $4 each and pay $20. What is your change?", "$8", ["$8", "$12", "$16"], "Find the cost, then subtract it from 20.", "3 × 4 = 12; 20 - 12 = $8."],
+        ["A garden has 5 rows of 8 plants. 7 plants are moved. How many remain?", "33", ["33", "35", "47"], "Multiply first, then subtract.", "5 × 8 = 40; 40 - 7 = 33 plants."]
+      ]
+    },
+    "geometry": {
+      "title": "Area & Perimeter Quest",
+      "skill": "Rectangular area, perimeter, quadrilaterals, and metric measurement",
+      "questions": [
+        ["A rectangle is 5 units long and 3 units wide. What is its area?", "15 square units", ["8 square units", "15 square units", "16 square units"], "Multiply length by width.", "5 × 3 = 15 square units."],
+        ["What is the perimeter of that 5-by-3 rectangle?", "16 units", ["8 units", "15 units", "16 units"], "Add all four sides.", "5 + 3 + 5 + 3 = 16 units."],
+        ["Which shape always has 4 equal sides and 4 right angles?", "square", ["square", "triangle", "pentagon"], "It is a special kind of rectangle.", "A square has four equal sides and four right angles."],
+        ["A ribbon is 1 meter long. How many centimeters is that?", "100", ["10", "100", "1000"], "There are one hundred centimeters in a meter.", "1 meter = 100 centimeters."],
+        ["A shape has 4 sides. It must be a...", "quadrilateral", ["triangle", "quadrilateral", "pentagon"], "Quad means four.", "Every polygon with four sides is a quadrilateral."]
+      ]
+    }
+  }
+}

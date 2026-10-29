@@ -1,0 +1,215 @@
+{
+  "grade": "k",
+  "overview": "Letters and sounds, familiar words, story details, counting to 20, adding within 5, sorting, and everyday shapes. A grown-up may read directions aloud.",
+  "lessons": {
+    "informational": {
+      "title": "Facts About Plants",
+      "skill": "Find a topic, key details, and a connection in nonfiction",
+      "guide": {
+        "standards": ["RI.K.1", "RI.K.2", "RI.K.3"],
+        "learn": "Nonfiction tells about real things. Listen as a grown-up reads. Name the topic, then point to words that tell you a fact. Plants need water and light; roots take in water.",
+        "together": "Look at a plant without picking it. Take turns naming one detail from the text and one thing you notice. Ask a question. A grown-up can help you find an answer."
+      },
+      "passage": "A plant is a living thing. Many plants have roots, stems, and leaves. Roots take in water. A stem holds up the plant. Leaves use light to help make food. Plants need water and light to grow.",
+      "questions": [
+        ["What is this text mostly about?", "plants", ["plants", "trains", "shoes"], "Name the living thing described.", "Each sentence gives a fact about plants."],
+        ["What takes in water?", "roots", ["roots", "flowers", "pots"], "Find the sentence with water.", "The text says roots take in water."],
+        ["What holds up a plant?", "a stem", ["a stem", "a cloud", "a rock"], "Look for holds up.", "A stem holds up the plant."],
+        ["What do leaves use to help make food?", "light", ["light", "toys", "sand"], "Find the sentence about leaves.", "Leaves use light to help make food."],
+        ["Why do roots taking in water help the plant?", "Plants need water to grow.", ["Plants need water to grow.", "Roots are toys.", "Plants do not need water."], "Connect the water fact to the last sentence.", "Roots take in water, and plants need water to grow."]
+      ]
+    },
+    "writing": {
+      "title": "Draw, Tell & Write",
+      "skill": "Prepare an opinion, a fact, and an event in order",
+      "guide": {
+        "standards": ["W.K.1", "W.K.2", "W.K.3", "SL.K.1"],
+        "learn": "An opinion tells what you like. A fact tells something about a topic. A story tells what happened. You can draw, tell a grown-up your words, or try writing. Quiz choices are practice, not a writing assessment.",
+        "together": "On paper, draw a favorite game and tell your opinion; draw a plant and tell a fact; then draw something you did and tell what happened first and next, and how you felt. Have a grown-up write your words if needed. Take turns asking and answering a question. No work is uploaded or scored."
+      },
+      "questions": [
+        ["Which sentence tells what someone likes?", "I like drawing.", ["I like drawing.", "A cat has ears.", "It is Monday."], "Find the sentence with like.", "I like drawing tells a preference."],
+        ["Which fact belongs with a drawing of a bird?", "A bird has feathers.", ["A bird has feathers.", "A bus has wheels.", "I like soup."], "Choose information about the bird.", "Feathers are a detail about a bird."],
+        ["You washed your hands, then ate lunch. What happened first?", "I washed my hands.", ["I ate lunch.", "I washed my hands.", "I went to sleep."], "First means before the other event.", "Washing happened before eating."],
+        ["Which ending tells how you felt after playing?", "I felt happy.", ["I felt happy.", "The box is blue.", "Next, I start."], "Look for a feeling word.", "Happy tells a reaction to the event."],
+        ["What could you do if writing every word is hard?", "Tell a grown-up the words for my drawing.", ["Tell a grown-up the words for my drawing.", "Give up on my idea.", "Hide my drawing."], "Writers can tell ideas aloud too.", "Drawing and dictating are ways to share your writing ideas."]
+      ]
+    },
+    "place": {
+      "title": "Ten & Some More",
+      "skill": "Build teen numbers from ten ones and extra ones",
+      "guide": {
+        "standards": ["K.NBT.1"],
+        "learn": "Make a group of ten counters. Put extra counters beside it. Ten ones and three more ones make 13. Teen numbers from 11 to 19 have ten ones and some extra ones.",
+        "together": "Use 11 to 19 large blocks with a grown-up. Make a group of ten and count the leftovers. Draw both groups and tell how you know the total."
+      },
+      "questions": [
+        ["Ten ones and 3 more ones make which number?", "13", ["3", "13", "19"], "Count 11, 12, 13 after ten.", "10 + 3 = 13."],
+        ["14 is ten ones and how many more ones?", "4", ["1", "4", "10"], "Start at ten and count up to 14.", "14 = 10 + 4."],
+        ["Which shows 16 as ten and some more?", "10 + 6", ["10 + 6", "10 + 3", "6 + 6"], "Look for ten and six extra ones.", "Ten ones and six more make 16."],
+        ["Ten ones and 9 more ones make which number?", "19", ["9", "18", "19"], "Count nine more after ten.", "10 + 9 = 19."],
+        ["12 counters are split into ten and some more. How many are left beside the ten?", "2", ["2", "10", "12"], "Take away a group of ten.", "12 = 10 + 2, so 2 are left."]
+      ]
+    },
+    "fractions": {
+      "title": "Parts That Make a Whole",
+      "skill": "Break apart numbers and find a missing part to make ten",
+      "guide": {
+        "standards": ["K.OA.3", "K.OA.4"],
+        "learn": "Here parts means groups of objects, not fraction symbols yet. Five blocks can be split into two and three, or one and four. Different parts can make the same total.",
+        "together": "Draw ten large spaces. Fill some with counters, then count the empty spaces. Say how many more make ten. Break five blocks into two groups in two different ways."
+      },
+      "questions": [
+        ["5 blocks are split into 2 and how many more?", "3", ["2", "3", "5"], "Count on from 2 to 5.", "2 + 3 = 5."],
+        ["Which pair also makes 5?", "1 and 4", ["1 and 4", "1 and 2", "3 and 3"], "Join each pair and count.", "1 + 4 = 5, another way to split five."],
+        ["6 counters and how many more make 10?", "4", ["3", "4", "6"], "Count 7, 8, 9, 10.", "6 + 4 = 10."],
+        ["9 counters and how many more make 10?", "1", ["1", "2", "9"], "Ten is one more than nine.", "9 + 1 = 10."],
+        ["8 blocks can be split into 4 and what other part?", "4", ["2", "4", "8"], "Count from 4 up to 8.", "4 + 4 = 8."]
+      ]
+    },
+    "measurement": {
+      "title": "Compare & Describe",
+      "skill": "Describe length and weight; compare two objects directly",
+      "guide": {
+        "standards": ["K.MD.1", "K.MD.2"],
+        "learn": "Length tells how long something is. Weight tells how heavy it is. To compare two ribbons, put one end of each at the same starting place and see which reaches farther.",
+        "together": "Compare two pencils by lining up their ends. Use words longer and shorter. Hold two safe objects and discuss heavier and lighter; size alone does not tell weight."
+      },
+      "questions": [
+        ["Two ribbons start at the same place. The red one reaches farther. Which is longer?", "red ribbon", ["red ribbon", "blue ribbon", "They must match."], "Longer reaches farther from the same start.", "The red ribbon reaches farther, so it is longer."],
+        ["Which word describes how heavy a bag is?", "weight", ["weight", "color", "sound"], "Think of heavy and light.", "Weight describes how heavy something is."],
+        ["Two pencils have their ends lined up. Both reach the same place. Their lengths are...", "equal", ["equal", "always different", "unknown"], "Neither pencil reaches farther.", "They start and end together, so they have equal lengths."],
+        ["A balance has a book lower than a feather. Which is heavier?", "the book", ["the feather", "the book", "They weigh the same."], "The heavier side of a balance goes down.", "The book is on the lower side, so it is heavier."],
+        ["Which pair of words compares length?", "longer and shorter", ["longer and shorter", "red and blue", "loud and quiet"], "Length is about how long an object is.", "Longer and shorter compare lengths."]
+      ]
+    },
+    "data": {
+      "title": "Sort & Count",
+      "skill": "Sort objects by shape and compare category counts",
+      "guide": {
+        "standards": ["K.MD.3"],
+        "learn": "Put objects that belong together in a category. Count each group. This graph records sorted shapes. Each filled block stands for one shape.",
+        "together": "Draw six shapes like the graph, cut them with adult help, and sort them. Count each group and put the groups in order from fewest to most."
+      },
+      "chart": {"type": "bar", "title": "Shapes in a box", "labels": ["Circles", "Squares", "Triangles"], "counts": [2, 3, 1], "unit": "shapes", "scale": 1},
+      "questions": [
+        ["How many squares were sorted?", "3", ["1", "2", "3"], "Count the blocks above Squares.", "There are 3 blocks for 3 squares."],
+        ["Which shape group has the most?", "Squares", ["Circles", "Squares", "Triangles"], "Find the tallest stack.", "Squares has 3, more than either other group."],
+        ["Which shape group has the fewest?", "Triangles", ["Circles", "Squares", "Triangles"], "Find the shortest stack.", "There is only 1 triangle."],
+        ["How many circles were sorted?", "2", ["1", "2", "3"], "Count the circle group's blocks.", "There are 2 circles."],
+        ["Put the groups in order from fewest to most.", "Triangles, Circles, Squares", ["Triangles, Circles, Squares", "Squares, Circles, Triangles", "Circles, Squares, Triangles"], "Compare 1, 2, and 3.", "The counts are 1 triangle, 2 circles, and 3 squares."]
+      ]
+    },
+    "sight": {
+      "title": "Letter & Word Safari",
+      "skill": "Recognize letters and high-frequency words",
+      "questions": [
+        ["Which lowercase letter matches B?", "b", ["b", "d", "p"], "Look for a tall line with a bump on its right.", "Uppercase B and lowercase b name the same letter."],
+        ["Which word is 'the'?", "the", ["the", "ten", "hat"], "Look for t, then h, then e.", "The letters t-h-e spell the."],
+        ["Which word completes 'I ___ a cat'?", "see", ["see", "sun", "sit"], "Choose the word for looking with your eyes.", "We see with our eyes. I see a cat."],
+        ["Which word starts with the same sound as sun?", "sock", ["moon", "sock", "fish"], "Say sss at the start of sun.", "Sun and sock both begin with the /s/ sound."],
+        ["Which two words rhyme?", "cat and hat", ["cat and hat", "dog and sun", "pig and bed"], "Rhyming words have the same ending sound.", "Cat and hat both end with the /at/ sound."]
+      ]
+    },
+    "vocabulary": {
+      "title": "Everyday Word Match",
+      "skill": "Opposites, categories, and describing words",
+      "questions": [
+        ["What is the opposite of up?", "down", ["down", "near", "big"], "Think of going down a slide.", "Up and down describe opposite directions."],
+        ["Which one is a fruit?", "apple", ["chair", "apple", "shoe"], "A fruit can grow on a tree.", "An apple is a fruit that grows on a tree."],
+        ["Which word describes ice?", "cold", ["hot", "cold", "loud"], "Think about holding an ice cube.", "Ice feels cold."],
+        ["What is the opposite of big?", "small", ["small", "tall", "wide"], "Compare an elephant and a tiny ant.", "Small is the opposite of big."],
+        ["Which word names an animal?", "rabbit", ["table", "rabbit", "cup"], "Look for a living thing with long ears.", "A rabbit is an animal. Tables and cups are objects."]
+      ]
+    },
+    "spelling": {
+      "title": "First Sounds & Spelling",
+      "skill": "Spell simple consonant-vowel-consonant words",
+      "questions": [
+        ["Type the word for a pet that says meow.", "cat", null, "Say the sounds /c/ /a/ /t/.", "Cat is spelled c-a-t."],
+        ["Type the word for a pet that barks.", "dog", null, "Say the sounds /d/ /o/ /g/.", "Dog is spelled d-o-g."],
+        ["Type the word for the bright star we see in the daytime.", "sun", null, "The letters are s, u, and n.", "Sun is spelled s-u-n."],
+        ["Type the word for something you wear on your head.", "hat", null, "It rhymes with cat and begins with h.", "Hat is spelled h-a-t."],
+        ["Type the word for a place you sleep.", "bed", null, "Say /b/ /e/ /d/.", "Bed is spelled b-e-d."]
+      ]
+    },
+    "reading": {
+      "title": "A Seed for Sam",
+      "skill": "Recall a character, setting, actions, and story order",
+      "passage": "Sam has a red pot. Sam puts a seed in the pot. Sam adds water. The pot sits by the window. One day, a little green leaf grows. Sam smiles.",
+      "questions": [
+        ["Who puts a seed in the pot?", "Sam", ["Sam", "Pip", "Nova"], "Find the name in the first sentence.", "Sam is the person who plants the seed."],
+        ["What color is the pot?", "red", ["blue", "red", "green"], "Look at the first sentence.", "The story says Sam has a red pot."],
+        ["What does Sam add?", "water", ["water", "sandwiches", "paint"], "Plants need a drink.", "Sam adds water to help the seed grow."],
+        ["Where does the pot sit?", "by the window", ["under a bed", "by the window", "in a bag"], "Find the sentence about where the pot sits.", "The pot sits by the window."],
+        ["What grows at the end?", "a green leaf", ["a red hat", "a green leaf", "a toy"], "Look at the next-to-last sentence.", "A little green leaf grows, and Sam smiles."]
+      ]
+    },
+    "sentence": {
+      "title": "My First Sentences",
+      "skill": "Recognize simple sentences and basic punctuation",
+      "questions": [
+        ["Choose the sentence that makes sense.", "I see a dog.", ["I see a dog.", "Dog a see I.", "See I dog a."], "Start with I.", "I see a dog tells who is looking and what they see."],
+        ["Which letter starts 'The cat naps.'?", "T", ["T", "c", "n"], "Look at the very first letter.", "A sentence starts with a capital letter. This one starts with T."],
+        ["What mark ends 'I like books.'?", "a period", ["a period", "a comma", "a space"], "Look for the dot.", "A period is the dot at the end of a telling sentence."],
+        ["Choose a sentence about a bird.", "The bird can fly.", ["The fish can swim.", "The bird can fly.", "The dog can run."], "Find the sentence with the word bird.", "The bird can fly is about a bird."],
+        ["Complete 'We ___ at school.'", "learn", ["learn", "blue", "table"], "Choose an action you do at school.", "We learn at school is a complete sentence."]
+      ]
+    },
+    "arithmetic": {
+      "title": "Count & Add",
+      "skill": "Count objects and add or subtract within 5",
+      "questions": [
+        ["Count: apple, apple, apple. How many apples?", "3", ["2", "3", "4"], "Touch each word apple as you count.", "One, two, three: there are 3 apples."],
+        ["2 + 1 = ?", "3", ["2", "3", "4"], "Start at 2 and count one more.", "Two and one more make 3."],
+        ["4 - 1 = ?", "3", ["2", "3", "5"], "Hold up four fingers, then put one down.", "Four take away one leaves 3."],
+        ["3 + 2 = ?", "5", ["3", "4", "5"], "Count two more after 3.", "After 3 come 4 and 5, so 3 + 2 = 5."],
+        ["5 - 2 = ?", "3", ["2", "3", "4"], "Count back twice from 5.", "Five take away two leaves 3."]
+      ]
+    },
+    "multiply": {
+      "title": "Groups & Sharing",
+      "skill": "Explore small equal groups without multiplication notation",
+      "questions": [
+        ["Two plates each hold one cookie. How many cookies?", "2", ["1", "2", "3"], "Count one cookie on each plate.", "One cookie plus one cookie makes 2."],
+        ["Two pairs of socks have how many socks?", "4", ["2", "3", "4"], "A pair means two. Count two and two.", "Two socks and two socks make 4."],
+        ["Share two blocks equally between two children. How many each?", "1", ["0", "1", "2"], "Give one block to each child.", "Each child gets 1 block."],
+        ["Three nests each have one egg. How many eggs?", "3", ["1", "2", "3"], "Count one egg for every nest.", "One plus one plus one makes 3 eggs."],
+        ["Share four berries equally between two bowls. How many in each?", "2", ["1", "2", "4"], "Put one berry in each bowl, then repeat.", "Each bowl has 2 berries."]
+      ]
+    },
+    "patterns": {
+      "title": "Count & Notice",
+      "skill": "Count forward, compare numbers, and repeat simple patterns",
+      "questions": [
+        ["What comes next: 1, 2, 3, ...?", "4", ["2", "4", "5"], "Count one more after 3.", "The next counting number is 4."],
+        ["What comes next: red, blue, red, blue, ...?", "red", ["red", "green", "yellow"], "The colors repeat red, blue.", "The next color in the repeating pattern is red."],
+        ["Which number is greater: 5 or 2?", "5", ["2", "5", "They are equal"], "Five objects make a bigger group than two.", "5 is greater than 2."],
+        ["What comes next: 10, 11, 12, ...?", "13", ["9", "13", "15"], "Say the counting numbers after ten.", "After 12 comes 13."],
+        ["What number comes just before 20?", "19", ["18", "19", "21"], "Count backward one step from 20.", "19 comes just before 20."]
+      ]
+    },
+    "problems": {
+      "title": "Little Math Stories",
+      "skill": "Solve joining and taking-away stories within 5",
+      "questions": [
+        ["Mia has 2 crayons. Ben gives her 2 more. How many now?", "4", ["2", "3", "4"], "Join the two groups of crayons.", "2 + 2 = 4 crayons."],
+        ["There are 3 ducks. One swims away. How many remain?", "2", ["1", "2", "3"], "Take one away from three.", "3 - 1 = 2 ducks."],
+        ["A basket has 1 pear. Add 3 pears. How many pears?", "4", ["3", "4", "5"], "Count three more after one.", "1 + 3 = 4 pears."],
+        ["Jo has 5 blocks and puts 1 away. How many are still out?", "4", ["3", "4", "5"], "Count back one from five.", "5 - 1 = 4 blocks."],
+        ["Two birds sit on a fence. Three more land. How many birds?", "5", ["3", "4", "5"], "Bring the two groups together.", "2 + 3 = 5 birds."]
+      ]
+    },
+    "geometry": {
+      "title": "Shape & Size Quest",
+      "skill": "Identify flat shapes and compare measurable attributes",
+      "questions": [
+        ["Which shape is round with no corners?", "circle", ["circle", "square", "triangle"], "Think of the outline of a coin.", "A circle is round and has no corners."],
+        ["Which shape has three straight sides?", "triangle", ["circle", "triangle", "square"], "Tri means three.", "A triangle has three straight sides."],
+        ["A square has how many sides?", "4", ["2", "3", "4"], "Count the top, bottom, left, and right edges.", "A square has 4 equal sides."],
+        ["A ribbon is longer than a pencil. Which is shorter?", "the pencil", ["the ribbon", "the pencil", "They are equal"], "Shorter means it has less length.", "If the ribbon is longer, the pencil is shorter."],
+        ["Which object is shaped most like a sphere?", "a ball", ["a ball", "a book", "a sheet of paper"], "A sphere is round in every direction.", "A ball is a familiar example of a sphere."]
+      ]
+    }
+  }
+}

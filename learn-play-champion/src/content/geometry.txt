@@ -1,0 +1,67 @@
+[
+  {
+    "prompt": "How many sides does this shape have?",
+    "answer": "3",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "hint": "Trace each straight edge.",
+    "explanation": "A triangle has 3 straight sides and 3 corners.",
+    "shape": "triangle"
+  },
+  {
+    "prompt": "What is this shape called?",
+    "answer": "square",
+    "options": [
+      "circle",
+      "triangle",
+      "square",
+      "pentagon"
+    ],
+    "hint": "It has four equal sides.",
+    "explanation": "A square has 4 equal sides and 4 square corners.",
+    "shape": "square"
+  },
+  {
+    "prompt": "How many corners does this shape have?",
+    "answer": "0",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "4"
+    ],
+    "hint": "A curved edge has no pointy corners.",
+    "explanation": "A circle is round, with no corners.",
+    "shape": "circle"
+  },
+  {
+    "prompt": "What is this shape called?",
+    "answer": "rectangle",
+    "options": [
+      "triangle",
+      "circle",
+      "pentagon",
+      "rectangle"
+    ],
+    "hint": "Think of the shape of a door.",
+    "explanation": "A rectangle has 4 square corners and opposite sides of equal length.",
+    "shape": "rectangle"
+  },
+  {
+    "prompt": "How many sides does this shape have?",
+    "answer": "5",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "hint": "Count each edge, starting at the top.",
+    "explanation": "A pentagon has 5 straight sides.",
+    "shape": "pentagon"
+  }
+]

@@ -1,0 +1,191 @@
+{
+  "grade": "prek",
+  "overview": "Explore with a grown-up: a few letters and sounds, familiar words, very short stories, counting to 5, small groups, colors, shapes, sorting, and comparing. Optional voice support can read the words and choices aloud.",
+  "lessons": {
+    "sight": {
+      "title": "Hello, Letters!",
+      "skill": "Notice matching letters and hear beginning sounds",
+      "questions": [
+        ["Which letter matches A?", "A", ["A", "B", "C"], "Look for the same shape.", "A matches A. A grown-up can point to it with you."],
+        ["Which letter matches B?", "B", ["A", "B", "C"], "Look for a tall line with two bumps.", "B matches B."],
+        ["Which word starts with the sound mmm?", "moon", ["moon", "sun", "cat"], "Say mmm at the start of moon.", "Moon starts with the /m/ sound."],
+        ["Which word starts with the sound sss?", "sun", ["dog", "sun", "hat"], "Stretch the first sound in sun.", "Sun starts with /s/."],
+        ["Which words rhyme?", "cat and hat", ["cat and hat", "dog and sun", "bed and fish"], "Listen for matching ending sounds.", "Cat and hat share the ending sound /at/."]
+      ]
+    },
+    "vocabulary": {
+      "title": "Words Around Me",
+      "skill": "Talk about familiar objects, actions, and opposites",
+      "questions": [
+        ["Which animal says meow?", "cat", ["cat", "dog", "duck"], "Think of a pet with whiskers.", "A cat says meow."],
+        ["What do we use to see?", "eyes", ["eyes", "feet", "ears"], "Point to your eyes.", "We see with our eyes."],
+        ["Which is the opposite of up?", "down", ["down", "red", "soft"], "Think of going down a slide.", "Up and down are opposite directions."],
+        ["Which can you wear on your head?", "hat", ["hat", "shoe", "sock"], "Think of a sun hat.", "A hat goes on your head."],
+        ["Which word is an action?", "jump", ["jump", "chair", "blue"], "An action is something you can do.", "Jump is an action. A grown-up can show a safe little jump."]
+      ]
+    },
+    "spelling": {
+      "title": "Try a Letter",
+      "skill": "Copy one letter with adult support; not independent spelling",
+      "questions": [
+        ["Copy the letter a. You can type a or say 'letter A'.", "a", null, "Ask a grown-up to point to a on the keyboard.", "You tried the letter a. Letter play takes practice."],
+        ["Copy the letter b. You can type b or say 'letter B'.", "b", null, "Find the key marked B.", "You tried b, the first letter in ball."],
+        ["Copy the letter m. You can type m or say 'letter M'.", "m", null, "Find M with a grown-up.", "You tried m, the first letter in moon."],
+        ["Copy the letter s. You can type s or say 'letter S'.", "s", null, "Look for the curvy S key.", "You tried s, the first letter in sun."],
+        ["Copy the letter t. You can type t or say 'letter T'.", "t", null, "Ask a grown-up to show you T.", "You tried t, the first letter in top."]
+      ]
+    },
+    "reading": {
+      "title": "Jo and the Ball",
+      "skill": "Listen to a short story and recall details",
+      "passage": "Jo has a red ball. Jo rolls the ball to Pat. Pat rolls it back. Jo and Pat smile.",
+      "questions": [
+        ["Who has a ball at the start?", "Jo", ["Jo", "Pip", "Nova"], "Listen to the first sentence.", "Jo has the ball at the start."],
+        ["What color is the ball?", "red", ["red", "blue", "green"], "The story says red ball.", "The ball is red."],
+        ["What does Jo do with the ball?", "rolls it", ["rolls it", "eats it", "hides it"], "Listen for an action.", "Jo rolls the ball to Pat."],
+        ["Who rolls the ball back?", "Pat", ["Pat", "a cat", "a bird"], "Listen to the third sentence.", "Pat rolls it back."],
+        ["How do Jo and Pat look at the end?", "happy", ["happy", "angry", "sleepy"], "They both smile.", "Their smiles suggest they feel happy."]
+      ]
+    },
+    "sentence": {
+      "title": "Say It Together",
+      "skill": "Choose a meaningful short sentence with help",
+      "questions": [
+        ["Finish: 'The dog can ___.'", "run", ["run", "blue", "chair"], "Choose something a dog can do.", "The dog can run."],
+        ["Which sentence tells about a cat?", "The cat naps.", ["The cat naps.", "The bus stops.", "The bird flies."], "Listen for the word cat.", "The cat naps tells about a cat."],
+        ["Finish: 'I drink ___.'", "water", ["water", "shoes", "rocks"], "Think of a drink.", "I drink water is a sentence that makes sense."],
+        ["Which tells something kind?", "I can help.", ["I can help.", "I can hit.", "I can shove."], "Helping is kind.", "I can help tells a kind action."],
+        ["Finish: 'We read a ___.'", "book", ["book", "shoe", "spoon"], "Think of pages with words and pictures.", "We read a book."]
+      ]
+    },
+    "arithmetic": {
+      "title": "Count to Five",
+      "skill": "Count small groups with adult pointing",
+      "questions": [
+        ["Count: apple. How many?", "1", ["1", "2", "3"], "One word apple means one apple.", "There is 1 apple."],
+        ["Count: star, star. How many?", "2", ["1", "2", "3"], "Point once for each star word.", "One, two: there are 2 stars."],
+        ["Count: duck, duck, duck. How many?", "3", ["2", "3", "4"], "Count each duck word once.", "One, two, three: there are 3 ducks."],
+        ["Count: block, block, block, block. How many?", "4", ["3", "4", "5"], "Ask a grown-up to point as you count.", "There are 4 blocks."],
+        ["Count: leaf, leaf, leaf, leaf, leaf. How many?", "5", ["3", "4", "5"], "Count slowly up to five.", "There are 5 leaves."]
+      ]
+    },
+    "multiply": {
+      "title": "Little Groups",
+      "skill": "Join tiny groups by counting, without formal multiplication",
+      "questions": [
+        ["One block here and one block there. How many altogether?", "2", ["1", "2", "3"], "Count both blocks.", "One and one make 2."],
+        ["Two blocks here and one more there. How many?", "3", ["1", "2", "3"], "Count one, two, then one more.", "Two and one make 3."],
+        ["One sock for each of two feet. How many socks?", "2", ["1", "2", "4"], "Point to each foot.", "Two feet need 2 socks, one for each foot."],
+        ["Two bowls each have one berry. How many berries?", "2", ["1", "2", "3"], "Count the berry in each bowl.", "One berry and one berry make 2."],
+        ["Two pairs of large blocks are together. How many blocks?", "4", ["2", "3", "4"], "A pair is two; count two and two.", "Two and two make 4 blocks."]
+      ]
+    },
+    "patterns": {
+      "title": "What Comes Next?",
+      "skill": "Notice simple repeating patterns",
+      "questions": [
+        ["Red, blue, red, blue. Which color comes next?", "red", ["red", "green", "yellow"], "The pattern repeats red, blue.", "Red starts the pattern again."],
+        ["Clap, tap, clap, tap. What comes next?", "clap", ["clap", "jump", "sleep"], "Repeat clap, tap.", "Clap comes next in this pattern."],
+        ["Big, small, big, small. What comes next?", "big", ["big", "tiny", "wide"], "Say the pair again.", "Big comes next."],
+        ["Circle, square, circle, square. What comes next?", "circle", ["circle", "triangle", "star"], "The shapes take turns.", "Circle comes next in this repeating pattern."],
+        ["Up, down, up, down. What comes next?", "up", ["up", "left", "right"], "Repeat the two directions.", "Up comes next."]
+      ]
+    },
+    "problems": {
+      "title": "Tiny Number Stories",
+      "skill": "Act out joining or taking away within three",
+      "questions": [
+        ["One duck sits by the pond. One more comes. How many ducks now?", "2", ["1", "2", "3"], "Show one finger and one more.", "One and one make 2 ducks."],
+        ["Two blocks are out. Put one away. How many stay out?", "1", ["1", "2", "3"], "Start with two and take one away.", "One block stays out."],
+        ["You have two crayons. Get one more. How many now?", "3", ["1", "2", "3"], "Count one more after two.", "There are 3 crayons."],
+        ["Three birds sit together. One flies away. How many stay?", "2", ["1", "2", "3"], "Show three fingers, then put one down.", "There are 2 birds left."],
+        ["One toy goes in an empty box. How many toys are in it?", "1", ["1", "2", "3"], "An empty box starts with no toys.", "The box now has 1 toy."]
+      ]
+    },
+    "geometry": {
+      "title": "Meet Some Shapes",
+      "skill": "Name familiar flat shapes and position words",
+      "questions": [
+        ["Which shape is round?", "circle", ["circle", "square", "triangle"], "Think of the outline of a coin.", "A circle is round."],
+        ["Which shape has three sides?", "triangle", ["circle", "triangle", "square"], "Count one, two, three sides.", "A triangle has three sides."],
+        ["Which shape has four equal sides?", "square", ["square", "circle", "triangle"], "Think of a square tile.", "A square has four equal sides."],
+        ["A toy is inside a box. Where is the toy?", "in the box", ["in the box", "above the box", "under the box"], "Inside means in.", "The toy is in the box."],
+        ["A bird flies over a tree. Where is the bird?", "above the tree", ["above the tree", "under the tree", "inside the trunk"], "Over means higher than.", "The bird is above the tree."]
+      ]
+    },
+    "informational": {
+      "title": "All About Cats",
+      "skill": "Listen to a few facts and name the topic",
+      "guide": {"standards": [], "learn": "A fact tells about a real thing. Listen with a grown-up. This little text tells about cats. You do not need to read it by yourself.", "together": "Look at a cat picture with a grown-up. Point to ears, paws, and a tail. Take turns telling one fact and asking one question. This is early exploration, not a Common Core Pre-K standard."},
+      "passage": "Cats are animals. Cats have ears and paws. Many cats have soft fur. Cats need food and water.",
+      "questions": [
+        ["What is this text about?", "cats", ["cats", "cars", "trees"], "Listen to the first word of each sentence.", "The text tells facts about cats."],
+        ["Which body part does the text name?", "paws", ["paws", "wheels", "wings"], "Cats walk on their paws.", "The text says cats have paws."],
+        ["What do many cats have?", "soft fur", ["soft fur", "feathers", "leaves"], "Listen to the third sentence.", "Many cats have soft fur."],
+        ["What drink do cats need?", "water", ["water", "paint", "sand"], "Listen to the last sentence.", "Cats need water."],
+        ["Are cats animals or toys?", "animals", ["animals", "toys", "plants"], "Listen to the first sentence.", "Cats are living animals."]
+      ]
+    },
+    "writing": {
+      "title": "Draw & Tell",
+      "skill": "Share an idea through a drawing and a conversation",
+      "guide": {"standards": [], "learn": "Your ideas matter. You can draw, make marks, point, or tell a grown-up your words. These choices help us talk; they do not measure writing skill.", "together": "Draw a favorite toy with a grown-up. Tell what it is and one thing you like about it. Ask the grown-up to write your words and read them back. No drawing or voice recording is uploaded or scored."},
+      "questions": [
+        ["You drew a ball. Which words tell about it?", "This is my ball.", ["This is my ball.", "A tree has leaves.", "It is raining."], "Tell what is in your drawing.", "This is my ball names the drawing."],
+        ["Which tells what you like?", "I like blocks.", ["I like blocks.", "A dog has paws.", "The cup is empty."], "Listen for I like.", "I like blocks shares a preference."],
+        ["Who can write down words you tell about a picture?", "a grown-up helping me", ["a grown-up helping me", "a rock", "a shoe"], "You can tell your ideas aloud.", "A grown-up can write your words for you."],
+        ["Which is a way to share an idea before you write words?", "draw a picture", ["draw a picture", "hide every page", "give up"], "Pictures can tell ideas.", "Drawing is one way to share an idea."],
+        ["A friend is talking about a drawing. What is a kind way to join in?", "Listen, then take a turn.", ["Listen, then take a turn.", "Shout over them.", "Rip the paper."], "Everyone gets a turn.", "Listening and taking turns help us share ideas."]
+      ]
+    },
+    "place": {
+      "title": "One More",
+      "skill": "Explore counting order within five, not formal place value",
+      "guide": {"standards": [], "learn": "Count slowly with a grown-up. Each new counting word tells one more. We are exploring numbers to five before tens and ones.", "together": "Use up to five large blocks. Add one block at a time and count together, touching each block once. Talk about what changes when one more joins the group."},
+      "questions": [
+        ["What number comes after 1?", "2", ["1", "2", "3"], "Say one, two.", "Two comes after one."],
+        ["What number comes after 2?", "3", ["1", "2", "3"], "Say one, two, three.", "Three comes after two."],
+        ["What number comes after 3?", "4", ["2", "3", "4"], "Count one more after three.", "Four comes after three."],
+        ["What number comes after 4?", "5", ["3", "4", "5"], "Count one more after four.", "Five comes after four."],
+        ["You have 2 blocks. Add one more. How many now?", "3", ["1", "2", "3"], "Count the blocks again.", "Two and one more make 3."]
+      ]
+    },
+    "fractions": {
+      "title": "Parts of a Group",
+      "skill": "Notice small parts of a group without fraction symbols",
+      "guide": {"standards": [], "learn": "A group can have smaller groups inside it. Two red blocks and one blue block make three blocks in all. We are noticing parts, not learning formal fractions yet.", "together": "Use three large blocks with a grown-up. Separate them into one and two, then put them together again. Describe the parts and count the whole group. Do not use small objects that could be swallowed."},
+      "questions": [
+        ["One red block and one blue block make how many blocks?", "2", ["1", "2", "3"], "Count both parts.", "One and one make 2 blocks in all."],
+        ["Three blocks are split into one here and two there. How many in all?", "3", ["1", "2", "3"], "Moving the blocks does not remove any.", "The two parts still make 3 blocks."],
+        ["Two red blocks and one blue block make how many red blocks?", "2", ["1", "2", "3"], "Count only the red part.", "The red part has 2 blocks."],
+        ["One red block and two blue blocks make how many blue blocks?", "2", ["1", "2", "3"], "Count only the blue part.", "The blue part has 2 blocks."],
+        ["Two blocks are together. Move one away from the other. How many blocks still exist?", "2", ["1", "2", "3"], "You moved a block, but did not remove it.", "There are still 2 blocks, now in two parts."]
+      ]
+    },
+    "measurement": {
+      "title": "Big, Small, Long & Short",
+      "skill": "Compare familiar objects by a named attribute",
+      "guide": {"standards": [], "learn": "We can describe things in different ways. A ribbon can be long or short. A toy can be big or small. Compare the same kind of feature with a grown-up.", "together": "Line up two ribbons at one end. Point to the longer one and the shorter one. Compare two safe toys by size. Avoid asking a child to lift heavy objects."},
+      "questions": [
+        ["A red ribbon reaches farther than a blue ribbon from the same start. Which is longer?", "red ribbon", ["red ribbon", "blue ribbon", "They match."], "Longer reaches farther.", "The red ribbon is longer."],
+        ["Which word means not big?", "small", ["small", "red", "loud"], "Think of a tiny toy.", "Small is the opposite of big."],
+        ["Which word tells about length?", "long", ["long", "blue", "happy"], "Think of a long ribbon.", "Long describes length."],
+        ["Two ribbons start and end at the same places. Their lengths...", "match", ["match", "must be different", "are colors"], "Neither reaches farther.", "The ribbons have matching lengths."],
+        ["A blue ribbon stops before a red ribbon from the same start. Which is shorter?", "blue ribbon", ["blue ribbon", "red ribbon", "They match."], "Shorter does not reach as far.", "The blue ribbon is shorter."]
+      ]
+    },
+    "data": {
+      "title": "Sort Toy Colors",
+      "skill": "Sort a small sample by color and count with a grown-up",
+      "guide": {"standards": [], "learn": "Sort means put things that belong together in a group. This sample has red toys and blue toys. Each block on the picture graph stands for one toy. The color names are written too.", "together": "With a grown-up, sort a few large toys by color. Count each group while pointing. You can use different safe objects or draw them. No real children's information is collected."},
+      "chart": {"type": "bar", "title": "Sample toy colors", "labels": ["Red", "Blue"], "counts": [2, 1], "unit": "toys", "scale": 1},
+      "questions": [
+        ["How many red toys are shown?", "2", ["1", "2", "3"], "Count the blocks above Red.", "Two blocks stand for 2 red toys."],
+        ["How many blue toys are shown?", "1", ["1", "2", "3"], "Count the blocks above Blue.", "One block stands for 1 blue toy."],
+        ["Which group has more toys?", "Red", ["Red", "Blue", "They match."], "Compare two toys and one toy.", "The red group has 2, which is more than 1."],
+        ["Which group has fewer toys?", "Blue", ["Red", "Blue", "They match."], "Find the smaller group.", "The blue group has 1 toy, fewer than the red group."],
+        ["How many toys are there altogether?", "3", ["1", "2", "3"], "Count all the blocks.", "Two red toys and one blue toy make 3 toys."]
+      ]
+    }
+  }
+}

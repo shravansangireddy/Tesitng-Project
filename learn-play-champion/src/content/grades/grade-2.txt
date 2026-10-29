@@ -1,0 +1,215 @@
+{
+  "grade": "2",
+  "overview": "Vowel teams, prefixes and suffixes, story evidence, sentence agreement, addition and subtraction within 100, place value to 1,000, equal groups, money, time, and partitioned shapes.",
+  "lessons": {
+    "informational": {
+      "title": "From Paper to New Paper",
+      "skill": "Find paragraph topics and connect steps in a process",
+      "guide": {
+        "standards": ["RI.2.1", "RI.2.2", "RI.2.3"],
+        "learn": "A paragraph groups details about one part of a topic. Ask who, what, where, when, why, and how. In a process, explain why the steps happen in that order.",
+        "together": "Retell the recycling process using a drawing with arrows. Explain why the fibers must be pressed and dried. A grown-up can check which paper your local recycling program accepts."
+      },
+      "passage": "Used paper can become new paper. Many recycling programs collect clean paper separately from trash. Keeping food off the paper helps the recycling process.\nAt a paper mill, the collected paper is mixed with water. The mixture breaks apart into small fibers. Machines spread the wet fibers into a thin layer.\nNext, the layer is pressed to remove water. It is then dried and rolled. The new paper can be used to make other products. Recycling paper uses fibers again instead of throwing them away after one use.",
+      "questions": [
+        ["What is the main topic of the whole text?", "how used paper becomes new paper", ["how used paper becomes new paper", "how to cook a meal", "how trees get leaves"], "Connect all three paragraphs.", "The text follows paper from collection to a new product."],
+        ["What is paragraph one mostly about?", "collecting clean used paper", ["collecting clean used paper", "drying new paper", "drawing on paper"], "Read the opening paragraph again.", "The first paragraph explains collecting clean paper separately."],
+        ["Where is paper mixed with water?", "at a paper mill", ["at a paper mill", "inside a tree", "in a library"], "Look in paragraph two.", "The text names a paper mill as the place."],
+        ["Why is the wet layer pressed?", "to remove water", ["to remove water", "to add food", "to make it into metal"], "Find the sentence about pressing.", "Pressing removes water before the paper dries."],
+        ["Which happens after pressing?", "The paper is dried and rolled.", ["The paper is dried and rolled.", "The paper is collected for the first time.", "Food is added."], "Look for then.", "The last paragraph says the pressed layer is then dried and rolled."]
+      ]
+    },
+    "writing": {
+      "title": "Build a Clear Paragraph",
+      "skill": "Choose relevant facts, linked reasons, and story details",
+      "guide": {
+        "standards": ["W.2.1", "W.2.2", "W.2.3", "SL.2.1"],
+        "learn": "Introduce your topic before adding details. In an opinion, use because to connect a reason. In information writing, use facts and definitions. In a story, describe actions and feelings in order. Quiz choices are planning practice, not a writing score.",
+        "together": "On separate days, write an opinion about a recess activity with two linked reasons, an information paragraph about recycling with a definition, and a short event with actions and feelings. Add an ending to each. Read to a grown-up, ask for a question, and revise one unclear part. Work stays on paper and is not scored."
+      },
+      "questions": [
+        ["Which opening names an information topic?", "Recycling gives used materials another use.", ["Recycling gives used materials another use.", "And that is all.", "Next, it happened."], "An opening tells what the piece is about.", "This sentence introduces recycling."],
+        ["Which word links an opinion to its reason: 'I enjoy puzzles ___ they make me think'?", "because", ["because", "under", "yesterday"], "Choose a word that explains why.", "Because connects the opinion and reason."],
+        ["Which detail belongs in a paragraph about butterflies?", "A butterfly begins life as an egg.", ["A butterfly begins life as an egg.", "My desk is brown.", "The bus is late."], "Keep the details on the topic.", "The egg fact gives information about butterflies."],
+        ["Which sentence adds a character's feelings?", "My hands shook because I felt nervous.", ["My hands shook because I felt nervous.", "The clock has numbers.", "There is a door."], "Look for how the character feels.", "Nervous names the feeling, and shaking hands help show it."],
+        ["Which ending fits an opinion about walking to school?", "For these reasons, walking is my favorite way to arrive.", ["For these reasons, walking is my favorite way to arrive.", "Now I will explain whales.", "Next is the first reason."], "Close by returning to the opinion.", "The sentence brings the reasons back to the opinion."]
+      ]
+    },
+    "place": {
+      "title": "Hundreds, Tens & Ones",
+      "skill": "Read, expand, and compare numbers to 1,000",
+      "guide": {
+        "standards": ["2.NBT.1", "2.NBT.3", "2.NBT.4"],
+        "learn": "Ten tens make one hundred. In 462, the digits mean 4 hundreds, 6 tens, and 2 ones. Expanded form is 400 + 60 + 2. Compare the largest place first.",
+        "together": "Draw hundreds squares, tens sticks, and ones dots for two three-digit numbers. Say their names and use >, <, or = to compare. Explain any zero placeholders."
+      },
+      "questions": [
+        ["4 hundreds, 6 tens, and 2 ones make...", "462", ["462", "426", "642"], "Put each digit in its place.", "400 + 60 + 2 = 462."],
+        ["What is the value of 7 in 735?", "700", ["7", "70", "700"], "The 7 is in the hundreds place.", "Seven hundreds have a value of 700."],
+        ["Which is expanded form for 508?", "500 + 8", ["500 + 8", "50 + 8", "500 + 80"], "The tens digit is zero.", "508 has five hundreds, no tens, and eight ones."],
+        ["Which comparison is true?", "649 < 694", ["649 < 694", "649 > 694", "649 = 694"], "The hundreds match, so compare tens.", "Four tens are less than nine tens, so 649 < 694."],
+        ["Which numeral means nine hundred twenty?", "920", ["902", "920", "290"], "Nine hundreds and two tens.", "900 + 20 = 920."]
+      ]
+    },
+    "fractions": {
+      "title": "Halves, Thirds & Fourths",
+      "skill": "Describe equal shares of the same whole",
+      "guide": {
+        "standards": ["2.G.3"],
+        "learn": "Three equal parts are thirds; four equal parts are fourths. All the equal shares together make a whole. Equal shares can have different shapes but must have the same area.",
+        "together": "Draw two identical rectangles on grid paper. Divide one into four equal rows and the other into four equal rectangles in a two-by-two grid. Compare their areas to show equal shares can look different."
+      },
+      "questions": [
+        ["A rectangle has three equal shares. One share is called...", "one third", ["one half", "one third", "one fourth"], "The whole has three equal parts.", "One of three equal shares is one third."],
+        ["How many fourths make a whole?", "4", ["2", "3", "4"], "Use all four equal shares.", "Four fourths make one whole."],
+        ["Can equal shares of identical rectangles have different shapes?", "Yes, if the shares have equal area.", ["Yes, if the shares have equal area.", "No, they must always be long strips.", "Yes, even if some shares are much larger."], "Equal area matters, not just appearance.", "Different-shaped parts can still be equal shares when their areas match."],
+        ["Two of the three equal parts of a circle are colored. How many thirds are colored?", "2 thirds", ["1 third", "2 thirds", "3 thirds"], "Count the colored equal shares.", "Two colored shares out of three are two thirds."],
+        ["Which description really makes halves?", "Two parts of equal size.", ["Two parts of equal size.", "Two parts, one much larger.", "Three parts of equal size."], "Halves are two equal shares.", "Two equal parts make halves; just having two parts is not enough."]
+      ]
+    },
+    "measurement": {
+      "title": "Tools, Units & Coins",
+      "skill": "Choose length tools, compare units, and count money",
+      "guide": {
+        "standards": ["2.MD.1", "2.MD.2", "2.MD.8"],
+        "learn": "Choose a tool that fits what you measure. A shorter unit needs more copies to cover the same length. For money, a quarter is 25 cents, a dime 10, a nickel 5, and a penny 1.",
+        "together": "Measure a book with inches and then centimeters, starting at zero. Compare the counts, not the book's length, which stays the same. With a grown-up, draw coins to make 37 cents in two ways."
+      },
+      "questions": [
+        ["Which tool is useful for measuring a pencil's length?", "a ruler", ["a ruler", "a thermometer", "a clock"], "Choose a tool with length marks.", "A ruler measures short lengths."],
+        ["The same desk is measured with long blocks and short blocks. Which needs more blocks?", "short blocks", ["short blocks", "long blocks", "always the same number"], "Smaller units cover less each time.", "It takes more short blocks to cover the same desk."],
+        ["A book starts at 0 cm and ends at 18 cm on a ruler. How long is it?", "18 cm", ["0 cm", "9 cm", "18 cm"], "Measure from the zero mark.", "The end at 18 shows a length of 18 centimeters."],
+        ["Two dimes and 3 pennies are worth...", "23 cents", ["13 cents", "23 cents", "30 cents"], "Two dimes are 20 cents.", "10 + 10 + 3 = 23 cents."],
+        ["A quarter, a dime, and a nickel are worth...", "40 cents", ["30 cents", "35 cents", "40 cents"], "Add 25, 10, and 5.", "25 + 10 + 5 = 40 cents."]
+      ]
+    },
+    "data": {
+      "title": "Book Graph Explorer",
+      "skill": "Interpret a single-unit bar graph with three categories",
+      "guide": {
+        "standards": ["2.MD.10"],
+        "learn": "A bar graph uses equal-size units to show counts. Read the title, categories, and key before answering. This is sample data, not a real class record.",
+        "together": "Count books in up to four categories at home or use this sample data. Draw a bar graph with labels, title, and one square per book. Ask a put-together and a take-apart question."
+      },
+      "chart": {"type": "bar", "title": "Sample books read", "labels": ["Adventure", "Animals", "Science"], "counts": [5, 3, 4], "unit": "books", "scale": 1},
+      "questions": [
+        ["How many science books were read?", "4", ["3", "4", "5"], "Read the Science bar.", "Four units show 4 science books."],
+        ["How many books were read altogether?", "12", ["9", "12", "15"], "Add all three bars.", "5 + 3 + 4 = 12 books."],
+        ["How many more adventure books than animal books were read?", "2", ["1", "2", "8"], "Find 5 minus 3.", "5 - 3 = 2 more adventure books."],
+        ["How many animal and science books were read together?", "7", ["7", "8", "9"], "Add 3 and 4.", "3 + 4 = 7 books."],
+        ["How many fewer animal books than science books were read?", "1", ["1", "2", "7"], "Compare 3 with 4.", "4 - 3 = 1 fewer animal book."]
+      ]
+    },
+    "sight": {
+      "title": "Word Pattern Safari",
+      "skill": "Recognize vowel teams, compound words, and syllables",
+      "questions": [
+        ["Which word has the same vowel sound as rain?", "train", ["train", "ran", "run"], "Look for the ai vowel team.", "Rain and train both have the long a sound spelled ai."],
+        ["Which word is a compound word?", "sunflower", ["yellow", "sunflower", "garden"], "Join two words that can stand alone.", "Sun and flower join to make sunflower."],
+        ["How many syllables are in rabbit?", "2", ["1", "2", "3"], "Clap rab-bit.", "Rabbit has two spoken beats: rab and bit."],
+        ["Which word has a long e sound?", "team", ["team", "ten", "tent"], "The ea team can spell long e.", "In team, ea spells the long e sound."],
+        ["Which word completes 'We walked ___ the bridge'?", "across", ["across", "because", "every"], "Choose a word that tells movement from one side to another.", "Across means from one side to the other."]
+      ]
+    },
+    "vocabulary": {
+      "title": "Prefixes & Context",
+      "skill": "Use context clues, word parts, and related meanings",
+      "questions": [
+        ["What does unhappy mean?", "not happy", ["very happy", "not happy", "happy again"], "The prefix un- often means not.", "Unhappy means not happy."],
+        ["What does reread mean?", "read again", ["read again", "stop reading", "read quietly"], "The prefix re- means again.", "To reread is to read something again."],
+        ["Which word means the same as quick?", "fast", ["slow", "fast", "late"], "Think of a speedy runner.", "Quick and fast have similar meanings."],
+        ["In 'The enormous pumpkin barely fit in the cart,' enormous means...", "very large", ["very large", "very small", "very old"], "It barely fit in the cart.", "Barely fitting gives a clue that the pumpkin was very large."],
+        ["A person who teaches is a...", "teacher", ["teachful", "teacher", "reteach"], "The ending -er can mean a person who does something.", "A teacher is a person who teaches."]
+      ]
+    },
+    "spelling": {
+      "title": "Word Teams & Endings",
+      "skill": "Spell vowel teams, common endings, and compound words",
+      "questions": [
+        ["Type the word: a vehicle on tracks, spelled with ai.", "train", null, "Start tr, add ai, end n.", "Train is spelled t-r-a-i-n."],
+        ["Type the word: two words joined to name falling drops from clouds.", "raindrop", null, "Join rain and drop.", "Raindrop joins rain and drop: r-a-i-n-d-r-o-p."],
+        ["Type the past tense of jump.", "jumped", null, "Add ed to jump.", "Jumped is spelled j-u-m-p-e-d."],
+        ["Type the plural of box.", "boxes", null, "Words ending in x usually add es.", "Boxes is spelled b-o-x-e-s."],
+        ["Type the word meaning full of care.", "careful", null, "Add ful to care.", "Careful is spelled c-a-r-e-f-u-l."]
+      ]
+    },
+    "reading": {
+      "title": "The Quiet Corner",
+      "skill": "Identify a problem, sequence, cause, and supporting evidence",
+      "passage": "During indoor recess, the classroom grew noisy. Some children built towers while others played a clapping game. Eli wanted to read, but he kept losing his place.\nHe asked his teacher if the class could make a quiet corner. She invited him to suggest a plan. Eli and two friends moved cushions beside the bookshelf. They drew a sign showing a finger over smiling lips.\nThe next rainy day, children could choose busy games or quiet reading. Eli finished his story. Even the tower builders visited the corner when they wanted a peaceful break.",
+      "questions": [
+        ["What problem did Eli have?", "The noise made reading difficult.", ["He lost his book.", "The noise made reading difficult.", "He disliked stories."], "What kept happening when he read?", "Eli kept losing his place because the classroom was noisy."],
+        ["What did Eli do before moving the cushions?", "He asked his teacher.", ["He finished the story.", "He asked his teacher.", "He went outside."], "Find the start of the second paragraph.", "Eli first asked his teacher about making a quiet corner."],
+        ["What did the sign ask children to do?", "use quiet voices", ["build tall towers", "use quiet voices", "clap loudly"], "Think about a finger held over lips.", "The picture of a finger over lips signaled quiet."],
+        ["Why did tower builders visit the corner?", "They wanted a peaceful break.", ["They needed more blocks.", "They wanted a peaceful break.", "They were sent home."], "Read the final sentence.", "They visited when they wanted a peaceful break."],
+        ["Which detail shows the plan worked for Eli?", "He finished his story.", ["The room had a bookshelf.", "He finished his story.", "It was raining."], "Find what Eli accomplished after the corner was made.", "Finishing his story shows that the quiet corner helped him read."]
+      ]
+    },
+    "sentence": {
+      "title": "Build Better Sentences",
+      "skill": "Past tense, agreement, punctuation, and combining ideas",
+      "questions": [
+        ["Choose the correct past tense: 'Yesterday we ___ to the park.'", "went", ["go", "went", "going"], "Go has an irregular past-tense form.", "Yesterday we went to the park uses the past tense of go."],
+        ["Which word describes the noun in 'a bright star'?", "bright", ["a", "bright", "star"], "A describing word is an adjective.", "Bright is an adjective describing the star."],
+        ["Which sentence uses a comma correctly?", "I packed apples, bread, and cheese.", ["I packed, apples bread and cheese.", "I packed apples, bread, and cheese.", "I, packed apples bread and cheese."], "Separate items in a list.", "Commas separate apples, bread, and cheese in the list."],
+        ["Combine: 'I wore boots. It was raining.'", "I wore boots because it was raining.", ["I wore boots because it was raining.", "I wore because boots it was.", "It boots wore raining."], "Because gives the reason.", "Because connects wearing boots with the reason: rain."],
+        ["Complete 'The children ___ playing.'", "are", ["is", "am", "are"], "Children names more than one person.", "The plural subject children goes with are."]
+      ]
+    },
+    "arithmetic": {
+      "title": "Two-Digit Number Sprint",
+      "skill": "Add and subtract within 100, including regrouping",
+      "questions": [
+        ["27 + 15 = ?", "42", ["32", "42", "52"], "Add ones: 7 + 5 = 12. Regroup a ten.", "20 + 10 + 12 = 42."],
+        ["63 - 28 = ?", "35", ["35", "45", "41"], "Think 63 - 20 - 8.", "63 - 20 = 43, and 43 - 8 = 35."],
+        ["46 + 30 = ?", "76", ["49", "66", "76"], "Add three tens to four tens.", "4 tens + 3 tens = 7 tens; keep the 6 ones."],
+        ["90 - 47 = ?", "43", ["43", "53", "47"], "Subtract 40, then 7.", "90 - 40 = 50; 50 - 7 = 43."],
+        ["38 + ? = 60", "22", ["12", "22", "32"], "Add 2 to reach 40, then 20 more.", "38 + 22 = 60."]
+      ]
+    },
+    "multiply": {
+      "title": "Arrays & Equal Groups",
+      "skill": "Represent repeated addition, arrays, and fair sharing",
+      "questions": [
+        ["An array has 3 rows with 4 dots in each row. How many dots?", "12", ["7", "12", "16"], "Add 4 + 4 + 4.", "Three equal rows of four make 12 dots."],
+        ["Which sum shows 4 groups of 2?", "2 + 2 + 2 + 2", ["4 + 2", "2 + 2 + 2 + 2", "4 + 4 + 4 + 4"], "Write one 2 for each group.", "Four groups of two are represented by four 2s added together."],
+        ["Share 12 counters equally among 3 children. How many each?", "4", ["3", "4", "6"], "Find a number that makes 12 in three equal groups.", "4 + 4 + 4 = 12, so each child gets 4."],
+        ["Is 18 even or odd?", "even", ["even", "odd", "neither"], "Can every object be paired?", "18 makes nine pairs with none left over, so it is even."],
+        ["Five pairs of mittens contain how many mittens?", "10", ["5", "10", "15"], "A pair is two.", "2 + 2 + 2 + 2 + 2 = 10 mittens."]
+      ]
+    },
+    "patterns": {
+      "title": "Place Value Detective",
+      "skill": "Read, compare, and skip-count numbers within 1,000",
+      "questions": [
+        ["What is the value of 7 in 472?", "70", ["7", "70", "700"], "The 7 is in the tens place.", "Seven tens have a value of 70."],
+        ["What number is 500 + 30 + 6?", "536", ["563", "536", "356"], "Write hundreds, tens, then ones.", "Five hundreds, three tens, and six ones make 536."],
+        ["What comes next: 125, 130, 135, ...?", "140", ["136", "140", "145"], "The pattern increases by 5.", "135 + 5 = 140."],
+        ["Which is the greatest number?", "608", ["580", "608", "599"], "Compare hundreds first.", "608 has six hundreds; the others have five hundreds."],
+        ["What is 100 more than 245?", "345", ["255", "345", "145"], "Increase the hundreds digit by one.", "245 + 100 = 345."]
+      ]
+    },
+    "problems": {
+      "title": "Money & Math Stories",
+      "skill": "Solve two-step, money, and elapsed-time stories",
+      "questions": [
+        ["A class has 24 pencils. It gets 18 more and uses 10. How many remain?", "32", ["22", "32", "42"], "Add first, then subtract 10.", "24 + 18 = 42; 42 - 10 = 32 pencils."],
+        ["You have a U.S. quarter and a dime. How many cents?", "35", ["15", "30", "35"], "A quarter is 25 cents; a dime is 10.", "25 + 10 = 35 cents."],
+        ["A toy costs 65 cents. You pay 100 cents. How much change?", "35 cents", ["25 cents", "35 cents", "45 cents"], "Subtract the cost from the amount paid.", "100 - 65 = 35 cents in change."],
+        ["Reading starts at 2:00 and lasts 30 minutes. When does it end?", "2:30", ["2:15", "2:30", "3:00"], "Thirty minutes is half an hour.", "Thirty minutes after 2:00 is 2:30."],
+        ["A garden has 17 roses and 25 daisies. How many more daisies?", "8", ["7", "8", "9"], "Compare the amounts by subtracting.", "25 - 17 = 8 more daisies."]
+      ]
+    },
+    "geometry": {
+      "title": "Measure & Partition",
+      "skill": "Recognize shapes, equal parts, and measurement units",
+      "questions": [
+        ["A hexagon has how many sides?", "6", ["5", "6", "8"], "Hex means six.", "A hexagon is a polygon with 6 sides."],
+        ["A square is split into 4 equal parts. Each part is a...", "fourth", ["half", "third", "fourth"], "Four equal fourths make a whole.", "One of four equal parts is a fourth, also called a quarter."],
+        ["Which unit is sensible for the length of a pencil?", "centimeters", ["liters", "centimeters", "kilograms"], "Length measures distance from end to end.", "Centimeters measure length; liters measure volume and kilograms measure mass."],
+        ["A rectangle has 3 rows of 4 unit squares. How many unit squares?", "12", ["7", "12", "14"], "Count each row of four.", "4 + 4 + 4 = 12 unit squares."],
+        ["Which shape has exactly 5 corners?", "pentagon", ["triangle", "pentagon", "hexagon"], "A polygon's corners match its number of sides.", "A pentagon has five sides and five corners."]
+      ]
+    }
+  }
+}

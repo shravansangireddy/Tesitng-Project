@@ -1,0 +1,62 @@
+[
+  {
+    "prompt": "Choose the sentence in the right order.",
+    "answer": "The dog runs fast.",
+    "options": [
+      "Runs the fast dog.",
+      "The dog runs fast.",
+      "Fast the runs dog.",
+      "Dog fast the runs."
+    ],
+    "hint": "Start with “The dog”.",
+    "explanation": "The dog is the subject; runs tells what it does."
+  },
+  {
+    "prompt": "Build a sentence using: we / books / read.",
+    "answer": "We read books.",
+    "options": [
+      "Books we read.",
+      "Read books we.",
+      "We read books.",
+      "We books read."
+    ],
+    "hint": "Who is reading? Start with “We”.",
+    "explanation": "We read books has a subject, action, and object."
+  },
+  {
+    "prompt": "Which sentence asks a question?",
+    "answer": "Where is my hat?",
+    "options": [
+      "My hat is red.",
+      "I like my hat.",
+      "Where is my hat?",
+      "Here is my hat."
+    ],
+    "hint": "Look for a question mark.",
+    "explanation": "Where is my hat? asks for information."
+  },
+  {
+    "prompt": "Choose the sentence with correct punctuation.",
+    "answer": "I like apples.",
+    "options": [
+      "i like apples",
+      "I like apples.",
+      "I like apples,",
+      "like apples I"
+    ],
+    "hint": "Start with a capital and end with a period.",
+    "explanation": "Sentences start with a capital letter and end with punctuation."
+  },
+  {
+    "prompt": "Choose the sentence that makes sense.",
+    "answer": "The birds sing in the tree.",
+    "options": [
+      "The tree sings in birds.",
+      "Sing birds the in tree.",
+      "The birds sing in the tree.",
+      "In birds tree the sing."
+    ],
+    "hint": "Start with the animals doing the singing.",
+    "explanation": "The birds sing in the tree tells who, what, and where."
+  }
+]

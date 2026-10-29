@@ -1,0 +1,23 @@
+.privacy-notice { margin: 20px 0; border: 1px solid #d5c9ec; border-radius: 12px; background: #fff; padding: 16px; color: #302d49; font-size: 14px; overflow-wrap: anywhere; }
+.privacy-notice summary { font-weight: 800; cursor: pointer; min-height: 30px; }
+.privacy-notice p { margin: 14px 0; }
+.privacy-notice a { text-decoration: underline; }
+.privacy-center { padding: 24px; }
+.privacy-center p { margin: 16px 0; }
+.privacy-center .button { margin: 14px 8px 14px 0; white-space: normal; }
+.privacy-center pre { max-height: 360px; overflow: auto; padding: 16px; background: #f5f2fd; font-size: 12px; }
+.privacy-adult { display: flex; gap: 12px; align-items: flex-start; margin: 20px 0; }
+.privacy-adult input { flex-shrink: 0; height: 22px; width: 22px; }
+.donation-panel { border-top: 2px solid #d5c9ec; margin-top: 32px; padding-top: 24px; overflow-wrap: anywhere; }
+.donation-admin { margin-top: 20px; padding: 16px; background: #f5f2fd; border-radius: 12px; color: #302d49; }
+.donation-admin summary { cursor: pointer; font-weight: 800; min-height: 44px; }
+.donation-admin ol { padding-left: 24px; }
+.donation-admin li { margin: 12px 0; }
+.donation-panel a.button { min-height: 48px; }
+.donation-checkout label { display: grid; gap: 8px; max-width: 260px; margin: 20px 0; }
+.donation-checkout select { padding: 12px; font: inherit; border-radius: 10px; background: white; color: #302d49; }
+.payment-admin { margin-top: 24px; padding-top: 24px; border-top: 1px solid #d5c9ec; }
+.payment-table-wrap { max-width: 100%; overflow-x: auto; margin: 20px 0; }
+.payment-table-wrap table { width: 100%; min-width: 650px; border-collapse: collapse; background: white; color: #302d49; }
+.payment-table-wrap th, .payment-table-wrap td { padding: 12px; text-align: left; vertical-align: top; border: 1px solid #d5c9ec; }
+.payment-table-wrap caption { text-align: left; font-weight: 800; margin: 12px 0; }
