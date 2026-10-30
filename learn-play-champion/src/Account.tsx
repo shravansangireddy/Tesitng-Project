@@ -20,7 +20,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import App from "./App";
-import { configError, supabase } from "./supabase";
+import { supabase } from "./supabase";
 import {
   loadCloudProgress,
   ProgressConflict,
@@ -267,14 +267,6 @@ export default function Account() {
       </p>
       <PrivacyNotice />
       <p><a href="/learn/">Explore our learning guides for parents and teachers</a></p>
-      {configError && (
-        <div className="setup-notice" role="status">
-          <strong>Account sign-in is not available on this site yet.</strong>
-          <p>You can still play as a guest. Guest progress stays in this browser and
-            does not sync across devices. The site operator needs to finish account
-            and privacy setup before online sign-in can be enabled.</p>
-        </div>
-      )}
       <form className="account-form" onSubmit={sendLink}>
         <label htmlFor="adult-email">Parent or teacher email</label>
         <div className="email-field">
