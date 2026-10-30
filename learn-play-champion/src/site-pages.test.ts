@@ -25,6 +25,7 @@ describe("public learning guides", () => {
       for (const a of doc.querySelectorAll("a[href]")) {
         const href = a.getAttribute("href")!;
         expect(href === "/" || href === "#content" || sitePages.some(p => sitePath(p) === href) ||
+          (href.startsWith("/books/") && href.endsWith(".pdf")) ||
           Object.values(stockPhotos).some(photo => photo.source === href)).toBe(true);
       }
     }
@@ -55,6 +56,22 @@ describe("public learning guides", () => {
     expect(Object.values(stockPhotos).map(photo => photo.file)).toEqual(["kids-creating", "map-adventure", "kids-homework", "kids-reading", "kids-coding", "family-learning"]);
     const home = new DOMParser().parseFromString(renderSitePage(sitePages[0]), "text/html");
     expect(home.querySelector(".adventure-feature h2")?.textContent).toContain("discovery is an adventure");
+  });
+  it("offers six openly licensed book PDFs for free download on the books page", () => {
+    const books = sitePages.find(p => p.slug === "books-for-curious-kids")!;
+    const doc = new DOMParser().parseFromString(renderSitePage(books), "text/html");
+    const links = [...doc.querySelectorAll('a[href^="/books/"]')].map(a => a.getAttribute("href"));
+    expect(links).toEqual([
+      "/books/fossils-tales-of-long-ago.pdf",
+      "/books/how-many.pdf",
+      "/books/croak.pdf",
+      "/books/colours.pdf",
+      "/books/rain.pdf",
+      "/books/i-feel.pdf",
+    ]);
+    for (const a of doc.querySelectorAll('a[href^="/books/"]')) expect(a.hasAttribute("download")).toBe(true);
+    expect(doc.body.textContent).toContain("CC BY 4.0");
+    expect(doc.body.textContent).toContain("Pratham Books");
   });
   it("provides an original subject and grade catalog with working audience entry points", () => {
     const doc = new DOMParser().parseFromString(renderSitePage(sitePages[0]), "text/html");

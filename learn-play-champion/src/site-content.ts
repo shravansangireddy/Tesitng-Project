@@ -271,6 +271,7 @@ export const editorialPages: ContentPage[] = [
     questions: [
       { question: "Can I buy these books on this site?", answer: "No. Learn & Play Champion does not sell books. Look for the titles in bookstores, libraries, or online marketplaces, and check the format (print or digital) on the listing before ordering." },
       { question: "Which book should we start with?", answer: "Start with the topic your child already asks about — Physics for how things work, Astronomy for space fans, Dinosaurs for fossil fans, and Math in a Minute alongside Math Mountain practice." },
+      { question: "Are the download books on this page really free?", answer: "Yes. Six books on this page are shared by their publishers under Creative Commons CC BY 4.0 licences, which means anyone may download, print, and share them free, with credit to the creators. The full credits are printed inside each book and listed under every download." },
     ],
   },
   {
@@ -339,6 +340,28 @@ export const editorialPages: ContentPage[] = [
       { question: "Does learner erasure delete every record?", answer: "No. Cloud learning erasure removes learning and room records. Adult authentication, teaching records, financial records, provider logs, and backups require separate operator processes." },
     ],
   },
+];
+
+export interface FreeBook {
+  file: string;
+  title: string;
+  ages: string;
+  pages: number;
+  size: string;
+  blurb: string;
+  credit: string;
+}
+
+// Real books shared by their publishers under Creative Commons CC BY 4.0
+// licences — free to download, print, and share with credit. The full
+// attribution is printed inside each PDF and repeated in `credit` here.
+export const freeBooks: FreeBook[] = [
+  { file: "fossils-tales-of-long-ago.pdf", title: "Fossils: Tales of Long Ago", ages: "Grades 2–5 · nonfiction", pages: 19, size: "1.2 MB", blurb: "How fossils form, and what they tell us about the animals and islands of long ago — real nonfiction for dinosaur detectives.", credit: "Written by Anupama Chandrasekaran · Illustrated by Rai · © Pratham Books, 2021 · Shared under CC BY 4.0" },
+  { file: "how-many.pdf", title: "How Many?", ages: "Pre-K–Grade 1 · counting", pages: 20, size: "2.9 MB", blurb: "A count-along book of hands, fingers, and everyday things — with simple adding to try out loud.", credit: "Written by Sudeshna Shome Ghosh · Illustrated by Sayan Mukherjee · © Pratham Books, 2021 · Shared under CC BY 4.0" },
+  { file: "croak.pdf", title: "Croak", ages: "Grades 1–3 · story", pages: 16, size: "1.7 MB", blurb: "A frog finds its way into a classroom, and the class is never the same. A funny animal story.", credit: "Written by Kavitha Punniyamurthi · Illustrated by Ekta Bharti · © Pratham Books, 2020 · Shared under CC BY 4.0" },
+  { file: "colours.pdf", title: "Colours", ages: "Pre-K–Kindergarten · first words", pages: 24, size: "2.9 MB", blurb: "A white bear meets a new colour on every page — a gentle first book about the colours of the rainbow.", credit: "Written by Priyanka · Illustrated by Ajanta Guhathakurta · Translated by Alisha Berger · © Room to Read, 2015 · Shared under CC BY 4.0" },
+  { file: "rain.pdf", title: "Rain", ages: "Pre-K–Grade 1 · nature", pages: 12, size: "1.7 MB", blurb: "A short, joyful book about rain — dancing in it, listening to it, and watching the world get wet.", credit: "Written by Letta Machoga · Illustrated by Marleen Visser · © African Storybook Initiative, 2014 · Shared under CC BY 4.0" },
+  { file: "i-feel.pdf", title: "I Feel…", ages: "Pre-K–Grade 1 · feelings", pages: 20, size: "1.1 MB", blurb: "Happy, sad, surprised, excited — a first feelings book with big pictures and very few words.", credit: "By Craig Aldred · © Bloom Library, 2015 · Shared under CC BY 4.0" },
 ];
 
 const gradeGuides = [
