@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gradeIds, gradeLabels, type GradeId } from "./content-schema";
 import { pictureBooks, type PictureScene } from "./books";
+import { realBooks, realBookPageSrc } from "./real-books";
 import "./books.css";
 
 export function BookPicture({ scene, count, description, showBridge = true }: {
@@ -55,17 +56,20 @@ export default function BookShelf({ grade, onGradeChange }: {
   const [bookId, setBookId] = useState<string | null>(null);
   const [page, setPage] = useState(0);
   const [answer, setAnswer] = useState<number | null>(null);
+  const [realBookId, setRealBookId] = useState<string | null>(null);
+  const [realPage, setRealPage] = useState(0);
   const title = useRef<HTMLHeadingElement>(null);
   const book = pictureBooks.find(item => item.id === bookId && item.grade === grade);
-  useEffect(() => { title.current?.focus(); }, [bookId, page]);
+  const realBook = realBooks.find(item => item.id === realBookId);
+  useEffect(() => { title.current?.focus(); }, [bookId, page, realBookId, realPage]);
   const levelBooks = pictureBooks.filter(item => item.grade === grade);
   return <section className="book-world panel" aria-label="Picture book library">
     <div className="book-library-top">
-      <div><span className="eyebrow">PICTURE BOOK ISLAND</span><h1 ref={!book ? title : undefined} tabIndex={-1}>Your little bookshelf</h1></div>
+      <div><span className="eyebrow">PICTURE BOOK ISLAND</span><h1 ref={!book && !realBook ? title : undefined} tabIndex={-1}>Your little bookshelf</h1></div>
       <label htmlFor="book-grade">Reading grade
         <select id="book-grade" value={grade} onChange={event => {
           const next = gradeIds.find(id => id === event.target.value);
-          if (next) { setBookId(null); setPage(0); setAnswer(null); onGradeChange(next); }
+          if (next) { setBookId(null); setPage(0); setAnswer(null); setRealBookId(null); setRealPage(0); onGradeChange(next); }
         }}>{gradeIds.map(id => <option key={id} value={id}>{gradeLabels[id]}</option>)}</select>
       </label>
     </div>
@@ -73,8 +77,9 @@ export default function BookShelf({ grade, onGradeChange }: {
       {" "}Read together, point to pictures, and talk about your ideas. Choose an easier or harder grade with your grown-up;
       these are suggested practice levels, not measured reading scores.</p>
     <p className="book-note">Your grade is saved with your learning preference. Book pages and answers are temporary:
-      no reading history, points, or voice data are recorded. No outside book sites or downloads are needed.</p>
-    {!book ? <div className="book-grid">
+      no reading history, points, or voice data are recorded. The real books further down are free to read here or download — no outside sites needed.</p>
+    {!book && !realBook ? <>
+      <div className="book-grid">
       {levelBooks.map(item => <article className="book-card" key={item.id}>
         <BookPicture scene={item.scene} count={item.pages[0].count} description={item.pages[0].picture} showBridge={item.id !== "1-bridge"} />
         <div><span className="eyebrow">{item.kind} · {gradeLabels[grade]} · {item.pages.length} pages</span>
@@ -82,7 +87,41 @@ export default function BookShelf({ grade, onGradeChange }: {
           <button className="button primary" onClick={() => { setBookId(item.id); setPage(0); setAnswer(null); }}>Read {item.title}</button>
         </div>
       </article>)}
-    </div> : <article className="book-reader" aria-label={book.title}>
+      </div>
+      <div className="real-books">
+        <h2>Real books to read online</h2>
+        <p>Six real picture books from real publishers, shared free under Creative Commons licences.
+          Read them here page by page, or download the PDF to keep. The creators are credited under each cover and inside every book.</p>
+        <div className="book-grid">
+          {realBooks.map(item => <article className="real-book-card" key={item.id}>
+            <img src={realBookPageSrc(item, 0)} alt={`Cover of ${item.title}`} loading="lazy" />
+            <div><span className="eyebrow">{item.ages} · {item.pages} pages</span>
+              <h3>{item.title}</h3><p className="real-credit">{item.credit}</p>
+              <div className="real-actions">
+                <button className="button primary" onClick={() => { setRealBookId(item.id); setRealPage(0); }}>Read {item.title} online</button>
+                <a className="button secondary" href={`/books/${item.pdf}`} download>Download PDF</a>
+              </div>
+            </div>
+          </article>)}
+        </div>
+      </div>
+    </> : realBook ? <article className="book-reader real-reader" aria-label={realBook.title}>
+      <button className="text-button" onClick={() => { setRealBookId(null); setRealPage(0); }}>Back to bookshelf</button>
+      <h2 ref={title} tabIndex={-1}>{realBook.title}</h2>
+      <p className="book-page-status" role="status">Page {realPage + 1} of {realBook.pages} · {realBook.ages}</p>
+      <progress aria-label="Book page progress" value={realPage + 1} max={realBook.pages} />
+      <figure><img className="real-page" src={realBookPageSrc(realBook, realPage)} alt={`${realBook.title}, page ${realPage + 1}`} />
+        <figcaption>{realBook.credit}. Shared free under a Creative Commons licence; full credits are printed in the book.</figcaption></figure>
+      <div className="book-page-controls">
+        <button className="button secondary" disabled={realPage === 0} onClick={() => setRealPage(current => current - 1)}>Previous page</button>
+        <button className="button primary" disabled={realPage === realBook.pages - 1} onClick={() => setRealPage(current => current + 1)}>Next page</button>
+      </div>
+      {realPage === realBook.pages - 1 && <section className="book-question" aria-label="End of book">
+        <h3>You reached the end!</h3>
+        <p>Want to keep this book? <a href={`/books/${realBook.pdf}`} download>Download the PDF</a> — it is free to keep, print, and share with credit to its creators.</p>
+        <button className="text-button" onClick={() => setRealPage(0)}>Read again from the beginning</button>
+      </section>}
+    </article> : book ? <article className="book-reader" aria-label={book.title}>
       <button className="text-button" onClick={() => { setBookId(null); setPage(0); setAnswer(null); }}>Back to bookshelf</button>
       <h2 ref={title} tabIndex={-1}>{book.title}</h2>
       <p className="book-page-status" role="status">Page {page + 1} of {book.pages.length} · {book.kind}</p>
@@ -106,6 +145,6 @@ export default function BookShelf({ grade, onGradeChange }: {
         </p>}
         <button className="text-button" onClick={() => { setPage(0); setAnswer(null); }}>Read again from the beginning</button>
       </section>}
-    </article>}
+    </article> : null}
   </section>;
 }

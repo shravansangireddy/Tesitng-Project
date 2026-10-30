@@ -122,4 +122,21 @@ describe("bookshelf integration", () => {
     expect(localStorage.getItem(STORAGE_KEY)).toBeNull();
     expect(container.textContent).toContain(gradeLabels["2"]);
   });
+  it("reads a real openly licensed book online page by page with its credit shown", async () => {
+    await act(async () => root.render(<App />));
+    await click(button("Picture books"));
+    expect(container.querySelectorAll(".real-book-card")).toHaveLength(6);
+    expect(container.textContent).toContain("CC BY 4.0");
+    await click(button("Read Fossils: Tales of Long Ago online"));
+    expect(container.querySelector(".book-page-status")?.textContent).toContain("Page 1 of 19");
+    expect(container.querySelector<HTMLImageElement>(".real-page")?.getAttribute("src")).toBe("/books/pages/fossils-p01.webp");
+    expect(button("Previous page").disabled).toBe(true);
+    await click(button("Next page"));
+    expect(container.querySelector(".book-page-status")?.textContent).toContain("Page 2 of 19");
+    expect(container.querySelector<HTMLImageElement>(".real-page")?.getAttribute("src")).toBe("/books/pages/fossils-p02.webp");
+    expect(container.querySelector(".real-reader figcaption")?.textContent).toContain("Pratham Books");
+    await click(button("Back to bookshelf"));
+    expect(container.querySelector(".real-reader")).toBeNull();
+    expect(container.querySelectorAll(".real-book-card")).toHaveLength(6);
+  });
 });

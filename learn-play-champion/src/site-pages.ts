@@ -108,7 +108,7 @@ function booksStrip() {
 <p class="photo-credit">Outside books sold by bookstores and online sellers — listed as reading ideas for families, not sold by Learn &amp; Play Champion.</p></section>`;
 }
 function freeDownloads() {
-  return `<section aria-labelledby="free-books-heading"><h2 id="free-books-heading">Free books to download, right here.</h2><p>These six real books are shared by their publishers under Creative Commons CC BY 4.0 licences — free to download, print, and share, with credit to the people who made them. No account, no cost, no catch.</p>
+  return `<section aria-labelledby="free-books-heading"><h2 id="free-books-heading">Free books to download, right here.</h2><p>These six real books are shared by their publishers under Creative Commons CC BY 4.0 licences — free to download, print, and share, with credit to the people who made them. No account, no cost, no catch. You can also read all six online, page by page, in the app's <a href="/">book shelf</a>.</p>
 <div class="download-grid">${freeBooks.map(b => `<article class="download-card"><h3>${escape(b.title)}</h3><p class="download-meta">${escape(b.ages)} · ${b.pages} pages · PDF ${escape(b.size)}</p><p>${escape(b.blurb)}</p><a class="button download-button" href="/books/${b.file}" download>Download PDF</a><p class="download-credit">${escape(b.credit)}</p></article>`).join("")}</div></section>`;
 }
 function photoGallery() {

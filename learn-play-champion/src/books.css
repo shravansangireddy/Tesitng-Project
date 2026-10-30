@@ -23,6 +23,15 @@
 .book-answer-options { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
 .book-answer-options [aria-pressed="true"] { outline: 3px solid #563ba0; outline-offset: 3px; }
 .book-feedback { border-left: 4px solid #327759; padding: 12px; background: white; }
+.real-books { margin-top: 44px; }
+.real-book-card { overflow: hidden; border: 2px solid #d5c9ec; border-radius: 22px; background: #fff; }
+.real-book-card img { display: block; width: 100%; height: auto; }
+.real-book-card > div { padding: 20px; }
+.real-book-card h3 { margin: 10px 0 6px; font-size: 22px; }
+.real-credit { font-size: 13px; color: #56516a; margin: 8px 0 14px !important; }
+.real-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.real-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+.real-reader .real-page { display: block; width: 100%; height: auto; border: 1px solid #d5c9ec; border-radius: 12px; background: #fff; }
 .books-banner { padding: 24px; background: linear-gradient(120deg, #fff4d8, #f3ebff); }
 .books-banner p { margin: 16px 0; }
 @media (max-width: 700px) { .book-grid { grid-template-columns: 1fr; } }
