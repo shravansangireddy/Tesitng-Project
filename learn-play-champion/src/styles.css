@@ -691,6 +691,89 @@ h1 > span:not(.wave) {
   color: #a49dad;
   margin-top: 3px;
 }
+.home-photo-showcase {
+  margin: 24px 0 2px;
+}
+.home-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
+.home-photo-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 205px;
+  border: 1px solid #e2d9f4;
+  border-radius: 18px;
+  padding: 0;
+  background: #e9e2f5;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 8px 22px #39214f12;
+}
+.home-photo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px #39214f1c;
+}
+.home-photo-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.home-photo-caption {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 38px 18px 16px;
+  background: linear-gradient(180deg, transparent, #24153dcc);
+}
+.home-photo-caption small {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.35px;
+  color: #ffe3a3;
+}
+.home-photo-caption strong {
+  font-family: "Nunito";
+  font-size: 19px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+}
+.home-photo-caption em {
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 700;
+  color: #efe8ff;
+  margin-top: 3px;
+}
+.home-photo-credit {
+  font-size: 9px;
+  line-height: 1.6;
+  color: #a49dad;
+  margin-top: 9px;
+}
+.home-photo-credit a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .home-photo-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-photo-card {
+    min-height: 178px;
+  }
+  .home-photo-caption strong {
+    font-size: 17px;
+  }
+}
 .dashboard-columns {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 248px;

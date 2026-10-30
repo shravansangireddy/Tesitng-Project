@@ -1228,6 +1228,130 @@ export default function App({
                     </div>
                   </section>
                   <section
+                    className="home-photo-showcase"
+                    aria-labelledby="home-photo-heading"
+                  >
+                    <div className="section-heading">
+                      <h2 id="home-photo-heading">
+                        Learning looks like this <span>📸</span>
+                      </h2>
+                      <span>Tap a picture to keep exploring</span>
+                    </div>
+                    <div className="home-photo-grid">
+                      <button
+                        type="button"
+                        className="home-photo-card"
+                        onClick={() => navigate("books")}
+                      >
+                        <img
+                          src="/images/kids-creating.webp"
+                          srcSet="/images/kids-creating-small.webp 600w, /images/kids-creating.webp 1200w"
+                          sizes="(max-width: 700px) calc(100vw - 40px), 520px"
+                          width="1200"
+                          height="800"
+                          alt="Children leaning over an open illustrated book, pointing and working together"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span className="home-photo-caption">
+                          <small>PICTURE BOOKS</small>
+                          <strong>Read, point, and wonder</strong>
+                          <em>Open the bookshelf →</em>
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        className="home-photo-card"
+                        onClick={() => navigate("adventures")}
+                      >
+                        <img
+                          src="/images/map-adventure.webp"
+                          srcSet="/images/map-adventure-small.webp 600w, /images/map-adventure.webp 1200w"
+                          sizes="(max-width: 700px) calc(100vw - 40px), 520px"
+                          width="1200"
+                          height="800"
+                          alt="A child seen from behind exploring an outdoor landscape with a paper map"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span className="home-photo-caption">
+                          <small>ADVENTURE MAP</small>
+                          <strong>Follow a clue, find a discovery</strong>
+                          <em>Start an adventure →</em>
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        className="home-photo-card"
+                        onClick={() => navigate("learning-path")}
+                      >
+                        <img
+                          src="/images/kids-homework.webp"
+                          srcSet="/images/kids-homework-small.webp 600w, /images/kids-homework.webp 1200w"
+                          sizes="(max-width: 700px) calc(100vw - 40px), 520px"
+                          width="1200"
+                          height="800"
+                          alt="A young boy with glasses writing in a notebook at a desk, with an open book and a stack of books beside him"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span className="home-photo-caption">
+                          <small>MY LEARNING PATH</small>
+                          <strong>Write it, solve it, shine</strong>
+                          <em>See my next steps →</em>
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        className="home-photo-card"
+                        onClick={() => navigate("coding")}
+                      >
+                        <img
+                          src="/images/kids-coding.webp"
+                          srcSet="/images/kids-coding-small.webp 600w, /images/kids-coding.webp 1200w"
+                          sizes="(max-width: 700px) calc(100vw - 40px), 520px"
+                          width="1200"
+                          height="800"
+                          alt="A young boy typing on a laptop at a desk at home, with a notebook beside him"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span className="home-photo-caption">
+                          <small>CODING COVE</small>
+                          <strong>Tap, code, create</strong>
+                          <em>Visit Coding Cove →</em>
+                        </span>
+                      </button>
+                    </div>
+                    <p className="home-photo-credit">
+                      Photos:{" "}
+                      <a
+                        href="https://unsplash.com/photos/boys-writing-on-book-zRwXf6PizEo"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Andrew Ebrahim
+                      </a>
+                      ,{" "}
+                      <a
+                        href="https://unsplash.com/photos/child-looking-at-map-kZO9xqmO_TA"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Annie Spratt
+                      </a>
+                      , and{" "}
+                      <a
+                        href="https://unsplash.com/photos/young-boy-with-glasses-writing-in-a-notebook-at-desk-xZJK3Dp65OU"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Vitaly Gariev
+                      </a>{" "}
+                      / Unsplash. Illustrative stock photos, not app users.
+                    </p>
+                  </section>
+                  <section
                     className="stats-grid"
                     aria-label="Your learning at a glance"
                   >
