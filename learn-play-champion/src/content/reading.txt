@@ -1,0 +1,67 @@
+[
+  {
+    "prompt": "What did Mia plant?",
+    "answer": "a seed",
+    "options": [
+      "a seed",
+      "a toy",
+      "a rock",
+      "a book"
+    ],
+    "hint": "Look at the first sentence.",
+    "explanation": "The story says Mia planted a seed.",
+    "passage": "Mia planted a seed in a pot. She watered it every day. Soon, a green leaf peeked out!"
+  },
+  {
+    "prompt": "Why did Ben take an umbrella?",
+    "answer": "It was raining.",
+    "options": [
+      "It was hot.",
+      "It was raining.",
+      "He was hungry.",
+      "He was tired."
+    ],
+    "hint": "What was the weather like?",
+    "explanation": "Ben took an umbrella to stay dry in the rain.",
+    "passage": "Rain tapped on the window. Ben put on his boots and took an umbrella before he went outside."
+  },
+  {
+    "prompt": "How did the friends solve their problem?",
+    "answer": "They took turns.",
+    "options": [
+      "They left.",
+      "They shouted.",
+      "They took turns.",
+      "They hid it."
+    ],
+    "hint": "Read the last sentence.",
+    "explanation": "Taking turns meant both friends could enjoy the swing.",
+    "passage": "Ari and Sam both wanted the swing. They made a plan. Ari counted to twenty, and then Sam had a turn."
+  },
+  {
+    "prompt": "Where is the kitten?",
+    "answer": "under the bench",
+    "options": [
+      "in a tree",
+      "under the bench",
+      "on the roof",
+      "in the pond"
+    ],
+    "hint": "Find the place after the word “under”.",
+    "explanation": "The kitten curled up under the bench.",
+    "passage": "The park was quiet. A small kitten curled up under the bench. Its soft purr made Jo smile."
+  },
+  {
+    "prompt": "What is this story mostly about?",
+    "answer": "helping a neighbor",
+    "options": [
+      "buying a bike",
+      "helping a neighbor",
+      "cooking dinner",
+      "going swimming"
+    ],
+    "hint": "What kind thing does Leo do?",
+    "explanation": "Leo helped his neighbor by carrying her bag.",
+    "passage": "Leo saw his neighbor carrying a heavy bag. He offered to help. Together they carried it to her door, and she thanked him."
+  }
+]

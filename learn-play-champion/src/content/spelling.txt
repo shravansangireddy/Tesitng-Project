@@ -1,0 +1,32 @@
+[
+  {
+    "prompt": "Type the word: a furry pet that says “meow”.",
+    "answer": "cat",
+    "hint": "Three letters: c _ t.",
+    "explanation": "Cat is spelled c-a-t."
+  },
+  {
+    "prompt": "Type the word: the color of a sunny sky.",
+    "answer": "blue",
+    "hint": "It starts with bl and ends with ue.",
+    "explanation": "Blue is spelled b-l-u-e."
+  },
+  {
+    "prompt": "Type the word: you read one with pages.",
+    "answer": "book",
+    "hint": "It has two o letters in the middle.",
+    "explanation": "Book is spelled b-o-o-k."
+  },
+  {
+    "prompt": "Type the word: a friend who teaches you at school.",
+    "answer": "teacher",
+    "hint": "Start with “teach”, then add “er”.",
+    "explanation": "Teacher is spelled t-e-a-c-h-e-r."
+  },
+  {
+    "prompt": "Type the word: a colorful insect with big wings.",
+    "answer": "butterfly",
+    "hint": "Join “butter” and “fly”.",
+    "explanation": "Butterfly is a compound word: butter + fly."
+  }
+]

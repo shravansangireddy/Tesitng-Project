@@ -1,0 +1,215 @@
+{
+  "grade": "1",
+  "overview": "Short and long vowel patterns, sentence basics, story sequence, addition and subtraction within 20, tens and ones, equal groups, length, time, and halves.",
+  "lessons": {
+    "informational": {
+      "title": "How a Library Works",
+      "skill": "Read for a main topic, details, and connected steps",
+      "guide": {
+        "standards": ["RI.1.1", "RI.1.2", "RI.1.3"],
+        "learn": "The main topic tells what a whole text is about. Details tell more. In a how-to text, notice how one step leads to the next. Reread to check an answer.",
+        "together": "Retell the steps for borrowing a book. Point to a detail that helped. Ask a grown-up how your local library's rules are similar or different."
+      },
+      "passage": "A library is a place to find books and information. Shelves keep books organized so readers can find them. A librarian can help a reader choose a book.\nTo borrow a book, a reader checks it out. The library gives a return date. Bringing the book back lets another reader borrow it. Taking care of shared books helps everyone.",
+      "questions": [
+        ["What is the main topic?", "using a library", ["using a library", "building a boat", "making lunch"], "Think about both paragraphs.", "Both paragraphs explain a library and how readers use it."],
+        ["Who can help a reader choose a book?", "a librarian", ["a librarian", "a pilot", "a chef"], "Find the person named in paragraph one.", "The text says a librarian can help."],
+        ["Why are books organized on shelves?", "so readers can find them", ["so readers can find them", "so nobody can read", "so the books can grow"], "Look for the word so.", "Organization helps readers find books."],
+        ["What does a reader do to borrow a book?", "check it out", ["check it out", "throw it away", "hide it"], "Look at the first sentence of paragraph two.", "A reader checks a book out to borrow it."],
+        ["How does returning a book help someone else?", "Another reader can borrow it.", ["Another reader can borrow it.", "It changes the story.", "It makes the pages longer."], "Connect returning and borrowing.", "Returning the book makes it available to another reader."]
+      ]
+    },
+    "writing": {
+      "title": "Reasons & Story Steps",
+      "skill": "Prepare opinions with reasons, facts, and ordered events",
+      "guide": {
+        "standards": ["W.1.1", "W.1.2", "W.1.3", "SL.1.1"],
+        "learn": "An opinion needs a topic and a reason. An information piece names a topic and tells facts. A story has events in order. Finish with words that help your reader know you are done. Choices help you plan, but do not assess your own writing.",
+        "together": "Write three short pieces over several days: a favorite-game opinion with a reason, facts about a familiar animal, and two events from your day using first and next. Add an ending to each. Share with a grown-up, listen to a question, and add a detail. Keep the work on paper; it is not scored."
+      },
+      "questions": [
+        ["Which reason supports 'I like the park'?", "I can climb and play there.", ["I can climb and play there.", "My socks are blue.", "A fish can swim."], "Choose a reason about the park.", "Climbing and playing explain why the writer likes the park."],
+        ["Which fact belongs in a piece about rabbits?", "Rabbits have long ears.", ["Rabbits have long ears.", "Cars have tires.", "I went to school."], "Keep the information on the same topic.", "Long ears are a detail about rabbits."],
+        ["Which word can begin the first event?", "First", ["First", "Finally", "Goodbye"], "Begin at the start of the story.", "First signals the beginning event."],
+        ["After 'First, I put soil in a pot,' which sentence fits?", "Next, I planted a seed.", ["Next, I planted a seed.", "Before I was born.", "A bus is yellow."], "Choose the next planting step.", "Planting a seed follows putting soil in the pot."],
+        ["Which ending fits an opinion about enjoying drawing?", "That is why drawing is my favorite.", ["That is why drawing is my favorite.", "Next, a new topic.", "The end of the road is wet."], "An ending returns to the topic.", "This sentence closes the opinion about drawing."]
+      ]
+    },
+    "place": {
+      "title": "Tens & Ones Lab",
+      "skill": "Build two-digit numbers and compare their values",
+      "guide": {
+        "standards": ["1.NBT.2", "1.NBT.3"],
+        "learn": "Ten ones make one ten. In 34, the 3 means three tens and the 4 means four ones. To compare two-digit numbers, compare tens first, then ones if the tens match.",
+        "together": "Bundle ten craft sticks at a time with adult help. Build 34 and 43, draw the tens and ones, and explain which number is greater."
+      },
+      "questions": [
+        ["3 tens and 4 ones make which number?", "34", ["34", "43", "7"], "Three tens are 30.", "30 + 4 = 34."],
+        ["How many tens are in 60?", "6", ["6", "0", "60"], "Count 10, 20, 30, 40, 50, 60.", "Six groups of ten make 60."],
+        ["Which number is greater, 47 or 42?", "47", ["47", "42", "They are equal"], "The tens match; compare the ones.", "7 ones are more than 2 ones, so 47 is greater."],
+        ["18 is one ten and how many ones?", "8", ["1", "8", "18"], "One ten is 10.", "18 = 10 + 8."],
+        ["Which comparison is true?", "52 > 25", ["52 > 25", "52 < 25", "52 = 25"], "Compare five tens with two tens.", "52 is greater than 25 because it has more tens."]
+      ]
+    },
+    "fractions": {
+      "title": "Equal Shares",
+      "skill": "Describe halves and fourths of circles and rectangles",
+      "guide": {
+        "standards": ["1.G.3"],
+        "learn": "Equal shares of one whole have the same size. Two equal shares are halves. Four equal shares are fourths or quarters. More equal shares of the same whole means each share is smaller.",
+        "together": "Fold one paper rectangle into two equal parts and another same-size rectangle into four. Compare one half with one fourth. Unequal parts are not halves."
+      },
+      "questions": [
+        ["A rectangle is split into two equal parts. Each part is a...", "half", ["half", "fourth", "whole"], "Two equal shares make the whole.", "Each of two equal parts is one half."],
+        ["Four equal parts of a circle are called...", "fourths", ["halves", "fourths", "tens"], "Think of four shares.", "Each of four equal shares is a fourth, also called a quarter."],
+        ["How many halves make one whole rectangle?", "2", ["2", "3", "4"], "Put both equal parts back together.", "Two halves make one whole."],
+        ["Two equal-size rectangles are shared. Which is larger: one half or one fourth?", "one half", ["one half", "one fourth", "They are equal"], "More shares means smaller pieces of the same whole.", "One half is larger than one fourth of an equal-size whole."],
+        ["A rectangle is cut into one small and one large part. Are these halves?", "No, the parts are unequal.", ["No, the parts are unequal.", "Yes, any two parts are halves.", "Yes, because rectangles have corners."], "Halves must have the same size.", "Two unequal parts are not halves."]
+      ]
+    },
+    "measurement": {
+      "title": "Length & Clock Time",
+      "skill": "Measure with equal units and tell hours and half-hours",
+      "guide": {
+        "standards": ["1.MD.1", "1.MD.2", "1.MD.3"],
+        "learn": "Use same-size units end to end with no gaps or overlaps. The number of units is the length. On a clock, half past an hour means 30 minutes after it.",
+        "together": "Measure three objects with same-size paper clips, lined up without gaps. Order the objects by length. Use a clock with a grown-up to show an hour and a half-hour."
+      },
+      "questions": [
+        ["A pencil spans 5 same-size blocks with no gaps. Its length is...", "5 blocks", ["4 blocks", "5 blocks", "6 blocks"], "Count the units from end to end.", "Five blocks cover the length, so it is 5 blocks long."],
+        ["Which is a fair way to measure?", "Use same-size units with no gaps.", ["Use same-size units with no gaps.", "Leave gaps between units.", "Use a different-size unit each time."], "Each unit must stand for the same length.", "Equal units without gaps give a consistent measurement."],
+        ["Ribbons are 3, 7, and 5 blocks long. Which order goes shortest to longest?", "3, 5, 7", ["3, 5, 7", "7, 5, 3", "5, 3, 7"], "Compare the smallest length first.", "3 is less than 5, and 5 is less than 7."],
+        ["Which digital time means half past two?", "2:30", ["2:00", "2:30", "3:30"], "Half past means 30 minutes after.", "Half past two is 2:30."],
+        ["A clock has its minute hand at 12 and hour hand at 4. What time is it?", "4:00", ["12:04", "4:00", "4:30"], "The minute hand at 12 means a whole hour.", "The clock shows four o'clock, or 4:00."]
+      ]
+    },
+    "data": {
+      "title": "Pet Survey",
+      "skill": "Read three categories and compare totals",
+      "guide": {
+        "standards": ["1.MD.4"],
+        "learn": "A survey collects answers to a question. This sample graph counts votes for favorite pets, not real classmates. Each block means one vote. Add categories for a total; subtract to compare.",
+        "together": "Survey a few willing family members using up to three choices. Each person votes once. Make a paper graph and ask how many altogether and how many more."
+      },
+      "chart": {"type": "bar", "title": "Sample favorite-pet votes", "labels": ["Cat", "Dog", "Fish"], "counts": [4, 6, 2], "unit": "votes", "scale": 1},
+      "questions": [
+        ["How many votes are for Cat?", "4", ["2", "4", "6"], "Read the Cat stack.", "Four blocks mean 4 votes."],
+        ["Which pet has the most votes?", "Dog", ["Cat", "Dog", "Fish"], "Find the highest stack.", "Dog has 6 votes, the most."],
+        ["How many votes are there altogether?", "12", ["8", "10", "12"], "Add 4, 6, and 2.", "4 + 6 + 2 = 12 votes."],
+        ["How many more votes does Dog have than Cat?", "2", ["2", "4", "10"], "Compare 6 with 4.", "6 - 4 = 2 more votes."],
+        ["How many votes are for Cat and Fish together?", "6", ["4", "6", "8"], "Add those two categories.", "4 + 2 = 6 votes."]
+      ]
+    },
+    "sight": {
+      "title": "Sound & Word Safari",
+      "skill": "Decode short vowels, blends, and common words",
+      "questions": [
+        ["Which word has the short a sound heard in map?", "cap", ["cap", "cup", "cope"], "Say the middle sound in map.", "Map and cap both have the short a sound."],
+        ["Which word begins with the blend st?", "stop", ["shop", "stop", "top"], "Listen for both /s/ and /t/.", "Stop begins with the two sounds in st."],
+        ["Which word completes 'She ___ a blue bag'?", "has", ["have", "has", "are"], "She goes with has.", "She has a blue bag is a correct sentence."],
+        ["Which word has a silent e that makes the vowel long?", "cake", ["cat", "cake", "cup"], "The final e helps a say its name.", "Cake has a long a sound and a silent final e."],
+        ["Which word rhymes with light?", "night", ["little", "night", "leaf"], "Look for the same ending sound.", "Light and night both end with the /ite/ sound."]
+      ]
+    },
+    "vocabulary": {
+      "title": "Meaning & Word Families",
+      "skill": "Use opposites, synonyms, categories, and endings",
+      "questions": [
+        ["Which word means the same as glad?", "happy", ["sad", "happy", "sleepy"], "Think of a smile.", "Glad and happy describe a pleased feeling."],
+        ["What is the opposite of empty?", "full", ["full", "round", "quiet"], "Imagine filling an empty cup.", "A full cup is the opposite of an empty cup."],
+        ["Which word belongs with shirt and socks?", "coat", ["coat", "carrot", "spoon"], "The group names clothing.", "A coat is clothing, like a shirt and socks."],
+        ["What does the ending -s mean in cats?", "more than one cat", ["one cat", "more than one cat", "a tiny cat"], "Compare one cat with two cats.", "Adding s often makes a noun plural."],
+        ["In 'The puppy is tiny,' what does tiny mean?", "very small", ["very small", "very loud", "very fast"], "A little puppy is not big.", "Tiny means very small."]
+      ]
+    },
+    "spelling": {
+      "title": "Vowels & Blends",
+      "skill": "Spell words with blends, digraphs, and silent e",
+      "questions": [
+        ["Type the word: a boat on the sea that begins with sh.", "ship", null, "Use sh, then i, then p.", "Ship is spelled s-h-i-p; sh makes one beginning sound."],
+        ["Type the word: a pet amphibian that begins with fr and hops.", "frog", null, "Blend f and r before og.", "Frog is spelled f-r-o-g."],
+        ["Type the word: a birthday treat with a silent e.", "cake", null, "Start with cak and add e.", "Cake is spelled c-a-k-e."],
+        ["Type the word: what a duck does in water, beginning with sw.", "swim", null, "Blend s and w before im.", "Swim is spelled s-w-i-m."],
+        ["Type the word: a timepiece worn on your wrist, beginning with w and ending in atch.", "watch", null, "Use w plus atch.", "Watch is spelled w-a-t-c-h."]
+      ]
+    },
+    "reading": {
+      "title": "The Missing Mitten",
+      "skill": "Use story details and sequence to explain a solution",
+      "passage": "Nia was ready for the snowy walk to school, but one mitten was missing. She looked under her bed. She found a book, not a mitten.\nThen Nia remembered playing with her puppy near the door. She checked the puppy's basket. Her mitten lay beside a toy bone. Nia put both mittens on and smiled. Now her hands would stay warm.",
+      "questions": [
+        ["What was Nia missing?", "one mitten", ["a book", "one mitten", "a toy bone"], "Look at the first sentence.", "Nia could not find one of her mittens."],
+        ["Where did Nia look first?", "under her bed", ["under her bed", "at school", "in the basket"], "Find the first place she checks.", "She first looked under her bed."],
+        ["What helped Nia decide where to look next?", "remembering the puppy", ["hearing a bell", "remembering the puppy", "reading a map"], "What did she remember near the door?", "Remembering where she played with the puppy gave her a clue."],
+        ["Where was the mitten?", "in the puppy's basket", ["in the book", "in the puppy's basket", "on a tree"], "Find the sentence with toy bone.", "The mitten lay in the puppy's basket beside a toy bone."],
+        ["Why did Nia put on both mittens?", "to keep her hands warm", ["to feed the puppy", "to keep her hands warm", "to carry a book"], "Think about the snowy weather.", "Mittens help keep her hands warm on a snowy walk."]
+      ]
+    },
+    "sentence": {
+      "title": "Sentence Starter",
+      "skill": "Capitals, punctuation, verbs, and plural nouns",
+      "questions": [
+        ["Which sentence uses a capital letter correctly?", "We play outside.", ["we play outside.", "We play outside.", "we Play outside."], "The first word needs a capital.", "We is capitalized because it starts the sentence."],
+        ["Which mark completes 'Where is my bag'?", "?", [".", "?", ","], "The sentence asks a question.", "A question ends with a question mark."],
+        ["Choose the action word in 'The rabbits hop.'", "hop", ["The", "rabbits", "hop"], "Find what the rabbits do.", "Hop is a verb, or action word."],
+        ["Choose the plural of dog.", "dogs", ["dogs", "doges", "dog"], "Add s to name more than one.", "Dogs is the plural form of dog."],
+        ["Complete 'He ___ to school.'", "walks", ["walk", "walks", "walking"], "He goes with walks.", "He walks to school uses the correct present-tense verb."]
+      ]
+    },
+    "arithmetic": {
+      "title": "Add & Subtract to 20",
+      "skill": "Use counting on, making ten, and missing addends",
+      "questions": [
+        ["8 + 5 = ?", "13", ["11", "13", "15"], "Give 2 to 8 to make 10, then add 3.", "8 + 5 = 10 + 3 = 13."],
+        ["14 - 6 = ?", "8", ["6", "8", "10"], "Take away 4 to reach 10, then take away 2.", "14 - 6 = 8."],
+        ["7 + 7 = ?", "14", ["12", "14", "16"], "This is a doubles fact.", "Two groups of seven make 14."],
+        ["9 + ? = 12", "3", ["2", "3", "4"], "Count on from 9 to 12.", "10, 11, 12: three steps, so 9 + 3 = 12."],
+        ["18 - 10 = ?", "8", ["8", "10", "9"], "Remove one ten from one ten and eight ones.", "18 is one ten and eight ones. Taking away ten leaves 8."]
+      ]
+    },
+    "multiply": {
+      "title": "Equal Groups Explorer",
+      "skill": "Count pairs and share small collections fairly",
+      "questions": [
+        ["There are 3 pairs of shoes. How many shoes?", "6", ["3", "5", "6"], "Count by twos three times.", "2 + 2 + 2 = 6 shoes."],
+        ["Two baskets each have 5 apples. How many apples?", "10", ["7", "10", "12"], "Count 5 and 5.", "5 + 5 = 10 apples."],
+        ["Share 6 crayons equally among 3 cups. How many per cup?", "2", ["1", "2", "3"], "Give one crayon to each cup, then repeat.", "Each cup holds 2 crayons."],
+        ["Which describes 4 and 4?", "two equal groups of 4", ["two equal groups of 4", "one group of 4", "four groups of 4"], "The same amount appears twice.", "4 and 4 are two equal groups of four."],
+        ["There are 4 bicycles with 2 wheels each. How many wheels?", "8", ["6", "8", "10"], "Count 2, 4, 6, 8.", "Four groups of two make 8 wheels."]
+      ]
+    },
+    "patterns": {
+      "title": "Tens, Ones & Patterns",
+      "skill": "Place value to 100 and counting by twos, fives, and tens",
+      "questions": [
+        ["What number is 3 tens and 4 ones?", "34", ["34", "43", "7"], "Three tens are 30.", "30 + 4 = 34."],
+        ["What comes next: 10, 20, 30, ...?", "40", ["31", "40", "50"], "Add ten each time.", "30 + 10 = 40."],
+        ["What comes next: 5, 10, 15, ...?", "20", ["16", "20", "25"], "Count by fives.", "15 + 5 = 20."],
+        ["Which number is greater than 47?", "52", ["42", "45", "52"], "Compare the tens first.", "52 has five tens; 47 has four tens, so 52 is greater."],
+        ["What comes next: 2, 4, 6, ...?", "8", ["7", "8", "10"], "Add two each time.", "6 + 2 = 8."]
+      ]
+    },
+    "problems": {
+      "title": "Everyday Math Stories",
+      "skill": "Solve addition, subtraction, and comparison problems",
+      "questions": [
+        ["There are 9 children on a bus. 4 more get on. How many now?", "13", ["11", "13", "14"], "Add the children who join.", "9 + 4 = 13 children."],
+        ["A shelf has 15 books. 7 are borrowed. How many remain?", "8", ["7", "8", "9"], "Subtract the borrowed books.", "15 - 7 = 8 books remain."],
+        ["Ari has 12 stickers. Jo has 8. How many more does Ari have?", "4", ["3", "4", "5"], "Find the difference between 12 and 8.", "12 - 8 = 4 more stickers."],
+        ["You need 10 shells. You have 6. How many more do you need?", "4", ["3", "4", "5"], "Think 6 plus what makes 10.", "6 + 4 = 10, so you need 4 more."],
+        ["A team has 7 red flags and 6 blue flags. How many flags?", "13", ["12", "13", "14"], "Add both colors together.", "7 + 6 = 13 flags."]
+      ]
+    },
+    "geometry": {
+      "title": "Shapes, Length & Time",
+      "skill": "Flat shapes, equal halves, measuring without gaps, and whole hours",
+      "questions": [
+        ["How many corners does a rectangle have?", "4", ["3", "4", "5"], "Think of the four corners of a door.", "A rectangle has 4 corners."],
+        ["A circle is cut into 2 equal parts. Each part is a...", "half", ["half", "third", "whole"], "Two equal halves make one whole.", "One of two equal parts is a half."],
+        ["A pencil is 6 cubes long. A crayon is 4 cubes long. Which is longer?", "the pencil", ["the pencil", "the crayon", "They are equal"], "Compare 6 with 4.", "6 is greater than 4, so the pencil is longer."],
+        ["A clock's hour hand points to 3 and minute hand to 12. What time is it?", "3 o'clock", ["12 o'clock", "3 o'clock", "6 o'clock"], "At a whole hour, the minute hand points to 12.", "The hour hand points to 3, so it is 3 o'clock."],
+        ["How should cubes be placed to measure a book?", "end to end with no gaps", ["with large gaps", "end to end with no gaps", "in a pile"], "Each unit should touch the next.", "Equal units placed end to end without gaps give a consistent length."]
+      ]
+    }
+  }
+}

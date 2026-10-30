@@ -1,0 +1,62 @@
+[
+  {
+    "prompt": "Which word means the same as “happy”?",
+    "answer": "glad",
+    "options": [
+      "sad",
+      "glad",
+      "tired",
+      "cold"
+    ],
+    "hint": "Think about how you feel when a friend visits.",
+    "explanation": "Glad and happy both describe a good feeling."
+  },
+  {
+    "prompt": "What is the opposite of “tiny”?",
+    "answer": "huge",
+    "options": [
+      "small",
+      "little",
+      "huge",
+      "short"
+    ],
+    "hint": "Imagine a very big elephant.",
+    "explanation": "Huge means very big, the opposite of tiny."
+  },
+  {
+    "prompt": "Which animal lives in the ocean?",
+    "answer": "dolphin",
+    "options": [
+      "rabbit",
+      "dolphin",
+      "horse",
+      "fox"
+    ],
+    "hint": "It swims and comes up for air.",
+    "explanation": "Dolphins are mammals that live in water."
+  },
+  {
+    "prompt": "Which word means “move very quickly”?",
+    "answer": "sprint",
+    "options": [
+      "rest",
+      "sleep",
+      "sprint",
+      "sit"
+    ],
+    "hint": "A runner might do this in a race.",
+    "explanation": "To sprint is to run very fast for a short distance."
+  },
+  {
+    "prompt": "A person who is brave shows…",
+    "answer": "courage",
+    "options": [
+      "hunger",
+      "courage",
+      "sleepiness",
+      "noise"
+    ],
+    "hint": "Trying something even when you feel scared is brave.",
+    "explanation": "Courage is doing something even when it feels scary."
+  }
+]

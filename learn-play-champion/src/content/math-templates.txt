@@ -1,0 +1,27 @@
+{
+  "addition": {
+    "prompt": "{a} + {b} = ?",
+    "hint": "Start at {a} and count forward {b}.",
+    "explanation": "{a} + {b} = {answer}. Counting carefully is a superpower!"
+  },
+  "subtraction": {
+    "prompt": "{a} − {b} = ?",
+    "hint": "Start at {a} and count back {b}.",
+    "explanation": "{a} − {b} = {answer}. Counting carefully is a superpower!"
+  },
+  "multiplication": {
+    "prompt": "{a} × {b} = ?",
+    "hint": "Add {a} together {b} times.",
+    "explanation": "{a} groups of {b} make {product}, so {product} ÷ {b} = {a}."
+  },
+  "division": {
+    "prompt": "{product} ÷ {b} = ?",
+    "hint": "How many groups of {b} fit into {product}?",
+    "explanation": "{a} groups of {b} make {product}, so {product} ÷ {b} = {a}."
+  },
+  "patterns": {
+    "prompt": "{start}, {n1}, {n2}, {n3}, … ?",
+    "hint": "Add {step} each time.",
+    "explanation": "This pattern grows by {step} each time. The next number is {answer}."
+  }
+}

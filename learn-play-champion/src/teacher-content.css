@@ -1,0 +1,23 @@
+.content-studio, .teacher-library { margin-top: 28px; padding: 24px; border-top: 2px solid #d5c9ec; overflow-wrap: anywhere; }
+.content-studio p, .teacher-library p { margin: 16px 0; }
+.content-studio .button, .teacher-library .button { margin: 8px 12px 8px 0; min-height: 48px; white-space: normal; }
+.studio-items, .teacher-library-items { list-style: none; padding: 0; display: grid; gap: 18px; margin: 24px 0; }
+.studio-items li, .teacher-library-items li { padding: 18px; border: 1px solid #d5c9ec; border-radius: 14px; background: #fffaf0; color: #302d49; }
+.studio-items li > span { display: block; font-size: 14px; margin-top: 8px; }
+.studio-editor, .studio-review { margin-top: 24px; }
+.studio-editor label, .studio-review fieldset label { display: grid; gap: 8px; margin: 16px 0; font-weight: 700; }
+.studio-editor input, .studio-editor textarea, .studio-editor select, .studio-review textarea {
+  font: inherit; color: #302d49; background: white; border: 1px solid #82729c; border-radius: 8px; padding: 12px; width: 100%; min-width: 0;
+}
+.content-studio fieldset { border: 1px solid #d5c9ec; border-radius: 12px; padding: 16px; min-width: 0; }
+.studio-question { margin: 20px 0; background: #f5f2fd; color: #302d49; }
+.studio-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+.teacher-activity { border: 1px solid #d5c9ec; border-radius: 16px; padding: clamp(16px, 3vw, 28px); background: white; color: #302d49; margin: 24px 0; }
+.teacher-activity h2 { margin: 16px 0; }
+.teacher-passage { white-space: pre-wrap; font-size: clamp(20px, 2.5vw, 24px); line-height: 1.8; }
+.teacher-question { padding: 20px 0; border-top: 1px solid #d5c9ec; }
+.teacher-answer-choices { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.teacher-answer-choices button[aria-pressed="true"] { outline: 3px solid #563ba0; outline-offset: 3px; }
+.teacher-content-banner { padding: 24px; background: linear-gradient(120deg, #e5f6ef, #f3ebff); }
+.teacher-content-banner p { margin: 16px 0; }
+@media (max-width: 540px) { .content-studio, .teacher-library { padding: 16px; } }

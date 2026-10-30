@@ -1,0 +1,215 @@
+{
+  "grade": "5",
+  "overview": "Greek and Latin roots, figurative language, theme and evidence, editing and argument, decimal operations, fraction operations, numerical patterns, coordinate pairs, volume, and conversions.",
+  "lessons": {
+    "informational": {
+      "title": "Planning a Wildlife Crossing",
+      "skill": "Support two main ideas and explain connected effects",
+      "guide": {
+        "standards": ["RI.5.1", "RI.5.2", "RI.5.3"],
+        "learn": "A text can develop more than one main idea. Pair each idea with details, quote accurately, and explain how actions and outcomes connect. Do not treat a possible result as a guaranteed result.",
+        "together": "Write two main ideas and choose an exact supporting sentence for each. Explain the relationship between location research and animal use. Discuss one question a planner would still need to investigate."
+      },
+      "passage": "Roads connect human communities, but they can divide animal habitats. When animals need to reach food, shelter, or seasonal routes on the other side, crossing traffic can be dangerous. A wildlife crossing is a bridge or tunnel designed to offer another route.\nBuilding a crossing alone does not guarantee success. Planners first study where animals already move. A bridge in a rarely used location may attract few animals, even if it is well built. Different species also need different designs: a small animal may use a sheltered tunnel, while a larger animal may need a broad open route.\nFences can guide animals toward a crossing rather than the road. Native plants can provide cover near an entrance. After construction, researchers monitor animal use to learn whether the design is working. If monitoring reveals a problem, planners can adjust the approach. Effective crossings depend on research before construction and continued learning afterward.",
+      "questions": [
+        ["Which pair states two main ideas?", "Roads can divide habitats; effective crossings need research and monitoring.", ["Roads can divide habitats; effective crossings need research and monitoring.", "All animals need the same tunnel; any location works.", "Roads never affect animals; plants replace bridges."], "Connect the first paragraph with the planning paragraphs.", "The text develops both the habitat problem and the need for evidence-based crossing design."],
+        ["Which exact sentence supports studying animal movement before building?", "Planners first study where animals already move.", ["Planners first study where animals already move.", "Planners never study animal movement.", "Every bridge attracts every animal."], "Find the sentence in paragraph two.", "This is an accurate quotation from the text supporting location research."],
+        ["How do fences and crossings interact in the text?", "Fences guide animals toward the alternative route.", ["Fences guide animals toward the alternative route.", "Fences replace every bridge and tunnel.", "Fences make all monitoring unnecessary."], "Explain how one feature supports the other.", "The text says fences guide animals toward a crossing instead of the road."],
+        ["Why do researchers monitor a crossing after construction?", "To learn whether it works and identify needed adjustments.", ["To learn whether it works and identify needed adjustments.", "To guarantee no animal ever moves again.", "To choose a location without any evidence."], "Read the final paragraph's sequence.", "Monitoring provides information that can lead planners to adjust the approach."],
+        ["Which summary stays faithful to the text?", "Crossings offer safer routes, but location, species needs, guidance, and monitoring affect their usefulness.", ["Crossings offer safer routes, but location, species needs, guidance, and monitoring affect their usefulness.", "Any bridge guarantees success for every species.", "Only planting flowers matters."], "Include both main ideas without inventing a guarantee.", "This summary includes the purpose and the conditions needed for effective planning."]
+      ]
+    },
+    "writing": {
+      "title": "Develop a Supported Piece",
+      "skill": "Plan logically grouped reasons, explanations, and narratives",
+      "guide": {
+        "standards": ["W.5.1", "W.5.2", "W.5.3", "SL.5.1"],
+        "learn": "Use logically ordered reasons supported by facts. Group explanation details into clear sections and use precise words. In a narrative, control event order and pacing with dialogue and description. Quiz success shows recognition, not proficiency in composing a piece.",
+        "together": "Across three sessions, write a wildlife-crossing opinion supported by text facts, an explanation organized into planning and monitoring sections, and a narrative about solving an outdoor problem. Give each a fitting conclusion or ending. Discuss drafts with a grown-up, respond to a question with evidence, summarize feedback, and revise. Drafts and speech are not uploaded or automatically assessed."
+      },
+      "questions": [
+        ["Which reason and evidence best support monitoring wildlife crossings?", "Monitoring can reveal problems, allowing planners to adjust the approach.", ["Monitoring can reveal problems, allowing planners to adjust the approach.", "Monitoring is useful because I say so.", "All animals prefer the same design."], "Choose a reason backed by a process in the text.", "The evidence explains how monitoring can improve a design."],
+        ["Which structure best organizes an explanation of a crossing project?", "Research the route, choose a design, then monitor and adjust.", ["Research the route, choose a design, then monitor and adjust.", "List unrelated facts about favorite foods.", "Repeat one opinion without explaining it."], "Group the project's related steps logically.", "The sequence follows planning, construction choices, and evaluation."],
+        ["Which transition best links an action to its result?", "Consequently", ["Consequently", "Beside the gate", "At noon yesterday"], "Find a word meaning as a consequence.", "Consequently signals a result of a preceding action."],
+        ["Which revision slows a tense moment with specific detail?", "I gripped the map, listened for the stream, and waited before choosing a trail.", ["I gripped the map, listened for the stream, and waited before choosing a trail.", "Everything happened.", "It was a thing and then it ended."], "Look for a sequence of small actions.", "Specific actions slow the pacing and develop the moment."],
+        ["Which conclusion follows an opinion favoring careful crossing design?", "Research and continued monitoring make the proposal stronger than construction alone.", ["Research and continued monitoring make the proposal stronger than construction alone.", "This proves every crossing always succeeds.", "Now let us start an unrelated story."], "Restate the supported position without exaggerating.", "The conclusion fits the reasons and avoids an unsupported guarantee."]
+      ]
+    },
+    "place": {
+      "title": "Decimal Place Value",
+      "skill": "Compare decimals, round them, and explain place relationships",
+      "guide": {
+        "standards": ["5.NBT.1", "5.NBT.3", "5.NBT.4"],
+        "learn": "Each place is ten times the value of the place to its right and one tenth of the place to its left. Compare decimals by aligning place values. In 0.47 and 0.5, 0.5 means 0.50, so it is greater.",
+        "together": "Use a place-value table to compare 3.407 and 3.47. Round both to tenths and hundredths. Explain why a number with more decimal digits is not automatically larger."
+      },
+      "questions": [
+        ["Which decimal is greater, 0.47 or 0.5?", "0.5", ["0.47", "0.5", "They are equal"], "Write 0.5 as 0.50.", "50 hundredths is greater than 47 hundredths."],
+        ["What is the value of 7 in 3.072?", "0.07", ["0.7", "0.07", "0.007"], "The 7 is in the hundredths place.", "Seven hundredths is 0.07."],
+        ["8.376 rounded to the nearest hundredth is...", "8.38", ["8.37", "8.38", "8.4"], "Look at the thousandths digit, 6.", "6 thousandths rounds the hundredths value up, giving 8.38."],
+        ["How does 0.6 compare with 0.06?", "0.6 is 10 times as much.", ["0.6 is 10 times as much.", "They are equal.", "0.6 is one tenth as much."], "Compare six tenths and six hundredths.", "0.06 x 10 = 0.6."],
+        ["Which expanded form equals 4.205?", "4 + 2/10 + 5/1000", ["4 + 2/10 + 5/1000", "4 + 2/100 + 5/1000", "4 + 2/10 + 5/100"], "Keep the zero in the hundredths place.", "4 ones, 2 tenths, 0 hundredths, and 5 thousandths make 4.205."]
+      ]
+    },
+    "fractions": {
+      "title": "Fraction Operations Lab",
+      "skill": "Add unlike fractions, multiply fractions, and divide unit fractions",
+      "guide": {
+        "standards": ["5.NF.1", "5.NF.2", "5.NF.4", "5.NF.7"],
+        "learn": "For addition and subtraction, rename fractions with a common denominator. For multiplication, reason about a part of a part. For 2 divided by 1/4, ask how many quarter-size groups fit in two wholes. Division here stays within Grade 5 unit-fraction cases.",
+        "together": "Draw same-size fraction strips to explain 1/2 + 1/3 and to show why the result is greater than 1/2. Model 2 divided by 1/4 with two wholes partitioned into quarters."
+      },
+      "questions": [
+        ["1/2 + 1/3 = ?", "5/6", ["2/5", "5/6", "1/6"], "Use sixths: 3/6 plus 2/6.", "3/6 + 2/6 = 5/6."],
+        ["A full bottle holds 1 liter. After 3/8 liter is poured out, how much remains?", "5/8 liter", ["3/8 liter", "5/8 liter", "7/8 liter"], "Rename 1 as 8/8.", "8/8 - 3/8 = 5/8 liter."],
+        ["What is 2/3 of 3/4?", "1/2", ["1/2", "5/7", "2/7"], "Multiply the numerators and denominators.", "(2 x 3)/(3 x 4) = 6/12 = 1/2."],
+        ["How many 1/4-size groups fit in 2 wholes?", "8", ["2", "4", "8"], "Each whole holds four quarters.", "2 divided by 1/4 is 8 because two wholes hold eight quarters."],
+        ["1/3 of a meter is shared equally into 2 pieces. How long is each piece?", "1/6 meter", ["1/2 meter", "1/6 meter", "2/3 meter"], "Half of one third is one sixth.", "(1/3) divided by 2 = 1/6 meter."]
+      ]
+    },
+    "measurement": {
+      "title": "Convert & Build Volume",
+      "skill": "Solve conversion problems and find rectangular-prism volume",
+      "guide": {
+        "standards": ["5.MD.1", "5.MD.4", "5.MD.5"],
+        "learn": "Convert within the same measurement system before calculating. One liter is 1,000 milliliters. A unit cube fills one cubic unit; a rectangular prism's volume is length times width times height because equal layers repeat.",
+        "together": "Build a 3-by-2 layer of large cubes, then stack two equal layers. Count and write the volume equation. Solve a metric conversion story and check whether your units describe length, area, or volume."
+      },
+      "questions": [
+        ["2.5 liters equals how many milliliters?", "2,500 mL", ["250 mL", "2,500 mL", "25,000 mL"], "Multiply liters by 1,000.", "2.5 x 1,000 = 2,500 milliliters."],
+        ["A 3-meter ribbon is cut into 75-centimeter pieces. How many whole pieces can be made?", "4", ["3", "4", "5"], "Convert 3 meters to 300 centimeters.", "300 divided by 75 = 4 whole pieces."],
+        ["A box is 4 cm by 3 cm by 2 cm. What is its volume?", "24 cubic cm", ["9 cubic cm", "12 cubic cm", "24 cubic cm"], "Multiply length, width, and height.", "4 x 3 x 2 = 24 cubic centimeters."],
+        ["A prism has a base area of 12 square inches and a height of 5 inches. Its volume is...", "60 cubic inches", ["17 cubic inches", "30 cubic inches", "60 cubic inches"], "Each 1-inch layer fills 12 cubic inches.", "12 x 5 = 60 cubic inches."],
+        ["Two non-overlapping rectangular-prism sections have volumes of 18 and 12 cubic feet. Their combined volume is...", "30 cubic feet", ["6 cubic feet", "30 cubic feet", "216 cubic feet"], "Add the filled spaces without counting any space twice.", "18 + 12 = 30 cubic feet."]
+      ]
+    },
+    "data": {
+      "title": "Measure, Plot & Redistribute",
+      "skill": "Use fractional measurement data to solve total and sharing problems",
+      "guide": {
+        "standards": ["5.MD.2"],
+        "learn": "Each X records one container's measurement. To find the total, add the measured amounts, including repeats. To find an equal share, divide that total by the number of containers. These are sample measurements.",
+        "together": "Draw this line plot and use fraction strips to find the total. Show how redistributing the liquid equally among the same six containers changes the amounts, not the total. Keep this as a paper model."
+      },
+      "chart": {"type": "line", "title": "Sample water amounts in six containers", "labels": ["1/8", "1/4", "3/8", "1/2"], "counts": [1, 2, 1, 2], "unit": "cups", "scale": 1},
+      "questions": [
+        ["How many containers hold 1/4 cup?", "2", ["1", "2", "4"], "Count the X marks above 1/4.", "Two marks mean two containers."],
+        ["How much water is there in all six containers?", "2 cups", ["1 cup", "2 cups", "3 cups"], "Use eighths: 1 + 2 + 2 + 3 + 4 + 4.", "16/8 = 2 cups in total."],
+        ["If the total is shared equally among the six containers, how much will each hold?", "1/3 cup", ["1/6 cup", "1/3 cup", "1/2 cup"], "Divide the total 2 cups by 6.", "2 divided by 6 = 2/6 = 1/3 cup per container."],
+        ["What is the difference between the largest and smallest amounts?", "3/8 cup", ["1/8 cup", "1/4 cup", "3/8 cup"], "Subtract 1/8 from 1/2.", "4/8 - 1/8 = 3/8 cup."],
+        ["How much water is in the two containers that each hold 1/2 cup?", "1 cup", ["1/2 cup", "1 cup", "2 cups"], "Add the two half-cup amounts.", "1/2 + 1/2 = 1 cup."]
+      ]
+    },
+    "sight": {
+      "title": "Academic Word Study",
+      "skill": "Roots, affixes, multisyllabic words, and precise word recognition",
+      "questions": [
+        ["The root graph means write or record. Which word names a person's own signature?", "autograph", ["autograph", "geography", "paragraph"], "Auto- means self.", "An autograph is a person's own written signature."],
+        ["The prefix inter- in international means...", "between or among", ["before", "between or among", "not"], "International concerns more than one nation.", "Inter- means between or among."],
+        ["Choose the correct word: 'The new rule will ___ every team.'", "affect", ["affect", "effect", "effects"], "The blank needs a verb meaning influence.", "Affect is the verb meaning influence in this sentence."],
+        ["Which pair shares a root meaning look?", "inspect and spectator", ["inspect and spectator", "triangle and transfer", "biology and bicycle"], "Look for spect.", "Inspect and spectator share spect, related to looking."],
+        ["How many syllables are in responsibility?", "6", ["4", "5", "6"], "Say re-spon-si-bil-i-ty.", "Responsibility has six syllables."]
+      ]
+    },
+    "vocabulary": {
+      "title": "Nuance & Figurative Language",
+      "skill": "Metaphor, personification, context, roots, and connotation",
+      "questions": [
+        ["In 'The classroom was a beehive of activity,' the metaphor suggests...", "many people were busy", ["bees lived in the room", "many people were busy", "everyone was asleep"], "Compare busy students with busy bees.", "The metaphor compares a busy classroom to an active beehive."],
+        ["Which sentence uses personification?", "The wind whispered through the trees.", ["The wind was cold.", "The wind whispered through the trees.", "The wind blew at noon."], "Personification gives a human action to something nonhuman.", "Whispering is a human action given to the wind."],
+        ["In 'The supply was scarce, so each person received only one,' scarce means...", "in short supply", ["in short supply", "very colorful", "easy to replace"], "The amount was limited to one each.", "Scarce means there is not much available."],
+        ["Which word has a more positive tone than stubborn?", "determined", ["determined", "obstinate", "unreasonable"], "Both can describe not giving up, but one praises effort.", "Determined usually suggests admirable persistence."],
+        ["The root geo means earth. Geology studies...", "Earth's materials and history", ["Earth's materials and history", "only animal behavior", "musical patterns"], "Connect geo with earth.", "Geology studies Earth, its materials, processes, and history."]
+      ]
+    },
+    "spelling": {
+      "title": "Academic Spelling Studio",
+      "skill": "Spell commonly used upper-elementary academic vocabulary",
+      "questions": [
+        ["Type the word for information that supports a conclusion.", "evidence", null, "Start evi and finish dence.", "Evidence is spelled e-v-i-d-e-n-c-e."],
+        ["Type the adverb meaning apart rather than together.", "separately", null, "Start with separate, then add ly.", "Separately is spelled s-e-p-a-r-a-t-e-l-y."],
+        ["Type the word for a group of people living in one place or sharing interests.", "community", null, "Begin comm and end unity.", "Community is spelled c-o-m-m-u-n-i-t-y."],
+        ["Type the word meaning needed or required.", "necessary", null, "Use one c and two s letters.", "Necessary is spelled n-e-c-e-s-s-a-r-y."],
+        ["Type the word naming a chance to do something.", "opportunity", null, "Use double p and finish ortunity.", "Opportunity is spelled o-p-p-o-r-t-u-n-i-t-y."]
+      ]
+    },
+    "reading": {
+      "title": "The Trial Garden",
+      "skill": "Evaluate evidence, infer a theme, and distinguish conclusions from guesses",
+      "passage": "The garden club had enough money for only one new watering system. Rowan wanted a sprinkler because it covered the beds quickly. June preferred a hose that dripped water beside each plant. Rather than vote immediately, the club decided to test both ideas.\nThey chose two equal beds with the same kind and number of seedlings. Each bed received the same measured amount of water. For two weeks, students recorded the height of the plants and checked the soil at the same time each afternoon. The drip-watered bed usually stayed damp longer, while the sprinkler sometimes wet the walkway.\nOn the final day, one plant in the sprinkler bed was taller than any other plant. Rowan pointed to it as proof that the sprinkler was best. June suggested looking at all the records instead of one plant. The average heights were nearly the same, but the drip system kept more water near the roots.\nRowan revised his recommendation. He still liked the sprinkler's speed, but he agreed that the club should consider water use as well. Their notebook did not answer every question, yet it gave them a better starting point than a quick vote.",
+      "questions": [
+        ["Why did the club test both systems?", "to gather evidence before choosing", ["to avoid gardening", "to gather evidence before choosing", "to grow different crops"], "The club did not vote immediately.", "Testing let the club compare evidence before spending its money."],
+        ["Which detail helped make the comparison fair?", "Both beds received the same measured water.", ["One bed had more seedlings.", "Both beds received the same measured water.", "They checked only one plant."], "A fair comparison keeps important conditions the same.", "Equal measured water helped them compare the systems rather than different water amounts."],
+        ["Why was one tall plant not enough to prove the sprinkler was best?", "One plant did not represent all the results.", ["The plant was imaginary.", "One plant did not represent all the results.", "Tall plants never need water."], "June asks the club to consider all its records.", "A single result can differ from the overall pattern; they needed to examine all the evidence."],
+        ["Which conclusion is supported by the notebook?", "Average heights were similar, but drip water stayed near roots better.", ["Drip watering always doubles growth.", "Average heights were similar, but drip water stayed near roots better.", "Sprinklers never water plants."], "Separate the measured observations from absolute claims.", "This conclusion matches the recorded heights and moisture observations without claiming too much."],
+        ["Which theme best fits Rowan's change of mind?", "Good decisions can change when we consider evidence.", ["Changing your mind is always wrong.", "Good decisions can change when we consider evidence.", "Fast choices are always accurate."], "Think about why Rowan revises his recommendation.", "Rowan learns to consider evidence and more than one measure of success."]
+      ]
+    },
+    "sentence": {
+      "title": "Evidence & Editing Workshop",
+      "skill": "Verb tense, punctuation, transitions, claims, and supporting evidence",
+      "questions": [
+        ["Choose the sentence with consistent past tense.", "We walked to the pond and watched the ducks.", ["We walked to the pond and watch the ducks.", "We walked to the pond and watched the ducks.", "We walk to the pond and watched the ducks."], "Both actions happened in the past.", "Walked and watched are both past-tense verbs."],
+        ["Which is a claim that could be supported in an opinion paragraph?", "Our school should add a reading garden.", ["The bench has four legs.", "Our school should add a reading garden.", "A seed is on the table."], "An opinion claim proposes an idea someone could support or debate.", "The reading-garden statement is a claim; reasons and evidence can support it."],
+        ["Which evidence best supports using reusable bottles to reduce waste?", "Students threw away fewer bottles after switching.", ["The bottles came in blue.", "Students threw away fewer bottles after switching.", "The shelf was painted."], "Look for evidence about the amount of waste.", "Fewer discarded bottles directly supports a claim about reducing waste."],
+        ["Choose a transition that introduces a contrasting idea.", "However", ["However", "Similarly", "For instance"], "Contrast shows a difference.", "However introduces a contrast with the previous idea."],
+        ["Which sentence punctuates an introductory phrase correctly?", "After the rain, we checked the garden.", ["After the rain we, checked the garden.", "After the rain, we checked the garden.", "After, the rain we checked the garden."], "Put the comma after the introductory phrase.", "After the rain is followed by a comma before the main clause."]
+      ]
+    },
+    "arithmetic": {
+      "title": "Decimal Number Sprint",
+      "skill": "Decimal place value, addition, subtraction, and rounding",
+      "questions": [
+        ["3.75 + 2.6 = ?", "6.35", ["5.81", "6.35", "6.01"], "Write 2.6 as 2.60 and align decimal places.", "3.75 + 2.60 = 6.35."],
+        ["8.4 - 3.78 = ?", "4.62", ["4.62", "5.38", "4.72"], "Write 8.4 as 8.40.", "8.40 - 3.78 = 4.62."],
+        ["What is the value of 7 in 4.072?", "0.07", ["0.7", "0.07", "0.007"], "The 7 is in the hundredths place.", "Seven hundredths is 0.07."],
+        ["Round 6.487 to the nearest hundredth.", "6.49", ["6.48", "6.49", "6.5"], "Look at the thousandths digit, 7.", "The hundredths digit rounds up because the next digit is at least 5."],
+        ["4.25 + 0.75 + 1.5 = ?", "6.5", ["5.5", "6.5", "7.5"], "First combine 4.25 and 0.75.", "4.25 + 0.75 = 5; 5 + 1.5 = 6.5."]
+      ]
+    },
+    "multiply": {
+      "title": "Decimal & Fraction Operations",
+      "skill": "Multiply decimals and fractions; divide decimals and whole numbers",
+      "questions": [
+        ["2.4 × 3 = ?", "7.2", ["0.72", "7.2", "72"], "Multiply 24 tenths by 3.", "24 tenths × 3 = 72 tenths = 7.2."],
+        ["4.8 ÷ 6 = ?", "0.8", ["0.08", "0.8", "8"], "Find a number that gives 4.8 when multiplied by 6.", "0.8 × 6 = 4.8, so the quotient is 0.8."],
+        ["2/3 × 3/4 = ?", "1/2", ["5/7", "1/2", "2/7"], "Multiply numerators and denominators, then simplify.", "6/12 simplifies to 1/2."],
+        ["1/3 ÷ 2 = ?", "1/6", ["2/3", "1/6", "3/2"], "Split one third into two equal parts.", "Half of one third is one sixth."],
+        ["1,248 ÷ 24 = ?", "52", ["42", "52", "62"], "24 × 50 = 1,200. What remains?", "48 remains; 48 ÷ 24 = 2, so the quotient is 52."]
+      ]
+    },
+    "patterns": {
+      "title": "Fraction & Pattern Detective",
+      "skill": "Unlike denominators, mixed numbers, ordered pairs, and numerical rules",
+      "questions": [
+        ["1/2 + 1/3 = ?", "5/6", ["2/5", "5/6", "1/6"], "Use sixths as a common denominator.", "3/6 + 2/6 = 5/6."],
+        ["3/4 - 1/6 = ?", "7/12", ["2/2", "7/12", "2/10"], "Write both fractions in twelfths.", "9/12 - 2/12 = 7/12."],
+        ["1 1/2 + 2 1/4 = ?", "3 3/4", ["3 1/2", "3 3/4", "4 1/4"], "Add whole numbers and then fractional parts.", "1 + 2 = 3 and 1/2 + 1/4 = 3/4, giving 3 3/4."],
+        ["A rule is y = 2 × x + 1. What is y when x = 4?", "9", ["8", "9", "10"], "Multiply first, then add one.", "2 × 4 + 1 = 9."],
+        ["Which ordered pair follows y = x + 3?", "(2, 5)", ["(2, 5)", "(3, 2)", "(5, 2)"], "The second number must be three more than the first.", "For (2, 5), 5 = 2 + 3."]
+      ]
+    },
+    "problems": {
+      "title": "Real-Life Fraction & Decimal Stories",
+      "skill": "Solve multi-step money, fraction, measurement, and scaling problems",
+      "questions": [
+        ["Three notebooks cost $2.75 each. What is the total?", "$8.25", ["$6.75", "$8.25", "$9.25"], "Multiply 2.75 by 3.", "2.75 + 2.75 + 2.75 = $8.25."],
+        ["A 3-meter ribbon is cut into 1/2-meter pieces. How many pieces?", "6", ["3", "6", "1.5"], "How many halves fit into three wholes?", "Each meter gives two pieces, so 3 × 2 = 6 pieces."],
+        ["A recipe needs 3/4 cup of oats. You make half the recipe. How much oats?", "3/8 cup", ["3/8 cup", "3/2 cups", "1/4 cup"], "Multiply 3/4 by 1/2.", "3/4 × 1/2 = 3/8 cup."],
+        ["You walk 1.25 km and then 750 m. How many kilometers total?", "2 km", ["1.325 km", "2 km", "8.75 km"], "750 meters is 0.75 kilometer.", "1.25 + 0.75 = 2 kilometers."],
+        ["A tank holds 12 liters. It is 2/3 full. How much water is in it?", "8 liters", ["6 liters", "8 liters", "10 liters"], "Find one third of 12, then double it.", "12 ÷ 3 = 4; 4 × 2 = 8 liters."]
+      ]
+    },
+    "geometry": {
+      "title": "Volume & Coordinates",
+      "skill": "Rectangular-prism volume, coordinate axes, hierarchy, and conversions",
+      "questions": [
+        ["A box is 4 cm long, 3 cm wide, and 2 cm high. What is its volume?", "24 cubic cm", ["9 cubic cm", "24 cubic cm", "12 cubic cm"], "Multiply length, width, and height.", "4 × 3 × 2 = 24 cubic centimeters."],
+        ["In the ordered pair (3, 5), what is the x-coordinate?", "3", ["3", "5", "8"], "The first number is the horizontal coordinate.", "The x-coordinate is 3; the y-coordinate is 5."],
+        ["Start at (0, 0), move 4 units right and 2 units up. Where are you?", "(4, 2)", ["(2, 4)", "(4, 2)", "(4, 0)"], "Right changes x; up changes y.", "The point is (4, 2)."],
+        ["Which statement is always true?", "Every square is a rectangle.", ["Every rectangle is a square.", "Every square is a rectangle.", "Every triangle is a quadrilateral."], "A square has all the properties required of a rectangle.", "A square has four right angles and opposite equal sides, so it is a rectangle."],
+        ["A container holds 2.5 liters. How many milliliters is that?", "2,500 mL", ["250 mL", "2,500 mL", "25,000 mL"], "One liter equals 1,000 milliliters.", "2.5 × 1,000 = 2,500 milliliters."]
+      ]
+    }
+  }
+}

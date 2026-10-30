@@ -1,0 +1,449 @@
+.account-page {
+  min-height: 100vh;
+  padding: 38px max(24px, calc((100vw - 1200px) / 2));
+  background: radial-gradient(ellipse at 12% 45%, #eae0fc 0, transparent 56%),
+    #f8f7fd;
+}
+.account-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Nunito", sans-serif;
+  font-size: 23px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+.account-brand small {
+  display: block;
+  font-size: 10px;
+  color: var(--purple);
+  letter-spacing: 3.5px;
+  margin-top: 6px;
+}
+.account-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+  margin: 60px auto 35px;
+  max-width: 1100px;
+}
+.account-welcome > .eyebrow {
+  color: #8060b0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+}
+.account-welcome h1 {
+  font-size: 45px;
+  line-height: 1.15;
+  letter-spacing: -1.3px;
+  margin: 20px 0;
+}
+.account-welcome > p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #7e6a94;
+  max-width: 385px;
+}
+.account-mascots {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  font-size: 86px;
+  margin: 22px 0;
+}
+.account-mascots span:nth-child(2) {
+  font-size: 35px;
+  transform: rotate(12deg);
+}
+.account-benefit {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 24px 0;
+  color: #9071b7;
+}
+.account-benefit strong {
+  font-family: "Nunito", sans-serif;
+  color: #665079;
+  font-size: 15px;
+  font-weight: 850;
+}
+.account-benefit p {
+  font-size: 11px;
+  color: #877292;
+  margin-top: 3px;
+  line-height: 1.8;
+}
+.account-card {
+  padding: 35px;
+  box-shadow: 0 12px 45px #6b42800a;
+}
+.account-card > .eyebrow {
+  display: block;
+  margin: 20px 0 11px;
+  color: #9372b7;
+  font-size: 8px;
+}
+.account-card h2 {
+  font-size: 28px;
+  letter-spacing: -0.7px;
+}
+.account-icon {
+  display: grid;
+  place-items: center;
+  width: 57px;
+  height: 57px;
+  border-radius: 17px;
+  background: #efe6fc;
+  color: #9067c9;
+  margin-bottom: 20px;
+}
+.account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 25px 0 15px;
+}
+.account-form > select {
+  font: inherit;
+  min-height: 48px;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid #d5c9ec;
+  border-radius: 10px;
+  padding: 10px;
+  color: #302d49;
+  background: white;
+}
+.account-form > select:focus-visible {
+  outline: 3px solid #7650d9;
+  outline-offset: 3px;
+}
+.login-grade-note { color: #615a76; font-size: 12px; }
+.account-form > label:first-child {
+  font-size: 12px;
+  font-weight: 600;
+  color: #74617e;
+}
+.email-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #a38bb8;
+  background: #fcfaff;
+  border: 1px solid #e4d8f0;
+  border-radius: 10px;
+  padding: 0 14px;
+}
+.email-field input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  min-height: 48px;
+  color: #5d456f;
+  padding: 12px 0;
+  min-width: 0;
+  font-size: 14px;
+}
+.email-field input::placeholder {
+  color: #a390b2;
+}
+.email-field:focus-within {
+  outline: 3px solid #c1a6e3;
+  outline-offset: 2px;
+}
+.email-field input:focus {
+  outline: 0;
+}
+.adult-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #786783;
+  cursor: pointer;
+  padding: 9px 0;
+  min-height: 44px;
+}
+.adult-check input {
+  height: 19px;
+  width: 19px;
+  flex-shrink: 0;
+  accent-color: var(--purple);
+  margin-top: 2px;
+}
+.account-form .button {
+  margin-top: 6px;
+  min-height: 48px;
+}
+.account-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #a594b4;
+  font-size: 10px;
+  margin: 25px 0;
+}
+.account-divider::before,
+.account-divider::after {
+  content: "";
+  height: 1px;
+  background: #eee6f5;
+  flex: 1;
+}
+.account-privacy {
+  font-size: 10px;
+  line-height: 1.9;
+  color: #8f7b9b;
+  margin-top: 20px;
+}
+.account-footnote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #9b88aa;
+  font-size: 10px;
+}
+.setup-notice {
+  background: #fff8e9;
+  border: 1px solid #f1dfb8;
+  color: #897447;
+  border-radius: 12px;
+  padding: 17px;
+  margin: 20px 0;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.setup-notice strong {
+  font-size: 12px;
+  color: #7b653d;
+}
+.setup-notice p {
+  margin: 8px 0;
+}
+.setup-notice ol {
+  padding-left: 17px;
+  margin: 10px 0;
+}
+.setup-notice li {
+  margin: 8px 0;
+}
+.setup-notice code {
+  overflow-wrap: anywhere;
+  font-size: 10px;
+  color: #755e36;
+}
+.setup-notice small {
+  font-size: 9px;
+}
+.account-error {
+  background: #fff1e6;
+  border: 1px solid #edd1b9;
+  padding: 15px;
+  border-radius: 10px;
+  color: #996749;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 15px 0;
+}
+.account-success {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #edf7ef;
+  border: 1px solid #d5e9d8;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 11px;
+  line-height: 1.9;
+  color: #62826a;
+}
+.account-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 9px 12px;
+  border: 1px solid #e8def5;
+  border-radius: 10px;
+  background: #f8f3fe;
+  color: #806296;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.account-button:hover:not(:disabled) {
+  background: #eee3fc;
+}
+.account-button:disabled {
+  opacity: 0.5;
+}
+.account-controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.cloud-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  color: #77907d;
+  white-space: nowrap;
+}
+.sync-error-notice {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  background: #fff2df;
+  border: 1px solid #e6ca9d;
+  padding: 15px;
+  border-radius: 10px;
+  color: #8a6c45;
+  font-size: 12px;
+}
+.sync-error-notice button {
+  border: 0;
+  border-radius: 5px;
+  margin-left: 12px;
+  padding: 12px;
+  background: #ead9bb;
+  color: #725b36;
+}
+.account-sync-dialog {
+  border: 1px solid #e9dcf5;
+  position: fixed;
+  color: #302d49;
+  margin: auto;
+}
+.account-sync-dialog::backdrop {
+  background: #30243c60;
+  backdrop-filter: blur(5px);
+}
+.account-sync-dialog .button + .button {
+  margin-top: 12px;
+}
+@media (max-width: 1100px) {
+  .account-layout {
+    gap: 35px;
+  }
+  .account-welcome h1 {
+    font-size: 39px;
+  }
+  .account-card {
+    padding: 27px;
+  }
+  .cloud-status {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .account-page {
+    padding: 25px 22px;
+  }
+  .account-layout {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    gap: 28px;
+    margin: 35px auto;
+  }
+  .account-welcome h1 {
+    font-size: 35px;
+    margin: 15px 0;
+  }
+  .account-welcome > p {
+    font-size: 12px;
+    max-width: 100%;
+  }
+  .account-mascots {
+    float: right;
+    font-size: 50px;
+    margin: 5px 0;
+    gap: 10px;
+  }
+  .account-mascots span:nth-child(2) {
+    font-size: 20px;
+  }
+  .account-benefit {
+    display: none;
+  }
+  .account-card {
+    padding: 27px;
+  }
+  .account-brand {
+    font-size: 20px;
+  }
+  .account-button {
+    padding: 8px;
+    font-size: 9px;
+  }
+  .topbar-right {
+    gap: 9px;
+  }
+}
+@media (max-width: 540px) {
+  .account-page {
+    padding: 23px 17px;
+  }
+  .account-layout {
+    gap: 23px;
+    margin-top: 30px;
+  }
+  .account-welcome > .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .account-welcome h1 {
+    font-size: 31px;
+  }
+  .account-welcome > p {
+    font-size: 11px;
+    max-width: 260px;
+  }
+  .account-mascots {
+    display: none;
+  }
+  .account-card {
+    padding: 25px 20px;
+  }
+  .account-card h2 {
+    font-size: 26px;
+  }
+  .account-brand {
+    font-size: 19px;
+  }
+  .account-brand small {
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+  .setup-notice {
+    padding: 14px;
+  }
+  .account-controls .account-button > span {
+    display: none;
+  }
+  .topbar-right {
+    gap: 6px;
+  }
+  .breadcrumb {
+    font-size: 7px;
+    gap: 3px;
+  }
+  .breadcrumb > strong {
+    display: none;
+  }
+  .breadcrumb > svg {
+    display: none;
+  }
+  .account-sync-dialog {
+    width: calc(100% - 34px);
+  }
+}

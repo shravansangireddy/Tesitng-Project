@@ -1,0 +1,13 @@
+{
+  "prompt": "Choose the most helpful explanation.",
+  "quote": "“If 6 + 4 = 10, how can I work out 6 + 5?”",
+  "preview": "“I know 6 + 4 is 10. But how do I figure out 6 + 5?”",
+  "options": [
+    "Add one more to 10, because 5 is one more than 4.",
+    "Take one away from 10.",
+    "Use the same answer: 10."
+  ],
+  "answerIndex": 0,
+  "success": "That’s it! 10 + 1 = 11. You helped Pip understand, and earned +25 points. Kindness is a superpower!",
+  "retry": "Try again. Five is one MORE than four, so the total grows by one."
+}

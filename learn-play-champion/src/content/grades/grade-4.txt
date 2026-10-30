@@ -1,0 +1,215 @@
+{
+  "grade": "4",
+  "overview": "Roots and affixes, context and figurative language, theme and evidence, grammar and writing choices, multi-digit operations, equivalent fractions, decimals, factors, angles, symmetry, and measurement.",
+  "lessons": {
+    "informational": {
+      "title": "A Cooler Schoolyard",
+      "skill": "Summarize an explanation using specific details and evidence",
+      "guide": {
+        "standards": ["RI.4.1", "RI.4.2", "RI.4.3"],
+        "learn": "A summary states the main idea and the most important supporting details without adding an opinion. An inference must fit evidence, not just sound possible. Explain both what happens and why.",
+        "together": "Write a two-sentence summary of the text. Then explain a choice a school could make, citing a detail. With an adult, discuss what a fair comparison would need: similar locations, times, and weather."
+      },
+      "passage": "Paved schoolyards can become warm in sunlight because their surfaces absorb energy from the sun. Dark pavement often absorbs more sunlight than lighter pavement. As the surface warms, it can also warm the air nearby.\nShade changes how much sunlight reaches a surface. A tree canopy can block some sunlight before it reaches pavement. Trees can also release water vapor through their leaves. As water changes from liquid to vapor, the process can cool the surrounding area.\nSchools may add shade trees or shade structures, but planning matters. A young tree needs time, suitable soil, and care before it provides a wide canopy. A shade structure can provide a covered area sooner, though it does not offer all the benefits of a living tree. Combining approaches can help a school make comfortable outdoor spaces.",
+      "questions": [
+        ["Which summary best fits the text?", "Sunlight warms pavement; planned shade can help cool outdoor spaces.", ["Sunlight warms pavement; planned shade can help cool outdoor spaces.", "All schoolyards need to remove every tree.", "Young trees immediately cover an entire schoolyard."], "Include the problem and the main response.", "The text explains warming surfaces and several ways to provide shade."],
+        ["Which detail supports the idea that a tree can cool an area in more than one way?", "It blocks sunlight and releases water vapor.", ["It blocks sunlight and releases water vapor.", "It always grows in a single day.", "Its roots replace all pavement."], "Look for two cooling processes.", "The second paragraph describes shade and water changing to vapor."],
+        ["Why might a school use a shade structure while trees grow?", "A structure can provide a covered area sooner.", ["A structure can provide a covered area sooner.", "A structure releases water from leaves.", "A young tree needs no care."], "Use the comparison in paragraph three.", "The text says trees take time but a structure can provide cover sooner."],
+        ["What causes nearby air to warm in the first paragraph?", "The pavement surface warms in sunlight.", ["The pavement surface warms in sunlight.", "A canopy blocks sunlight.", "The school waters a tree."], "Connect the surface and the nearby air.", "The warming surface can warm nearby air."],
+        ["Which inference is best supported?", "A school should consider both immediate shade and long-term tree care.", ["A school should consider both immediate shade and long-term tree care.", "Every shade structure is a living plant.", "Tree planning is unnecessary."], "Combine the benefits and needs in the final paragraph.", "Structures can work sooner, while trees need time and care, supporting both kinds of planning."]
+      ]
+    },
+    "writing": {
+      "title": "Evidence & Organization",
+      "skill": "Develop opinions, information paragraphs, and narratives",
+      "guide": {
+        "standards": ["W.4.1", "W.4.2", "W.4.3", "SL.4.1"],
+        "learn": "Support reasons with facts and details. Group related information into paragraphs or sections and link the ideas. A narrative uses dialogue, description, and transitions to develop events. Selecting an example is not the same as producing a full piece.",
+        "together": "Across three sessions, draft a schoolyard opinion using reasons and text details, an explanation of shade with grouped paragraphs, and an outdoor story with dialogue and a clear sequence. Include suitable conclusions or an ending. Discuss each draft with a grown-up, build on a suggestion, and revise. Keep drafts on paper; no automated writing or speaking score is given."
+      },
+      "questions": [
+        ["Which detail supports a reason for planting shade trees?", "A canopy blocks some sunlight before it reaches pavement.", ["A canopy blocks some sunlight before it reaches pavement.", "Our classroom has a door.", "Every tree grows instantly."], "Use accurate evidence about shade.", "Blocking sunlight supports the reason that trees can create shade."],
+        ["Which organization best fits an information piece about schoolyard cooling?", "Group warming causes, cooling methods, and planning needs into sections.", ["Group warming causes, cooling methods, and planning needs into sections.", "Mix unrelated facts in any order.", "Only repeat the title."], "Related details belong together.", "Grouping ideas helps readers follow the explanation."],
+        ["Which phrase links an added reason?", "in addition", ["in addition", "once upon a time", "under the table"], "Choose words that introduce another point.", "In addition signals another related reason or detail."],
+        ["Which revision adds specific description to 'The yard was hot'?", "Heat rose from the dark pavement as we searched for shade.", ["Heat rose from the dark pavement as we searched for shade.", "The yard was very, very, very hot.", "The yard was there."], "Use concrete actions and details.", "The revision shows pavement heat and the search for shade."],
+        ["Which ending follows a narrative about students planting a tree?", "We set down our tools and imagined reading under its future branches.", ["We set down our tools and imagined reading under its future branches.", "First, gather the tools.", "Now here are unrelated facts about whales."], "An ending should follow the events and fit them.", "This ending reflects on the completed planting and what it may bring."]
+      ]
+    },
+    "place": {
+      "title": "Big Number Reasoning",
+      "skill": "Explain ten-times relationships, expanded form, and rounding",
+      "guide": {
+        "standards": ["4.NBT.1", "4.NBT.2", "4.NBT.3"],
+        "learn": "Each whole-number place is ten times the place to its right. In 44,000, the first 4 represents 40,000 and the second 4 represents 4,000. Use place-value meanings to compare or round.",
+        "together": "Write a six-digit number and explain each digit's value. Round it to three different places. Show on a number line why the rounded values differ."
+      },
+      "questions": [
+        ["In 44,000, how does the first 4's value compare with the second 4's value?", "It is 10 times as much.", ["It is 10 times as much.", "It is the same.", "It is 100 times as much."], "Compare 40,000 with 4,000.", "40,000 = 10 x 4,000."],
+        ["Which is expanded form for 305,040?", "300,000 + 5,000 + 40", ["300,000 + 5,000 + 40", "300,000 + 500 + 4", "30,000 + 5,000 + 400"], "Zeros hold the empty places.", "The nonzero places are hundred-thousands, thousands, and tens."],
+        ["48,672 rounded to the nearest thousand is...", "49,000", ["48,000", "48,700", "49,000"], "Compare with the midpoint 48,500.", "48,672 is above the midpoint, so it rounds to 49,000."],
+        ["Which comparison is true?", "82,105 > 82,015", ["82,105 > 82,015", "82,105 < 82,015", "82,105 = 82,015"], "The first difference is the hundreds place.", "One hundred is greater than zero hundreds after the larger places match."],
+        ["What is the value of 6 in 761,203?", "60,000", ["6,000", "60,000", "600,000"], "Read the ten-thousands place.", "The 6 represents six ten-thousands, or 60,000."]
+      ]
+    },
+    "fractions": {
+      "title": "Equivalent & Comparable",
+      "skill": "Find equivalent fractions and compare using the same whole",
+      "guide": {
+        "standards": ["4.NF.1", "4.NF.2"],
+        "learn": "Multiplying numerator and denominator by the same nonzero whole number gives an equivalent fraction. To compare unlike fractions, make equal-size parts or use a benchmark such as 1/2. Comparisons assume the same-size whole.",
+        "together": "Draw equal-size strips divided into thirds and sixths. Explain why 2/3 and 4/6 cover the same amount. Compare 3/8 and 2/3 using 1/2 as a benchmark."
+      },
+      "questions": [
+        ["Which fraction is equivalent to 2/3?", "4/6", ["4/6", "3/4", "2/6"], "Multiply both numerator and denominator by 2.", "2/3 = (2 x 2)/(3 x 2) = 4/6."],
+        ["For the same whole, which is greater: 3/4 or 2/3?", "3/4", ["3/4", "2/3", "They are equal"], "Use twelfths: 9/12 and 8/12.", "9/12 is greater than 8/12, so 3/4 > 2/3."],
+        ["Which comparison is true for the same whole?", "3/8 < 1/2", ["3/8 < 1/2", "3/8 > 1/2", "3/8 = 1/2"], "One half is 4/8.", "3/8 is less than 4/8."],
+        ["Why does 1/2 equal 3/6?", "Each half can be split into three equal sixths.", ["Each half can be split into three equal sixths.", "The denominators are the same.", "Adding 2 to both numbers always preserves a fraction."], "Think about repartitioning the same whole.", "Splitting each half into three parts makes six parts in all; one half covers three of them."],
+        ["Why must the wholes be equal size when comparing amounts with fractions?", "The same fraction of different-size wholes can be different amounts.", ["The same fraction of different-size wholes can be different amounts.", "A denominator always gives inches.", "All wholes are the same size."], "Think about half a small pizza and half a large pizza.", "Fraction comparisons as amounts need the same-size whole."]
+      ]
+    },
+    "measurement": {
+      "title": "Convert, Then Solve",
+      "skill": "Use within-system conversions, area, and perimeter",
+      "guide": {
+        "standards": ["4.MD.1", "4.MD.2", "4.MD.3"],
+        "learn": "Before combining measurements, express them in the same unit. One meter is 100 centimeters, one foot is 12 inches, and one hour is 60 minutes. Rectangle area is length times width; perimeter is the distance around.",
+        "together": "Draw a rectangle 6 units by 4 units. Label the area and perimeter with appropriate units. Make a feet-to-inches table for 1 through 5 feet and explain its rule."
+      },
+      "questions": [
+        ["3 meters equals how many centimeters?", "300 cm", ["30 cm", "300 cm", "3,000 cm"], "Each meter has 100 centimeters.", "3 x 100 = 300 centimeters."],
+        ["A ribbon is 2 meters long. After 75 cm is cut off, how much remains?", "125 cm", ["25 cm", "125 cm", "275 cm"], "Convert 2 meters to 200 cm first.", "200 - 75 = 125 centimeters."],
+        ["A rectangle is 6 cm long and 4 cm wide. What is its area?", "24 square cm", ["10 square cm", "20 square cm", "24 square cm"], "Multiply length by width.", "6 x 4 = 24 square centimeters."],
+        ["A rectangle is 6 cm long and 4 cm wide. What is its perimeter?", "20 cm", ["10 cm", "20 cm", "24 cm"], "Add all four sides.", "6 + 4 + 6 + 4 = 20 centimeters."],
+        ["How many inches are in 4 feet?", "48 inches", ["16 inches", "36 inches", "48 inches"], "One foot has 12 inches.", "4 x 12 = 48 inches."]
+      ]
+    },
+    "data": {
+      "title": "Fraction Line Plot",
+      "skill": "Read repeated fractional measurements and find differences",
+      "guide": {
+        "standards": ["4.MD.4"],
+        "learn": "Each X in a line plot stands for one measurement. Several X marks above the same value mean repeated measurements. Read the horizontal scale, then use fraction addition or subtraction to answer questions.",
+        "together": "Recreate this sample line plot on paper. Use a ruler marked in fourths to measure several paper strips, then make a new plot. Compare the longest and shortest lengths with a fraction equation."
+      },
+      "chart": {"type": "line", "title": "Sample paper-strip lengths", "labels": ["1/4", "1/2", "3/4", "1"], "counts": [2, 1, 3, 0], "unit": "inches", "scale": 1},
+      "questions": [
+        ["How many strips are 3/4 inch long?", "3", ["1", "2", "3"], "Count X marks above 3/4.", "Three X marks mean three strips."],
+        ["How many strips were measured altogether?", "6", ["4", "6", "7"], "Count every X, including repeats.", "2 + 1 + 3 + 0 = 6 strips."],
+        ["What is the difference between the longest and shortest measured strips?", "1/2 inch", ["1/4 inch", "1/2 inch", "3/4 inch"], "No strip is 1 inch; use 3/4 minus 1/4.", "3/4 - 1/4 = 2/4 = 1/2 inch."],
+        ["What is the combined length of the two 1/4-inch strips?", "1/2 inch", ["1/4 inch", "1/2 inch", "1 inch"], "Add 1/4 and 1/4.", "1/4 + 1/4 = 2/4 = 1/2 inch."],
+        ["How many strips are at least 1/2 inch long?", "4", ["1", "3", "4"], "Include 1/2 and every larger measured length.", "One at 1/2 plus three at 3/4 makes 4 strips."]
+      ]
+    },
+    "sight": {
+      "title": "Roots & Word Study",
+      "skill": "Analyze roots, affixes, syllables, and homophones",
+      "questions": [
+        ["The root port means carry. Which word means carry from one place to another?", "transport", ["transport", "triangle", "portrait"], "Trans- can mean across.", "Transport means carry or move from one place to another."],
+        ["Which word contains a prefix meaning not?", "inactive", ["inactive", "inside", "inlet"], "In inactive, in- changes the meaning of active.", "Inactive means not active."],
+        ["How many syllables are in information?", "4", ["3", "4", "5"], "Say in-for-ma-tion.", "Information has four syllables."],
+        ["Choose the correct word: 'The students put ___ books away.'", "their", ["there", "their", "they're"], "You need a word that shows ownership.", "Their means belonging to them."],
+        ["Which word shares the base word in construction?", "construct", ["construct", "constant", "country"], "Remove the ending -ion.", "Construction and construct share the base construct, meaning build."]
+      ]
+    },
+    "vocabulary": {
+      "title": "Meaning Detective",
+      "skill": "Use roots, context, idioms, and precise shades of meaning",
+      "questions": [
+        ["In 'The fragile cup broke when it fell,' fragile means...", "easily broken", ["easily broken", "very heavy", "brightly colored"], "Use the clue broke when it fell.", "Fragile means easily broken or damaged."],
+        ["What does 'break the ice' mean when meeting new people?", "help people feel comfortable", ["crack a frozen lake", "help people feel comfortable", "end a friendship"], "This is an idiom, not literal ice.", "Break the ice means ease the awkwardness of a new situation."],
+        ["Which word is closest to observe?", "watch carefully", ["watch carefully", "forget quickly", "hide completely"], "A scientist observes an experiment.", "Observe means notice or watch carefully."],
+        ["The root bio means life. Biology is the study of...", "living things", ["weather", "living things", "rocks only"], "Connect bio with life.", "Biology is the study of life and living things."],
+        ["Which word most precisely describes speaking very softly?", "whisper", ["announce", "whisper", "shout"], "Think of a quiet voice.", "Whisper means speak very softly."]
+      ]
+    },
+    "spelling": {
+      "title": "Affix Spelling Studio",
+      "skill": "Spell common academic words and suffix patterns",
+      "questions": [
+        ["Type the noun formed from educate by changing its ending to -ation.", "education", null, "Drop the final e before adding ation to educ.", "Education is spelled e-d-u-c-a-t-i-o-n."],
+        ["Type the word meaning full of beauty.", "beautiful", null, "Change beauty's y to i before ful.", "Beautiful is spelled b-e-a-u-t-i-f-u-l."],
+        ["Type the word meaning able to be enjoyed.", "enjoyable", null, "Keep enjoy and add able.", "Enjoyable is spelled e-n-j-o-y-a-b-l-e."],
+        ["Type the word meaning not regular.", "irregular", null, "Use ir- before regular.", "Irregular is spelled i-r-r-e-g-u-l-a-r."],
+        ["Type the plural of library.", "libraries", null, "Change consonant + y to ies.", "Libraries is spelled l-i-b-r-a-r-i-e-s."]
+      ]
+    },
+    "reading": {
+      "title": "The Map That Changed",
+      "skill": "Infer theme, support conclusions with evidence, and analyze perspective",
+      "passage": "For the school fair, Omar drew a map of the neighborhood park. He marked the pond, the tall slide, and the quickest path between them. He was proud of how neatly every line fit.\nWhen his friend Tess studied the map, she asked where the smooth path began. Her grandfather used a wheelchair, and the quickest path on Omar's map had steps. Omar had walked that route dozens of times without noticing the problem.\nThey visited the park together. Tess measured a longer route with no steps. Omar added it in a different color and labeled the resting benches along the way. His first map had been simpler, but the new one helped more visitors.\nAt the fair, a family thanked them for showing a route their stroller could use. Omar decided that a useful map was not just a collection of places. It was also a way to think about the people traveling between them.",
+      "questions": [
+        ["Why did Tess ask about a smooth path?", "Her grandfather used a wheelchair.", ["She disliked the pond.", "Her grandfather used a wheelchair.", "She wanted to race."], "Look for the explanation after her question.", "Tess considered the needs of her grandfather, who used a wheelchair."],
+        ["What had Omar overlooked?", "The quick route had steps.", ["The park had a pond.", "The quick route had steps.", "The slide was tall."], "What did he not notice on a familiar walk?", "Omar knew the route but had not thought about its steps as a barrier."],
+        ["Which detail best shows the revised map was useful?", "A family thanked them for the stroller route.", ["The lines were neat.", "A family thanked them for the stroller route.", "The route used a color."], "Find evidence of another person benefiting.", "The family's thanks shows the revised map helped real visitors."],
+        ["Which theme fits the story?", "Considering others can improve our work.", ["The shortest route is always best.", "Considering others can improve our work.", "Never change a finished project."], "Think about what Omar learns from Tess.", "Omar improves his map by considering other people's needs."],
+        ["How does Omar's idea of a good map change?", "He values usefulness as well as neatness.", ["He decides maps need no labels.", "He values usefulness as well as neatness.", "He cares only about the shortest route."], "Compare the first and last paragraphs.", "At first he values neat lines; later he also values helping different travelers."]
+      ]
+    },
+    "sentence": {
+      "title": "Grammar & Writing Workshop",
+      "skill": "Complete sentences, agreement, possessives, and clear supporting details",
+      "questions": [
+        ["Which is a complete sentence?", "The storm ended before lunch.", ["Because the storm.", "The storm ended before lunch.", "Under the dark clouds."], "A complete sentence needs a subject and a complete thought.", "The storm ended before lunch has a subject, verb, and complete idea."],
+        ["Choose the correct verb: 'Each of the players ___ a turn.'", "gets", ["get", "gets", "getting"], "Each is singular, even with a plural phrase after it.", "Each of the players gets a turn uses a singular verb."],
+        ["Which means the backpack belonging to one girl?", "the girl's backpack", ["the girls backpack", "the girl's backpack", "the girls' backpack"], "One owner takes apostrophe + s.", "Girl's shows possession by one girl."],
+        ["Which detail best supports 'The library is a helpful community place'?", "People can borrow books and use computers.", ["Its door is blue.", "People can borrow books and use computers.", "The word library has seven letters."], "Choose a detail showing how it helps people.", "Borrowing books and using computers are ways the library helps its community."],
+        ["Which transition shows events happening in time order?", "Afterward", ["However", "Afterward", "For example"], "You need a word meaning later.", "Afterward signals that something happened later."]
+      ]
+    },
+    "arithmetic": {
+      "title": "Multi-Digit Number Sprint",
+      "skill": "Multi-digit addition, subtraction, multiplication, and division",
+      "questions": [
+        ["3,487 + 2,756 = ?", "6,243", ["5,143", "6,243", "6,143"], "Regroup ones, tens, and hundreds as needed.", "3,487 + 2,756 = 6,243."],
+        ["8,000 - 3,675 = ?", "4,325", ["4,325", "5,325", "4,425"], "Subtract 3,000, then 600, then 75.", "8,000 - 3,000 = 5,000; minus 600 is 4,400; minus 75 is 4,325."],
+        ["24 × 16 = ?", "384", ["240", "384", "364"], "Split 16 into 10 and 6.", "24 × 10 + 24 × 6 = 240 + 144 = 384."],
+        ["936 ÷ 3 = ?", "312", ["302", "312", "322"], "Divide 900 and 36 separately.", "900 ÷ 3 = 300 and 36 ÷ 3 = 12; total 312."],
+        ["Estimate 398 + 204 by rounding both numbers to the nearest hundred.", "600", ["500", "600", "700"], "Round 398 to 400 and 204 to 200.", "400 + 200 = 600."]
+      ]
+    },
+    "multiply": {
+      "title": "Factors & Multiples",
+      "skill": "Factors, multiples, comparison, and division with remainders",
+      "questions": [
+        ["Which number is a factor of 36?", "9", ["5", "7", "9"], "A factor divides 36 with no remainder.", "36 ÷ 9 = 4, so 9 is a factor."],
+        ["Which number is prime?", "13", ["9", "13", "15"], "A prime number has exactly two positive factors.", "13 has only 1 and 13 as factors."],
+        ["What is the least common multiple of 4 and 6?", "12", ["10", "12", "24"], "List small multiples of both numbers.", "12 is the smallest positive number in both lists."],
+        ["53 ÷ 5 = ?", "10 remainder 3", ["10 remainder 3", "11 remainder 2", "9 remainder 4"], "Ten groups of five use 50.", "53 = 5 × 10 + 3, so the quotient is 10 with remainder 3."],
+        ["A ribbon is 7 cm long. Another is 4 times as long. What is its length?", "28 cm", ["11 cm", "21 cm", "28 cm"], "Four times as long means multiply by four.", "7 × 4 = 28 cm."]
+      ]
+    },
+    "patterns": {
+      "title": "Fractions & Decimals",
+      "skill": "Equivalent fractions, like denominators, tenths and hundredths",
+      "questions": [
+        ["Which fraction is equivalent to 3/4?", "6/8", ["3/8", "6/8", "4/6"], "Multiply numerator and denominator by the same number.", "3 × 2 = 6 and 4 × 2 = 8, so 3/4 = 6/8."],
+        ["2/7 + 3/7 = ?", "5/7", ["5/14", "5/7", "6/7"], "The parts are all sevenths.", "Add numerators and keep the denominator: 2/7 + 3/7 = 5/7."],
+        ["5/6 - 2/6 = ?", "3/6", ["3/6", "3/0", "7/6"], "Subtract the number of sixths.", "5 sixths minus 2 sixths is 3 sixths, equal to 1/2."],
+        ["Which decimal equals 37/100?", "0.37", ["3.7", "0.37", "0.037"], "Hundredths have two digits after the decimal point.", "37 hundredths is 0.37."],
+        ["Which is greater: 0.6 or 0.45?", "0.6", ["0.6", "0.45", "They are equal"], "Write 0.6 as 0.60.", "60 hundredths is greater than 45 hundredths."]
+      ]
+    },
+    "problems": {
+      "title": "Measure & Solve",
+      "skill": "Multi-step measurement, multiplication, fractions, and remainders",
+      "questions": [
+        ["A bus holds 24 students. Four full buses leave. How many students?", "96", ["84", "96", "104"], "Multiply seats per bus by the number of buses.", "24 × 4 = 96 students."],
+        ["A 2-meter ribbon is cut by 75 cm. How many centimeters remain?", "125 cm", ["25 cm", "125 cm", "175 cm"], "Convert 2 meters to 200 centimeters first.", "200 - 75 = 125 cm remain."],
+        ["Each bag holds 6 balls. How many bags are needed for 38 balls?", "7", ["6", "7", "8"], "Six bags hold only 36 balls.", "38 ÷ 6 is 6 remainder 2, so a seventh bag is needed."],
+        ["A recipe needs 3/4 cup of milk. You have added 1/4 cup. How much more?", "1/2 cup", ["1/4 cup", "1/2 cup", "1 cup"], "Subtract the fourths.", "3/4 - 1/4 = 2/4 = 1/2 cup."],
+        ["A hiker walks 3 km on Saturday and 2,500 m on Sunday. How many meters total?", "5,500 m", ["2,503 m", "5,500 m", "3,250 m"], "One kilometer is 1,000 meters.", "3,000 + 2,500 = 5,500 meters."]
+      ]
+    },
+    "geometry": {
+      "title": "Angles & Symmetry",
+      "skill": "Classify angles and triangles, symmetry, and rectangular measurements",
+      "questions": [
+        ["An angle measures 90 degrees. It is a...", "right angle", ["right angle", "acute angle", "obtuse angle"], "Think of a square corner.", "A right angle measures exactly 90 degrees."],
+        ["An angle measures 35 degrees. It is...", "acute", ["acute", "right", "obtuse"], "Compare 35 with 90.", "An angle smaller than 90 degrees is acute."],
+        ["A triangle has three equal sides. It is...", "equilateral", ["equilateral", "scalene", "a rectangle"], "Equi means equal.", "An equilateral triangle has three equal sides."],
+        ["How many lines of symmetry does a square have?", "4", ["2", "4", "8"], "Try vertical, horizontal, and both diagonals.", "A square has four reflection lines: two through side midpoints and two diagonals."],
+        ["A rectangle has perimeter 30 cm and length 9 cm. What is its width?", "6 cm", ["6 cm", "12 cm", "21 cm"], "Half the perimeter is length plus width.", "30 ÷ 2 = 15; 15 - 9 = 6 cm."]
+      ]
+    }
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "prompt": "Which word completes: “I ___ a little bird”?",
+    "answer": "see",
+    "options": [
+      "see",
+      "sea",
+      "sit",
+      "say"
+    ],
+    "hint": "Use the word for looking with your eyes.",
+    "explanation": "We see with our eyes. “I see a little bird.”"
+  },
+  {
+    "prompt": "Find the word “they”.",
+    "answer": "they",
+    "options": [
+      "them",
+      "then",
+      "they",
+      "there"
+    ],
+    "hint": "It starts with “th” and ends with “ey”.",
+    "explanation": "They is a word we use for more than one person."
+  },
+  {
+    "prompt": "Which word completes: “We ___ best friends”?",
+    "answer": "are",
+    "options": [
+      "is",
+      "am",
+      "are",
+      "be"
+    ],
+    "hint": "“We” goes with “are”.",
+    "explanation": "“We are best friends” tells us about a group."
+  },
+  {
+    "prompt": "Find the word that means “not any”.",
+    "answer": "none",
+    "options": [
+      "some",
+      "many",
+      "one",
+      "none"
+    ],
+    "hint": "It starts with n.",
+    "explanation": "None means not one, or not any."
+  },
+  {
+    "prompt": "Which word completes: “Please come ___”?",
+    "answer": "here",
+    "options": [
+      "hear",
+      "here",
+      "her",
+      "hair"
+    ],
+    "hint": "This word means “in this place”.",
+    "explanation": "Here means in this place. Hear is what we do with our ears."
+  }
+]

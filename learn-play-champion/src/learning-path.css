@@ -1,0 +1,11 @@
+.learning-path { padding: clamp(16px, 3vw, 32px); overflow-wrap: anywhere; }
+.learning-path p { line-height: 1.65; }
+.learning-path h3:focus { outline: 3px solid #7356bd; outline-offset: 4px; }
+.path-choices { display: flex; flex-wrap: wrap; gap: 12px; margin-block: 20px; }
+.learning-path .button { margin: 6px 6px 6px 0; white-space: normal; max-width: 100%; }
+.learning-path label { display: grid; gap: 8px; }
+.learning-path input { min-width: 0; width: min(100%, 400px); padding: 14px; box-sizing: border-box; font: inherit; }
+.path-passage { white-space: pre-wrap; padding: 16px; border-left: 4px solid #7356bd; }
+.path-suggestions, .path-skills { display: grid; gap: 16px; padding-left: 24px; }
+.path-suggestions li, .path-skills li { border: 1px solid #d5cbea; border-radius: 16px; padding: 16px; }
+.learning-path summary { cursor: pointer; padding: 16px 0; font-weight: 700; }
