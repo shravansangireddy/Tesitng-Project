@@ -223,9 +223,19 @@ describe("grown-up login screen", () => {
     mocks.configured = false;
     await mount();
     expect(container.textContent).toContain("Welcome to the island");
-    expect(container.textContent).toContain("Connect Supabase");
+    expect(container.textContent).toContain("Account sign-in is not available on this site yet.");
+    expect(container.textContent).not.toContain(".env.local");
+    expect(container.textContent).not.toContain("supabase/migrations");
+    expect(container.querySelector(".setup-notice ol")).toBeNull();
     await fillAdultForm();
     expect(button("Email me")?.disabled).toBe(true);
+    expect(mocks.signIn).not.toHaveBeenCalled();
+  });
+  it("keeps local guest learning available while online setup is incomplete", async () => {
+    mocks.configured = false;
+    await mount();
+    await click(button("Play as a guest"));
+    expect(container.textContent).toContain("Ready, set, discover");
     expect(mocks.signIn).not.toHaveBeenCalled();
   });
   it("requires adult confirmation and submits a real email-link request", async () => {

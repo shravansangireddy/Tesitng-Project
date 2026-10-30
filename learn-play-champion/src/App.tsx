@@ -1648,6 +1648,7 @@ export default function App({
           )}
           <footer className="footer">
             <span>Made for curious minds & kind hearts.</span>
+            <a href="/learn/">For grown-ups: learning guides</a>
             <span>
               <LockKeyhole size={12} />{" "}
               {cloudProgress

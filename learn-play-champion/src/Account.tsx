@@ -266,28 +266,13 @@ export default function Account() {
         password to remember.
       </p>
       <PrivacyNotice />
+      <p><a href="/learn/">Explore our learning guides for parents and teachers</a></p>
       {configError && (
         <div className="setup-notice" role="status">
-          <strong>Connect Supabase and complete privacy setup to enable sign-in</strong>
-          <p>{configError}</p>
-          <ol>
-            <li>
-              Copy <code>.env.example</code> to <code>.env.local</code> and add
-              your project URL and publishable key.
-            </li>
-            <li>
-              Run the SQL file in <code>supabase/migrations</code> in your
-              Supabase project.
-            </li>
-            <li>
-              Enable email sign-in, allow this site’s redirect URL, and restart
-              Vite.
-            </li>
-          </ol>
-          <small>
-            Never use a service-role or secret key in this app. Full setup
-            instructions are in the app README.
-          </small>
+          <strong>Account sign-in is not available on this site yet.</strong>
+          <p>You can still play as a guest. Guest progress stays in this browser and
+            does not sync across devices. The site operator needs to finish account
+            and privacy setup before online sign-in can be enabled.</p>
         </div>
       )}
       <form className="account-form" onSubmit={sendLink}>

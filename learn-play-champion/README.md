@@ -115,6 +115,82 @@ Every `data` lesson requires a shared `chart` alongside `questions`:
 
 Run `npm test` and `npm run build` after edits. Both validate all seven packs, including lesson completeness, question counts, choices, passages, guides, and charts. Reviewed answer fixtures are in `src/grades.test.ts` and `src/curriculum.test.ts`; the latter also calculates graph totals, fraction examples, and measurement results. When intentionally replacing those examples, review the math and update the relevant fixture. Reload and start a new round to preview edits. Rebuild and deploy `dist` to publish them. Existing grade scores are not automatically reset when you replace questions.
 
+## Public content pages for families, search engines, and AI discovery
+
+Open **`/learn/`** for the public learning guide. The app sign-in page and dashboard
+footer link to it. Twenty original editorial pages include a welcome guide, English,
+math, learning paths, picture books, coding/AI, parents/teachers, privacy/safety, and
+seven distinct Pre-K–5 grade guides, plus dedicated family, teacher, how-it-works,
+about, and FAQ pages. The original Champion Island landing design offers subject
+cards, a seven-level catalog, an illustrated mascot welcome, learning-path steps,
+and family/teacher entry points. Shared keyboard-operable disclosure navigation
+and responsive layouts connect all the guides without requiring JavaScript.
+The design uses familiar education-site information architecture, not another
+provider's branding, illustrations, copy, testimonials, or effectiveness claims.
+Only implemented subjects are listed: there are no advertised science, social
+studies, or Spanish courses. The public home remains `/learn/`; `/` still opens
+the app so existing account and donation return URLs keep their behavior.
+These pages describe the implemented software honestly;
+they do not invent educator credentials, testimonials, outcome statistics, clinical
+assessment claims, or compliance certification.
+
+Vite serves these pages during development and writes **complete static HTML** to
+`dist/learn/.../index.html` during production builds. They contain semantic headings,
+internal navigation, unique titles/descriptions, social metadata, and matching
+`WebPage` JSON-LD. They require no JavaScript, cookies, sign-in, external fonts, or
+learning-progress reads. They contain no learner-specific data.
+
+Before a production build, set **`PUBLIC_SITE_URL=https://your-actual-domain`** to
+the real HTTPS origin (no subpath, query, credentials, or fragment). This adds canonical
+URLs, Open Graph URLs, a generated `sitemap.xml`, and its location in `robots.txt`.
+Without it, canonical URLs and the sitemap are intentionally omitted rather than
+guessing an unpurchased domain. This is a public build setting, not a secret.
+The deployment assumes hosting at the domain root, as does the existing app.
+
+Deploy the entire `dist` directory. Configure the host to serve existing files and
+directory `index.html` files **before** any SPA fallback. `/learn/grade-3/` must return
+that guide's HTML, not the app shell; unknown `/learn/...` routes should return 404.
+Use one preferred HTTPS hostname and redirect alternatives. Preview deployments should
+have host-level indexing disabled (for example `X-Robots-Tag: noindex` or access control);
+do not submit preview URLs. The interactive app shell has `noindex,follow` so search
+entry points are the public guides, not an adult sign-in screen. This is not a security
+boundary: authorization remains necessary for private data.
+
+`llms.txt` is an optional plain-text guide linking the same public pages and stating
+their limits. It is not a universal AI discovery standard, an access-control mechanism,
+or a promise of search/AI visibility. No crawler cloaking, keyword stuffing, fabricated
+ratings, or automatic search submission is included. After deployment, verify real
+URLs, submit the sitemap through the search engines' webmaster tools, and maintain
+accurate content as features and operator practices change.
+
+Editorial source is in `src/site-content.ts`; rendering and discovery assets are in
+`src/site-pages.ts`. The privacy guide describes software behavior and **does not**
+replace the operator's legally appropriate notice or consent/school authorization.
+
+### Stock photograph credits
+
+Public guides use two locally hosted stock photos, downloaded and license-checked
+on October 29, 2026 under the [Unsplash License](https://unsplash.com/license).
+The license permits downloading, modification, and commercial use; do not sell
+unmodified images or compile them into a competing stock-image service.
+
+| Local asset (in `public/images`) | Photographer and original source |
+| --- | --- |
+| `kids-creating.webp`, `kids-creating-small.webp` | [Andrew Ebrahim — children working together over an illustrated book](https://unsplash.com/photos/boys-writing-on-book-zRwXf6PizEo) |
+| `map-adventure.webp`, `map-adventure-small.webp` | [Annie Spratt — child looking at a map](https://unsplash.com/photos/child-looking-at-map-kZO9xqmO_TA) |
+
+Both have 1200×800 and 600×400 WebP variants, resized/cropped for responsive display.
+Visible credits link to the original source. Photos are illustrative, not app
+screenshots, actual app learners/teachers, or endorsements. Children are shown
+engaged in reading together or outdoor exploration, without names or invented
+stories about them. The stock license is a copyright license, not a blanket
+guarantee of model/property releases; operators should assess likeness and local
+advertising requirements before using these photos in additional campaigns.
+Pages request images only from this website's own origin;
+external source links load only when deliberately opened. Photos appear on the
+landing-page adventure and audience sections and selected subject/family/teacher guides,
+not in quizzes, privacy controls, or original illustrated mini-books.
+
 ## My learning path
 
 Open **My learning path** in the main navigation. It follows the learner's saved grade
@@ -562,6 +638,52 @@ npm run preview
 `build` runs strict TypeScript checking and generates `dist`. `preview` serves that production build locally, normally on port 4173. Deploy `dist` to a static web host at the domain root. Guest play requires no configuration. Real account sign-in and sync require your own Supabase project and the setup below; the app never simulates a successful login when configuration is absent.
 
 ## Enable real parent/teacher sign-in
+
+### Operator handoff for GitHub and an AI coding assistant
+
+Setup instructions belong here in the repository, not on the visitor sign-in
+screen. That screen shows a plain-language availability notice while keeping
+guest play available. Removing the technical instructions does **not** configure
+Supabase or bypass the privacy gates.
+
+Use the following handoff when configuring this GitHub project with an assistant:
+
+> Configure the existing `learn-play-champion` Supabase integration without
+> changing guest behavior or weakening privacy controls. Use the operator-owned
+> project URL and publishable key in ignored local configuration or the deployment
+> host's build environment, never committed credentials. Apply only unapplied
+> migrations in filename order after operator approval. Set up email magic-link
+> redirects for the app root and supported `learning_grade` values. Keep online
+> features disabled until the operator supplies real privacy notices and completes
+> required consent/school authorization. Verify real email delivery, account
+> isolation, save/reload, and erasure. Report missing access or operator decisions
+> rather than inventing credentials, contact details, or compliance claims.
+
+The operator must create/control the Supabase project and hosting account, approve
+database changes, supply the public settings, and complete legal/privacy decisions.
+An assistant cannot infer those values from the GitHub repository. Do not paste
+database passwords, access tokens, SMTP credentials, or service-role keys into
+issues, pull requests, chat, source code, or `VITE_` variables.
+
+For a GitHub-connected deployment:
+
+- Set the host's project root to `learn-play-champion`, build command to
+  `npm run build`, and output directory to `dist`, using Node 22.12 or later.
+- Add public Supabase settings and the operator-reviewed privacy settings from
+  `.env.example` in the host's build environment. Set `PUBLIC_SITE_URL` to the
+  purchased production HTTPS origin. GitHub Actions secrets/variables alone do
+  not configure a hosting provider unless a deployment workflow explicitly passes
+  them; this repository does not include that workflow.
+- Complete the account setup below and the privacy-readiness checklist. Keep
+  `VITE_CHILD_PRIVACY_REVIEWED=false` until the real operator review is complete.
+- Deploy migrations 001–003 for learning, rooms, and erasure. For optional payment
+  and teaching-content features, also deploy 004 and 005 and follow their separate
+  server-secret, role, and acceptance-testing instructions above. Never rerun
+  already-applied migrations.
+- Rebuild/redeploy after environment changes. Confirm the production app root and
+  grade-specific email returns, not the public `/learn/` guide, are allowed by Auth.
+
+### Supabase account setup
 
 1. Create a Supabase project that you control. Copy `.env.example` to `.env.local` inside this app directory:
 
