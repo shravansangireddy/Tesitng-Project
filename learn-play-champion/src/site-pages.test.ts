@@ -5,7 +5,7 @@ import { renderMachineGuide, renderRobots, renderSitePage, renderSitemap, siteOr
 
 describe("public learning guides", () => {
   it("publishes distinct, readable pages without requiring JavaScript", () => {
-    expect(sitePages).toHaveLength(20);
+    expect(sitePages).toHaveLength(21);
     expect(gradePages).toHaveLength(7);
     expect(new Set(sitePages.map(sitePath)).size).toBe(sitePages.length);
     expect(new Set(sitePages.map(page => page.title)).size).toBe(sitePages.length);

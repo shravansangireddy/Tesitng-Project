@@ -224,6 +224,56 @@ export const editorialPages: ContentPage[] = [
     ],
   },
   {
+    slug: "books-for-curious-kids",
+    title: "Books for Curious Kids: The 'in a Minute' Series | Learn & Play Champion",
+    description: "A family bookshelf of comic-style learning books for kids: the 11-book 'in a Minute' series, from Physics and Math to Astronomy, Dinosaurs, and Emotions.",
+    heading: "Big ideas, one minute at a time",
+    intro: "Some learning happens away from screens. These comic-style books explain one big idea per short, illustrated read — the series families keep asking about after spotting Physics in a Minute online. They are outside books, not part of this app, and they are sold by bookstores and online sellers, not by Learn & Play Champion.",
+    sections: [
+      { heading: "Physics in a Minute — the one that started it", paragraphs: [
+        "Physics in a Minute: The Comic Book Edition, by Chaoyang Wang (KF Times Group Inc., 226 pages, softcover), turns physics into colorful comic stories for roughly ages 6–12. It is the book that prompted this page.",
+      ], items: ["Motion and gravity", "Magnets and energy", "Space and planets", "Light and sound", "Everyday science phenomena and fun facts"] },
+      { heading: "Chemistry in a Minute", paragraphs: [
+        "What everything is made of, and what happens when things mix, fizz, melt, and change — chemistry at kitchen-table scale.",
+      ], items: ["Everyday materials and what they are made of", "Mixing, dissolving, and simple reactions", "Bubbles, fizz, and color changes", "Solids, liquids, and gases", "Science to notice together at home"] },
+      { heading: "Astronomy in a Minute", paragraphs: [
+        "A one-minute-at-a-time tour of the sky, from the Moon outside the window to the rockets that leave Earth.",
+      ], items: ["The Sun, Moon, and planets", "Stars and constellations", "Day, night, and the seasons", "Rockets and space travel", "Telescopes and looking up"] },
+      { heading: "Biology in a Minute", paragraphs: [
+        "How living things grow, eat, move, and survive — plants, animals, and the tiny worlds in between.",
+      ], items: ["Plants and how they grow", "Animals and their habitats", "Insects, birds, and sea life", "Life cycles, from seed to adult", "Caring for living things"] },
+      { heading: "Geography in a Minute", paragraphs: [
+        "The shape of the world: maps, mountains, rivers, and weather, explained in short illustrated reads.",
+      ], items: ["Continents and oceans", "Reading maps", "Mountains, rivers, and deserts", "Weather and climates", "Famous places around the world"] },
+      { heading: "Math in a Minute", paragraphs: [
+        "Numbers, shapes, and patterns from everyday life, in the same comic style — a natural reading companion to Math Mountain practice in the app.",
+      ], items: ["Numbers and counting patterns", "Shapes all around us", "Measuring things", "Fractions in everyday life", "Puzzles and quick challenges"] },
+      { heading: "Dinosaurs in a Minute", paragraphs: [
+        "Fossil hunters, giant plant-eaters, and sharp-toothed hunters — the dinosaur book for kids who ask how big, how fast, and how do we know.",
+      ], items: ["Famous dinosaurs and how we know about them", "Fossils and fossil hunters", "Giant plant-eaters and hunters", "Flying and swimming reptiles", "Why the dinosaurs disappeared"] },
+      { heading: "Animals of the World in a Minute", paragraphs: [
+        "A trip across the animal kingdom, habitat by habitat, full of adaptations that sound like superpowers.",
+      ], items: ["Animals across the continents", "Desert, ocean, jungle, and polar animals", "Animal superpowers and adaptations", "Baby animals and how they grow", "Protecting wildlife"] },
+      { heading: "Anatomy in a Minute", paragraphs: [
+        "How the body works, one system at a time — the questions kids ask about themselves, answered in pictures.",
+      ], items: ["Bones and muscles", "The heart and blood", "The brain and the senses", "Breathing and eating", "Keeping the body healthy"] },
+      { heading: "Emotions in a Minute", paragraphs: [
+        "The gentlest book in the series: feelings named, explained, and made easier to talk about, in the same one-minute comic style.",
+      ], items: ["Naming feelings — happy, sad, angry, scared, calm", "Why feelings change", "What to do with big feelings", "Kindness and empathy", "Talking about feelings with family"] },
+      { heading: "Great Historical Figures in a Minute", paragraphs: [
+        "One short life story per read: inventors, explorers, artists, and leaders, and the moments that made them worth remembering.",
+      ], items: ["Inventors and scientists", "Explorers", "Artists and writers", "Leaders who changed their countries", "One short life story per read"] },
+      { heading: "About the series — read this before you buy", paragraphs: [
+        "The 'in a Minute' books share a format: one idea per short illustrated read, in comic style, written for elementary-age readers (about ages 6–12). Physics in a Minute is a printed softcover. The wider series is sold in different formats by different sellers — some listings are printed books and some are digital editions — so check the format, page count, and seller before ordering, and compare prices, which vary widely between sellers.",
+        "Listing these books is a reading suggestion for families, not a sales partnership: Learn & Play Champion does not sell them and does not earn anything if you buy one. Pair a book with matching practice in the app — read a minute, then play a minute.",
+      ] },
+    ],
+    questions: [
+      { question: "Can I buy these books on this site?", answer: "No. Learn & Play Champion does not sell books. Look for the titles in bookstores, libraries, or online marketplaces, and check the format (print or digital) on the listing before ordering." },
+      { question: "Which book should we start with?", answer: "Start with the topic your child already asks about — Physics for how things work, Astronomy for space fans, Dinosaurs for fossil fans, and Math in a Minute alongside Math Mountain practice." },
+    ],
+  },
+  {
     slug: "coding-and-ai",
     title: "Coding & AI Basics for Grades 3–5 | Learn & Play Champion",
     description: "Explore 18 coding puzzles and six introductory AI lessons. Children practice sequences, loops, conditions, patterns, training, and predictions.",
