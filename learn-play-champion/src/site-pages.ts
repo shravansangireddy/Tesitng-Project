@@ -17,6 +17,14 @@ export const stockPhotos = {
     author: "Andrew Ebrahim", source: "https://unsplash.com/photos/boys-writing-on-book-zRwXf6PizEo" },
   adventure: { file: "map-adventure", alt: "A child seen from behind exploring an outdoor landscape with a paper map",
     author: "Annie Spratt", source: "https://unsplash.com/photos/child-looking-at-map-kZO9xqmO_TA" },
+  homework: { file: "kids-homework", alt: "A young boy with glasses writing in a notebook at a desk, with an open book and a stack of books beside him",
+    author: "Vitaly Gariev", source: "https://unsplash.com/photos/young-boy-with-glasses-writing-in-a-notebook-at-desk-xZJK3Dp65OU" },
+  readingTogether: { file: "kids-reading", alt: "Children sitting on a library floor reading illustrated books together",
+    author: "Kyle Hinkson", source: "https://unsplash.com/photos/children-reading-books-together-on-the-floor-yG9w43LZz70" },
+  coding: { file: "kids-coding", alt: "A young boy typing on a laptop at a desk at home, with a notebook beside him",
+    author: "Vitaly Gariev", source: "https://unsplash.com/photos/young-boy-learning-on-a-laptop-at-a-desk-5jeHKPNLdLY" },
+  family: { file: "family-learning", alt: "A father and son sitting together at a desk, smiling while using a laptop for homework",
+    author: "Vitaly Gariev", source: "https://unsplash.com/photos/father-and-son-learning-together-on-a-laptop-sbHo9rRSIZc" },
 };
 type StockPhoto = keyof typeof stockPhotos;
 function stockImage(key: StockPhoto, decorative = false) {
@@ -32,11 +40,11 @@ const pagePhoto: Record<string, StockPhoto> = {
   "coding-and-ai": "adventure", "for-teachers": "reading",
   "math-practice": "reading", "learning-path": "adventure",
 };
-const subjects = [
-  { slug: "english-practice", name: "English Forest", label: "English", mark: "Aa", tone: "berry", grades: "Pre-K–Grade 5", text: "Words, stories, spelling, and ideas worth sharing." },
-  { slug: "math-practice", name: "Math Mountain", label: "Math", mark: "1+2", tone: "teal", grades: "Pre-K–Grade 5", text: "Numbers, patterns, shapes, and everyday discoveries." },
-  { slug: "picture-books", name: "Picture books", label: "Books", mark: "B", tone: "gold", grades: "Pre-K–Grade 5", text: "Four-page original mini-books for reading together." },
-  { slug: "coding-and-ai", name: "Coding & AI discovery", label: "Coding & AI", mark: "{ }", tone: "violet", grades: "Grades 3–5", text: "Plan a robot's steps. Explore how a tiny model learns." },
+const subjects: Array<{ slug: string; name: string; label: string; mark: string; tone: string; grades: string; text: string; photo: StockPhoto }> = [
+  { slug: "english-practice", name: "English Forest", label: "English", mark: "Aa", tone: "berry", grades: "Pre-K–Grade 5", text: "Words, stories, spelling, and ideas worth sharing.", photo: "readingTogether" },
+  { slug: "math-practice", name: "Math Mountain", label: "Math", mark: "1+2", tone: "teal", grades: "Pre-K–Grade 5", text: "Numbers, patterns, shapes, and everyday discoveries.", photo: "homework" },
+  { slug: "picture-books", name: "Picture books", label: "Books", mark: "B", tone: "gold", grades: "Pre-K–Grade 5", text: "Four-page original mini-books for reading together.", photo: "reading" },
+  { slug: "coding-and-ai", name: "Coding & AI discovery", label: "Coding & AI", mark: "{ }", tone: "violet", grades: "Grades 3–5", text: "Plan a robot's steps. Explore how a tiny model learns.", photo: "coding" },
 ];
 function siteHeader(page: ContentPage) {
   const nav = (slug: string, label: string) => `<a href="/learn/${slug}/"${page.slug === slug ? ' aria-current="page"' : ""}>${label}</a>`;
@@ -72,7 +80,7 @@ function islandArt() {
 }
 function subjectCards() {
   return `<section class="catalog-section" aria-labelledby="subject-heading"><div class="section-heading"><div><p class="eyebrow">SO MANY WAYS TO WONDER</p><h2 id="subject-heading">Find their next “I did it!”</h2></div><p>Choose an interest.<br>Make a little room for discovery.</p></div>
-<div class="subject-grid">${subjects.map(s => `<a class="subject-card ${s.tone}" href="/learn/${s.slug}/"><span class="subject-mark" aria-hidden="true">${s.mark}</span><small>${s.grades}</small><h3>${s.name}</h3><p>${s.text}</p><span class="card-action">Explore ${s.label} <span aria-hidden="true">→</span></span></a>`).join("")}</div></section>`;
+<div class="subject-grid">${subjects.map(s => `<a class="subject-card ${s.tone}" href="/learn/${s.slug}/">${stockImage(s.photo, true)}<span class="subject-mark" aria-hidden="true">${s.mark}</span><small>${s.grades}</small><h3>${s.name}</h3><p>${s.text}</p><span class="card-action">Explore ${s.label} <span aria-hidden="true">→</span></span></a>`).join("")}</div></section>`;
 }
 function gradeCatalog() {
   const highlights = [
@@ -87,6 +95,17 @@ function gradeCatalog() {
   return `<section class="catalog-section grade-section" aria-labelledby="grade-heading"><div class="section-heading"><div><p class="eyebrow">START SOMEWHERE FAMILIAR</p><h2 id="grade-heading">A little learning at their level.</h2></div><p>Seven levels to browse.<br>No placement label needed.</p></div>
 <div class="grade-grid">${gradePages.map((p, index) => `<div class="grade-card"><a class="grade-overview" href="${sitePath(p)}"><span class="grade-token" aria-hidden="true">${["P", "K", "1", "2", "3", "4", "5"][index]}</span><span><h3>${escape(p.title.split(" English")[0])}</h3><p>${highlights[index]}</p><small>Explore this level <span aria-hidden="true">→</span></small></span></a><div class="grade-links"><a href="/learn/english-practice/">English guide</a><a href="/learn/math-practice/">Math guide</a></div></div>`).join("")}</div>
 <p class="catalog-note">Each level includes 16 activities and 80 questions. Original supplemental practice—not a full curriculum or a measured reading level.</p></section>`;
+}
+function photoGallery() {
+  const cards: Array<{ photo: StockPhoto; slug: string; label: string; caption: string }> = [
+    { photo: "homework", slug: "math-practice", label: "Math practice", caption: "Pencils out. Minds on." },
+    { photo: "readingTogether", slug: "picture-books", label: "Picture books", caption: "Stories are better together." },
+    { photo: "coding", slug: "coding-and-ai", label: "Coding & AI", caption: "First steps into how computers think." },
+    { photo: "family", slug: "for-families", label: "For families", caption: "A grown-up alongside makes it stick." },
+  ];
+  return `<section class="catalog-section gallery-section" aria-labelledby="gallery-heading"><div class="section-heading"><div><p class="eyebrow">LEARNING LOOKS LIKE THIS</p><h2 id="gallery-heading">Little moments, big leaps.</h2></div><p>Reading, solving, building, exploring —<br>the many ways kids practice.</p></div>
+<div class="gallery-grid">${cards.map(c => `<a class="gallery-card" href="/learn/${c.slug}/">${stockImage(c.photo, true)}<span class="gallery-caption"><small>${c.label}</small><strong>${c.caption}</strong></span></a>`).join("")}</div>
+<p class="photo-credit">${photoCredit("homework")} · ${photoCredit("readingTogether")} · ${photoCredit("coding")} · ${photoCredit("family")}. Illustrative stock photography, not app users or endorsements.</p></section>`;
 }
 function homeFeatures() {
   return `<section class="adventure-feature" aria-labelledby="adventure-heading"><figure>${stockImage("adventure")}<figcaption class="photo-credit">${photoCredit("adventure")}. Illustrative stock photo, not an app user or endorsement.</figcaption></figure><div><p class="eyebrow">CURIOUS MINDS GO PLACES</p><h2 id="adventure-heading">Every little discovery is an adventure.</h2><p>A question in a book. A pattern on a walk. A new way to solve a puzzle. Bring that same curiosity to a short learning adventure, then keep exploring together away from the screen.</p><a class="button" href="/learn/for-families/">Find your next small discovery <span aria-hidden="true">→</span></a></div></section>
@@ -131,7 +150,7 @@ ${!home ? `<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/learn/">Le
 <div class="hero${photo ? " photo-hero" : ""}"><div class="hero-copy"><p class="eyebrow">PLAYFUL PRACTICE · PRE-K–GRADE 5</p>
 <h1>${escape(page.heading)}</h1><p class="intro">${escape(page.intro)}</p><div class="hero-actions"><a class="button" href="/">Start a learning adventure <span aria-hidden="true">→</span></a><a class="text-link" href="/learn/how-it-works/">See how it works</a></div>
 ${home ? `<p class="hero-footnote">Local guest play · No account or purchase required</p>` : ""}</div>${home ? islandArt() : photo ? `<figure class="guide-photo">${stockImage(photo)}<figcaption>${photoCredit(photo)}. Illustrative stock photo, not an app screenshot or endorsement.</figcaption></figure>` : ""}</div>
-${home ? `<div class="learning-facts" aria-label="Inside the built-in library"><div><strong>7</strong><span>levels, Pre-K–5</span></div><div><strong>560</strong><span>English &amp; math questions</span></div><div><strong>14</strong><span>illustrated mini-books</span></div><div><strong>18</strong><span>coding puzzles · Grades 3–5</span></div></div>${subjectCards()}${gradeCatalog()}${homeFeatures()}` : ""}
+${home ? `<div class="learning-facts" aria-label="Inside the built-in library"><div><strong>7</strong><span>levels, Pre-K–5</span></div><div><strong>560</strong><span>English &amp; math questions</span></div><div><strong>14</strong><span>illustrated mini-books</span></div><div><strong>18</strong><span>coding puzzles · Grades 3–5</span></div></div>${subjectCards()}${gradeCatalog()}${photoGallery()}${homeFeatures()}` : ""}
 <div class="editorial-content">
 ${page.sections.map(section => `<section><h2>${escape(section.heading)}</h2>${section.paragraphs.map(p => `<p>${escape(p)}</p>`).join("")}${section.items ? `<ul>${section.items.map(item => `<li>${escape(item)}</li>`).join("")}</ul>` : ""}</section>`).join("")}
 ${page.questions ? `<section><h2>Questions families ask</h2>${page.questions.map(q => `<h3>${escape(q.question)}</h3><p>${escape(q.answer)}</p>`).join("")}</section>` : ""}
@@ -195,7 +214,9 @@ h1{font-size:clamp(2.15rem,4.2vw,3.6rem);margin:0 0 22px;max-width:850px;font-we
 .catalog-section{margin:64px 0}.section-heading{display:flex;justify-content:space-between;gap:28px;align-items:center;margin-bottom:26px}.section-heading h2{margin-bottom:0}.section-heading>p{font-size:.85rem;color:#71667b;flex-shrink:0}
 .subject-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.subject-card{display:flex;flex-direction:column;border:1px solid var(--edge);background:var(--surface);padding:24px 20px;border-radius:20px;text-decoration:none;color:#292344}.subject-card:hover{box-shadow:0 8px 24px #39214f10;transform:translateY(-2px)}
 .berry{--surface:#fff1f4;--edge:#f0d7df;--ink:#9c385b}.teal{--surface:#eaf7f4;--edge:#cbe9df;--ink:#236d63}.gold{--surface:#fff7e2;--edge:#eddeac;--ink:#866122}.violet{--surface:#f0eafb;--edge:#dfd3f0;--ink:#6743a1}
-.subject-mark{display:grid;place-items:center;width:52px;height:52px;background:white;border-radius:14px;color:var(--ink);font-weight:800;font-size:1.15rem;margin-bottom:22px}.subject-card small{font-size:.7rem;color:var(--ink);font-weight:700}.subject-card h3{margin:8px 0}.subject-card p{font-size:.83rem;color:#61566d;margin:0 0 20px}.card-action{font-size:.8rem;font-weight:750;color:var(--ink,#5130a1);margin-top:auto}.card-action span{margin-left:8px}
+.subject-mark{display:grid;place-items:center;width:52px;height:52px;background:white;border-radius:14px;color:var(--ink);font-weight:800;font-size:1.15rem;margin-bottom:22px}
+.subject-card .stock-image{aspect-ratio:2/1;margin:-4px 0 18px}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.gallery-card{display:block;background:white;border:1px solid #e4ddec;border-radius:20px;overflow:hidden;text-decoration:none;color:#292344}.gallery-card:hover{box-shadow:0 8px 24px #39214f10;transform:translateY(-2px)}.gallery-card .stock-image{border-radius:0}.gallery-caption{display:flex;flex-direction:column;gap:2px;padding:14px 18px 16px}.gallery-caption small{font-size:.68rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:#6540be}.gallery-caption strong{font-size:.95rem;line-height:1.35}.subject-card small{font-size:.7rem;color:var(--ink);font-weight:700}.subject-card h3{margin:8px 0}.subject-card p{font-size:.83rem;color:#61566d;margin:0 0 20px}.card-action{font-size:.8rem;font-weight:750;color:var(--ink,#5130a1);margin-top:auto}.card-action span{margin-left:8px}
 .grade-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grade-card{background:white;border:1px solid #e4ddec;border-radius:16px;overflow:hidden}.grade-overview{display:flex;gap:18px;padding:20px;text-decoration:none;color:#292344}.grade-token{flex-shrink:0;display:grid;place-items:center;width:52px;height:56px;background:#eee8fa;color:#6743a1;border-radius:15px;font-size:1.6rem;font-weight:800}.grade-card:nth-child(3n+2) .grade-token{background:#e5f4ed;color:#286e5c}.grade-card:nth-child(3n) .grade-token{background:#fff0d9;color:#8a6025}
 .grade-card h3{margin:2px 0 8px}.grade-card p{margin:0 0 8px;color:#6b6077;font-size:.82rem}.grade-card small{font-size:.75rem;color:#6540be;font-weight:650}.grade-links{padding:9px 20px;border-top:1px solid #eee8f3;display:flex;gap:18px;background:#fdfbff;font-size:.72rem}.grade-card:hover{border-color:#b9a2d8}.catalog-note{font-size:.8rem;color:#6c6276}
 .path-feature{background:#eaf4f1;border-radius:24px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin:64px 0}.path-feature h2{font-size:2rem}.path-feature p{color:#566a62;font-size:.92rem}.path-feature .eyebrow{color:#376857}.path-feature .fine-print{font-size:.73rem}
@@ -207,8 +228,8 @@ h1{font-size:clamp(2.15rem,4.2vw,3.6rem);margin:0 0 22px;max-width:850px;font-we
 .notice{padding:24px;background:#f0ede5;border-radius:18px}.notice h2{font-size:1.15rem;margin:0}.notice p{font-size:.8rem;color:#665e50}
 .site-footer{border-top:1px solid #e4ddec;margin-top:40px;padding-top:40px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;font-size:.8rem}.site-footer>div p{color:#71667b}.site-footer nav{display:flex;flex-direction:column;gap:9px}.site-footer h2{font-size:.9rem;margin:0 0 8px}.site-footer nav a{text-decoration:none}.footer-note{grid-column:1/-1;border-top:1px solid #e4ddec;padding-top:20px;color:#71667b;font-size:.73rem}
 .skip{position:absolute;left:12px;top:-100px;background:white;padding:12px;z-index:10}.skip:focus{top:12px}
-@media(max-width:1000px){.site-header{align-items:flex-start;flex-wrap:wrap}.site-header nav{flex-wrap:wrap;gap:18px}.landing-page .hero{grid-template-columns:1.2fr 1fr}.subject-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){main,.site-header,.site-footer{padding:20px}.top-note span{display:none}.site-header{gap:20px}.site-header nav{gap:8px 18px;font-size:.78rem;width:100%}.site-header .button-small{font-size:.75rem}.nav-popover{min-width:165px}.landing-page .hero{grid-template-columns:1fr;padding:26px}.hero-art{max-width:340px;margin:8px auto 0}.hero h1{font-size:2.5rem}.intro{font-size:1rem}.hero-actions{gap:20px;font-size:.85rem}.hero-actions .button{width:100%;padding-inline:10px}.learning-facts{grid-template-columns:1fr 1fr;row-gap:24px;margin-bottom:44px}.learning-facts div:nth-child(3){border-left:0}.section-heading{display:block}.section-heading>p br{display:none}.subject-grid,.grade-grid,.audience-grid{grid-template-columns:1fr}.subject-card{padding:24px}.subject-mark{margin-bottom:14px}.catalog-section{margin:44px 0}.grade-overview{padding:18px;gap:14px}.path-feature{grid-template-columns:1fr;padding:24px;gap:24px}.path-feature h2{font-size:1.7rem}.audience-card{padding:24px}.site-footer{grid-template-columns:1fr 1fr;gap:24px}.site-footer>div{grid-column:1/-1}.guide-page .hero{padding:26px}.guide-page .hero h1{font-size:2rem}.art-label{font-size:.65rem}}
+@media(max-width:1000px){.site-header{align-items:flex-start;flex-wrap:wrap}.site-header nav{flex-wrap:wrap;gap:18px}.landing-page .hero{grid-template-columns:1.2fr 1fr}.subject-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){main,.site-header,.site-footer{padding:20px}.top-note span{display:none}.site-header{gap:20px}.site-header nav{gap:8px 18px;font-size:.78rem;width:100%}.site-header .button-small{font-size:.75rem}.nav-popover{min-width:165px}.landing-page .hero{grid-template-columns:1fr;padding:26px}.hero-art{max-width:340px;margin:8px auto 0}.hero h1{font-size:2.5rem}.intro{font-size:1rem}.hero-actions{gap:20px;font-size:.85rem}.hero-actions .button{width:100%;padding-inline:10px}.learning-facts{grid-template-columns:1fr 1fr;row-gap:24px;margin-bottom:44px}.learning-facts div:nth-child(3){border-left:0}.section-heading{display:block}.section-heading>p br{display:none}.subject-grid,.grade-grid,.audience-grid,.gallery-grid{grid-template-columns:1fr}.subject-card{padding:24px}.subject-mark{margin-bottom:14px}.catalog-section{margin:44px 0}.grade-overview{padding:18px;gap:14px}.path-feature{grid-template-columns:1fr;padding:24px;gap:24px}.path-feature h2{font-size:1.7rem}.audience-card{padding:24px}.site-footer{grid-template-columns:1fr 1fr;gap:24px}.site-footer>div{grid-column:1/-1}.guide-page .hero{padding:26px}.guide-page .hero h1{font-size:2rem}.art-label{font-size:.65rem}}
 @media(max-width:850px){.photo-hero,.adventure-feature{grid-template-columns:1fr}.guide-photo{max-width:600px}.adventure-feature{gap:20px;padding:24px}}
 @media(prefers-reduced-motion:no-preference){a{transition:background-color .15s,box-shadow .15s,transform .15s}}
 @media(prefers-reduced-motion:reduce){.subject-card:hover{transform:none}}`;

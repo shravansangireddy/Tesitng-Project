@@ -51,8 +51,8 @@ describe("public learning guides", () => {
         expect(doc.querySelector('a[href^="https://unsplash.com/"]')).not.toBeNull();
       }
     }
-    expect(total).toBe(10);
-    expect(Object.values(stockPhotos).map(photo => photo.file)).toEqual(["kids-creating", "map-adventure"]);
+    expect(total).toBe(18);
+    expect(Object.values(stockPhotos).map(photo => photo.file)).toEqual(["kids-creating", "map-adventure", "kids-homework", "kids-reading", "kids-coding", "family-learning"]);
     const home = new DOMParser().parseFromString(renderSitePage(sitePages[0]), "text/html");
     expect(home.querySelector(".adventure-feature h2")?.textContent).toContain("discovery is an adventure");
   });

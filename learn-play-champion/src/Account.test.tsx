@@ -223,10 +223,9 @@ describe("grown-up login screen", () => {
     mocks.configured = false;
     await mount();
     expect(container.textContent).toContain("Welcome to the island");
-    expect(container.textContent).toContain("Account sign-in is not available on this site yet.");
+    expect(container.querySelector(".setup-notice")).toBeNull();
     expect(container.textContent).not.toContain(".env.local");
     expect(container.textContent).not.toContain("supabase/migrations");
-    expect(container.querySelector(".setup-notice ol")).toBeNull();
     await fillAdultForm();
     expect(button("Email me")?.disabled).toBe(true);
     expect(mocks.signIn).not.toHaveBeenCalled();
