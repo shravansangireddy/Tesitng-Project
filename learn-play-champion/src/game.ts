@@ -144,6 +144,12 @@ export interface RoundResult {
   grade?: GradeId;
   championship?: boolean;
 }
+export interface LearnerProfile {
+  id: string;
+  name: string;
+  grade: GradeId;
+}
+export const MAX_PROFILES = 6;
 export interface Progress {
   version: 1;
   points: number;
@@ -166,6 +172,9 @@ export interface Progress {
   selectedGrade?: GradeId;
   theme?: ThemeId;
   pathChecks?: PathChecks;
+  profiles?: LearnerProfile[];
+  activeProfileId?: string;
+  profileStates?: Record<string, Progress>;
 }
 export const initialProgress: Progress = {
   version: 1,
@@ -300,8 +309,19 @@ export function claimHelp(progress: Progress, today = localDate()): Progress {
 export function avatarUnlocked(avatar: Avatar, points: number): boolean {
   return points >= { owl: 0, cat: 0, fox: 100, unicorn: 250 }[avatar];
 }
-export function parseProgress(raw: string): Progress {
-  const value: unknown = JSON.parse(raw);
+const profileIdPattern = /^[A-Za-z0-9_-]{1,48}$/;
+export function cleanProfileName(name: string): string {
+  return name.trim().replace(/\s+/g, " ");
+}
+function validProfileName(name: unknown): boolean {
+  return (
+    typeof name === "string" &&
+    name === cleanProfileName(name) &&
+    name.length >= 1 &&
+    name.length <= 20
+  );
+}
+function parseProgressObject(value: unknown, nested: boolean): Progress {
   if (!value || typeof value !== "object")
     throw new Error("Saved progress is not an object.");
   const p = value as Record<string, unknown>;
@@ -387,7 +407,192 @@ export function parseProgress(raw: string): Progress {
   ) {
     throw new Error("Saved progress has invalid or unsupported fields.");
   }
+  if (nested) {
+    if (
+      p.profiles !== undefined ||
+      p.activeProfileId !== undefined ||
+      p.profileStates !== undefined
+    )
+      throw new Error("Saved profile progress has unsupported fields.");
+  } else {
+    validateProfiles(p);
+  }
   return value as Progress;
+}
+function validateProfiles(p: Record<string, unknown>): void {
+  const invalid = (): never => {
+    throw new Error("Saved progress has invalid learner profiles.");
+  };
+  if (p.profiles === undefined) {
+    if (p.activeProfileId !== undefined || p.profileStates !== undefined)
+      invalid();
+    return;
+  }
+  if (
+    !Array.isArray(p.profiles) ||
+    p.profiles.length < 1 ||
+    p.profiles.length > MAX_PROFILES
+  )
+    invalid();
+  const ids = new Set<string>();
+  for (const entry of p.profiles as unknown[]) {
+    if (!entry || typeof entry !== "object") invalid();
+    const profile = entry as Record<string, unknown>;
+    if (
+      typeof profile.id !== "string" ||
+      !profileIdPattern.test(profile.id) ||
+      ids.has(profile.id) ||
+      !validProfileName(profile.name) ||
+      !gradeIds.some((id) => id === profile.grade)
+    )
+      invalid();
+    ids.add(profile.id as string);
+  }
+  if (typeof p.activeProfileId !== "string" || !ids.has(p.activeProfileId))
+    invalid();
+  if (p.profileStates !== undefined) {
+    if (
+      !p.profileStates ||
+      typeof p.profileStates !== "object" ||
+      Array.isArray(p.profileStates)
+    )
+      invalid();
+    for (const [id, state] of Object.entries(
+      p.profileStates as Record<string, unknown>,
+    )) {
+      if (!ids.has(id) || id === p.activeProfileId) invalid();
+      parseProgressObject(state, true);
+    }
+  }
+}
+export function parseProgress(raw: string): Progress {
+  return parseProgressObject(JSON.parse(raw), false);
+}
+function coreProgress(progress: Progress): Progress {
+  const core = { ...progress };
+  delete core.profiles;
+  delete core.activeProfileId;
+  delete core.profileStates;
+  return core;
+}
+function composeProgress(
+  core: Progress,
+  profiles: LearnerProfile[],
+  activeProfileId: string,
+  states: Record<string, Progress>,
+): Progress {
+  return {
+    ...core,
+    profiles,
+    activeProfileId,
+    ...(Object.keys(states).length ? { profileStates: states } : {}),
+  };
+}
+function checkedProfileName(name: string): string {
+  const cleaned = cleanProfileName(name);
+  if (!cleaned || cleaned.length > 20)
+    throw new Error("Give the child a name of 1 to 20 characters.");
+  return cleaned;
+}
+export function addProfile(
+  progress: Progress,
+  id: string,
+  name: string,
+  grade: GradeId,
+): Progress {
+  const cleaned = checkedProfileName(name);
+  if (!profileIdPattern.test(id)) throw new Error("Invalid profile id.");
+  if (!gradeIds.some((g) => g === grade)) throw new Error("Unknown grade.");
+  const profiles = progress.profiles ?? [];
+  if (profiles.some((profile) => profile.id === id))
+    throw new Error("That child is already added.");
+  if (profiles.length >= MAX_PROFILES)
+    throw new Error(`You can add up to ${MAX_PROFILES} children.`);
+  const profile: LearnerProfile = { id, name: cleaned, grade };
+  if (!progress.profiles || !progress.activeProfileId) {
+    // The first child added keeps the progress already saved on this device.
+    return {
+      ...progress,
+      selectedGrade: grade,
+      profiles: [profile],
+      activeProfileId: id,
+    };
+  }
+  const states = { ...(progress.profileStates ?? {}) };
+  states[progress.activeProfileId] = coreProgress(progress);
+  return composeProgress(
+    { ...initialProgress, selectedGrade: grade },
+    [...profiles, profile],
+    id,
+    states,
+  );
+}
+export function switchProfile(progress: Progress, id: string): Progress {
+  const profiles = progress.profiles;
+  const active = progress.activeProfileId;
+  if (!profiles || !active || id === active) return progress;
+  const target = profiles.find((profile) => profile.id === id);
+  if (!target) return progress;
+  const states = { ...(progress.profileStates ?? {}) };
+  states[active] = coreProgress(progress);
+  const nextCore = states[id] ?? { ...initialProgress, selectedGrade: target.grade };
+  delete states[id];
+  return composeProgress(
+    { ...nextCore, selectedGrade: target.grade },
+    profiles,
+    id,
+    states,
+  );
+}
+export function updateProfile(
+  progress: Progress,
+  id: string,
+  patch: { name?: string; grade?: GradeId },
+): Progress {
+  const profiles = progress.profiles;
+  if (!profiles) return progress;
+  const current = profiles.find((profile) => profile.id === id);
+  if (!current) return progress;
+  const name =
+    patch.name === undefined ? current.name : checkedProfileName(patch.name);
+  const grade = patch.grade ?? current.grade;
+  if (!gradeIds.some((g) => g === grade)) throw new Error("Unknown grade.");
+  const nextProfiles = profiles.map((profile) =>
+    profile.id === id ? { ...profile, name, grade } : profile,
+  );
+  if (id === progress.activeProfileId)
+    return { ...progress, profiles: nextProfiles, selectedGrade: grade };
+  const states = { ...(progress.profileStates ?? {}) };
+  states[id] = states[id]
+    ? { ...states[id], selectedGrade: grade }
+    : { ...initialProgress, selectedGrade: grade };
+  return { ...progress, profiles: nextProfiles, profileStates: states };
+}
+export function removeProfile(progress: Progress, id: string): Progress {
+  const profiles = progress.profiles;
+  if (!profiles || !profiles.some((profile) => profile.id === id))
+    return progress;
+  const remaining = profiles.filter((profile) => profile.id !== id);
+  const states = { ...(progress.profileStates ?? {}) };
+  delete states[id];
+  if (remaining.length === 0) return coreProgress(progress);
+  if (id !== progress.activeProfileId)
+    return composeProgress(
+      coreProgress(progress),
+      remaining,
+      progress.activeProfileId as string,
+      states,
+    );
+  const next = remaining[0];
+  const nextCore =
+    states[next.id] ?? { ...initialProgress, selectedGrade: next.grade };
+  delete states[next.id];
+  return composeProgress(
+    { ...nextCore, selectedGrade: next.grade },
+    remaining,
+    next.id,
+    states,
+  );
 }
 export const badges = [
   {

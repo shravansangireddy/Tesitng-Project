@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import {
   activities,
+  addProfile,
   answerMatches,
   avatarUnlocked,
   badges,
@@ -37,7 +38,11 @@ import {
   initialProgress,
   localDate,
   makeRound,
+  MAX_PROFILES,
   parseProgress,
+  removeProfile,
+  switchProfile,
+  updateProfile,
   STORAGE_KEY,
   yesterday,
   type Activity,
@@ -256,6 +261,189 @@ function loadProgress(): { progress: Progress; error: string } {
     };
   }
 }
+function LearnerProfilesDialog({
+  progress,
+  onClose,
+  onSwitch,
+  onAdd,
+  onUpdate,
+  onRemove,
+}: {
+  progress: Progress;
+  onClose: () => void;
+  onSwitch: (id: string) => void;
+  onAdd: (name: string, grade: GradeId) => void;
+  onUpdate: (id: string, patch: { name?: string; grade?: GradeId }) => void;
+  onRemove: (id: string) => void;
+}) {
+  const profiles = progress.profiles ?? [];
+  const [newName, setNewName] = useState("");
+  const [newGrade, setNewGrade] = useState<GradeId>(
+    progress.selectedGrade ?? "1",
+  );
+  const [error, setError] = useState("");
+  const atCap = profiles.length >= MAX_PROFILES;
+  const showError = (caught: unknown) =>
+    setError(
+      caught instanceof Error ? caught.message : "That change could not be saved.",
+    );
+  const tryAdd = () => {
+    try {
+      onAdd(newName, newGrade);
+      setNewName("");
+      setError("");
+    } catch (caught) {
+      showError(caught);
+    }
+  };
+  return (
+    <Dialog title="Your children" onClose={onClose}>
+      <p className="dialog-description">
+        Add each child once. Tapping a child's name loads practice, books, and
+        rewards at their grade, with their own points and progress. Names stay
+        private — saved only on this device and in the signed-in grown-up's
+        account, never public. A first name or nickname is enough.
+      </p>
+      {profiles.length > 0 && (
+        <div className="learner-rows">
+          {profiles.map((profile) => {
+            const isActive = profile.id === progress.activeProfileId;
+            const pal = isActive
+              ? progress.avatar
+              : (progress.profileStates?.[profile.id]?.avatar ?? "owl");
+            return (
+              <div className="learner-row" key={profile.id}>
+                <span className="learner-row-pal" aria-hidden="true">
+                  {avatarEmoji[pal]}
+                </span>
+                <input
+                  className="learner-name-input"
+                  defaultValue={profile.name}
+                  maxLength={20}
+                  aria-label={`${profile.name}'s name`}
+                  onBlur={(event) => {
+                    const value = event.target.value.trim();
+                    if (value && value !== profile.name) {
+                      try {
+                        onUpdate(profile.id, { name: value });
+                        setError("");
+                      } catch (caught) {
+                        showError(caught);
+                        event.target.value = profile.name;
+                      }
+                    } else {
+                      event.target.value = profile.name;
+                    }
+                  }}
+                />
+                <select
+                  value={profile.grade}
+                  aria-label={`${profile.name}'s grade`}
+                  onChange={(event) => {
+                    const next = gradeIds.find(
+                      (id) => id === event.target.value,
+                    );
+                    if (next) onUpdate(profile.id, { grade: next });
+                  }}
+                >
+                  {gradeIds.map((id) => (
+                    <option value={id} key={id}>
+                      {gradeLabels[id]}
+                    </option>
+                  ))}
+                </select>
+                {isActive ? (
+                  <span className="learner-now">Learning now</span>
+                ) : (
+                  <button
+                    type="button"
+                    className="text-button"
+                    onClick={() => onSwitch(profile.id)}
+                  >
+                    Switch
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className="text-button learner-remove"
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        `Remove ${profile.name} and their saved progress? This cannot be undone.`,
+                      )
+                    )
+                      onRemove(profile.id);
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {error && (
+        <p className="learner-error" role="alert">
+          {error}
+        </p>
+      )}
+      {atCap ? (
+        <p className="learner-note">
+          You have added the maximum of {MAX_PROFILES} children.
+        </p>
+      ) : (
+        <form
+          className="learner-add-form"
+          onSubmit={(event) => {
+            event.preventDefault();
+            tryAdd();
+          }}
+        >
+          <h3>Add a child</h3>
+          <div className="learner-add-fields">
+            <input
+              value={newName}
+              onChange={(event) => setNewName(event.target.value)}
+              placeholder="First name or nickname"
+              maxLength={20}
+              aria-label="Child's name"
+            />
+            <select
+              value={newGrade}
+              aria-label="Child's grade"
+              onChange={(event) => {
+                const next = gradeIds.find((id) => id === event.target.value);
+                if (next) setNewGrade(next);
+              }}
+            >
+              {gradeIds.map((id) => (
+                <option value={id} key={id}>
+                  {gradeLabels[id]}
+                </option>
+              ))}
+            </select>
+            <button
+              type="submit"
+              className="button primary"
+              disabled={!newName.trim()}
+            >
+              Add child
+            </button>
+          </div>
+          {profiles.length === 0 && (
+            <p className="learner-note">
+              The progress already saved on this device will belong to the
+              first child you add.
+            </p>
+          )}
+        </form>
+      )}
+      <button className="button primary full-width" onClick={onClose}>
+        Done
+      </button>
+    </Dialog>
+  );
+}
 export default function App({
   cloudProgress,
   onProgressChange,
@@ -277,14 +465,32 @@ export default function App({
     cloudProgress ? { progress: cloudProgress, error: "" } : loadProgress(),
   );
   const { teammate, grades } = getLearningContent();
-  const [progress, setProgress] = useState(() => initialGrade
-    ? { ...loaded.progress, selectedGrade: initialGrade } : loaded.progress);
+  const [progress, setProgress] = useState(() => {
+    if (!initialGrade) return loaded.progress;
+    const base = { ...loaded.progress, selectedGrade: initialGrade };
+    return loaded.progress.activeProfileId
+      ? updateProfile(base, loaded.progress.activeProfileId, { grade: initialGrade })
+      : base;
+  });
   const [storageError, setStorageError] = useState(loaded.error);
   const initial = useRef(loaded.progress);
   const [view, setView] = useState<View>(() => new URLSearchParams(location.search).has("donation_return") ||
     new URLSearchParams(location.search).has("donation_cancel") ? "privacy" : "home");
   const [subject, setSubject] = useState<Subject>("english");
   const [grade, setGrade] = useState<GradeId>(initialGrade ?? loaded.progress.selectedGrade ?? "1");
+  const chooseGrade = (next: GradeId) => {
+    setGrade(next);
+    setProgress((current) => {
+      const base = { ...current, selectedGrade: next };
+      return current.activeProfileId
+        ? updateProfile(base, current.activeProfileId, { grade: next })
+        : base;
+    });
+  };
+  const profiles = progress.profiles ?? [];
+  const activeProfile = profiles.find(
+    (profile) => profile.id === progress.activeProfileId,
+  );
   const gradePack = grades[grade];
   const gradeBest = (id: ActivityId) =>
     progress.gradeBestRounds?.[`${grade}:${id}`] || 0;
@@ -294,11 +500,21 @@ export default function App({
   const [feedback, setFeedback] = useState<Attempt | null>(null);
   const [hint, setHint] = useState(false);
   const [avatarOpen, setAvatarOpen] = useState(false);
+  const [profilesOpen, setProfilesOpen] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [helpAnswer, setHelpAnswer] = useState("");
   const [chestOpen, setChestOpen] = useState(false);
   const [today, setToday] = useState(localDate());
   const [roundId, setRoundId] = useState(0);
+  const switchKid = (id: string) => {
+    if (id === progress.activeProfileId) return;
+    setSession(null);
+    setResult(null);
+    const next = switchProfile(progress, id);
+    setProgress(next);
+    setGrade(next.selectedGrade ?? "1");
+    setView("home");
+  };
   const voiceAssisted = useRef(false);
   const voiceControls = useRef<VoiceHandle>(null);
   const codingDirty = useRef(false);
@@ -655,7 +871,7 @@ export default function App({
             >
               <span>{avatarEmoji[progress.avatar]}</span>
               <div>
-                Hey, Champion!<small>Level {level} explorer</small>
+                Hey, {activeProfile ? activeProfile.name : "Champion"}!<small>Level {level} explorer</small>
               </div>
               <ChevronRight size={15} />
             </button>
@@ -700,10 +916,7 @@ export default function App({
           ) : view === "teacher-library" ? (
             <TeacherLibrary key={grade} grade={grade} client={roomClient ?? supabase} />
           ) : view === "books" ? (
-            <BookShelf key={grade} grade={grade} onGradeChange={(next) => {
-              setGrade(next);
-              setProgress((current) => ({ ...current, selectedGrade: next }));
-            }} />
+            <BookShelf key={grade} grade={grade} onGradeChange={chooseGrade} />
           ) : view === "privacy" ? (
             <PrivacyCenter progress={progress} cloud={!!cloudProgress} paymentClient={roomClient}
               onContentDirty={(dirty) => { contentDirty.current = dirty; }}
@@ -1023,6 +1236,57 @@ export default function App({
                   className="grade-library panel"
                   aria-label="Grade learning library"
                 >
+                  <div className="learner-switcher">
+                    <div className="learner-switcher-head">
+                      <span className="eyebrow">WHO'S LEARNING?</span>
+                      <button
+                        type="button"
+                        className="text-button"
+                        onClick={() => setProfilesOpen(true)}
+                      >
+                        {profiles.length
+                          ? "Grown-ups: manage children"
+                          : "Grown-ups: add your children"}
+                      </button>
+                    </div>
+                    {profiles.length ? (
+                      <div
+                        className="learner-chips"
+                        role="group"
+                        aria-label="Choose who is learning"
+                      >
+                        {profiles.map((profile) => {
+                          const isActive =
+                            profile.id === progress.activeProfileId;
+                          const pal = isActive
+                            ? progress.avatar
+                            : (progress.profileStates?.[profile.id]?.avatar ??
+                              "owl");
+                          return (
+                            <button
+                              type="button"
+                              key={profile.id}
+                              className={`learner-chip ${isActive ? "active" : ""}`}
+                              aria-pressed={isActive}
+                              onClick={() => switchKid(profile.id)}
+                            >
+                              <span aria-hidden="true">{avatarEmoji[pal]}</span>
+                              <span className="learner-chip-text">
+                                <strong>{profile.name}</strong>
+                                <small>{gradeLabels[profile.grade]}</small>
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="learner-hint">
+                        Add each child once, then tap their name to load
+                        practice, books, and rewards at their grade — each child
+                        keeps their own points and progress.
+                      </p>
+                    )}
+                  </div>
                   <div className="grade-library-top">
                     <div>
                       <span className="eyebrow">YOUR PRE-K–5 PRACTICE LIBRARY</span>
@@ -1037,10 +1301,7 @@ export default function App({
                           const next = gradeIds.find(
                             (id) => id === event.target.value,
                           );
-                          if (next) {
-                            setGrade(next);
-                            setProgress((current) => ({ ...current, selectedGrade: next }));
-                          }
+                          if (next) chooseGrade(next);
                         }}
                       >
                         {gradeIds.map((id) => (
@@ -1821,6 +2082,40 @@ export default function App({
             <ArrowRight size={18} />
           </button>
         </Dialog>
+      )}
+      {profilesOpen && (
+        <LearnerProfilesDialog
+          progress={progress}
+          onClose={() => setProfilesOpen(false)}
+          onSwitch={(id) => {
+            switchKid(id);
+            setProfilesOpen(false);
+          }}
+          onAdd={(name, childGrade) => {
+            const next = addProfile(
+              progress,
+              crypto.randomUUID(),
+              name,
+              childGrade,
+            );
+            setProgress(next);
+            setGrade(childGrade);
+            setSession(null);
+            setResult(null);
+          }}
+          onUpdate={(id, patch) => {
+            setProgress((current) => updateProfile(current, id, patch));
+            if (id === progress.activeProfileId && patch.grade)
+              setGrade(patch.grade);
+          }}
+          onRemove={(id) => {
+            const next = removeProfile(progress, id);
+            setProgress(next);
+            setGrade(next.selectedGrade ?? "1");
+            setSession(null);
+            setResult(null);
+          }}
+        />
       )}
       {helpOpen && (
         <Dialog
