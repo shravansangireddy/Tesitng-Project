@@ -3402,3 +3402,108 @@ summary:focus-visible {
 .bee-adult-word {
   margin: 16px 0;
 }
+
+.learner-switcher {
+  margin-bottom: 18px;
+}
+.learner-switcher-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.learner-chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.learner-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 12px;
+  border-radius: 999px;
+  border: 2px solid #d9d2f2;
+  background: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+.learner-chip.active {
+  border-color: #8260cc;
+  background: #f1ebfd;
+}
+.learner-chip > span:first-child {
+  font-size: 24px;
+}
+.learner-chip-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.15;
+}
+.learner-chip-text small {
+  color: #6b7280;
+}
+.learner-hint {
+  margin: 8px 0 0;
+  color: #4b5563;
+}
+.learner-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 14px 0;
+}
+.learner-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.learner-row-pal {
+  font-size: 22px;
+}
+.learner-name-input {
+  flex: 1 1 120px;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font: inherit;
+}
+.learner-row select,
+.learner-add-fields select,
+.learner-add-fields input {
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font: inherit;
+}
+.learner-now {
+  font-weight: 600;
+  color: #8260cc;
+  font-size: 14px;
+}
+.learner-remove {
+  color: #b91c1c;
+}
+.learner-add-form h3 {
+  margin: 16px 0 8px;
+}
+.learner-add-fields {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.learner-add-fields input {
+  flex: 1 1 160px;
+}
+.learner-error {
+  color: #b91c1c;
+}
+.learner-note {
+  color: #6b7280;
+  font-size: 14px;
+}

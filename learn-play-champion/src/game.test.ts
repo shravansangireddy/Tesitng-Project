@@ -7,13 +7,19 @@ import {
   badges,
   claimHelp,
   claimLogin,
+  addProfile,
   completeRound,
   initialProgress,
   localDate,
   makeRound,
+  MAX_PROFILES,
   parseProgress,
+  removeProfile,
+  switchProfile,
+  updateProfile,
   yesterday,
   type Attempt,
+  type Progress,
 } from "./game";
 
 const date = new Date(2026, 9, 29, 12);
@@ -264,5 +270,134 @@ describe("safe saved progress", () => {
     ])
       expect(() => parseProgress(JSON.stringify(invalid))).toThrow();
     expect(() => parseProgress("{bad json")).toThrow();
+  });
+});
+
+describe("learner profiles", () => {
+  const base: Progress = {
+    ...initialProgress,
+    points: 300,
+    rounds: 2,
+    correct: 9,
+    answered: 10,
+    selectedGrade: "2",
+  };
+  const roundTrip = (progress: Progress) =>
+    parseProgress(JSON.stringify(progress));
+
+  it("keeps profile-free progress valid", () => {
+    expect(roundTrip(base).points).toBe(300);
+  });
+
+  it("lets the first child added inherit progress already on the device", () => {
+    const next = addProfile(base, "kid-1", "Avyan", "2");
+    expect(next.profiles).toEqual([{ id: "kid-1", name: "Avyan", grade: "2" }]);
+    expect(next.activeProfileId).toBe("kid-1");
+    expect(next.points).toBe(300);
+    expect(next.selectedGrade).toBe("2");
+    expect(roundTrip(next).points).toBe(300);
+  });
+
+  it("starts a second child fresh and stashes the first child's progress", () => {
+    const one = addProfile(base, "kid-1", "Avyan", "2");
+    const two = addProfile(one, "kid-2", "Avyukth", "k");
+    expect(two.activeProfileId).toBe("kid-2");
+    expect(two.points).toBe(0);
+    expect(two.rounds).toBe(0);
+    expect(two.selectedGrade).toBe("k");
+    expect(two.profileStates?.["kid-1"]?.points).toBe(300);
+    expect(roundTrip(two).profiles).toHaveLength(2);
+  });
+
+  it("restores each child's own progress when switching", () => {
+    const one = addProfile(base, "kid-1", "Avyan", "2");
+    const two = addProfile(one, "kid-2", "Avyukth", "k");
+    const back = switchProfile(two, "kid-1");
+    expect(back.points).toBe(300);
+    expect(back.selectedGrade).toBe("2");
+    expect(back.profileStates?.["kid-2"]?.points).toBe(0);
+    const played = completeRound(back, "arithmetic", perfect, date, "2").progress;
+    expect(played.rounds).toBe(3);
+    expect(roundTrip(played).rounds).toBe(3);
+    const forward = switchProfile(played, "kid-2");
+    expect(forward.points).toBe(0);
+    expect(forward.profileStates?.["kid-1"]?.rounds).toBe(3);
+    expect(roundTrip(forward).activeProfileId).toBe("kid-2");
+  });
+
+  it("keeps the roster grade and the loaded grade in step", () => {
+    const one = addProfile(base, "kid-1", "Avyan", "2");
+    const two = addProfile(one, "kid-2", "Avyukth", "k");
+    const activeChanged = updateProfile(two, "kid-2", { grade: "1" });
+    expect(activeChanged.selectedGrade).toBe("1");
+    expect(
+      activeChanged.profiles?.find((profile) => profile.id === "kid-2")?.grade,
+    ).toBe("1");
+    const inactiveChanged = updateProfile(activeChanged, "kid-1", { grade: "3" });
+    expect(inactiveChanged.profileStates?.["kid-1"]?.selectedGrade).toBe("3");
+    expect(inactiveChanged.selectedGrade).toBe("1");
+    expect(roundTrip(inactiveChanged).profiles).toHaveLength(2);
+  });
+
+  it("removes children without disturbing the learner who stays", () => {
+    const one = addProfile(base, "kid-1", "Avyan", "2");
+    const two = addProfile(one, "kid-2", "Avyukth", "k");
+    const withoutInactive = removeProfile(two, "kid-1");
+    expect(withoutInactive.profiles).toHaveLength(1);
+    expect(withoutInactive.activeProfileId).toBe("kid-2");
+    expect(withoutInactive.profileStates).toBeUndefined();
+    const withoutActive = removeProfile(two, "kid-2");
+    expect(withoutActive.activeProfileId).toBe("kid-1");
+    expect(withoutActive.points).toBe(300);
+    const plain = removeProfile(withoutActive, "kid-1");
+    expect(plain.profiles).toBeUndefined();
+    expect(plain.activeProfileId).toBeUndefined();
+    expect(plain.profileStates).toBeUndefined();
+    expect(plain.points).toBe(300);
+    expect(roundTrip(plain).points).toBe(300);
+  });
+
+  it("cleans names and enforces the child cap", () => {
+    const named = addProfile(base, "kid-9", "  Sam   Jr ", "1");
+    expect(named.profiles?.[0]?.name).toBe("Sam Jr");
+    expect(() => addProfile(base, "kid-x", "   ", "1")).toThrow();
+    expect(() => addProfile(base, "kid-x", "A name that is far too long", "1")).toThrow();
+    let progress = base;
+    for (let index = 0; index < MAX_PROFILES; index++) {
+      progress = addProfile(progress, `kid-${index}`, `Kid ${index}`, "1");
+    }
+    expect(progress.profiles).toHaveLength(MAX_PROFILES);
+    expect(() => addProfile(progress, "kid-extra", "Extra", "1")).toThrow();
+    expect(roundTrip(progress).profiles).toHaveLength(MAX_PROFILES);
+  });
+
+  it("rejects malformed profile data when loading saved progress", () => {
+    const one = addProfile(base, "kid-1", "Avyan", "2");
+    const two = addProfile(one, "kid-2", "Avyukth", "k");
+    const raw = () => JSON.parse(JSON.stringify(two)) as Record<string, unknown>;
+    const duplicate = raw();
+    (duplicate.profiles as unknown[]).push({ id: "kid-1", name: "Other", grade: "1" });
+    expect(() => parseProgress(JSON.stringify(duplicate))).toThrow();
+    const unknownActive = raw();
+    unknownActive.activeProfileId = "nobody";
+    expect(() => parseProgress(JSON.stringify(unknownActive))).toThrow();
+    const activeState = raw();
+    activeState.profileStates = { "kid-2": { ...initialProgress } };
+    expect(() => parseProgress(JSON.stringify(activeState))).toThrow();
+    const nestedProfiles = raw();
+    nestedProfiles.profileStates = {
+      "kid-1": { ...initialProgress, profiles: [] },
+    };
+    expect(() => parseProgress(JSON.stringify(nestedProfiles))).toThrow();
+    const tooMany = {
+      ...base,
+      profiles: Array.from({ length: MAX_PROFILES + 1 }, (_, index) => ({
+        id: `kid-${index}`,
+        name: `Kid ${index}`,
+        grade: "1" as const,
+      })),
+      activeProfileId: "kid-0",
+    };
+    expect(() => parseProgress(JSON.stringify(tooMany))).toThrow();
   });
 });
