@@ -536,10 +536,25 @@ describe("account progress lifecycle", () => {
     expect(container.querySelector(".points-pill")?.textContent).toBe("0 pts");
     expect(container.querySelector("dialog")).toBeNull();
   });
+  it("signs out on the second tap, not the first", async () => {
+    authenticated();
+    await mount();
+    const signOutButton = () =>
+      container.querySelector('[aria-label="Sign out of grown-up account"]');
+    await click(signOutButton());
+    expect(mocks.signOut).not.toHaveBeenCalled();
+    expect(signOutButton()?.textContent).toContain("Tap again to Sign out");
+    await click(signOutButton());
+    expect(mocks.signOut).toHaveBeenCalledWith({ scope: "local" });
+    expect(container.textContent).toContain("Welcome to the island");
+  });
   it("reports failed sign-out without claiming the account signed out", async () => {
     authenticated();
     mocks.signOut.mockResolvedValueOnce({ error: new Error("Offline") });
     await mount();
+    await click(
+      container.querySelector('[aria-label="Sign out of grown-up account"]'),
+    );
     await click(
       container.querySelector('[aria-label="Sign out of grown-up account"]'),
     );
@@ -603,6 +618,7 @@ describe("cloud learning data rights", () => {
     expect(container.querySelector(".app-shell")).toBeNull();
     expect(mocks.load).toHaveBeenCalledTimes(1);
     expect(mocks.save).not.toHaveBeenCalled();
+    await click(button("Sign out"));
     await click(button("Sign out"));
     expect(container.textContent).toContain("Welcome to the island");
   });
