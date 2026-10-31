@@ -12,6 +12,8 @@ const mocks = vi.hoisted(() => ({
   kidSignIn: vi.fn(),
   kidRow: null as unknown,
   signOut: vi.fn(),
+  resetPassword: vi.fn(),
+  updateUser: vi.fn(),
   rpc: vi.fn(),
   load: vi.fn(),
   save: vi.fn(),
@@ -40,6 +42,8 @@ vi.mock("./supabase", () => {
       signInWithOtp: mocks.signIn,
       signInWithPassword: mocks.kidSignIn,
       signOut: mocks.signOut,
+      resetPasswordForEmail: mocks.resetPassword,
+      updateUser: mocks.updateUser,
     },
   };
   return {
@@ -100,6 +104,8 @@ beforeEach(() => {
   mocks.kidSignIn.mockReset().mockResolvedValue({ error: null });
   mocks.kidRow = null;
   mocks.signOut.mockReset().mockResolvedValue({ error: null });
+  mocks.resetPassword.mockReset().mockResolvedValue({ error: null });
+  mocks.updateUser.mockReset().mockResolvedValue({ error: null });
   mocks.rpc.mockReset().mockResolvedValue({ data: true, error: null });
   mocks.load
     .mockReset()
@@ -728,6 +734,61 @@ describe("grown-up password sign-in", () => {
     await click(button("Sign in with password"));
     expect(container.querySelector('[role="alert"]')?.textContent).toContain(
       "haven't set a password yet",
+    );
+  });
+});
+
+describe("grown-up password reset", () => {
+  async function fill(selector: string, value: string) {
+    const input = container.querySelector<HTMLInputElement>(selector)!;
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(
+        HTMLInputElement.prototype,
+        "value",
+      )!.set!.call(input, value);
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+  }
+
+  it("emails a reset link from the Forgot your password option", async () => {
+    await mount();
+    await click(button("Password"));
+    await click(button("Forgot your password?"));
+    await fill("#reset-email", "parent@example.com");
+    await click(button("Email me a reset link"));
+    expect(mocks.resetPassword).toHaveBeenCalledWith(
+      "parent@example.com",
+      expect.objectContaining({ redirectTo: expect.any(String) }),
+    );
+    expect(container.textContent).toContain("a password reset link is on");
+  });
+
+  it("sets a new password when the reset link lands (PASSWORD_RECOVERY)", async () => {
+    await mount();
+    mocks.session = { user: { id: "adult-one" } } as Session;
+    await act(async () => mocks.listener?.("PASSWORD_RECOVERY", mocks.session));
+    expect(container.textContent).toContain("Set a new password");
+    await fill("#recovery-password", "fresh-pass-2026");
+    await fill("#recovery-password-confirm", "fresh-pass-2026");
+    await click(button("Save new password"));
+    expect(mocks.updateUser).toHaveBeenCalledWith({
+      password: "fresh-pass-2026",
+    });
+    expect(container.textContent).toContain("Your password is updated");
+    await click(button("Start learning"));
+    expect(container.querySelector(".points-pill")).not.toBeNull();
+  });
+
+  it("blocks mismatched new passwords during recovery", async () => {
+    await mount();
+    mocks.session = { user: { id: "adult-one" } } as Session;
+    await act(async () => mocks.listener?.("PASSWORD_RECOVERY", mocks.session));
+    await fill("#recovery-password", "fresh-pass-2026");
+    await fill("#recovery-password-confirm", "different-2026");
+    await click(button("Save new password"));
+    expect(mocks.updateUser).not.toHaveBeenCalled();
+    expect(container.querySelector('[role="alert"]')?.textContent).toContain(
+      "do not match",
     );
   });
 });

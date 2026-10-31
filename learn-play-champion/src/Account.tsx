@@ -24,6 +24,7 @@ import { supabase } from "./supabase";
 import {
   fetchOwnKidAccount,
   kidEmail,
+  kidPasswordError,
   type KidAccount,
 } from "./kid-accounts";
 import {
@@ -143,6 +144,16 @@ export default function Account() {
   const [pwEmail, setPwEmail] = useState("");
   const [pwPassword, setPwPassword] = useState("");
   const [pwSigningIn, setPwSigningIn] = useState(false);
+  const [resetMode, setResetMode] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [resetSending, setResetSending] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
+  const [recovery, setRecovery] = useState(false);
+  const [newPw, setNewPw] = useState("");
+  const [newPwConfirm, setNewPwConfirm] = useState("");
+  const [pwSaving, setPwSaving] = useState(false);
+  const [recoveryError, setRecoveryError] = useState("");
+  const [pwSaved, setPwSaved] = useState(false);
   const [loginGrade, setLoginGrade] = useState<GradeId | "">("");
   const [requestedGrade, setRequestedGrade] = useState<GradeId | undefined>(() => {
     const raw = new URLSearchParams(location.search).get("learning_grade");
@@ -162,8 +173,9 @@ export default function Account() {
     const client = supabase;
     const {
       data: { subscription },
-    } = client.auth.onAuthStateChange((_event, next) => {
+    } = client.auth.onAuthStateChange((event, next) => {
       if (!active) return;
+      if (event === "PASSWORD_RECOVERY") setRecovery(true);
       setSession(next);
       setChecking(false);
       if (next) {
@@ -211,8 +223,62 @@ export default function Account() {
     setGrownUpMethod("link");
     setPwEmail("");
     setPwPassword("");
+    setResetMode(false);
+    setResetSent(false);
+    setRecovery(false);
+    setNewPw("");
+    setNewPwConfirm("");
+    setPwSaved(false);
     setLoginGrade("");
     setRequestedGrade(undefined);
+  };
+  const requestReset = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!supabase || resetSending) return;
+    setResetSending(true);
+    setAuthError("");
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(
+        resetEmail.trim(),
+        { redirectTo: `${location.origin}/` },
+      );
+      if (error) throw error;
+      setResetSent(true);
+    } catch {
+      setAuthError(
+        "We couldn't send the reset email just now. Please try again in a moment.",
+      );
+    } finally {
+      setResetSending(false);
+    }
+  };
+  const saveNewPassword = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!supabase || pwSaving) return;
+    const problem =
+      kidPasswordError(newPw) ||
+      (newPw !== newPwConfirm ? "The two passwords do not match." : "");
+    if (problem) {
+      setRecoveryError(problem);
+      return;
+    }
+    setPwSaving(true);
+    setRecoveryError("");
+    try {
+      const { error } = await supabase.auth.updateUser({ password: newPw });
+      if (error) throw error;
+      setNewPw("");
+      setNewPwConfirm("");
+      setPwSaved(true);
+    } catch (failure) {
+      setRecoveryError(
+        failure instanceof Error
+          ? failure.message
+          : "Could not set the new password. Please try again.",
+      );
+    } finally {
+      setPwSaving(false);
+    }
   };
   if (checking)
     return (
@@ -224,6 +290,89 @@ export default function Account() {
         <p className="dialog-description" role="status">
           Getting your learning space ready.
         </p>
+      </AccountPage>
+    );
+  if (recovery && session && supabase)
+    return (
+      <AccountPage>
+        <span className="account-icon">
+          <LockKeyhole size={25} />
+        </span>
+        <h2>Set a new password</h2>
+        {pwSaved ? (
+          <>
+            <p className="dialog-description" role="status">
+              Your password is updated and you're signed in. Next time, you
+              can sign in with your email + this password.
+            </p>
+            <button
+              className="button primary full-width"
+              type="button"
+              onClick={() => setRecovery(false)}
+            >
+              Start learning
+              <ArrowRight size={18} />
+            </button>
+          </>
+        ) : (
+          <>
+            <p className="dialog-description">
+              Choose a new password for your grown-up account.
+            </p>
+            {recoveryError && (
+              <p className="account-error" role="alert">
+                {recoveryError}
+              </p>
+            )}
+            <form className="account-form" onSubmit={saveNewPassword}>
+              <label htmlFor="recovery-password">
+                New password (at least 8 characters)
+              </label>
+              <div className="email-field">
+                <LockKeyhole size={18} />
+                <input
+                  id="recovery-password"
+                  type="password"
+                  autoComplete="new-password"
+                  value={newPw}
+                  onChange={(event) => setNewPw(event.target.value)}
+                  required
+                  disabled={pwSaving}
+                  maxLength={72}
+                />
+              </div>
+              <label htmlFor="recovery-password-confirm">Type it again</label>
+              <div className="email-field">
+                <LockKeyhole size={18} />
+                <input
+                  id="recovery-password-confirm"
+                  type="password"
+                  autoComplete="new-password"
+                  value={newPwConfirm}
+                  onChange={(event) => setNewPwConfirm(event.target.value)}
+                  required
+                  disabled={pwSaving}
+                  maxLength={72}
+                />
+              </div>
+              <button
+                className="button primary full-width"
+                type="submit"
+                disabled={pwSaving || !newPw || !newPwConfirm}
+              >
+                {pwSaving ? "Saving…" : "Save new password"}
+                <ArrowRight size={18} />
+              </button>
+            </form>
+            <button
+              className="text-button"
+              type="button"
+              onClick={() => setRecovery(false)}
+            >
+              Skip — keep my old password
+            </button>
+          </>
+        )}
       </AccountPage>
     );
   if (session && supabase)
@@ -412,6 +561,7 @@ export default function Account() {
         </button>
       </div>
       {grownUpMethod === "password" ? (
+      <>
       <form className="account-form" onSubmit={grownUpPasswordSignIn}>
         <label htmlFor="gp-email">Parent or teacher email</label>
         <div className="email-field">
@@ -457,6 +607,53 @@ export default function Account() {
           <ArrowRight size={18} />
         </button>
       </form>
+      <button
+        className="text-button"
+        type="button"
+        onClick={() => {
+          setResetMode((open) => !open);
+          setResetEmail(pwEmail);
+          setResetSent(false);
+          setAuthError("");
+        }}
+      >
+        Forgot your password?
+      </button>
+      {resetMode &&
+        (resetSent ? (
+          <p className="kid-signin-note" role="status">
+            If that email has a grown-up account, a password reset link is on
+            its way. Open it on this device and you'll be asked to choose a
+            new password. The link works once and expires in 1 hour.
+          </p>
+        ) : (
+          <form className="account-form" onSubmit={requestReset}>
+            <label htmlFor="reset-email">Email for the reset link</label>
+            <div className="email-field">
+              <Mail size={18} />
+              <input
+                id="reset-email"
+                type="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                value={resetEmail}
+                onChange={(event) => setResetEmail(event.target.value)}
+                required
+                disabled={resetSending}
+                maxLength={254}
+              />
+            </div>
+            <button
+              className="button secondary full-width"
+              type="submit"
+              disabled={!supabase || resetSending || !resetEmail.trim()}
+            >
+              {resetSending ? "Sending…" : "Email me a reset link"}
+              <ArrowRight size={18} />
+            </button>
+          </form>
+        ))}
+      </>
       ) : (
       <form className="account-form" onSubmit={sendLink}>
         <label htmlFor="adult-email">Parent or teacher email</label>
