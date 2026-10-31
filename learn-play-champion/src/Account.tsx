@@ -577,6 +577,7 @@ function CloudWorkspace({
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<Error | null>(null);
   const [signingOut, setSigningOut] = useState(false);
+  const [confirmingSignOut, setConfirmingSignOut] = useState(false);
   const [signOutError, setSignOutError] = useState("");
   const [erased, setErased] = useState(false);
   const [erasing, setErasing] = useState(false);
@@ -667,14 +668,21 @@ function CloudWorkspace({
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
   }, [pending]);
+  // Two-step sign-out: the first tap arms the button, the second tap signs
+  // out. (A native window.confirm gate silently blocked sign-out in some
+  // browsers, leaving families stuck signed in.)
+  useEffect(() => {
+    if (!confirmingSignOut) return;
+    const timer = setTimeout(() => setConfirmingSignOut(false), 5000);
+    return () => clearTimeout(timer);
+  }, [confirmingSignOut]);
   const logout = async () => {
     if (pending || saving || signingOut) return;
-    if (
-      !window.confirm(
-        "Sign out? Finish any current adventure first. Unfinished rounds are not saved.",
-      )
-    )
+    if (!confirmingSignOut) {
+      setConfirmingSignOut(true);
       return;
+    }
+    setConfirmingSignOut(false);
     setSigningOut(true);
     setSignOutError("");
     try {
@@ -689,7 +697,7 @@ function CloudWorkspace({
     <p>The adult login identity remains. Contact the operator for full account deletion, provider logs, and backup timelines.
       Learning is paused here until sign-out finishes.</p>
     {signOutError && <p role="alert" className="account-error">{signOutError}</p>}
-    <button className="button primary full-width" disabled={signingOut} onClick={logout}>Sign out</button>
+    <button className="button primary full-width" disabled={signingOut} onClick={logout}>{confirmingSignOut ? "Tap again to Sign out" : "Sign out"}</button>
   </AccountPage>;
   if (!record)
     return (
@@ -767,9 +775,10 @@ function CloudWorkspace({
                 disabled={pending || saving || signingOut}
                 onClick={logout}
                 aria-label="Sign out"
+                title="Unfinished rounds are not saved"
               >
                 <LogOut size={16} />
-                <span>{signingOut ? "Signing out…" : "Sign out"}</span>
+                <span>{signingOut ? "Signing out…" : confirmingSignOut ? "Tap again to Sign out" : "Sign out"}</span>
               </button>
             </div>
           ) : (
@@ -783,9 +792,10 @@ function CloudWorkspace({
                 disabled={pending || saving || signingOut}
                 onClick={logout}
                 aria-label="Sign out of grown-up account"
+                title="Unfinished rounds are not saved"
               >
                 <LogOut size={16} />
-                <span>{signingOut ? "Signing out…" : "Sign out"}</span>
+                <span>{signingOut ? "Signing out…" : confirmingSignOut ? "Tap again to Sign out" : "Sign out"}</span>
               </button>
             </div>
           )
