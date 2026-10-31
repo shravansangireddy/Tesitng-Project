@@ -330,6 +330,10 @@ export const editorialPages: ContentPage[] = [
         "Configured Supabase services can process adult email, authentication information, learning progress, and private-room participation. Browser speech recognition or synthesis may send audio or text to the browser provider. The app does not promise that speech processing is local or offline.",
         "Adult donations use PayPal when enabled. Financial and teaching-author records are separate from learner progress erasure. Provider logs, backups, authentication identity, and financial retention require operator handling.",
       ] },
+      { heading: "Kid logins are created and controlled by a grown-up", paragraphs: [
+        "A parent or guardian can create a kid login: a simple username and password the child uses to sign in on any device and keep their own learning progress. A kid login needs no email address, and the username is never shown publicly — there are no public child profiles, followers, or chat.",
+        "The grown-up who created a kid login controls it: they choose the username, the child's display name (a first name or nickname is enough) and starting grade, and they can reset the password or delete the login at any time from Privacy & data. Deleting a kid login also deletes the progress saved under it. Kid logins store only the display name, grade, and learning progress — no photos, voice recordings, or contact details.",
+      ] },
       { heading: "What the operator must do", paragraphs: [
         "Online features default to disabled until required privacy configuration is supplied. Configuration flags and adult checkboxes are not verified parental consent, a district agreement, or COPPA/FERPA certification. The operator must establish appropriate notices, authorization, security, retention, access, and deletion procedures.",
         "Before online child use, open Privacy & data and check the operator contact and retention notice. If these are missing or unclear, keep online features disabled. Schools should confirm district authorization and contractual protections rather than assuming a teacher account is sufficient.",
@@ -337,6 +341,7 @@ export const editorialPages: ContentPage[] = [
     ],
     questions: [
       { question: "Is the app certified COPPA or FERPA compliant?", answer: "No. Compliance depends on the operator's actual practices, consent or school authorization, provider arrangements, applicable law, and deployment. The software does not provide a compliance certification." },
+      { question: "How do kid logins work?", answer: "A parent or guardian creates a username and password for their child from Privacy & data in the app. The child signs in with that username and password — no email address is collected — and gets their own progress at the grade the grown-up chose. The grown-up can reset the password or delete the login and its progress at any time. Usernames are never displayed publicly." },
       { question: "Does learner erasure delete every record?", answer: "No. Cloud learning erasure removes learning and room records. Adult authentication, teaching records, financial records, provider logs, and backups require separate operator processes." },
     ],
   },
