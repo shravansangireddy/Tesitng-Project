@@ -68,6 +68,7 @@ import "./themes.css";
 import PracticeRooms from "./PracticeRooms";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import PrivacyCenter from "./PrivacyCenter";
+import KidTasks from "./KidTasks";
 import BookShelf from "./BookShelf";
 import TeacherLibrary from "./TeacherLibrary";
 import { supabase } from "./supabase";
@@ -453,6 +454,8 @@ export default function App({
   cloudSaving,
   onEraseCloud,
   singleLearner,
+  taskClient,
+  kidUserId,
 }: {
   cloudProgress?: Progress;
   onProgressChange?: (progress: Progress) => void;
@@ -463,6 +466,9 @@ export default function App({
   onEraseCloud?: () => Promise<void>;
   /** Kid-login sessions are one learner by definition: hide the profile switcher. */
   singleLearner?: boolean;
+  /** Kid-login sessions also get their assigned task list on Home. */
+  taskClient?: SupabaseClient;
+  kidUserId?: string;
 }) {
   const [loaded] = useState(() =>
     cloudProgress ? { progress: cloudProgress, error: "" } : loadProgress(),
@@ -1234,6 +1240,18 @@ export default function App({
                   </div>
                 )}
               </div>
+              {view === "home" && taskClient && kidUserId && (
+                <KidTasks
+                  client={taskClient}
+                  kidUserId={kidUserId}
+                  onStartActivity={(activityId) => {
+                    const activity = activities.find(
+                      (item) => item.id === activityId,
+                    );
+                    if (activity) start(activity);
+                  }}
+                />
+              )}
               {(view === "home" || view === "adventures") && (
                 <section
                   className="grade-library panel"

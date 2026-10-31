@@ -742,6 +742,8 @@ function CloudWorkspace({
         roomClient={client}
         cloudSaving={pending || saving || !!saveError}
         singleLearner={!!kidAccount}
+        taskClient={kidAccount ? client : undefined}
+        kidUserId={kidAccount ? userId : undefined}
         onProgressChange={updateProgress}
         onEraseCloud={async () => {
           if (pending || saving || saveInFlight.current) throw new Error("Wait for pending saves before erasing learning data.");
