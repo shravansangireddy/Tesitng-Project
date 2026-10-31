@@ -9,6 +9,8 @@ const mocks = vi.hoisted(() => ({
   configured: true,
   session: null as Session | null,
   signIn: vi.fn(),
+  kidSignIn: vi.fn(),
+  kidRow: null as unknown,
   signOut: vi.fn(),
   rpc: vi.fn(),
   load: vi.fn(),
@@ -16,15 +18,27 @@ const mocks = vi.hoisted(() => ({
   listener: null as ((event: string, session: Session | null) => void) | null,
 }));
 vi.mock("./supabase", () => {
+  const builder: Record<string, unknown> = {
+    select: () => builder,
+    eq: () => builder,
+    order: () => builder,
+    update: () => builder,
+    maybeSingle: async () => ({ data: mocks.kidRow, error: null }),
+    then: (resolve: (value: unknown) => void) =>
+      resolve({ data: [], error: null }),
+  };
   const client = {
     rpc: mocks.rpc,
+    from: () => builder,
     auth: {
       getSession: async () => ({ data: { session: mocks.session }, error: null }),
+      getUser: async () => ({ data: { user: mocks.session?.user ?? null } }),
       onAuthStateChange: (listener: typeof mocks.listener) => {
         mocks.listener = listener;
         return { data: { subscription: { unsubscribe: vi.fn() } } };
       },
       signInWithOtp: mocks.signIn,
+      signInWithPassword: mocks.kidSignIn,
       signOut: mocks.signOut,
     },
   };
@@ -83,6 +97,8 @@ beforeEach(() => {
   mocks.session = null;
   mocks.listener = null;
   mocks.signIn.mockReset().mockResolvedValue({ error: null });
+  mocks.kidSignIn.mockReset().mockResolvedValue({ error: null });
+  mocks.kidRow = null;
   mocks.signOut.mockReset().mockResolvedValue({ error: null });
   mocks.rpc.mockReset().mockResolvedValue({ data: true, error: null });
   mocks.load
@@ -589,5 +605,70 @@ describe("cloud learning data rights", () => {
     expect(mocks.save).not.toHaveBeenCalled();
     await click(button("Sign out"));
     expect(container.textContent).toContain("Welcome to the island");
+  });
+});
+
+describe("kid logins", () => {
+  async function fillKidForm(username: string, password: string) {
+    for (const [selector, value] of [
+      ["#kid-username", username],
+      ["#kid-password", password],
+    ] as const) {
+      const input = container.querySelector<HTMLInputElement>(selector)!;
+      await act(async () => {
+        Object.getOwnPropertyDescriptor(
+          HTMLInputElement.prototype,
+          "value",
+        )!.set!.call(input, value);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+    }
+  }
+
+  it("signs a kid in with the username mapped to its kid email", async () => {
+    await mount();
+    await click(button("Kid login"));
+    await fillKidForm("Avyan_7", "starfish42");
+    await click(button("Sign in and play"));
+    expect(mocks.kidSignIn).toHaveBeenCalledWith({
+      email: "avyan_7@kids.learnplaychampion.com",
+      password: "starfish42",
+    });
+    expect(mocks.signIn).not.toHaveBeenCalled();
+  });
+
+  it("shows a kid-friendly message when the login does not match", async () => {
+    mocks.kidSignIn.mockResolvedValue({
+      error: new Error("Invalid login credentials"),
+    });
+    await mount();
+    await click(button("Kid login"));
+    await fillKidForm("avyan_7", "wrong-pass");
+    await click(button("Sign in and play"));
+    expect(container.querySelector('[role="alert"]')?.textContent).toContain(
+      "didn't match",
+    );
+    expect(container.textContent).toContain("ask your grown-up to reset it");
+  });
+
+  it("opens a kid session at the grown-up-set grade without the profile switcher", async () => {
+    mocks.session = { user: { id: "kid-one" } } as Session;
+    mocks.kidRow = {
+      kid_user_id: "kid-one",
+      parent_id: "adult-one",
+      username: "avyan_7",
+      display_name: "Avyan",
+      grade: "4",
+      created_at: "2026-10-31T00:00:00Z",
+    };
+    await mount();
+    expect(container.textContent).toContain("Avyan · Grade 4");
+    expect(container.textContent).not.toContain("WHO'S LEARNING?");
+    expect(mocks.save).toHaveBeenCalledWith(
+      expect.anything(),
+      "kid-one",
+      expect.objectContaining({ selectedGrade: "4" }),
+      0,
+    );
   });
 });

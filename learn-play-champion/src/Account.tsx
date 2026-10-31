@@ -22,6 +22,11 @@ import {
 import App from "./App";
 import { supabase } from "./supabase";
 import {
+  fetchOwnKidAccount,
+  kidEmail,
+  type KidAccount,
+} from "./kid-accounts";
+import {
   loadCloudProgress,
   ProgressConflict,
   saveCloudProgress,
@@ -86,7 +91,7 @@ function AccountPage({ children }: { children: ReactNode }) {
             <ShieldCheck size={23} />
             <div>
               <strong>Grown-up accounts. Kid-friendly adventures.</strong>
-              <p>No public child profiles, ads, or open chat.</p>
+              <p>Parent-made kid logins. No public profiles, ads, or open chat.</p>
             </div>
           </div>
         </section>
@@ -130,6 +135,10 @@ export default function Account() {
   const [adult, setAdult] = useState(false);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [kidMode, setKidMode] = useState(false);
+  const [kidUsername, setKidUsername] = useState("");
+  const [kidPassword, setKidPassword] = useState("");
+  const [kidSigningIn, setKidSigningIn] = useState(false);
   const [loginGrade, setLoginGrade] = useState<GradeId | "">("");
   const [requestedGrade, setRequestedGrade] = useState<GradeId | undefined>(() => {
     const raw = new URLSearchParams(location.search).get("learning_grade");
@@ -192,6 +201,9 @@ export default function Account() {
     setSent(false);
     setEmail("");
     setAdult(false);
+    setKidMode(false);
+    setKidUsername("");
+    setKidPassword("");
     setLoginGrade("");
     setRequestedGrade(undefined);
   };
@@ -230,6 +242,26 @@ export default function Account() {
         }
       />
     );
+  const kidSignIn = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!supabase || kidSigningIn) return;
+    setKidSigningIn(true);
+    setAuthError("");
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: kidEmail(kidUsername),
+        password: kidPassword,
+      });
+      if (error) throw error;
+      setKidPassword("");
+    } catch {
+      setAuthError(
+        "That username and password didn't match. Check the spelling — or ask your grown-up to reset it for you.",
+      );
+    } finally {
+      setKidSigningIn(false);
+    }
+  };
   const sendLink = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!supabase || sending || !adult) return;
@@ -259,12 +291,79 @@ export default function Account() {
       <span className="account-icon">
         <LogIn size={27} />
       </span>
-      <span className="eyebrow">FOR PARENTS & TEACHERS</span>
+      <span className="eyebrow">{kidMode ? "KID SIGN-IN" : "FOR PARENTS & TEACHERS"}</span>
       <h2>Welcome to the island.</h2>
       <p className="dialog-description">
-        Sign in or create your grown-up account with a secure email link. No
-        password to remember.
+        {kidMode
+          ? "Sign in with your own username and password to load your progress."
+          : "Sign in or create your grown-up account with a secure email link. No password to remember."}
       </p>
+      <div className="account-mode-toggle" role="group" aria-label="Choose how to sign in">
+        <button
+          type="button"
+          className={!kidMode ? "active" : ""}
+          aria-pressed={!kidMode}
+          onClick={() => { setKidMode(false); setAuthError(""); }}
+        >
+          Grown-up
+        </button>
+        <button
+          type="button"
+          className={kidMode ? "active" : ""}
+          aria-pressed={kidMode}
+          onClick={() => { setKidMode(true); setAuthError(""); }}
+        >
+          Kid login
+        </button>
+      </div>
+      {kidMode ? (
+      <form className="account-form" onSubmit={kidSignIn}>
+        <label htmlFor="kid-username">Your username</label>
+        <div className="email-field">
+          <Sparkles size={18} />
+          <input
+            id="kid-username"
+            type="text"
+            autoComplete="username"
+            autoCapitalize="none"
+            placeholder="e.g., ava_2017"
+            value={kidUsername}
+            onChange={(event) => setKidUsername(event.target.value)}
+            required
+            disabled={kidSigningIn}
+            maxLength={20}
+          />
+        </div>
+        <label htmlFor="kid-password">Your password</label>
+        <div className="email-field">
+          <LockKeyhole size={18} />
+          <input
+            id="kid-password"
+            type="password"
+            autoComplete="current-password"
+            placeholder="Your password"
+            value={kidPassword}
+            onChange={(event) => setKidPassword(event.target.value)}
+            required
+            disabled={kidSigningIn}
+            maxLength={72}
+          />
+        </div>
+        <p className="kid-signin-note">
+          Use the username and password your grown-up made for you. Forgot it?
+          Ask your grown-up — they can reset it for you.
+        </p>
+        <button
+          className="button primary full-width"
+          type="submit"
+          disabled={!supabase || kidSigningIn || !kidUsername.trim() || !kidPassword}
+        >
+          {kidSigningIn ? "Signing you in…" : "Sign in and play"}
+          <ArrowRight size={18} />
+        </button>
+      </form>
+      ) : (
+      <>
       <PrivacyNotice />
       <p><a href="/learn/">Explore our learning guides for parents and teachers</a></p>
       <form className="account-form" onSubmit={sendLink}>
@@ -323,6 +422,8 @@ export default function Account() {
           <ArrowRight size={18} />
         </button>
       </form>
+      </>
+      )}
       {authError && (
         <p className="account-error" role="alert">
           {authError}
@@ -352,8 +453,10 @@ export default function Account() {
       </button>
       <p className="account-privacy">
         Guest progress stays on this device and is separate from account
-        progress. Each grown-up account currently has one learner’s progress.
-        Signing in does not upload existing guest progress.
+        progress. A grown-up account can hold profiles for several children
+        on this device, and a kid with their own login keeps separate
+        progress that follows them on any device. Signing in does not upload
+        existing guest progress.
       </p>
     </AccountPage>
   );
@@ -373,6 +476,7 @@ function CloudWorkspace({
   onGradeApplied: () => void;
 }) {
   const [record, setRecord] = useState<CloudRecord | null>(null);
+  const [kidAccount, setKidAccount] = useState<KidAccount | null>(null);
   const [loadError, setLoadError] = useState("");
   const [reload, setReload] = useState(0);
   const [desired, setDesired] = useState<Progress | null>(null);
@@ -397,10 +501,17 @@ function CloudWorkspace({
     let cancelled = false;
     setRecord(null);
     setLoadError("");
-    loadCloudProgress(client, userId)
-      .then((next) => {
+    Promise.all([
+      loadCloudProgress(client, userId),
+      fetchOwnKidAccount(client, userId).catch(() => null),
+    ])
+      .then(([next, kid]) => {
         if (cancelled) return;
-        const selected = gradeRequest.current;
+        setKidAccount(kid);
+        const requested = gradeRequest.current;
+        // A kid login starts at the grade its grown-up set; an explicit
+        // grade from a sign-in link wins when both are present.
+        const selected = requested ?? kid?.grade;
         const progress = selected && selected !== next.progress.selectedGrade
           ? { ...next.progress, selectedGrade: selected } : next.progress;
         revision.current = next.revision;
@@ -408,7 +519,7 @@ function CloudWorkspace({
         setDesired(progress);
         setSaved(next.progress);
         setSaveError(null);
-        if (selected) {
+        if (requested) {
           gradeRequest.current = undefined;
           onGradeApplied();
         }
@@ -529,6 +640,7 @@ function CloudWorkspace({
         cloudProgress={record.progress}
         roomClient={client}
         cloudSaving={pending || saving || !!saveError}
+        singleLearner={!!kidAccount}
         onProgressChange={updateProgress}
         onEraseCloud={async () => {
           if (pending || saving || saveInFlight.current) throw new Error("Wait for pending saves before erasing learning data.");
@@ -548,21 +660,42 @@ function CloudWorkspace({
           } finally { setErasing(false); }
         }}
         accountControls={
-          <div className="account-controls">
-            <span className="cloud-status" role="status">
-              <Cloud size={14} />
-              {pending || saving ? "Saving…" : "Cloud saved"}
-            </span>
-            <button
-              className="account-button"
-              disabled={pending || saving || signingOut}
-              onClick={logout}
-              aria-label="Sign out of grown-up account"
-            >
-              <LogOut size={16} />
-              <span>{signingOut ? "Signing out…" : "Sign out"}</span>
-            </button>
-          </div>
+          kidAccount ? (
+            <div className="account-controls">
+              <span className="cloud-status" role="status">
+                <Cloud size={14} />
+                {pending || saving ? "Saving…" : "Cloud saved"}
+              </span>
+              <span className="kid-chip">
+                ⭐ {kidAccount.displayName} · {gradeLabels[kidAccount.grade]}
+              </span>
+              <button
+                className="account-button"
+                disabled={pending || saving || signingOut}
+                onClick={logout}
+                aria-label="Sign out"
+              >
+                <LogOut size={16} />
+                <span>{signingOut ? "Signing out…" : "Sign out"}</span>
+              </button>
+            </div>
+          ) : (
+            <div className="account-controls">
+              <span className="cloud-status" role="status">
+                <Cloud size={14} />
+                {pending || saving ? "Saving…" : "Cloud saved"}
+              </span>
+              <button
+                className="account-button"
+                disabled={pending || saving || signingOut}
+                onClick={logout}
+                aria-label="Sign out of grown-up account"
+              >
+                <LogOut size={16} />
+                <span>{signingOut ? "Signing out…" : "Sign out"}</span>
+              </button>
+            </div>
+          )
         }
       />
       {signOutError && (

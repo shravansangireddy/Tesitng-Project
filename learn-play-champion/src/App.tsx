@@ -452,6 +452,7 @@ export default function App({
   roomClient,
   cloudSaving,
   onEraseCloud,
+  singleLearner,
 }: {
   cloudProgress?: Progress;
   onProgressChange?: (progress: Progress) => void;
@@ -460,6 +461,8 @@ export default function App({
   roomClient?: SupabaseClient;
   cloudSaving?: boolean;
   onEraseCloud?: () => Promise<void>;
+  /** Kid-login sessions are one learner by definition: hide the profile switcher. */
+  singleLearner?: boolean;
 }) {
   const [loaded] = useState(() =>
     cloudProgress ? { progress: cloudProgress, error: "" } : loadProgress(),
@@ -1236,6 +1239,7 @@ export default function App({
                   className="grade-library panel"
                   aria-label="Grade learning library"
                 >
+                  {!singleLearner && (
                   <div className="learner-switcher">
                     <div className="learner-switcher-head">
                       <span className="eyebrow">WHO'S LEARNING?</span>
@@ -1287,6 +1291,7 @@ export default function App({
                       </p>
                     )}
                   </div>
+                  )}
                   <div className="grade-library-top">
                     <div>
                       <span className="eyebrow">YOUR PRE-K–5 PRACTICE LIBRARY</span>
@@ -2083,7 +2088,7 @@ export default function App({
           </button>
         </Dialog>
       )}
-      {profilesOpen && (
+      {profilesOpen && !singleLearner && (
         <LearnerProfilesDialog
           progress={progress}
           onClose={() => setProfilesOpen(false)}
