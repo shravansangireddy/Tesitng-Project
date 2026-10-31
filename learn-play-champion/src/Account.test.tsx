@@ -672,3 +672,46 @@ describe("kid logins", () => {
     );
   });
 });
+
+describe("grown-up password sign-in", () => {
+  async function fillGrownUpPasswordForm(email: string, password: string) {
+    for (const [selector, value] of [
+      ["#gp-email", email],
+      ["#gp-password", password],
+    ] as const) {
+      const input = container.querySelector<HTMLInputElement>(selector)!;
+      await act(async () => {
+        Object.getOwnPropertyDescriptor(
+          HTMLInputElement.prototype,
+          "value",
+        )!.set!.call(input, value);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+    }
+  }
+
+  it("signs a grown-up in with email and password", async () => {
+    await mount();
+    await click(button("Password"));
+    await fillGrownUpPasswordForm("parent@example.com", "grownup-pass-1");
+    await click(button("Sign in with password"));
+    expect(mocks.kidSignIn).toHaveBeenCalledWith({
+      email: "parent@example.com",
+      password: "grownup-pass-1",
+    });
+    expect(mocks.signIn).not.toHaveBeenCalled();
+  });
+
+  it("explains the set-a-password path when the password does not match", async () => {
+    mocks.kidSignIn.mockResolvedValue({
+      error: new Error("Invalid login credentials"),
+    });
+    await mount();
+    await click(button("Password"));
+    await fillGrownUpPasswordForm("parent@example.com", "not-set-yet-1");
+    await click(button("Sign in with password"));
+    expect(container.querySelector('[role="alert"]')?.textContent).toContain(
+      "haven't set a password yet",
+    );
+  });
+});
