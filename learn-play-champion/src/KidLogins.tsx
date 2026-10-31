@@ -17,6 +17,14 @@ import {
   type KidAccount,
   type KidProgress,
 } from "./kid-accounts";
+import { activities, type ActivityId } from "./game";
+import {
+  createKidTask,
+  deleteKidTask,
+  fetchKidTasks,
+  taskTitleError,
+  type KidTask,
+} from "./kid-tasks";
 
 function failure(error: unknown): string {
   return error instanceof Error
@@ -136,6 +144,7 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
             <KidLoginRow
               key={kid.kidUserId}
               client={client}
+              parentId={parentId}
               kid={kid}
               onChanged={refresh}
               onError={setError}
@@ -218,12 +227,14 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
 
 function KidLoginRow({
   client,
+  parentId,
   kid,
   onChanged,
   onError,
   onNotice,
 }: {
   client: SupabaseClient;
+  parentId: string;
   kid: KidAccount;
   onChanged: () => Promise<void>;
   onError: (message: string) => void;
@@ -412,7 +423,151 @@ function KidLoginRow({
           onRetry={() => void loadProgress()}
         />
       )}
+      <KidTasksManager client={client} parentId={parentId} kid={kid} />
     </li>
+  );
+}
+
+function KidTasksManager({
+  client,
+  parentId,
+  kid,
+}: {
+  client: SupabaseClient;
+  parentId: string;
+  kid: KidAccount;
+}) {
+  const [tasks, setTasks] = useState<KidTask[] | null>(null);
+  const [title, setTitle] = useState("");
+  const [activityId, setActivityId] = useState<ActivityId | "">("");
+  const [adding, setAdding] = useState(false);
+  const [taskError, setTaskError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        const rows = await fetchKidTasks(client, kid.kidUserId);
+        if (active) setTasks(rows);
+      } catch {
+        if (active) setTasks([]);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [client, kid.kidUserId]);
+
+  const add = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (adding) return;
+    const problem = taskTitleError(title);
+    if (problem) {
+      setTaskError(problem);
+      return;
+    }
+    setAdding(true);
+    setTaskError("");
+    try {
+      const created = await createKidTask(client, {
+        parentId,
+        kidUserId: kid.kidUserId,
+        title,
+        activityId: activityId || null,
+      });
+      setTasks((current) => [...(current ?? []), created]);
+      setTitle("");
+      setActivityId("");
+    } catch (addFailure) {
+      setTaskError(failure(addFailure));
+    } finally {
+      setAdding(false);
+    }
+  };
+
+  const removeTask = async (task: KidTask) => {
+    try {
+      await deleteKidTask(client, task.id);
+      setTasks((current) =>
+        (current ?? []).filter((item) => item.id !== task.id),
+      );
+    } catch (removeFailure) {
+      setTaskError(failure(removeFailure));
+    }
+  };
+
+  return (
+    <div className="kid-tasks-manager">
+      <h3>Tasks for {kid.displayName}</h3>
+      <p className="kid-tasks-manager-note">
+        Tasks appear on {kid.displayName}'s home screen after they sign in. A
+        task with an activity opens that adventure directly.
+      </p>
+      {taskError && (
+        <p className="kid-logins-error" role="alert">
+          {taskError}
+        </p>
+      )}
+      {tasks === null ? (
+        <p role="status">Loading tasks…</p>
+      ) : tasks.length === 0 ? (
+        <p>No tasks yet.</p>
+      ) : (
+        <ul className="kid-tasks-manager-list">
+          {tasks.map((task) => (
+            <li key={task.id}>
+              <span>
+                {task.done ? "✅ " : "⏳ "}
+                {task.title}
+                {task.done && task.completedAt
+                  ? ` — done ${formatDay(task.completedAt.slice(0, 10))}`
+                  : ""}
+              </span>
+              <button
+                type="button"
+                className="text-button"
+                onClick={() => void removeTask(task)}
+              >
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      <form className="kid-tasks-manager-form" onSubmit={add}>
+        <label>
+          New task
+          <input
+            type="text"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+            placeholder="Play Math Mountain"
+            maxLength={80}
+            disabled={adding}
+          />
+        </label>
+        <label>
+          Opens this activity (optional)
+          <select
+            value={activityId}
+            onChange={(event) =>
+              setActivityId(event.target.value as ActivityId | "")
+            }
+            disabled={adding}
+          >
+            <option value="">No specific activity</option>
+            {activities.map((activity) => (
+              <option key={activity.id} value={activity.id}>
+                {activity.title}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button className="button secondary" type="submit" disabled={adding}>
+          {adding ? "Adding…" : "Add task"}
+        </button>
+      </form>
+    </div>
   );
 }
 

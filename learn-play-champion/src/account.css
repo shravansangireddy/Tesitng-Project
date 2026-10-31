@@ -489,3 +489,92 @@
   padding: 6px 12px;
   white-space: nowrap;
 }
+
+/* Kid tasks: the signed-in kid's job list on Home, and the grown-up's
+   task manager inside each Kid logins row. */
+.kid-tasks {
+  background: var(--surface, #fffdf9);
+  border: 2px solid var(--sand, #f0e2cc);
+  border-radius: 18px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+.kid-tasks h2 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+.kid-tasks-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.kid-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--cream, #fdf8f1);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.kid-task-title {
+  font-weight: 600;
+}
+.kid-task-activity {
+  font-weight: 400;
+  opacity: 0.75;
+}
+.kid-task-actions {
+  display: inline-flex;
+  gap: 8px;
+}
+.kid-tasks-done {
+  margin-top: 10px;
+}
+.kid-task.is-done {
+  opacity: 0.75;
+}
+.kid-tasks-all-done {
+  margin: 0;
+  font-weight: 600;
+}
+.kid-tasks-manager {
+  margin-top: 14px;
+  border-top: 1px dashed var(--sand, #f0e2cc);
+  padding-top: 12px;
+}
+.kid-tasks-manager h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+.kid-tasks-manager-note {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+.kid-tasks-manager-list {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.kid-tasks-manager-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.kid-tasks-manager-form {
+  display: grid;
+  gap: 8px;
+}
+.kid-tasks-manager-form label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
