@@ -4,15 +4,18 @@ import { gradeIds, gradeLabels, type GradeId } from "./content-schema";
 import {
   createKidAccount,
   deleteKidAccount,
+  fetchKidProgress,
   fetchMyKidAccounts,
   fetchOwnKidAccount,
   kidNameError,
   kidPasswordError,
   MAX_KID_ACCOUNTS,
   resetKidPassword,
+  summarizeProgress,
   updateKidAccount,
   usernameError,
   type KidAccount,
+  type KidProgress,
 } from "./kid-accounts";
 
 function failure(error: unknown): string {
@@ -223,6 +226,27 @@ function KidLoginRow({
   const [resetOpen, setResetOpen] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [progressOpen, setProgressOpen] = useState(false);
+  const [progressState, setProgressState] = useState<
+    "idle" | "loading" | "ready" | "error"
+  >("idle");
+  const [kidProgress, setKidProgress] = useState<KidProgress | null>(null);
+
+  const loadProgress = async () => {
+    setProgressState("loading");
+    try {
+      setKidProgress(await fetchKidProgress(client, kid.kidUserId));
+      setProgressState("ready");
+    } catch {
+      setProgressState("error");
+    }
+  };
+
+  const toggleProgress = () => {
+    const next = !progressOpen;
+    setProgressOpen(next);
+    if (next && progressState === "idle") void loadProgress();
+  };
 
   const commitName = async () => {
     const trimmed = name.trim();
@@ -333,6 +357,15 @@ function KidLoginRow({
           className="button secondary"
           type="button"
           disabled={busy}
+          aria-expanded={progressOpen}
+          onClick={toggleProgress}
+        >
+          {progressOpen ? "Hide progress" : "View progress"}
+        </button>
+        <button
+          className="button secondary"
+          type="button"
+          disabled={busy}
           onClick={() => setResetOpen((open) => !open)}
         >
           Reset password
@@ -364,6 +397,104 @@ function KidLoginRow({
           </button>
         </form>
       )}
+      {progressOpen && (
+        <KidProgressPanel
+          kid={kid}
+          state={progressState}
+          kidProgress={kidProgress}
+          onRetry={() => void loadProgress()}
+        />
+      )}
     </li>
+  );
+}
+
+function formatDay(isoDate: string): string {
+  const parsed = new Date(`${isoDate}T12:00:00`);
+  return Number.isNaN(parsed.getTime())
+    ? isoDate
+    : parsed.toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+}
+
+function KidProgressPanel({
+  kid,
+  state,
+  kidProgress,
+  onRetry,
+}: {
+  kid: KidAccount;
+  state: "idle" | "loading" | "ready" | "error";
+  kidProgress: KidProgress | null;
+  onRetry: () => void;
+}) {
+  if (state === "loading" || state === "idle")
+    return (
+      <p className="kid-progress" role="status">
+        Loading {kid.displayName}'s progress…
+      </p>
+    );
+  if (state === "error")
+    return (
+      <div className="kid-progress">
+        <p role="alert">Could not load progress right now.</p>
+        <button className="button secondary" type="button" onClick={onRetry}>
+          Try again
+        </button>
+      </div>
+    );
+  if (!kidProgress)
+    return (
+      <p className="kid-progress">
+        No saved progress yet — it will appear here after {kid.displayName}{" "}
+        signs in with this login and plays.
+      </p>
+    );
+  const summary = summarizeProgress(kidProgress.progress);
+  return (
+    <div className="kid-progress">
+      <div className="kid-progress-stats">
+        <span>⭐ <strong>{summary.points}</strong> points</span>
+        <span>🔥 {summary.streak}-day streak</span>
+        <span>🎯 {summary.rounds} rounds played</span>
+        {summary.accuracy !== null && (
+          <span>✅ {summary.accuracy}% correct</span>
+        )}
+        <span>💎 {summary.chests} treasure chests</span>
+        <span>💻 {summary.codingDone} coding lessons</span>
+        <span>🤖 {summary.aiDone} AI lessons</span>
+      </div>
+      <p>
+        Badges: {summary.badgesEarned.length} of {summary.badgesTotal}
+        {summary.badgesEarned.length > 0 &&
+          ` — ${summary.badgesEarned.map((badge) => `${badge.symbol} ${badge.name}`).join(" · ")}`}
+      </p>
+      {summary.bestScores.length > 0 && (
+        <>
+          <p>
+            <strong>Best scores</strong>
+          </p>
+          <ul className="kid-progress-bests">
+            {summary.bestScores.map((score) => (
+              <li key={score.title}>
+                {score.title} — best {score.best}/5
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      <p className="kid-progress-meta">
+        {summary.grade && <>Playing at {gradeLabels[summary.grade]}. </>}
+        {summary.lastPlayedDate && (
+          <>Last played {formatDay(summary.lastPlayedDate)}. </>
+        )}
+        {kidProgress.updatedAt && (
+          <>Saved {new Date(kidProgress.updatedAt).toLocaleString()}.</>
+        )}
+      </p>
+    </div>
   );
 }
