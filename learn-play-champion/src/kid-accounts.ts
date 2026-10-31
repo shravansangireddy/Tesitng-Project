@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { gradeIds, type GradeId } from "./content-schema";
-import { cleanProfileName } from "./game";
+import { activities, badges, cleanProfileName, type Progress } from "./game";
+import { parseCloudRecord } from "./cloud";
 
 // Parent-created kid logins. A kid signs in with a username + password;
 // the username maps to a synthetic email on a domain we control, so the
@@ -218,4 +219,80 @@ export async function deleteKidAccount(
   kidUserId: string,
 ): Promise<void> {
   await invokeKidAccounts(client, { action: "delete", kidUserId });
+}
+
+export interface KidProgress {
+  progress: Progress;
+  updatedAt: string | null;
+}
+
+/**
+ * The progress saved under a kid login, readable by the parent who owns
+ * the login (row-level security on learner_progress enforces that).
+ * Returns null when the kid has not signed in and saved progress yet, or
+ * when the row cannot be read or parsed.
+ */
+export async function fetchKidProgress(
+  client: SupabaseClient,
+  kidUserId: string,
+): Promise<KidProgress | null> {
+  const { data, error } = await client
+    .from("learner_progress")
+    .select("data, revision, updated_at")
+    .eq("user_id", kidUserId)
+    .maybeSingle();
+  if (error || !data) return null;
+  try {
+    const record = parseCloudRecord(data);
+    const updatedAt = (data as { updated_at?: unknown }).updated_at;
+    return {
+      progress: record.progress,
+      updatedAt: typeof updatedAt === "string" ? updatedAt : null,
+    };
+  } catch {
+    return null;
+  }
+}
+
+export interface KidProgressSummary {
+  points: number;
+  rounds: number;
+  accuracy: number | null;
+  streak: number;
+  chests: number;
+  codingDone: number;
+  aiDone: number;
+  grade: GradeId | null;
+  lastPlayedDate: string;
+  badgesEarned: { symbol: string; name: string }[];
+  badgesTotal: number;
+  bestScores: { title: string; best: number }[];
+}
+
+/** Flatten a kid's saved progress into the numbers a grown-up wants to see. */
+export function summarizeProgress(progress: Progress): KidProgressSummary {
+  const titleById = new Map(activities.map((activity) => [activity.id, activity.title]));
+  const bestScores = Object.entries(progress.bestRounds)
+    .filter((entry): entry is [string, number] => typeof entry[1] === "number")
+    .map(([id, best]) => ({ title: titleById.get(id as never) ?? id, best }))
+    .sort((a, b) => b.best - a.best || a.title.localeCompare(b.title));
+  return {
+    points: progress.points,
+    rounds: progress.rounds,
+    accuracy:
+      progress.answered > 0
+        ? Math.round((progress.correct / progress.answered) * 100)
+        : null,
+    streak: progress.streak,
+    chests: progress.chestCount,
+    codingDone: progress.codingCompleted?.length ?? 0,
+    aiDone: progress.aiCompleted?.length ?? 0,
+    grade: progress.selectedGrade ?? null,
+    lastPlayedDate: progress.lastPlayedDate,
+    badgesEarned: badges
+      .filter((badge) => badge.earned(progress))
+      .map((badge) => ({ symbol: badge.symbol, name: badge.name })),
+    badgesTotal: badges.length,
+    bestScores,
+  };
 }

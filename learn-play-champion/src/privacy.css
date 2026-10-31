@@ -38,3 +38,7 @@
 .kid-logins-reset { display: grid; gap: 10px; margin-top: 12px; max-width: 320px; }
 .kid-logins-reset label { display: grid; gap: 6px; font-weight: 700; color: #302d49; }
 .kid-logins-reset input { padding: 10px 12px; font: inherit; border: 1px solid #d5c9ec; border-radius: 10px; background: white; color: #302d49; }
+.kid-progress { margin-top: 14px; background: white; border: 1px solid #d5c9ec; border-radius: 12px; padding: 14px 16px; }
+.kid-progress-stats { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.kid-progress-bests { margin: 6px 0; padding-left: 22px; }
+.kid-progress-meta { color: #5b5480; margin-bottom: 0 !important; }
