@@ -139,6 +139,10 @@ export default function Account() {
   const [kidUsername, setKidUsername] = useState("");
   const [kidPassword, setKidPassword] = useState("");
   const [kidSigningIn, setKidSigningIn] = useState(false);
+  const [grownUpMethod, setGrownUpMethod] = useState<"link" | "password">("link");
+  const [pwEmail, setPwEmail] = useState("");
+  const [pwPassword, setPwPassword] = useState("");
+  const [pwSigningIn, setPwSigningIn] = useState(false);
   const [loginGrade, setLoginGrade] = useState<GradeId | "">("");
   const [requestedGrade, setRequestedGrade] = useState<GradeId | undefined>(() => {
     const raw = new URLSearchParams(location.search).get("learning_grade");
@@ -204,6 +208,9 @@ export default function Account() {
     setKidMode(false);
     setKidUsername("");
     setKidPassword("");
+    setGrownUpMethod("link");
+    setPwEmail("");
+    setPwPassword("");
     setLoginGrade("");
     setRequestedGrade(undefined);
   };
@@ -260,6 +267,26 @@ export default function Account() {
       );
     } finally {
       setKidSigningIn(false);
+    }
+  };
+  const grownUpPasswordSignIn = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!supabase || pwSigningIn) return;
+    setPwSigningIn(true);
+    setAuthError("");
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: pwEmail.trim(),
+        password: pwPassword,
+      });
+      if (error) throw error;
+      setPwPassword("");
+    } catch {
+      setAuthError(
+        "That email and password didn't match. If you haven't set a password yet, sign in with the email link once, then set one in Privacy & data.",
+      );
+    } finally {
+      setPwSigningIn(false);
     }
   };
   const sendLink = async (event: React.FormEvent) => {
@@ -366,6 +393,71 @@ export default function Account() {
       <>
       <PrivacyNotice />
       <p><a href="/learn/">Explore our learning guides for parents and teachers</a></p>
+      <div className="account-mode-toggle account-method-toggle" role="group" aria-label="Choose how to sign in as a grown-up">
+        <button
+          type="button"
+          className={grownUpMethod === "link" ? "active" : ""}
+          aria-pressed={grownUpMethod === "link"}
+          onClick={() => { setGrownUpMethod("link"); setAuthError(""); }}
+        >
+          Email link
+        </button>
+        <button
+          type="button"
+          className={grownUpMethod === "password" ? "active" : ""}
+          aria-pressed={grownUpMethod === "password"}
+          onClick={() => { setGrownUpMethod("password"); setAuthError(""); }}
+        >
+          Password
+        </button>
+      </div>
+      {grownUpMethod === "password" ? (
+      <form className="account-form" onSubmit={grownUpPasswordSignIn}>
+        <label htmlFor="gp-email">Parent or teacher email</label>
+        <div className="email-field">
+          <Mail size={18} />
+          <input
+            id="gp-email"
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            value={pwEmail}
+            onChange={(event) => setPwEmail(event.target.value)}
+            required
+            disabled={pwSigningIn}
+            maxLength={254}
+          />
+        </div>
+        <label htmlFor="gp-password">Your password</label>
+        <div className="email-field">
+          <LockKeyhole size={18} />
+          <input
+            id="gp-password"
+            type="password"
+            autoComplete="current-password"
+            placeholder="The password you set"
+            value={pwPassword}
+            onChange={(event) => setPwPassword(event.target.value)}
+            required
+            disabled={pwSigningIn}
+            maxLength={72}
+          />
+        </div>
+        <p className="kid-signin-note">
+          Use the password you set in Privacy &amp; data. New here, or never
+          set one? Use the email link first — you can add a password after
+          you sign in.
+        </p>
+        <button
+          className="button primary full-width"
+          type="submit"
+          disabled={!supabase || pwSigningIn || !pwEmail.trim() || !pwPassword}
+        >
+          {pwSigningIn ? "Signing you in…" : "Sign in with password"}
+          <ArrowRight size={18} />
+        </button>
+      </form>
+      ) : (
       <form className="account-form" onSubmit={sendLink}>
         <label htmlFor="adult-email">Parent or teacher email</label>
         <div className="email-field">
@@ -422,6 +514,7 @@ export default function Account() {
           <ArrowRight size={18} />
         </button>
       </form>
+      )}
       </>
       )}
       {authError && (

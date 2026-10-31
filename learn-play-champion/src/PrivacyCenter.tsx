@@ -5,6 +5,7 @@ import DonationPanel from "./DonationPanel";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import ContentStudio from "./ContentStudio";
 import KidLogins from "./KidLogins";
+import ParentPassword from "./ParentPassword";
 
 export default function PrivacyCenter({ progress, cloud, onErase, paymentClient, onContentDirty }: {
   progress: Progress; cloud: boolean; onErase?: () => Promise<void>; paymentClient?: SupabaseClient | null;
@@ -57,6 +58,7 @@ export default function PrivacyCenter({ progress, cloud, onErase, paymentClient,
     {studioDirty && <p role="status">Save or close unsaved content edits before erasing learning data.</p>}
     {error && <p role="alert">{error}</p>}
     {cloud && paymentClient ? <KidLogins client={paymentClient} /> : null}
+    {cloud && paymentClient ? <ParentPassword client={paymentClient} /> : null}
     {adult && !busy ? <ContentStudio client={paymentClient} onDirty={(dirty) => {
       contentDirty.current = dirty; setStudioDirty(dirty); onContentDirty?.(dirty);
     }} /> : <p>Confirm the responsible adult above to open teacher/admin content tools. Server-assigned access is required.</p>}
