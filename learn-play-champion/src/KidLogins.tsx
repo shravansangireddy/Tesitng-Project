@@ -41,6 +41,7 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
   const [grade, setGrade] = useState<GradeId | "">("");
   const [password, setPassword] = useState("");
   const [creating, setCreating] = useState(false);
+  const [formError, setFormError] = useState("");
 
   useEffect(() => {
     let active = true;
@@ -81,8 +82,9 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
       (!grade ? "Choose a grade." : "") ||
       kidPasswordError(password);
     setNotice("");
+    setFormError("");
     if (problem) {
-      setError(problem);
+      setFormError(problem);
       return;
     }
     setCreating(true);
@@ -102,7 +104,7 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
         `Login created — ${kid.displayName} can now sign in with the username “${kid.username}”.`,
       );
     } catch (createFailure) {
-      setError(failure(createFailure));
+      setFormError(failure(createFailure));
     } finally {
       setCreating(false);
     }
@@ -198,6 +200,11 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
               disabled={creating}
             />
           </label>
+          {formError && (
+            <p className="kid-logins-error" role="alert">
+              {formError}
+            </p>
+          )}
           <button className="button primary" type="submit" disabled={creating}>
             {creating ? "Creating…" : "Create login"}
           </button>
