@@ -410,9 +410,12 @@ export default function Account() {
       });
       if (error) throw error;
       setKidPassword("");
-    } catch {
+    } catch (signInFailure) {
       setAuthError(
-        "That username and password didn't match. Check the spelling — or ask your grown-up to reset it for you.",
+        signInFailure instanceof Error &&
+          /banned/i.test(signInFailure.message)
+          ? "This login is turned off right now. Ask your grown-up to turn it back on in Privacy & data."
+          : "That username and password didn't match. Check the spelling — or ask your grown-up to reset it for you.",
       );
     } finally {
       setKidSigningIn(false);

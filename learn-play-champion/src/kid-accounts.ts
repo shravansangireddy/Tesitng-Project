@@ -16,6 +16,8 @@ export interface KidAccount {
   username: string;
   displayName: string;
   grade: GradeId;
+  /** False when the parent has paused this login (the kid cannot sign in). */
+  active: boolean;
   createdAt?: string;
 }
 
@@ -58,6 +60,7 @@ interface KidRow {
   username?: unknown;
   display_name?: unknown;
   grade?: unknown;
+  active?: unknown;
   created_at?: unknown;
 }
 
@@ -83,6 +86,7 @@ export function parseKidAccount(row: unknown): KidAccount | null {
     username: value.username,
     displayName: value.display_name,
     grade,
+    active: value.active !== false,
     ...(typeof value.created_at === "string"
       ? { createdAt: value.created_at }
       : {}),
@@ -90,7 +94,7 @@ export function parseKidAccount(row: unknown): KidAccount | null {
 }
 
 const KID_COLUMNS =
-  "kid_user_id, parent_id, username, display_name, grade, created_at";
+  "kid_user_id, parent_id, username, display_name, grade, active, created_at";
 
 /** The signed-in user's own kid-account row, when they ARE a kid login. */
 export async function fetchOwnKidAccount(
@@ -195,6 +199,7 @@ export async function createKidAccount(
           username: (payload.kid as Record<string, unknown>).username,
           display_name: (payload.kid as Record<string, unknown>).displayName,
           grade: (payload.kid as Record<string, unknown>).grade,
+          active: (payload.kid as Record<string, unknown>).active,
         }
       : null,
   );
@@ -219,6 +224,19 @@ export async function deleteKidAccount(
   kidUserId: string,
 ): Promise<void> {
   await invokeKidAccounts(client, { action: "delete", kidUserId });
+}
+
+/**
+ * Pauses or reactivates a kid login. The Edge Function enforces it at the
+ * auth layer (a paused kid is banned from signing in) and records the flag
+ * on the kid_accounts row.
+ */
+export async function setKidAccountActive(
+  client: SupabaseClient,
+  kidUserId: string,
+  active: boolean,
+): Promise<void> {
+  await invokeKidAccounts(client, { action: "set_active", kidUserId, active });
 }
 
 export interface KidProgress {
