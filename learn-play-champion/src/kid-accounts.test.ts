@@ -12,6 +12,7 @@ import {
   normalizeUsername,
   parseKidAccount,
   resetKidPassword,
+  setKidAccountActive,
   summarizeProgress,
   usernameError,
 } from "./kid-accounts";
@@ -75,8 +76,10 @@ describe("parseKidAccount", () => {
       username: "avyan_7",
       displayName: "Avyan",
       grade: "4",
+      active: true,
       createdAt: "2026-10-31T00:00:00Z",
     });
+    expect(parseKidAccount({ ...ROW, active: false })?.active).toBe(false);
   });
 
   it("rejects malformed rows", () => {
@@ -182,6 +185,14 @@ describe("kid-accounts function calls", () => {
     await deleteKidAccount(client, "kid-one");
     expect(invoke).toHaveBeenCalledWith("kid-accounts", {
       body: { action: "delete", kidUserId: "kid-one" },
+    });
+    await setKidAccountActive(client, "kid-one", false);
+    expect(invoke).toHaveBeenCalledWith("kid-accounts", {
+      body: { action: "set_active", kidUserId: "kid-one", active: false },
+    });
+    await setKidAccountActive(client, "kid-one", true);
+    expect(invoke).toHaveBeenCalledWith("kid-accounts", {
+      body: { action: "set_active", kidUserId: "kid-one", active: true },
     });
   });
 });

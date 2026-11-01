@@ -189,6 +189,7 @@ async function createKid(
       username,
       displayName,
       grade,
+      active: true,
     },
   });
 }
@@ -232,6 +233,39 @@ async function deleteKid(
   return json({ ok: true });
 }
 
+async function setActive(
+  parentId: string,
+  body: Record<string, unknown>,
+): Promise<Response> {
+  if (typeof body.active !== "boolean")
+    return fail("Say whether the login should be on or off.");
+  if (!(await ownsKid(parentId, body.kidUserId)))
+    return fail("That kid login was not found under your account.");
+  const kidUserId = body.kidUserId as string;
+  // Pausing bans the kid's auth user (about 100 years); reactivating lifts
+  // the ban. The kid_accounts.active flag mirrors the state for the app.
+  const banned = await fetch(
+    `${env("SUPABASE_URL")}/auth/v1/admin/users/${kidUserId}`,
+    {
+      method: "PUT",
+      headers: serviceHeaders(),
+      body: JSON.stringify({
+        ban_duration: body.active ? "none" : "876000h",
+      }),
+    },
+  );
+  if (!banned.ok)
+    return fail("Could not change the login. Please try again.");
+  const updated = await rest(`kid_accounts?kid_user_id=eq.${kidUserId}`, {
+    method: "PATCH",
+    headers: { Prefer: "return=minimal" },
+    body: JSON.stringify({ active: body.active }),
+  });
+  if (!updated.ok)
+    return fail("Could not save the change. Please try again.");
+  return json({ ok: true, active: body.active });
+}
+
 async function handler(request: Request): Promise<Response> {
   if (request.method === "OPTIONS")
     return new Response(null, { status: 204, headers: corsHeaders });
@@ -247,6 +281,7 @@ async function handler(request: Request): Promise<Response> {
     if (body.action === "reset_password")
       return await resetPassword(parent, body);
     if (body.action === "delete") return await deleteKid(parent, body);
+    if (body.action === "set_active") return await setActive(parent, body);
     return fail("Unknown kid-login action.");
   } catch {
     return fail("Something went wrong with kid logins. Please try again.");

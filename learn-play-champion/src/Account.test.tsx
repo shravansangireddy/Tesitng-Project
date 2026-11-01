@@ -792,3 +792,30 @@ describe("grown-up password reset", () => {
     );
   });
 });
+
+describe("paused kid login", () => {
+  it("tells the kid their login is turned off when sign-in is banned", async () => {
+    mocks.kidSignIn.mockResolvedValue({
+      error: new Error("User is banned."),
+    });
+    await mount();
+    await click(button("Kid login"));
+    for (const [selector, value] of [
+      ["#kid-username", "avyan"],
+      ["#kid-password", "whatever-123"],
+    ] as const) {
+      const input = container.querySelector<HTMLInputElement>(selector)!;
+      await act(async () => {
+        Object.getOwnPropertyDescriptor(
+          HTMLInputElement.prototype,
+          "value",
+        )!.set!.call(input, value);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+    }
+    await click(button("Sign in and play"));
+    expect(container.querySelector('[role="alert"]')?.textContent).toContain(
+      "This login is turned off right now",
+    );
+  });
+});

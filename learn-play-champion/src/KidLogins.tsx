@@ -11,6 +11,7 @@ import {
   kidPasswordError,
   MAX_KID_ACCOUNTS,
   resetKidPassword,
+  setKidAccountActive,
   summarizeProgress,
   updateKidAccount,
   usernameError,
@@ -320,6 +321,23 @@ function KidLoginRow({
     }
   };
 
+  const toggleActive = async () => {
+    setBusy(true);
+    try {
+      await setKidAccountActive(client, kid.kidUserId, !kid.active);
+      onError("");
+      onNotice(
+        kid.active
+          ? `${kid.displayName}'s login is paused — they can't sign in until you turn it back on.`
+          : `${kid.displayName}'s login is back on.`,
+      );
+      await onChanged();
+    } catch (toggleFailure) {
+      onError(failure(toggleFailure));
+    } finally {
+      setBusy(false);
+    }
+  };
   const remove = async () => {
     if (
       !window.confirm(
@@ -368,7 +386,8 @@ function KidLoginRow({
         </select>
       </div>
       <p className="kid-logins-username">
-        Signs in with username <strong>{kid.username}</strong>
+        Signs in with username <strong>{kid.username}</strong> · Login is{" "}
+        <strong>{kid.active ? "ON" : "PAUSED"}</strong>
       </p>
       <div className="kid-logins-row-actions">
         <button
@@ -379,6 +398,14 @@ function KidLoginRow({
           onClick={toggleProgress}
         >
           {progressOpen ? "Hide progress" : "View progress"}
+        </button>
+        <button
+          className="button secondary"
+          type="button"
+          disabled={busy}
+          onClick={() => void toggleActive()}
+        >
+          {kid.active ? "Pause login" : "Reactivate login"}
         </button>
         <button
           className="button secondary"
