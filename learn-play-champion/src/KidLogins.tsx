@@ -8,7 +8,7 @@ import {
   fetchMyKidAccounts,
   fetchOwnKidAccount,
   kidNameError,
-  kidPasswordError,
+  kidPinError,
   MAX_KID_ACCOUNTS,
   resetKidPassword,
   setKidAccountActive,
@@ -89,7 +89,7 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
       usernameError(username) ||
       kidNameError(name) ||
       (!grade ? "Choose a grade." : "") ||
-      kidPasswordError(password);
+      kidPinError(password);
     setNotice("");
     setFormError("");
     if (problem) {
@@ -123,11 +123,11 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
     <section className="kid-logins" aria-label="Kid logins">
       <h2>Kid logins</h2>
       <p>
-        Give each child their own username and password so they can sign in
-        on any device and keep their own progress. No email address is
-        needed, and usernames are never shown publicly. You create and
-        control these logins: reset a password or delete a login here at
-        any time.
+        Give each child their own username and 4-digit PIN so they can
+        sign in on any device and keep their own progress. No email address
+        is needed, and usernames are never shown publicly. You create and
+        control these logins: reset a PIN or delete a login here at any
+        time.
       </p>
       {error && (
         <p className="kid-logins-error" role="alert">
@@ -199,13 +199,14 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
             </select>
           </label>
           <label>
-            Password (at least 8 characters)
+            PIN (4 digits)
             <input
               type="password"
+              inputMode="numeric"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              placeholder="Something your child can remember"
-              maxLength={72}
+              placeholder="4 numbers your child can remember"
+              maxLength={4}
               autoComplete="new-password"
               disabled={creating}
             />
@@ -302,7 +303,7 @@ function KidLoginRow({
 
   const reset = async (event: React.FormEvent) => {
     event.preventDefault();
-    const problem = kidPasswordError(newPassword);
+    const problem = kidPinError(newPassword);
     if (problem) {
       onError(problem);
       return;
@@ -313,7 +314,7 @@ function KidLoginRow({
       setNewPassword("");
       setResetOpen(false);
       onError("");
-      onNotice(`Password reset for ${kid.displayName}.`);
+      onNotice(`PIN reset for ${kid.displayName}.`);
     } catch (resetFailure) {
       onError(failure(resetFailure));
     } finally {
@@ -413,7 +414,7 @@ function KidLoginRow({
           disabled={busy}
           onClick={() => setResetOpen((open) => !open)}
         >
-          Reset password
+          Reset PIN
         </button>
         <button
           className="button secondary"
@@ -427,18 +428,19 @@ function KidLoginRow({
       {resetOpen && (
         <form className="kid-logins-reset" onSubmit={reset}>
           <label>
-            New password for {kid.displayName}
+            New PIN for {kid.displayName}
             <input
               type="password"
               value={newPassword}
               onChange={(event) => setNewPassword(event.target.value)}
-              maxLength={72}
+              inputMode="numeric"
+              maxLength={4}
               autoComplete="new-password"
               disabled={busy}
             />
           </label>
           <button className="button primary" type="submit" disabled={busy}>
-            {busy ? "Saving…" : "Set new password"}
+            {busy ? "Saving…" : "Set new PIN"}
           </button>
         </form>
       )}

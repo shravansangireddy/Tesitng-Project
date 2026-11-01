@@ -8,7 +8,9 @@ import {
   fetchOwnKidAccount,
   kidEmail,
   kidNameError,
+  kidAuthPassword,
   kidPasswordError,
+  kidPinError,
   normalizeUsername,
   parseKidAccount,
   resetKidPassword,
@@ -258,5 +260,21 @@ describe("kid progress viewing", () => {
     expect(summary.accuracy).toBeNull();
     expect(summary.rounds).toBe(0);
     expect(summary.bestScores).toEqual([]);
+  });
+});
+
+describe("kid PINs", () => {
+  it("accepts exactly four digits", () => {
+    expect(kidPinError("1234")).toBe("");
+    expect(kidPinError("0000")).toBe("");
+    expect(kidPinError("123")).toContain("4-digit PIN");
+    expect(kidPinError("12345")).toContain("4-digit PIN");
+    expect(kidPinError("12a4")).toContain("4-digit PIN");
+    expect(kidPinError("")).toContain("4-digit PIN");
+  });
+
+  it("builds the stored password from the PIN", () => {
+    expect(kidAuthPassword("1234")).toBe("1234-kidpin");
+    expect(kidAuthPassword("9876")).toBe("9876-kidpin");
   });
 });

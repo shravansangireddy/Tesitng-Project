@@ -48,6 +48,21 @@ export function kidPasswordError(password: string): string {
   return "";
 }
 
+/** Kid logins use a 4-digit PIN instead of a full password. */
+export function kidPinError(pin: string): string {
+  return /^\d{4}$/.test(pin) ? "" : "Use a 4-digit PIN (numbers only).";
+}
+
+/**
+ * A bare PIN is shorter than the auth service's minimum password length,
+ * so a kid's stored password is the PIN plus a fixed suffix. The
+ * kid-accounts Edge Function stores this same value when a parent sets
+ * or resets the PIN.
+ */
+export function kidAuthPassword(pin: string): string {
+  return `${pin}-kidpin`;
+}
+
 export function kidNameError(name: string): string {
   return cleanProfileName(name)
     ? ""
