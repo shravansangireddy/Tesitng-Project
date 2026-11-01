@@ -99,11 +99,20 @@ function cleanName(value: unknown): string {
   return value.trim().replace(/\s+/g, " ").slice(0, 20);
 }
 
+// Kid logins use a 4-digit PIN. A bare PIN is shorter than the auth
+// service's minimum password length, so the stored password is the PIN
+// plus a fixed suffix — the app builds the same value when signing in
+// (kidAuthPassword in src/kid-accounts.ts).
+const KID_PIN_SUFFIX = "-kidpin";
+
 function passwordError(value: unknown): string {
-  if (typeof value !== "string" || value.length < 8)
-    return "Use a password with at least 8 characters.";
-  if (value.length > 72) return "That password is too long.";
+  if (typeof value !== "string" || !/^\d{4}$/.test(value))
+    return "Use a 4-digit PIN (numbers only).";
   return "";
+}
+
+function storedPassword(pin: unknown): string {
+  return `${pin as string}${KID_PIN_SUFFIX}`;
 }
 
 async function deleteAuthUser(kidUserId: string): Promise<boolean> {
@@ -150,7 +159,7 @@ async function createKid(
     headers: serviceHeaders(),
     body: JSON.stringify({
       email: `${username}@${KID_EMAIL_DOMAIN}`,
-      password: body.password,
+      password: storedPassword(body.password),
       email_confirm: true,
       user_metadata: { account_type: "kid", display_name: displayName },
     }),
@@ -215,7 +224,7 @@ async function resetPassword(
     {
       method: "PUT",
       headers: serviceHeaders(),
-      body: JSON.stringify({ password: body.password }),
+      body: JSON.stringify({ password: storedPassword(body.password) }),
     },
   );
   if (!updated.ok) return fail("Could not reset the password. Try again.");
