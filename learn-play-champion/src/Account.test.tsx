@@ -650,11 +650,11 @@ describe("kid logins", () => {
   it("signs a kid in with the username mapped to its kid email", async () => {
     await mount();
     await click(button("Kid login"));
-    await fillKidForm("Avyan_7", "starfish42");
+    await fillKidForm("Avyan_7", "1234");
     await click(button("Sign in and play"));
     expect(mocks.kidSignIn).toHaveBeenCalledWith({
       email: "avyan_7@kids.learnplaychampion.com",
-      password: "starfish42",
+      password: "1234-kidpin",
     });
     expect(mocks.signIn).not.toHaveBeenCalled();
   });

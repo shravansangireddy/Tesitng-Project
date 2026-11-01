@@ -24,6 +24,7 @@ import { supabase } from "./supabase";
 import {
   fetchOwnKidAccount,
   kidEmail,
+  kidAuthPassword,
   kidPasswordError,
   type KidAccount,
 } from "./kid-accounts";
@@ -406,7 +407,7 @@ export default function Account() {
     try {
       const { error } = await supabase.auth.signInWithPassword({
         email: kidEmail(kidUsername),
-        password: kidPassword,
+        password: kidAuthPassword(kidPassword),
       });
       if (error) throw error;
       setKidPassword("");
@@ -415,7 +416,7 @@ export default function Account() {
         signInFailure instanceof Error &&
           /banned/i.test(signInFailure.message)
           ? "This login is turned off right now. Ask your grown-up to turn it back on in Privacy & data."
-          : "That username and password didn't match. Check the spelling — or ask your grown-up to reset it for you.",
+          : "That username and PIN didn't match. Check the numbers — or ask your grown-up to reset it for you.",
       );
     } finally {
       setKidSigningIn(false);
@@ -513,23 +514,24 @@ export default function Account() {
             maxLength={20}
           />
         </div>
-        <label htmlFor="kid-password">Your password</label>
+        <label htmlFor="kid-password">Your PIN</label>
         <div className="email-field">
           <LockKeyhole size={18} />
           <input
             id="kid-password"
             type="password"
+            inputMode="numeric"
             autoComplete="current-password"
-            placeholder="Your password"
+            placeholder="Your 4-digit PIN"
             value={kidPassword}
             onChange={(event) => setKidPassword(event.target.value)}
             required
             disabled={kidSigningIn}
-            maxLength={72}
+            maxLength={4}
           />
         </div>
         <p className="kid-signin-note">
-          Use the username and password your grown-up made for you. Forgot it?
+          Use the username and PIN your grown-up made for you. Forgot it?
           Ask your grown-up — they can reset it for you.
         </p>
         <button
