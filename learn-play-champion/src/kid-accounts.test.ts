@@ -17,7 +17,10 @@ import {
   setKidAccountActive,
   summarizeProgress,
   usernameError,
-} from "./kid-accounts";
+  fetchKidParents,
+  parseKidParents,
+  shareKidAccount,
+  unshareKidAccount,} from "./kid-accounts";
 import { initialProgress } from "./game";
 
 const ROW = {
@@ -276,5 +279,45 @@ describe("kid PINs", () => {
   it("builds the stored password from the PIN", () => {
     expect(kidAuthPassword("1234")).toBe("1234-kidpin");
     expect(kidAuthPassword("9876")).toBe("9876-kidpin");
+  });
+});
+
+describe("kid login sharing", () => {
+  it("parses the parents payload and drops malformed rows", () => {
+    expect(
+      parseKidParents({
+        parents: [
+          { parentId: "adult-one", email: "a@example.com", isOwner: true },
+          { parentId: "adult-two", email: "b@example.com" },
+          { parentId: "", email: "bad@example.com" },
+          { email: "no-id@example.com" },
+          "junk",
+        ],
+      }),
+    ).toEqual([
+      { parentId: "adult-one", email: "a@example.com", isOwner: true },
+      { parentId: "adult-two", email: "b@example.com", isOwner: false },
+    ]);
+    expect(parseKidParents(null)).toEqual([]);
+    expect(parseKidParents({})).toEqual([]);
+  });
+
+  it("sends parents, share, and unshare actions", async () => {
+    const invoke = vi
+      .fn()
+      .mockResolvedValue({ data: { parents: [] }, error: null });
+    const client = clientWith({ functions: { invoke } });
+    await fetchKidParents(client, "kid-one");
+    expect(invoke).toHaveBeenCalledWith("kid-accounts", {
+      body: { action: "parents", kidUserId: "kid-one" },
+    });
+    await shareKidAccount(client, "kid-one", "  Other@Example.com ");
+    expect(invoke).toHaveBeenCalledWith("kid-accounts", {
+      body: { action: "share", kidUserId: "kid-one", email: "other@example.com" },
+    });
+    await unshareKidAccount(client, "kid-one", "adult-two");
+    expect(invoke).toHaveBeenCalledWith("kid-accounts", {
+      body: { action: "unshare", kidUserId: "kid-one", parentId: "adult-two" },
+    });
   });
 });
