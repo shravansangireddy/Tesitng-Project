@@ -3328,6 +3328,54 @@ summary:focus-visible {
   padding: 0.5rem 0;
   text-align: left;
 }
+.progress-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 17px;
+}
+.bar-chart {
+  margin: 0;
+}
+.bar-chart figcaption {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+}
+.bar-chart-rows {
+  display: grid;
+  gap: 0.55rem;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 11rem) 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+}
+.bar-row-label {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.bar-track {
+  display: block;
+  height: 1.05rem;
+  border-radius: 999px;
+  background: #eeedf5;
+  overflow: hidden;
+}
+.bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  min-width: 0;
+  transition: width 0.4s ease;
+}
+.bar-row-value {
+  font-weight: 800;
+  white-space: nowrap;
+}
+.chart-empty p {
+  margin: 0;
+}
 .voice-panel {
   padding: 20px;
   margin-bottom: 20px;

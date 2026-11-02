@@ -36,6 +36,8 @@ import {
   taskTitleError,
   type KidTask,
 } from "./kid-tasks";
+import ProgressCharts from "./ProgressCharts";
+import { barFraction, totalChartedCorrect } from "./progress-charts";
 
 function failure(error: unknown): string {
   return error instanceof Error
@@ -795,6 +797,9 @@ function FamilyLeaderboard({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [client, kidsKey, attempt]);
 
+  // Points bars are scaled to the family's top scorer.
+  const topPoints = rows.reduce((max, row) => Math.max(max, row.points), 0);
+
   return (
     <div className="family-leaderboard">
       <h3>Family leaderboard</h3>
@@ -846,6 +851,19 @@ function FamilyLeaderboard({
                       ? `Last played ${formatDay(row.lastPlayedDate)}`
                       : "Not played yet"}
                   </span>
+                </span>
+                <span
+                  className="family-leaderboard-bar"
+                  role="img"
+                  aria-label={`${row.displayName} has ${row.points} points`}
+                >
+                  <span
+                    className="family-leaderboard-bar-fill"
+                    aria-hidden="true"
+                    style={{
+                      width: `${Math.round(barFraction(row.points, topPoints) * 100)}%`,
+                    }}
+                  />
                 </span>
               </li>
             );
@@ -931,6 +949,15 @@ function KidProgressPanel({
               </li>
             ))}
           </ul>
+        </>
+      )}
+      {totalChartedCorrect(kidProgress.progress) > 0 && (
+        <>
+          <p>
+            <strong>Progress charts</strong> — correct answers by subject
+            and top activities
+          </p>
+          <ProgressCharts progress={kidProgress.progress} />
         </>
       )}
       <p className="kid-progress-meta">

@@ -45,6 +45,8 @@
 .family-leaderboard-rank { font-size: 1.15rem; min-width: 2.2ch; }
 .family-leaderboard-name { font-weight: 700; color: #302d49; }
 .family-leaderboard-stats { display: flex; flex-wrap: wrap; gap: 4px 14px; color: #5b5480; }
+.family-leaderboard-bar { flex-basis: 100%; display: block; height: 10px; border-radius: 999px; background: #eeedf5; overflow: hidden; }
+.family-leaderboard-bar-fill { display: block; height: 100%; border-radius: 999px; background: #7650d9; }
 .kid-progress { margin-top: 14px; background: white; border: 1px solid #d5c9ec; border-radius: 12px; padding: 14px 16px; }
 .kid-progress-stats { display: flex; flex-wrap: wrap; gap: 8px 18px; }
 .kid-progress-bests { margin: 6px 0; padding-left: 22px; }
