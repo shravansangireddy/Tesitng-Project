@@ -77,7 +77,10 @@ async function jsonRequest(fetcher: Fetcher, url: string, init: RequestInit, lab
     throw new HttpError(502, `${label} failed. Retry or contact the operator; no payment success is assumed.`);
   }
   if (response.status === 204) return null;
-  return response.json() as Promise<unknown>;
+  // PostgREST return=minimal answers 201 with an empty body; tolerate that.
+  const body = await response.text();
+  if (!body) return null;
+  return JSON.parse(body) as unknown;
 }
 async function db(s: Settings, fetcher: Fetcher, path: string, method: string, body?: unknown, auth = s.key, prefer?: string) {
   return jsonRequest(fetcher, `${s.db}/rest/v1/${path}`, {
