@@ -1,0 +1,173 @@
+/* Word Battle world styles. Global .panel/.button/.eyebrow/.answer-grid
+   classes come from styles.css; wb- classes are local to this world. */
+.word-battle-banner {
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 20px 0;
+}
+.word-battle-banner p {
+  margin: 12px 0;
+}
+.word-battle .wb-choose {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+.wb-monster-card {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(160deg, #fdf3ff, #e8f7ff);
+}
+.wb-monster-emoji {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  display: block;
+}
+.wb-element {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+.wb-owned {
+  font-weight: 600;
+}
+.wb-pick {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+.wb-start {
+  min-height: 3.5rem;
+  font-size: 1.1rem;
+  width: 100%;
+}
+.wb-shelf-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+.wb-shelf-item {
+  display: grid;
+  justify-items: center;
+  gap: 0.15rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0.9rem;
+  background: #f4f8ff;
+  text-align: center;
+}
+.wb-shelf-item span {
+  font-size: 2.4rem;
+}
+.wb-shelf-item small {
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.wb-mastery-count {
+  font-weight: 600;
+}
+.wb-cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.wb-fighter {
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #fbf7ff;
+  text-align: center;
+}
+.wb-fighter .wb-monster-emoji {
+  font-size: 3.6rem;
+}
+.wb-versus {
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: #8260cc;
+}
+.wb-hp {
+  width: 100%;
+  display: grid;
+  gap: 0.3rem;
+}
+.wb-hp-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.wb-hp-track {
+  height: 1rem;
+  border-radius: 999px;
+  background: #e6e0f2;
+  overflow: hidden;
+}
+.wb-hp-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.45s ease;
+}
+.wb-hp-track.monster .wb-hp-fill {
+  background: linear-gradient(90deg, #ff8a5c, #e14b4b);
+}
+.wb-hp-track.player .wb-hp-fill {
+  background: linear-gradient(90deg, #57c785, #2f9e63);
+}
+.wb-round-label {
+  font-weight: 700;
+  opacity: 0.8;
+}
+.wb-prompt {
+  font-size: 1.5rem;
+  margin: 0.5rem 0 1rem;
+}
+.wb-feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #fdf6e3;
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+.wb-result {
+  font-weight: 700;
+}
+.wb-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+@keyframes wb-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px) rotate(-2deg); }
+  40% { transform: translateX(8px) rotate(2deg); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+.wb-shake {
+  animation: wb-shake 0.45s ease;
+}
+@media (max-width: 720px) {
+  .word-battle .wb-choose {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .wb-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .wb-versus {
+    justify-self: center;
+  }
+}
