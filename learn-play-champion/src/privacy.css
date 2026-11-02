@@ -38,6 +38,13 @@
 .kid-logins-reset { display: grid; gap: 10px; margin-top: 12px; max-width: 320px; }
 .kid-logins-reset label { display: grid; gap: 6px; font-weight: 700; color: #302d49; }
 .kid-logins-reset input { padding: 10px 12px; font: inherit; border: 1px solid #d5c9ec; border-radius: 10px; background: white; color: #302d49; }
+.family-leaderboard { margin: 20px 0 4px; background: white; border: 1px solid #d5c9ec; border-radius: 12px; padding: 14px 16px; }
+.family-leaderboard h3 { margin-top: 0; }
+.family-leaderboard-list { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+.family-leaderboard-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.family-leaderboard-rank { font-size: 1.15rem; min-width: 2.2ch; }
+.family-leaderboard-name { font-weight: 700; color: #302d49; }
+.family-leaderboard-stats { display: flex; flex-wrap: wrap; gap: 4px 14px; color: #5b5480; }
 .kid-progress { margin-top: 14px; background: white; border: 1px solid #d5c9ec; border-radius: 12px; padding: 14px 16px; }
 .kid-progress-stats { display: flex; flex-wrap: wrap; gap: 8px 18px; }
 .kid-progress-bests { margin: 6px 0; padding-left: 22px; }

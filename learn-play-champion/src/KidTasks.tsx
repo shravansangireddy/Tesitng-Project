@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { ActivityId } from "./game";
 import {
   activityTitle,
   fetchKidTasks,
   setKidTaskDone,
   type KidTask,
+  type TaskActivityId,
 } from "./kid-tasks";
 
 /**
@@ -21,7 +21,7 @@ export default function KidTasks({
 }: {
   client: SupabaseClient;
   kidUserId: string;
-  onStartActivity: (activityId: ActivityId) => void;
+  onStartActivity: (activityId: TaskActivityId) => void;
 }) {
   const [tasks, setTasks] = useState<KidTask[] | null>(null);
   const [busyId, setBusyId] = useState("");
