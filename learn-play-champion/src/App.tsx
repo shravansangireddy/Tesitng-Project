@@ -1337,7 +1337,7 @@ export default function App({
                   </div>
                   <p>{gradePack.overview}</p>
                   <small>
-                    80 questions · 16 activities · 1 story and 1 nonfiction text per grade.{" "}
+                    10,000+ questions in the library · 16 activities · 1 story and 1 nonfiction text per grade.{" "}
                     {grade === "prek"
                       ? "Adult-supported early exploration; no formal Pre-K standards alignment claimed."
                       : "Original practice informed by U.S. standards, not a complete curriculum."}{" "}

@@ -14,6 +14,14 @@ export const templateNames = [
   "multiplication",
   "division",
   "patterns",
+  "fractions",
+  "decimals",
+  "placevalue",
+  "money",
+  "time",
+  "measurement",
+  "missing",
+  "multidigit",
 ] as const;
 export type TemplateName = (typeof templateNames)[number];
 export const gradeIds = ["prek", "k", "1", "2", "3", "4", "5"] as const;
@@ -226,6 +234,14 @@ const variables: Record<TemplateName, readonly string[]> = {
   multiplication: ["a", "b", "product", "answer"],
   division: ["a", "b", "product", "answer"],
   patterns: ["start", "n1", "n2", "n3", "step", "answer"],
+  fractions: ["a", "b", "answer"],
+  decimals: ["a", "b", "answer"],
+  placevalue: ["a", "b", "answer"],
+  money: ["a", "b", "answer"],
+  time: ["a", "b", "answer"],
+  measurement: ["a", "answer"],
+  missing: ["a", "b", "answer"],
+  multidigit: ["a", "b", "product", "answer"],
 };
 export function parseMathTemplates(
   raw: string,
@@ -267,7 +283,9 @@ export function parseMathTemplates(
         ? ["start", "n1", "n2", "n3"]
         : name === "division"
           ? ["product", "b"]
-          : ["a", "b"];
+          : name === "measurement"
+            ? ["a"]
+            : ["a", "b"];
     if (required.some((variable) => !parsed.prompt.includes(`{${variable}}`)))
       return fail(
         file,
@@ -476,8 +494,11 @@ export function parseGradeContent(raw: string, grade: GradeId): GradeContent {
       };
     }
     const rows = lesson.questions;
-    if (!Array.isArray(rows) || rows.length !== 5)
-      return fail(file, `${id}.questions needs exactly five question rows.`);
+    if (!Array.isArray(rows) || rows.length < 5 || rows.length % 5 !== 0)
+      return fail(
+        file,
+        `${id}.questions needs question rows in complete sets of five (at least five).`,
+      );
     const questions = rows.map((row, index): Question => {
       const label = `${id}.questions[${index}]`;
       if (!Array.isArray(row) || row.length !== 5)

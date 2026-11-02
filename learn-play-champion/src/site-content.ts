@@ -39,7 +39,7 @@ export const editorialPages: ContentPage[] = [
     intro: "Use short English and math activities as a starting point for discussion, guided practice, or a hands-on follow-up. Teacher observation remains central: game scores are not a replacement for assessment.",
     sections: [
       { heading: "Choose an activity with a clear purpose", paragraphs: [
-        "Browse the seven levels from Pre-K through Grade 5 and choose a skill that fits your instructional goal. Grade-selected activities include 80 questions across 16 strands. Selected lessons offer teaching tips and adult-led extensions.",
+        "Browse the seven levels from Pre-K through Grade 5 and choose a skill that fits your instructional goal. Grade-selected activities draw on a library of 10,000+ questions across 16 strands. Selected lessons offer teaching tips and adult-led extensions.",
         "The library is original supplemental content informed by selected U.S. standards, not complete standards coverage or a full-year curriculum. Familiar questions repeat. Introduce a new example to check whether the idea transfers.",
       ] },
       { heading: "Contribute content, with review before publication", paragraphs: [
