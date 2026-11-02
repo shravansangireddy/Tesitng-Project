@@ -1,3 +1,5 @@
+import { gradeSkillGuides, type SkillGuide } from "./site-guides.ts";
+
 export interface ContentSection { heading: string; paragraphs: string[]; items?: string[] }
 export interface ContentPage {
   slug: string;
@@ -381,6 +383,13 @@ const gradeGuides = [
   { slug: "grade-5", label: "Grade 5", focus: "Reason across texts, operations, and representations", english: "Explore academic vocabulary, figurative language, evidence, conclusions, claims, and editing. Use explanations to distinguish a supported conclusion from a guess.", math: "Work with decimal and fraction operations, mixed numbers, numerical rules, coordinate pairs, volume, and measurement conversions.", together: "Model a fraction operation with a drawing. Write a short claim about a text on paper and support it with relevant details.", englishSkills: ["Learn academic vocabulary", "Understand figurative language", "Draw conclusions from evidence", "Support a claim with details", "Edit writing for clarity"], mathSkills: ["Add, subtract, multiply, and divide decimals", "Operate with fractions and mixed numbers", "Describe numerical patterns and rules", "Plot points with coordinate pairs", "Find the volume of a box", "Convert measurements"] },
 ];
 
+const skillGuideSections = (guides: SkillGuide[] | undefined): ContentSection[] =>
+  (guides ?? []).map(guide => ({
+    heading: guide.skill,
+    paragraphs: [guide.what, guide.practice, guide.home],
+    items: guide.activities,
+  }));
+
 export const gradePages: ContentPage[] = gradeGuides.map(grade => ({
   slug: grade.slug,
   title: `${grade.label} English & Math Practice | Learn & Play Champion`,
@@ -390,8 +399,10 @@ export const gradePages: ContentPage[] = gradeGuides.map(grade => ({
   sections: [
     { heading: "English to explore", paragraphs: [grade.english] },
     { heading: `Skills in ${grade.label} English`, paragraphs: [`${grade.label} English practice in the app covers these skills:`], items: grade.englishSkills },
+    ...skillGuideSections(gradeSkillGuides[grade.slug]?.english),
     { heading: "Math to explore", paragraphs: [grade.math] },
     { heading: `Skills in ${grade.label} Math`, paragraphs: [`${grade.label} math practice in the app covers these skills:`], items: grade.mathSkills },
+    ...skillGuideSections(gradeSkillGuides[grade.slug]?.math),
     { heading: "Try it together", paragraphs: [grade.together, "Let the child explain a choice before checking it. Use a hint or explanation when helpful, then try a new example with a grown-up. Hints and slower answers are part of learning, not a reason to stop."] },
     { heading: "Choose the next small step", paragraphs: [
       "My Learning Path offers an optional eight-question check at the selected level and suggests skills to revisit or explore. It awards no points and does not change the grade. Results are practice snapshots, not validated diagnostic or mastery scores.",
