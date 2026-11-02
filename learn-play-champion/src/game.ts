@@ -3,6 +3,7 @@ import { codingPuzzleIds } from "./coding";
 import { aiLessonIds } from "./ai-learning";
 import { themes, type ThemeId } from "./themes";
 import { validPathChecks, type PathChecks } from "./learning-path";
+import { monsterIds } from "./word-battle";
 export type Subject = "english" | "math";
 export type ActivityId = LessonId;
 export type Avatar = "owl" | "fox" | "cat" | "unicorn";
@@ -150,6 +151,10 @@ export interface LearnerProfile {
   grade: GradeId;
 }
 export const MAX_PROFILES = 6;
+export interface WordBattleProgress {
+  collection: string[];
+  wordMastery: Record<string, number>;
+}
 export interface Progress {
   version: 1;
   points: number;
@@ -169,6 +174,7 @@ export interface Progress {
   beeBestRounds?: Partial<Record<GradeId, number>>;
   codingCompleted?: string[];
   aiCompleted?: string[];
+  wordBattle?: WordBattleProgress;
   selectedGrade?: GradeId;
   theme?: ThemeId;
   pathChecks?: PathChecks;
@@ -301,6 +307,37 @@ export function completeAILesson(progress: Progress, id: string): Progress {
     aiCompleted: [...(progress.aiCompleted ?? []), id],
   };
 }
+export interface WordBattleOutcome {
+  monsterId: string;
+  won: boolean;
+  correct: number;
+  words: { word: string; correct: boolean }[];
+}
+export function completeWordBattle(
+  progress: Progress,
+  outcome: WordBattleOutcome,
+): Progress {
+  if (!monsterIds.includes(outcome.monsterId))
+    throw new Error("Unknown Word Battle monster.");
+  const current = progress.wordBattle ?? { collection: [], wordMastery: {} };
+  const wordMastery = { ...current.wordMastery };
+  for (const entry of outcome.words) {
+    if (!entry.correct) continue;
+    wordMastery[entry.word] = Math.min(999, (wordMastery[entry.word] ?? 0) + 1);
+  }
+  const collection =
+    outcome.won && !current.collection.includes(outcome.monsterId)
+      ? [...current.collection, outcome.monsterId]
+      : current.collection;
+  // A won battle pays the usual +10 per correct answer, like a normal round.
+  // Battles never touch rounds/answered, so there is no double counting.
+  const points = outcome.won ? Math.max(0, outcome.correct) * 10 : 0;
+  return {
+    ...progress,
+    points: progress.points + points,
+    wordBattle: { collection, wordMastery },
+  };
+}
 export function claimHelp(progress: Progress, today = localDate()): Progress {
   return progress.helpDate === today
     ? progress
@@ -320,6 +357,48 @@ function validProfileName(name: unknown): boolean {
     name.length >= 1 &&
     name.length <= 20
   );
+}
+const masteryWordPattern = /^[a-z]+(?:['-][a-z]+)*$/;
+// Word Battle data is the newest save field, so it is cleaned leniently:
+// malformed pieces fall back to defaults instead of discarding a child's
+// whole save the way the strict core fields do.
+function sanitizeWordBattle(value: unknown): WordBattleProgress | undefined {
+  if (value === undefined) return undefined;
+  if (!value || typeof value !== "object" || Array.isArray(value))
+    return undefined;
+  const raw = value as Record<string, unknown>;
+  const collection: string[] = [];
+  if (Array.isArray(raw.collection)) {
+    for (const id of raw.collection) {
+      if (
+        typeof id === "string" &&
+        monsterIds.includes(id) &&
+        !collection.includes(id)
+      )
+        collection.push(id);
+    }
+  }
+  const wordMastery: Record<string, number> = {};
+  if (
+    raw.wordMastery &&
+    typeof raw.wordMastery === "object" &&
+    !Array.isArray(raw.wordMastery)
+  ) {
+    for (const [word, count] of Object.entries(
+      raw.wordMastery as Record<string, unknown>,
+    )) {
+      if (
+        masteryWordPattern.test(word) &&
+        word.length <= 24 &&
+        typeof count === "number" &&
+        Number.isSafeInteger(count) &&
+        count >= 1 &&
+        count <= 999
+      )
+        wordMastery[word] = count;
+    }
+  }
+  return { collection, wordMastery };
 }
 function parseProgressObject(value: unknown, nested: boolean): Progress {
   if (!value || typeof value !== "object")
@@ -417,7 +496,15 @@ function parseProgressObject(value: unknown, nested: boolean): Progress {
   } else {
     validateProfiles(p);
   }
-  return value as Progress;
+  const parsed = value as Progress;
+  const wordBattle = sanitizeWordBattle(p.wordBattle);
+  if (wordBattle === undefined) {
+    if (!("wordBattle" in p)) return parsed;
+    const copy = { ...parsed };
+    delete copy.wordBattle;
+    return copy;
+  }
+  return { ...parsed, wordBattle };
 }
 function validateProfiles(p: Record<string, unknown>): void {
   const invalid = (): never => {

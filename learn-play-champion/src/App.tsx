@@ -18,6 +18,7 @@ import {
   PartyPopper,
   Sparkles,
   Star,
+  Swords,
   Target,
   Trophy,
   Users,
@@ -35,6 +36,7 @@ import {
   completeRound,
   completeCodingPuzzle,
   completeAILesson,
+  completeWordBattle,
   initialProgress,
   localDate,
   makeRound,
@@ -62,6 +64,7 @@ import VoiceControls, { type VoiceContext, type VoiceHandle } from "./VoiceContr
 import { isEarlyGrade, type VoiceAction } from "./speech";
 import CodingWorld from "./CodingWorld";
 import { isCodingGrade } from "./coding";
+import WordBattle from "./WordBattle";
 import AIWorld from "./AIWorld";
 import { themes } from "./themes";
 import "./themes.css";
@@ -76,7 +79,7 @@ import LearningPath from "./LearningPath";
 import { finishPathCheck } from "./learning-path";
 import QuestionShape from "./QuestionShape";
 
-type View = "home" | "adventures" | "rewards" | "leaderboard" | "team" | "coding" | "ai" | "rooms" | "privacy" | "books" | "teacher-library" | "learning-path";
+type View = "home" | "adventures" | "rewards" | "leaderboard" | "team" | "coding" | "ai" | "rooms" | "privacy" | "books" | "teacher-library" | "learning-path" | "word-battle";
 type Session = {
   championship: boolean;
   grade: GradeId;
@@ -660,7 +663,7 @@ export default function App({
     setHint(false);
   };
   const visibleActivities = activities.filter((activity) => activity.subject === subject);
-  const voiceEnabled = !["coding", "ai", "rooms", "privacy", "books", "teacher-library", "learning-path"].includes(view) && (isEarlyGrade(grade) || session?.championship || result?.championship) &&
+  const voiceEnabled = !["coding", "ai", "rooms", "privacy", "books", "teacher-library", "learning-path", "word-battle"].includes(view) && (isEarlyGrade(grade) || session?.championship || result?.championship) &&
     !avatarOpen && !helpOpen && !chestOpen;
   const readQuestion = currentQuestion
     ? `${currentQuestion.prompt}. ${currentQuestion.chart
@@ -762,7 +765,7 @@ export default function App({
           ? "My treasure room"
           : view === "leaderboard"
             ? "Friendly leaderboard"
-            : view === "coding" ? "Coding Cove" : view === "ai" ? "AI discovery" : view === "rooms" ? "Private rooms" : view === "privacy" ? "Privacy & data" : view === "books" ? "Picture books" : view === "teacher-library" ? "Teacher library" : view === "learning-path" ? "My learning path" : "Our team corner";
+            : view === "coding" ? "Coding Cove" : view === "ai" ? "AI discovery" : view === "rooms" ? "Private rooms" : view === "privacy" ? "Privacy & data" : view === "books" ? "Picture books" : view === "teacher-library" ? "Teacher library" : view === "learning-path" ? "My learning path" : view === "word-battle" ? "Word Battle" : "Our team corner";
   return (
     <div className="app-shell" data-theme={progress.theme ?? "island"}>
       <a className="skip-link" href="#main">
@@ -795,6 +798,7 @@ export default function App({
               { id: "books", label: "Picture books", icon: BookOpen },
               { id: "teacher-library", label: "Teacher library", icon: GraduationCap },
               { id: "coding", label: "Coding Cove · 3–5", icon: Sparkles },
+              { id: "word-battle", label: "Word Battle", icon: Swords },
               { id: "ai", label: "AI discovery · 3+", icon: Lightbulb },
               { id: "rooms", label: "Private rooms", icon: Users },
               { id: "rewards", label: "My rewards", icon: Gift },
@@ -949,6 +953,14 @@ export default function App({
               onComplete={(id) => setProgress((current) => completeCodingPuzzle(current, id))}
               onBack={() => navigate("adventures")}
               onDirty={(dirty) => { codingDirty.current = dirty; }}
+            />
+          ) : view === "word-battle" ? (
+            <WordBattle
+              key={`${grade}:${progress.activeProfileId ?? "solo"}`}
+              grade={grade}
+              state={progress.wordBattle}
+              onBattleEnd={(outcome) => setProgress((current) => completeWordBattle(current, outcome))}
+              onBack={() => navigate("adventures")}
             />
           ) : session && currentQuestion ? (
             <>
@@ -1439,6 +1451,22 @@ export default function App({
                     and reusable functions. Start simple and combine your coding superpowers.
                     {" "}{progress.codingCompleted?.length ?? 0}/18 solved.</p>
                   <button className="button primary" onClick={() => navigate("coding")}>Explore Coding Cove</button>
+                </section>
+              )}
+              {(view === "home" || view === "adventures") && (
+                <section className="word-battle-banner panel" aria-label="Word Battle">
+                  <Swords size={30} />
+                  <div>
+                    <h2>Word Battle</h2>
+                    <p>{gradeLabels[grade]} · Battle friendly monsters with your vocabulary and spelling words.
+                      Win a battle to capture the monster — collect all 12!
+                      Words you master hit extra hard.</p>
+                    <p>Monsters collected: {progress.wordBattle?.collection.length ?? 0}/12.
+                      {" "}Mastered words: {Object.values(progress.wordBattle?.wordMastery ?? {}).filter((count) => count >= 3).length}.</p>
+                    <button className="button primary" onClick={() => navigate("word-battle")}>
+                      Enter Word Battle
+                    </button>
+                  </div>
                 </section>
               )}
               {(view === "home" || view === "adventures") && (
