@@ -7,10 +7,16 @@
 // email address and gets their own learner_progress row. The public
 // kid_accounts table links the kid's auth user to the parent.
 //
-// Only fetch + the service-role key are used (no external imports), and
+// Only fetch + the service-role key are used (no external imports beyond
+// the shared defaults module below), and
 // domain errors are returned as HTTP 200 with an { error } body so the
 // browser client (supabase-js functions.invoke) can show the message.
 // Unauthenticated calls never reach here: the platform verifies the JWT.
+
+import {
+  defaultTasksForGrade,
+  shouldSeedDefaultTasks,
+} from "../_shared/kid-task-defaults.ts";
 
 declare const Deno: {
   env: { get(name: string): string | undefined };
@@ -150,6 +156,43 @@ async function deleteAuthUser(kidUserId: string): Promise<boolean> {
   return response.ok;
 }
 
+/**
+ * Give a brand-new kid login its default starter tasks (the set lives in
+ * ../_shared/kid-task-defaults.ts). Best-effort by design: seeding only
+ * happens when the kid still has zero tasks, and ANY failure here is
+ * swallowed — a kid login must never fail to be created because the
+ * starter list could not be written.
+ */
+async function seedDefaultTasks(
+  parentId: string,
+  kidUserId: string,
+  grade: string,
+): Promise<void> {
+  try {
+    const existing = await rest(
+      `kid_tasks?kid_user_id=eq.${kidUserId}&select=id&limit=1`,
+      { method: "GET" },
+    );
+    if (!existing.ok) return;
+    const rows = (await existing.json()) as unknown;
+    if (!Array.isArray(rows) || !shouldSeedDefaultTasks(rows.length)) return;
+    await rest("kid_tasks", {
+      method: "POST",
+      headers: { Prefer: "return=minimal" },
+      body: JSON.stringify(
+        defaultTasksForGrade(grade).map((task) => ({
+          kid_user_id: kidUserId,
+          parent_id: parentId,
+          title: task.title,
+          activity: task.activity,
+        })),
+      ),
+    });
+  } catch {
+    // Ignore: the kid can still be given tasks by hand from Kid logins.
+  }
+}
+
 async function createKid(
   parentId: string,
   body: Record<string, unknown>,
@@ -227,6 +270,7 @@ async function createKid(
     await deleteAuthUser(user.id);
     return fail("Could not save the kid login. Please try again.");
   }
+  await seedDefaultTasks(parentId, user.id, grade);
   return json({
     kid: {
       kidUserId: user.id,

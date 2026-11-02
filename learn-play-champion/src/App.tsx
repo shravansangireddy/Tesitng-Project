@@ -72,6 +72,7 @@ import PracticeRooms from "./PracticeRooms";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import PrivacyCenter from "./PrivacyCenter";
 import KidTasks from "./KidTasks";
+import { WORD_BATTLE_ACTIVITY } from "./kid-tasks";
 import BookShelf from "./BookShelf";
 import TeacherLibrary from "./TeacherLibrary";
 import { supabase } from "./supabase";
@@ -1257,6 +1258,10 @@ export default function App({
                   client={taskClient}
                   kidUserId={kidUserId}
                   onStartActivity={(activityId) => {
+                    if (activityId === WORD_BATTLE_ACTIVITY) {
+                      navigate("word-battle");
+                      return;
+                    }
                     const activity = activities.find(
                       (item) => item.id === activityId,
                     );

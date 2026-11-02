@@ -24,6 +24,12 @@ import {
 } from "./kid-accounts";
 import { activities, type ActivityId } from "./game";
 import {
+  rankFamily,
+  rankMedal,
+  type FamilyLeaderboardEntry,
+  type FamilyLeaderboardRow,
+} from "./family-leaderboard";
+import {
   createKidTask,
   deleteKidTask,
   fetchKidTasks,
@@ -144,6 +150,7 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
           {notice}
         </p>
       )}
+      <FamilyLeaderboard client={client} kids={kids} />
       {kids.length > 0 && (
         <ul className="kid-logins-list">
           {kids.map((kid) => (
@@ -719,6 +726,132 @@ function KidTasksManager({
           {adding ? "Adding…" : "Add task"}
         </button>
       </form>
+    </div>
+  );
+}
+
+/**
+ * Family Leaderboard: ranks every kid login this grown-up manages
+ * against each other, using the same per-kid progress reads as the
+ * "View progress" panels below (learner_progress via fetchKidProgress).
+ * Read-only; renders only inside the grown-ups-only Kid logins section.
+ */
+function FamilyLeaderboard({
+  client,
+  kids,
+}: {
+  client: SupabaseClient;
+  kids: KidAccount[];
+}) {
+  const [state, setState] = useState<"loading" | "ready" | "error">("loading");
+  const [rows, setRows] = useState<FamilyLeaderboardRow[]>([]);
+  const [attempt, setAttempt] = useState(0);
+  // The parent panel rebuilds the kids array on every refresh; key the
+  // reload on the kid identities and labels actually shown instead.
+  const kidsKey = kids
+    .map((kid) => `${kid.kidUserId}:${kid.displayName}:${kid.grade}`)
+    .join("|");
+
+  useEffect(() => {
+    if (kids.length === 0) {
+      setRows([]);
+      setState("ready");
+      return;
+    }
+    let active = true;
+    setState("loading");
+    (async () => {
+      try {
+        const entries: FamilyLeaderboardEntry[] = await Promise.all(
+          kids.map(async (kid) => {
+            const kidProgress = await fetchKidProgress(client, kid.kidUserId);
+            const summary = kidProgress
+              ? summarizeProgress(kidProgress.progress)
+              : null;
+            return {
+              kidUserId: kid.kidUserId,
+              displayName: kid.displayName,
+              username: kid.username,
+              grade: kid.grade,
+              points: summary?.points ?? 0,
+              streak: summary?.streak ?? 0,
+              rounds: summary?.rounds ?? 0,
+              accuracy: summary?.accuracy ?? null,
+              lastPlayedDate: summary?.lastPlayedDate ?? "",
+            };
+          }),
+        );
+        if (!active) return;
+        setRows(rankFamily(entries));
+        setState("ready");
+      } catch {
+        if (active) setState("error");
+      }
+    })();
+    return () => {
+      active = false;
+    };
+    // kids is captured from the render that produced kidsKey.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [client, kidsKey, attempt]);
+
+  return (
+    <div className="family-leaderboard">
+      <h3>Family leaderboard</h3>
+      {kids.length === 0 ? (
+        <p>
+          No kid logins yet. Create one below and your children's points
+          and streaks will be ranked here.
+        </p>
+      ) : state === "loading" ? (
+        <p role="status">Loading the leaderboard…</p>
+      ) : state === "error" ? (
+        <div>
+          <p role="alert">Could not load the leaderboard right now.</p>
+          <button
+            className="button secondary"
+            type="button"
+            onClick={() => setAttempt((count) => count + 1)}
+          >
+            Try again
+          </button>
+        </div>
+      ) : (
+        <ol className="family-leaderboard-list">
+          {rows.map((row) => {
+            const medal = rankMedal(row.rank);
+            return (
+              <li key={row.kidUserId} className="family-leaderboard-row">
+                <span
+                  className="family-leaderboard-rank"
+                  aria-label={`Rank ${row.rank}`}
+                >
+                  {medal || `#${row.rank}`}
+                </span>
+                <span className="family-leaderboard-name">
+                  {row.displayName}
+                </span>
+                <span>{gradeLabels[row.grade]}</span>
+                <span className="family-leaderboard-stats">
+                  <span>
+                    ⭐ <strong>{row.points}</strong> points
+                  </span>
+                  <span>🔥 {row.streak}-day streak</span>
+                  <span>🎯 {row.rounds} rounds</span>
+                  {row.accuracy !== null && (
+                    <span>✅ {row.accuracy}% correct</span>
+                  )}
+                  <span>
+                    {row.lastPlayedDate
+                      ? `Last played ${formatDay(row.lastPlayedDate)}`
+                      : "Not played yet"}
+                  </span>
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+      )}
     </div>
   );
 }

@@ -6,9 +6,11 @@ import {
   deleteKidTask,
   fetchKidTasks,
   isActivityId,
+  isTaskActivityId,
   parseKidTask,
   setKidTaskDone,
   taskTitleError,
+  WORD_BATTLE_ACTIVITY,
 } from "./kid-tasks";
 
 const ROW = {
@@ -74,6 +76,15 @@ describe("kid task validation", () => {
     expect(activityTitle("arithmetic")).toBe("Number Sprint");
     expect(activityTitle(null)).toBe("");
   });
+
+  it("also opens the Word Battle world as a task deep-link", () => {
+    expect(isActivityId(WORD_BATTLE_ACTIVITY)).toBe(false);
+    expect(isTaskActivityId(WORD_BATTLE_ACTIVITY)).toBe(true);
+    expect(isTaskActivityId("arithmetic")).toBe(true);
+    expect(isTaskActivityId("not-a-game")).toBe(false);
+    expect(isTaskActivityId(null)).toBe(false);
+    expect(activityTitle(WORD_BATTLE_ACTIVITY)).toBe("Word Battle");
+  });
 });
 
 describe("parseKidTask", () => {
@@ -95,6 +106,15 @@ describe("parseKidTask", () => {
     expect(parseKidTask({ ...ROW, title: "" })).toBeNull();
     expect(parseKidTask({ ...ROW, done: "yes" })).toBeNull();
     expect(parseKidTask(null)).toBeNull();
+  });
+
+  it("keeps the Word Battle deep-link on seeded starter tasks", () => {
+    const task = parseKidTask({
+      ...ROW,
+      title: "Play Word Battle",
+      activity: "word-battle",
+    });
+    expect(task?.activityId).toBe(WORD_BATTLE_ACTIVITY);
   });
 });
 
@@ -123,6 +143,22 @@ describe("kid task queries", () => {
       title: "Play Math Mountain",
       activity: "arithmetic",
     });
+  });
+
+  it("creates a task that deep-links to Word Battle", async () => {
+    const { client, calls } = stubClient({
+      data: { ...ROW, title: "Play Word Battle", activity: "word-battle" },
+      error: null,
+    });
+    const task = await createKidTask(client, {
+      parentId: "adult-one",
+      kidUserId: "kid-one",
+      title: "Play Word Battle",
+      activityId: WORD_BATTLE_ACTIVITY,
+    });
+    expect(task.activityId).toBe(WORD_BATTLE_ACTIVITY);
+    const insert = calls.find((call) => call.method === "insert");
+    expect(insert?.args[0]).toMatchObject({ activity: "word-battle" });
   });
 
   it("refuses to create a task with an empty title", async () => {

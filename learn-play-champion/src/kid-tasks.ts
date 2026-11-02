@@ -10,12 +10,22 @@ import { activities, type ActivityId } from "./game";
  * anything reaches the database.
  */
 
+/**
+ * Word Battle is a world of its own rather than a lesson in the activity
+ * catalog, but a task can still deep-link to it: the stored activity value
+ * "word-battle" opens the Word Battle view. Default starter tasks seeded
+ * when a kid login is created use it (see the kid-accounts Edge Function).
+ */
+export const WORD_BATTLE_ACTIVITY = "word-battle";
+
+export type TaskActivityId = ActivityId | typeof WORD_BATTLE_ACTIVITY;
+
 export interface KidTask {
   id: string;
   kidUserId: string;
   parentId: string;
   title: string;
-  activityId: ActivityId | null;
+  activityId: TaskActivityId | null;
   done: boolean;
   createdAt: string;
   completedAt: string | null;
@@ -38,8 +48,13 @@ export function isActivityId(value: unknown): value is ActivityId {
   );
 }
 
-export function activityTitle(activityId: ActivityId | null): string {
+export function isTaskActivityId(value: unknown): value is TaskActivityId {
+  return isActivityId(value) || value === WORD_BATTLE_ACTIVITY;
+}
+
+export function activityTitle(activityId: TaskActivityId | null): string {
   if (!activityId) return "";
+  if (activityId === WORD_BATTLE_ACTIVITY) return "Word Battle";
   return activities.find((activity) => activity.id === activityId)?.title ?? "";
 }
 
@@ -62,7 +77,7 @@ export function parseKidTask(row: unknown): KidTask | null {
     kidUserId: value.kid_user_id,
     parentId: value.parent_id,
     title: value.title,
-    activityId: isActivityId(value.activity) ? value.activity : null,
+    activityId: isTaskActivityId(value.activity) ? value.activity : null,
     done: value.done,
     createdAt: value.created_at,
     completedAt:
@@ -93,12 +108,12 @@ export async function createKidTask(
     parentId: string;
     kidUserId: string;
     title: string;
-    activityId: ActivityId | null;
+    activityId: TaskActivityId | null;
   },
 ): Promise<KidTask> {
   const problem = taskTitleError(input.title);
   if (problem) throw new Error(problem);
-  if (input.activityId !== null && !isActivityId(input.activityId))
+  if (input.activityId !== null && !isTaskActivityId(input.activityId))
     throw new Error("That activity is not on the island.");
   const { data, error } = await client
     .from("kid_tasks")

@@ -83,6 +83,31 @@ describe("KidTasks", () => {
     expect(onStart).toHaveBeenCalledWith("arithmetic");
   });
 
+  it("starts Word Battle from a seeded starter task", async () => {
+    const { client } = stubClient([
+      {
+        id: "task-3",
+        kid_user_id: "kid-one",
+        parent_id: "adult-one",
+        title: "Play Word Battle",
+        activity: "word-battle",
+        done: false,
+        created_at: "2026-10-31T12:10:00Z",
+        completed_at: null,
+      },
+    ]);
+    const onStart = vi.fn();
+    await act(async () =>
+      root.render(
+        <KidTasks client={client} kidUserId="kid-one" onStartActivity={onStart} />,
+      ),
+    );
+    expect(container.textContent).toContain("Play Word Battle");
+    expect(container.textContent).toContain("Word Battle");
+    await act(async () => button("Start")?.click());
+    expect(onStart).toHaveBeenCalledWith("word-battle");
+  });
+
   it("marks a task done when the kid taps Done", async () => {
     const { client, update } = stubClient(ROWS);
     await act(async () =>
