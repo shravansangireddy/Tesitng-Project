@@ -78,6 +78,8 @@ import TeacherLibrary from "./TeacherLibrary";
 import { supabase } from "./supabase";
 import LearningPath from "./LearningPath";
 import { finishPathCheck } from "./learning-path";
+import ProgressCharts from "./ProgressCharts";
+import { totalChartedCorrect } from "./progress-charts";
 import QuestionShape from "./QuestionShape";
 
 type View = "home" | "adventures" | "rewards" | "leaderboard" | "team" | "coding" | "ai" | "rooms" | "privacy" | "books" | "teacher-library" | "learning-path" | "word-battle";
@@ -1962,6 +1964,26 @@ export default function App({
                       </div>
                     </section>
                   </div>
+                  <div className="section-heading">
+                    <h2>My learning chart</h2>
+                    <span>Watch your correct answers grow</span>
+                  </div>
+                  {totalChartedCorrect(progress) > 0 ? (
+                    <section className="panel" aria-label="My learning chart">
+                      <ProgressCharts
+                        progress={progress}
+                        subjectTitle="English vs Math"
+                        activityTitle="Your top activities"
+                      />
+                    </section>
+                  ) : (
+                    <section className="panel chart-empty">
+                      <p>
+                        📊 Play your first game to start your chart! Every
+                        correct answer makes your bars grow.
+                      </p>
+                    </section>
+                  )}
                   <div className="section-heading">
                     <h2>Your badge collection</h2>
                     <span>
