@@ -125,15 +125,20 @@ export async function fetchOwnKidAccount(
   return parseKidAccount(data);
 }
 
-/** Kid logins a grown-up manages, oldest first. */
+/**
+ * Kid logins a grown-up manages, oldest first. Row-level security scopes
+ * the result to logins the caller is linked to in kid_account_parents
+ * (the creator is always linked; another grown-up can be shared in), so
+ * no parent filter is applied here.
+ */
 export async function fetchMyKidAccounts(
   client: SupabaseClient,
   parentId: string,
 ): Promise<KidAccount[]> {
+  void parentId;
   const { data, error } = await client
     .from("kid_accounts")
     .select(KID_COLUMNS)
-    .eq("parent_id", parentId)
     .order("created_at", { ascending: true });
   if (error) throw new Error("Could not load kid logins. Please try again.");
   return (data ?? [])
@@ -252,6 +257,77 @@ export async function setKidAccountActive(
   active: boolean,
 ): Promise<void> {
   await invokeKidAccounts(client, { action: "set_active", kidUserId, active });
+}
+
+export interface KidParent {
+  parentId: string;
+  email: string;
+  /** True for the grown-up who created the login (cannot be unshared). */
+  isOwner: boolean;
+}
+
+export function parseKidParents(payload: unknown): KidParent[] {
+  const rows =
+    payload && typeof payload === "object"
+      ? (payload as Record<string, unknown>).parents
+      : null;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    if (!row || typeof row !== "object") return [];
+    const value = row as Record<string, unknown>;
+    if (
+      typeof value.parentId !== "string" ||
+      !value.parentId ||
+      typeof value.email !== "string" ||
+      !value.email
+    )
+      return [];
+    return [
+      {
+        parentId: value.parentId,
+        email: value.email,
+        isOwner: value.isOwner === true,
+      },
+    ];
+  });
+}
+
+/** Grown-ups linked to a kid login, as resolved by the Edge Function. */
+export async function fetchKidParents(
+  client: SupabaseClient,
+  kidUserId: string,
+): Promise<KidParent[]> {
+  const payload = await invokeKidAccounts(client, {
+    action: "parents",
+    kidUserId,
+  });
+  return parseKidParents(payload);
+}
+
+/** Links another grown-up account (by its sign-in email) to a kid login. */
+export async function shareKidAccount(
+  client: SupabaseClient,
+  kidUserId: string,
+  email: string,
+): Promise<void> {
+  await invokeKidAccounts(client, {
+    action: "share",
+    kidUserId,
+    email: email.trim().toLowerCase(),
+  });
+}
+
+/** Removes a grown-up's link to a kid login (the creator cannot be removed). */
+export async function unshareKidAccount(
+  client: SupabaseClient,
+  kidUserId: string,
+  parentId: string,
+): Promise<void> {
+  await invokeKidAccounts(client, {
+    action: "unshare",
+    kidUserId,
+    parentId,
+  });
 }
 
 export interface KidProgress {

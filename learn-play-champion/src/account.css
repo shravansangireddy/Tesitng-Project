@@ -578,3 +578,28 @@
   font-size: 0.9rem;
   font-weight: 600;
 }
+.kid-parents {
+  background: var(--cream, #fdf8f1);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+}
+.kid-parents p {
+  margin: 0;
+}
+.kid-parents-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.kid-parents-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}

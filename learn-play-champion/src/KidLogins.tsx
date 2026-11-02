@@ -5,6 +5,7 @@ import {
   createKidAccount,
   deleteKidAccount,
   fetchKidProgress,
+  fetchKidParents,
   fetchMyKidAccounts,
   fetchOwnKidAccount,
   kidNameError,
@@ -12,10 +13,13 @@ import {
   MAX_KID_ACCOUNTS,
   resetKidPassword,
   setKidAccountActive,
+  shareKidAccount,
   summarizeProgress,
+  unshareKidAccount,
   updateKidAccount,
   usernameError,
   type KidAccount,
+  type KidParent,
   type KidProgress,
 } from "./kid-accounts";
 import { activities, type ActivityId } from "./game";
@@ -127,7 +131,8 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
         sign in on any device and keep their own progress. No email address
         is needed, and usernames are never shown publicly. You create and
         control these logins: reset a PIN or delete a login here at any
-        time.
+        time. Each login can be shared with another grown-up (use the
+        Grown-ups button on a child below), so both parents can manage it.
       </p>
       {error && (
         <p className="kid-logins-error" role="alert">
@@ -251,6 +256,61 @@ function KidLoginRow({
     "idle" | "loading" | "ready" | "error"
   >("idle");
   const [kidProgress, setKidProgress] = useState<KidProgress | null>(null);
+  const [parentsOpen, setParentsOpen] = useState(false);
+  const [kidParents, setKidParents] = useState<KidParent[] | null>(null);
+  const [shareEmail, setShareEmail] = useState("");
+
+  const loadParents = async () => {
+    try {
+      setKidParents(await fetchKidParents(client, kid.kidUserId));
+    } catch (parentsFailure) {
+      onError(failure(parentsFailure));
+    }
+  };
+
+  const toggleParents = () => {
+    const next = !parentsOpen;
+    setParentsOpen(next);
+    if (next && kidParents === null) void loadParents();
+  };
+
+  const share = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setBusy(true);
+    try {
+      await shareKidAccount(client, kid.kidUserId, shareEmail);
+      onError("");
+      onNotice(
+        `${kid.displayName}'s login is now shared with ${shareEmail.trim()}.`,
+      );
+      setShareEmail("");
+      await loadParents();
+    } catch (shareFailure) {
+      onError(failure(shareFailure));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const removeParent = async (target: KidParent) => {
+    if (
+      !window.confirm(
+        `Stop sharing ${kid.displayName}'s login with ${target.email}? They will no longer see or manage it.`,
+      )
+    )
+      return;
+    setBusy(true);
+    try {
+      await unshareKidAccount(client, kid.kidUserId, target.parentId);
+      onError("");
+      onNotice(`${target.email} no longer manages ${kid.displayName}'s login.`);
+      await loadParents();
+    } catch (unshareFailure) {
+      onError(failure(unshareFailure));
+    } finally {
+      setBusy(false);
+    }
+  };
 
   const loadProgress = async () => {
     setProgressState("loading");
@@ -404,6 +464,15 @@ function KidLoginRow({
           className="button secondary"
           type="button"
           disabled={busy}
+          aria-expanded={parentsOpen}
+          onClick={toggleParents}
+        >
+          {parentsOpen ? "Hide grown-ups" : "Grown-ups"}
+        </button>
+        <button
+          className="button secondary"
+          type="button"
+          disabled={busy}
           onClick={() => void toggleActive()}
         >
           {kid.active ? "Pause login" : "Reactivate login"}
@@ -451,6 +520,60 @@ function KidLoginRow({
           kidProgress={kidProgress}
           onRetry={() => void loadProgress()}
         />
+      )}
+      {parentsOpen && (
+        <div className="kid-parents">
+          <p>
+            Grown-ups who can manage {kid.displayName}'s login — set the
+            PIN, pause it, assign tasks, and see progress:
+          </p>
+          {kidParents === null ? (
+            <p>Loading…</p>
+          ) : (
+            <ul className="kid-parents-list">
+              {kidParents.map((parent) => (
+                <li key={parent.parentId}>
+                  <span>
+                    {parent.email || "A grown-up"}
+                    {parent.isOwner ? " (created this login)" : ""}
+                    {parent.parentId === parentId ? " — that's you" : ""}
+                  </span>
+                  {!parent.isOwner && (
+                    <button
+                      className="text-button danger"
+                      type="button"
+                      disabled={busy}
+                      onClick={() => void removeParent(parent)}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+          <form className="kid-logins-reset" onSubmit={share}>
+            <label>
+              Share with another grown-up (their sign-in email)
+              <input
+                type="email"
+                autoComplete="email"
+                placeholder="grown-up@example.com"
+                value={shareEmail}
+                onChange={(event) => setShareEmail(event.target.value)}
+                disabled={busy}
+                maxLength={254}
+              />
+            </label>
+            <button
+              className="button primary"
+              type="submit"
+              disabled={busy || !shareEmail.trim()}
+            >
+              Share login
+            </button>
+          </form>
+        </div>
       )}
       <KidTasksManager client={client} parentId={parentId} kid={kid} />
     </li>
