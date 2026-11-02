@@ -23,5 +23,45 @@
     "prompt": "{start}, {n1}, {n2}, {n3}, … ?",
     "hint": "Add {step} each time.",
     "explanation": "This pattern grows by {step} each time. The next number is {answer}."
+  },
+  "fractions": {
+    "prompt": "What is 1/{b} of {a}?",
+    "hint": "Split {a} into {b} equal groups. How many are in one group?",
+    "explanation": "{a} ÷ {b} = {answer}, so 1/{b} of {a} is {answer}."
+  },
+  "decimals": {
+    "prompt": "{a} + {b} = ?",
+    "hint": "Line up the decimal points, then add each place.",
+    "explanation": "{a} + {b} = {answer}. The decimal point stays in the same column."
+  },
+  "placevalue": {
+    "prompt": "In {a}, what value does the digit {b} stand for?",
+    "hint": "Find where the digit {b} sits in {a}, then think about its place.",
+    "explanation": "In {a}, the digit {b} is worth {answer} because of the place it sits in."
+  },
+  "money": {
+    "prompt": "You have {a} quarters and {b} dimes. How many cents do you have?",
+    "hint": "Each quarter is 25 cents and each dime is 10 cents.",
+    "explanation": "{a} quarters make 25 cents each and {b} dimes make 10 cents each, for {answer} cents in all."
+  },
+  "time": {
+    "prompt": "A movie starts at {a} o'clock and lasts {b} hours. At what o'clock does it end?",
+    "hint": "Count forward {b} hours from {a} o'clock.",
+    "explanation": "Starting at {a} and counting forward {b} hours lands on {answer} o'clock."
+  },
+  "measurement": {
+    "prompt": "How many centimeters are in {a} meters?",
+    "hint": "Every meter is 100 centimeters.",
+    "explanation": "{a} × 100 = {answer}, so {a} meters is {answer} centimeters."
+  },
+  "missing": {
+    "prompt": "{a} + ? = {b}. What number belongs in the box?",
+    "hint": "Think: what can you add to {a} to reach {b}? Counting up helps.",
+    "explanation": "{b} − {a} = {answer}, and {a} + {answer} = {b}."
+  },
+  "multidigit": {
+    "prompt": "Multiply: {a} × {b} = ?",
+    "hint": "Multiply the ones first, then the tens, and combine the parts.",
+    "explanation": "{a} × {b} = {product}. Breaking {a} into tens and ones can help."
   }
 }

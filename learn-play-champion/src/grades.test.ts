@@ -38,13 +38,13 @@ const perfect: Attempt[] = Array.from({ length: 5 }, () => ({
 }));
 
 describe("original Pre-K through Grade 5 library", () => {
-  it("contains seven grades, 112 activities, 560 questions, seven stories and seven nonfiction texts", () => {
+  it("contains seven grades, 112 activities, 16915 questions, seven stories and seven nonfiction texts", () => {
     expect(Object.keys(content.grades).sort()).toEqual([...gradeIds].sort());
     const lessons = Object.values(content.grades).flatMap((pack) =>
       Object.values(pack.lessons),
     );
     expect(lessons).toHaveLength(112);
-    expect(lessons.flatMap((lesson) => lesson.questions)).toHaveLength(560);
+    expect(lessons.flatMap((lesson) => lesson.questions)).toHaveLength(16915);
     const stories = gradeIds.map(
       (grade) => content.grades[grade].lessons.reading.questions[0].passage,
     );
@@ -69,9 +69,15 @@ describe("original Pre-K through Grade 5 library", () => {
         const round = makeRound(activity, () => 0.4, grade);
         expect(round).toHaveLength(5);
         expect(new Set(round.map((q) => q.prompt)).size).toBe(5);
+        // Pools hold complete sets of five; a round is one contiguous set.
+        const start = lesson.questions.findIndex(
+          (q) => q.prompt === round[0].prompt,
+        );
+        expect(start).toBeGreaterThanOrEqual(0);
+        expect(start % 5).toBe(0);
         for (const [index, question] of round.entries()) {
-          expect(question.prompt).toBe(lesson.questions[index].prompt);
-          expect(question.answer).toBe(lesson.questions[index].answer);
+          expect(question.prompt).toBe(lesson.questions[start + index].prompt);
+          expect(question.answer).toBe(lesson.questions[start + index].answer);
           expect(question.hint.trim().length).toBeGreaterThan(0);
           expect(question.explanation.trim().length).toBeGreaterThan(0);
           if (activity === "spelling") expect(question.options).toBeUndefined();
@@ -116,8 +122,15 @@ describe("original Pre-K through Grade 5 library", () => {
       "5": ["6.35", "4.62", "0.07", "6.49", "6.5"],
     };
     for (const grade of gradeIds) {
+      // The original checked rows still lead each pool, and a zero-random
+      // round serves exactly that first set of five.
       expect(
-        makeRound("arithmetic", () => 0.5, grade).map((q) => q.answer),
+        content.grades[grade].lessons.arithmetic.questions
+          .slice(0, 5)
+          .map((q) => q.answer),
+      ).toEqual(answers[grade]);
+      expect(
+        makeRound("arithmetic", () => 0, grade).map((q) => q.answer),
       ).toEqual(answers[grade]);
     }
   });

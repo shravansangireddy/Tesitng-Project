@@ -69,6 +69,9 @@ beforeEach(() => {
   vi.stubGlobal("speechSynthesis", { speak, cancel });
   MockRecognition.instances = [];
   vi.clearAllMocks();
+  // Rounds rotate through a lesson's sets of five; a zero random source
+  // deterministically serves the first set, which the bee flows assert against.
+  vi.spyOn(Math, "random").mockReturnValue(0);
   context = {
     key: "first", read: "Which number? Option A. 2. Option B. 3.",
     options: ["2", "3"], canAnswer: true, canNext: false,
@@ -357,7 +360,7 @@ describe("voice and spelling bee in the actual app", () => {
     await act(async () => root.render(<App />));
     await chooseGrade("2");
     await click(button("Start spelling bee"));
-    const words = getLearningContent().grades["2"].lessons.spelling.questions;
+    const words = getLearningContent().grades["2"].lessons.spelling.questions.slice(0, 5);
     for (const [index, word] of words.entries()) {
       await click(button("Hear the bee word"));
       expect(last(speak.mock.calls)[0].text).toBe(`Your word is ${word.answer}.`);

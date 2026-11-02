@@ -15,10 +15,13 @@ const groups: readonly (readonly LessonId[])[] = [
 ];
 export function makePathCheck(grade: GradeId, rounds: number) {
   const lessons = getLearningContent().grades[grade].lessons;
-  return groups[rounds % groups.length].map(id => ({
-    id, title: lessons[id].title,
-    question: makeRound(id, Math.random, grade)[Math.floor(rounds / groups.length) % lessons[id].questions.length],
-  }));
+  return groups[rounds % groups.length].map(id => {
+    const round = makeRound(id, Math.random, grade);
+    return {
+      id, title: lessons[id].title,
+      question: round[Math.floor(rounds / groups.length) % round.length],
+    };
+  });
 }
 export function validPathChecks(value: unknown): boolean {
   if (value === undefined) return true;

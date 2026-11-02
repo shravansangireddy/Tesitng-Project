@@ -81,6 +81,9 @@ beforeEach(() => {
   Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
   localStorage.clear(); history.replaceState(null, "", "/");
   vi.spyOn(window, "confirm").mockReturnValue(true);
+  // Rounds rotate through a lesson's sets of five; a zero random source makes
+  // the check built here and the one built inside the app serve the same set.
+  vi.spyOn(Math, "random").mockReturnValue(0);
   container = document.createElement("div"); document.body.append(container); root = createRoot(container);
 });
 afterEach(async () => { await act(async () => root.unmount()); container.remove(); vi.restoreAllMocks(); });

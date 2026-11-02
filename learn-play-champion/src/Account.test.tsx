@@ -114,6 +114,9 @@ beforeEach(() => {
   localStorage.clear();
   history.replaceState(null, "", location.pathname);
   vi.spyOn(window, "confirm").mockReturnValue(true);
+  // Rounds rotate through a lesson's sets of five; a zero random source
+  // deterministically serves the first set, which these flows assert against.
+  vi.spyOn(Math, "random").mockReturnValue(0);
   Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
     configurable: true,
     value: function (this: HTMLDialogElement) {
