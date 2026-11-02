@@ -156,6 +156,8 @@ ${canonical ? `<link rel="canonical" href="${escape(canonical)}"><meta property=
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="${escape(page.title)}">
 <meta name="twitter:description" content="${escape(page.description)}">
 <link rel="stylesheet" href="/learn/site.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVHYPFG6QR"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-XVHYPFG6QR');</script>
 <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
 </head><body class="${home ? "landing-page" : "guide-page"}">
 <a class="skip" href="#content">Skip to content</a>
