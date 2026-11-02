@@ -4,7 +4,7 @@ A playful, responsive English and Math learning app for elementary learners, wit
 
 ## Pre-K–Grade 5 practice library
 
-Choose **Pre-K, Kindergarten, Grade 1, Grade 2, Grade 3, Grade 4, or Grade 5** using the grade selector on the dashboard or Adventures page. Each level includes **16 activities, 80 questions, one original story, and one original nonfiction text**: **560 questions, 112 level-specific activities, and 14 reading texts total**. English has seven activities per level; Math has nine. Titles, teaching tips, questions, and reading passages change with the selected level.
+Choose **Pre-K, Kindergarten, Grade 1, Grade 2, Grade 3, Grade 4, or Grade 5** using the grade selector on the dashboard or Adventures page. Each level includes **16 activities, one original story, and one original nonfiction text**: **16,950 static questions plus runtime-generated math (over 10,000 distinct questions in total), 112 level-specific activities, and 14 reading texts**. English has seven activities per level; Math has nine. Titles, teaching tips, questions, and reading passages change with the selected level.
 
 | Grade | English practice | Math practice |
 | --- | --- | --- |
@@ -280,7 +280,7 @@ Best bee scores are stored separately per level in optional `Progress.beeBestRou
 
 Open **Coding Cove · 3–5** in the main navigation, or **Explore Coding Cove** on the dashboard/Adventures page. The selected learning grade is used for Grades 3–5; otherwise coding starts at Grade 3. A separate coding-grade selector lets learners explore any of these levels without changing their English/Math grade.
 
-There are **18 original robot-delivery puzzles**, separate from the 560 English/Math questions. Every grade offers six lessons in order, but none are locked:
+There are **18 original robot-delivery puzzles**, separate from the 10,000+ English/Math questions. Every grade offers six lessons in order, but none are locked:
 
 | Grade | Learning progression |
 | --- | --- |
@@ -807,7 +807,7 @@ Fonts use the installed/system fallbacks; there are no external Google Fonts req
 - `src/cloud.ts`: validated, account-isolated progress reads and revision-checked writes.
 - `supabase/migrations`: database schema, owner policies, and authenticated save function.
 - `src/content/*.txt`: editable learning questions, stories, answers, hints, Math templates, and teammate practice.
-- `src/content/grades/*.txt`: selected-level Pre-K–5 packs (560 questions, 14 reading texts, original teaching guides and chart data).
+- `src/content/grades/*.txt`: selected-level Pre-K–5 packs (16,950 questions, 14 reading texts, original teaching guides and chart data).
 - `src/LessonTips.tsx`, `src/LearningChart.tsx`: expandable learning guidance and visual graphs with text tables.
 - `src/content-schema.ts`, `src/content.ts`: text parsing, structural validation, and explicit load errors.
 - `src/questions.ts`: random number generation and content-driven question construction.
