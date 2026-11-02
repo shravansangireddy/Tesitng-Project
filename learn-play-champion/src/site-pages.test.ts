@@ -130,6 +130,30 @@ describe("public learning guides", () => {
       expect(() => siteOrigin(value)).toThrow();
     }
   });
+  it("publishes an original parent skill guide for every grade skill area", () => {
+    const countWords = (text: string) => text.split(/\s+/).filter(word => /[\p{L}\p{N}]/u.test(word)).length;
+    for (const page of gradePages) {
+      const doc = new DOMParser().parseFromString(renderSitePage(page), "text/html");
+      // 6 base sections plus 6 skill-guide sections (3 English, 3 math), each
+      // guide carrying a what/why paragraph, an app-practice paragraph, an
+      // at-home lead-in, and at least 2 hands-on activities.
+      expect(doc.querySelectorAll(".editorial-content > section")).toHaveLength(12);
+      const sections = [...doc.querySelectorAll(".editorial-content > section")];
+      const guides = sections.filter(section =>
+        section.querySelectorAll("p").length >= 3 && (section.querySelectorAll("li").length >= 2));
+      expect(guides).toHaveLength(6);
+      for (const guide of guides) expect(countWords(guide.textContent ?? "")).toBeGreaterThanOrEqual(180);
+    }
+    // The /learn section as a whole carries at least 10,000 words of guide
+    // and editorial body text (article content only; header, footer, guide
+    // directory, and the closing notice are outside <article>).
+    let total = 0;
+    for (const page of sitePages) {
+      const doc = new DOMParser().parseFromString(renderSitePage(page), "text/html");
+      total += countWords(doc.querySelector("article")?.textContent ?? "");
+    }
+    expect(total).toBeGreaterThanOrEqual(10000);
+  });
   it("escapes editorial text in markup, metadata, and structured data", () => {
     const page = { ...sitePages[0], title: '<script>alert("x")</script>', description: 'A "quote" & <tag>' };
     const doc = new DOMParser().parseFromString(renderSitePage(page), "text/html");
