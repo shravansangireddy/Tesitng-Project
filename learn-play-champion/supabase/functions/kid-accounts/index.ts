@@ -83,6 +83,33 @@ async function kidRows(query: string): Promise<Record<string, unknown>[]> {
   return Array.isArray(rows) ? (rows as Record<string, unknown>[]) : [];
 }
 
+async function parentRows(
+  query: string,
+): Promise<Record<string, unknown>[]> {
+  const response = await rest(`kid_account_parents?${query}`, {
+    method: "GET",
+  });
+  if (!response.ok) throw new Error("Could not read kid account parents.");
+  const rows = (await response.json()) as unknown;
+  return Array.isArray(rows) ? (rows as Record<string, unknown>[]) : [];
+}
+
+async function listAuthUsers(): Promise<{ id: string; email: string }[]> {
+  const response = await fetch(
+    `${env("SUPABASE_URL")}/auth/v1/admin/users?per_page=1000`,
+    { headers: serviceHeaders() },
+  );
+  if (!response.ok) throw new Error("Could not read users.");
+  const payload = (await response.json()) as {
+    users?: { id?: unknown; email?: unknown }[];
+  };
+  return (payload.users ?? []).flatMap((user) =>
+    typeof user.id === "string" && typeof user.email === "string"
+      ? [{ id: user.id, email: user.email }]
+      : [],
+  );
+}
+
 async function requireParent(request: Request): Promise<string | Response> {
   const caller = await callerId(request);
   if (!caller) return fail("Please sign in as a grown-up first.");
@@ -191,6 +218,15 @@ async function createKid(
     await deleteAuthUser(user.id);
     return fail("Could not save the kid login. Please try again.");
   }
+  const linked = await rest("kid_account_parents", {
+    method: "POST",
+    headers: { Prefer: "return=minimal" },
+    body: JSON.stringify({ kid_user_id: user.id, parent_id: parentId }),
+  });
+  if (!linked.ok) {
+    await deleteAuthUser(user.id);
+    return fail("Could not save the kid login. Please try again.");
+  }
   return json({
     kid: {
       kidUserId: user.id,
@@ -205,10 +241,18 @@ async function createKid(
 
 async function ownsKid(parentId: string, kidUserId: unknown): Promise<boolean> {
   if (typeof kidUserId !== "string" || !kidUserId) return false;
-  const rows = await kidRows(
-    `kid_user_id=eq.${kidUserId}&parent_id=eq.${parentId}&select=kid_user_id&limit=1`,
+  const rows = await parentRows(
+    `kid_user_id=eq.${kidUserId}&parent_id=eq.${parentId}&select=parent_id&limit=1`,
   );
   return rows.length > 0;
+}
+
+async function kidOwnerId(kidUserId: string): Promise<string> {
+  const rows = await kidRows(
+    `kid_user_id=eq.${kidUserId}&select=parent_id&limit=1`,
+  );
+  const owner = rows[0]?.parent_id;
+  return typeof owner === "string" ? owner : "";
 }
 
 async function resetPassword(
@@ -275,6 +319,90 @@ async function setActive(
   return json({ ok: true, active: body.active });
 }
 
+async function listParents(
+  parentId: string,
+  body: Record<string, unknown>,
+): Promise<Response> {
+  if (!(await ownsKid(parentId, body.kidUserId)))
+    return fail("That kid login was not found under your account.");
+  const kidUserId = body.kidUserId as string;
+  const [links, users, ownerId] = await Promise.all([
+    parentRows(`kid_user_id=eq.${kidUserId}&select=parent_id,created_at`),
+    listAuthUsers(),
+    kidOwnerId(kidUserId),
+  ]);
+  const emailById = new Map(users.map((user) => [user.id, user.email]));
+  const parents = links
+    .map((link) => link.parent_id)
+    .filter((id): id is string => typeof id === "string")
+    .map((id) => ({
+      parentId: id,
+      email: emailById.get(id) ?? "",
+      isOwner: id === ownerId,
+    }))
+    .sort((a, b) => Number(b.isOwner) - Number(a.isOwner));
+  return json({ parents });
+}
+
+async function shareKid(
+  parentId: string,
+  body: Record<string, unknown>,
+): Promise<Response> {
+  if (!(await ownsKid(parentId, body.kidUserId)))
+    return fail("That kid login was not found under your account.");
+  const email =
+    typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    return fail("Enter the other grown-up's email address.");
+  const users = await listAuthUsers();
+  const target = users.find(
+    (user) => user.email.toLowerCase() === email,
+  );
+  if (!target)
+    return fail(
+      "No grown-up account uses that email yet. They need to sign in to Learn & Play once first, then you can share.",
+    );
+  const kidUserId = body.kidUserId as string;
+  const kidCheck = await parentRows(
+    `kid_user_id=eq.${target.id}&select=kid_user_id&limit=1`,
+  );
+  if (kidCheck.length > 0)
+    return fail("That email belongs to a kid login, not a grown-up.");
+  const existing = await parentRows(
+    `kid_user_id=eq.${kidUserId}&parent_id=eq.${target.id}&select=parent_id&limit=1`,
+  );
+  if (existing.length > 0) return json({ ok: true, already: true });
+  const linked = await rest("kid_account_parents", {
+    method: "POST",
+    headers: { Prefer: "return=minimal" },
+    body: JSON.stringify({ kid_user_id: kidUserId, parent_id: target.id }),
+  });
+  if (!linked.ok)
+    return fail("Could not share the kid login. Please try again.");
+  return json({ ok: true });
+}
+
+async function unshareKid(
+  parentId: string,
+  body: Record<string, unknown>,
+): Promise<Response> {
+  if (!(await ownsKid(parentId, body.kidUserId)))
+    return fail("That kid login was not found under your account.");
+  const kidUserId = body.kidUserId as string;
+  const target = body.parentId;
+  if (typeof target !== "string" || !target)
+    return fail("Say which grown-up to remove.");
+  if (target === (await kidOwnerId(kidUserId)))
+    return fail("The grown-up who created this login can't be removed.");
+  const removed = await rest(
+    `kid_account_parents?kid_user_id=eq.${kidUserId}&parent_id=eq.${target}`,
+    { method: "DELETE", headers: { Prefer: "return=minimal" } },
+  );
+  if (!removed.ok)
+    return fail("Could not remove that grown-up. Please try again.");
+  return json({ ok: true });
+}
+
 async function handler(request: Request): Promise<Response> {
   if (request.method === "OPTIONS")
     return new Response(null, { status: 204, headers: corsHeaders });
@@ -291,6 +419,9 @@ async function handler(request: Request): Promise<Response> {
       return await resetPassword(parent, body);
     if (body.action === "delete") return await deleteKid(parent, body);
     if (body.action === "set_active") return await setActive(parent, body);
+    if (body.action === "parents") return await listParents(parent, body);
+    if (body.action === "share") return await shareKid(parent, body);
+    if (body.action === "unshare") return await unshareKid(parent, body);
     return fail("Unknown kid-login action.");
   } catch {
     return fail("Something went wrong with kid logins. Please try again.");
