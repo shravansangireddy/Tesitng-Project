@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from "vitest";
 import { gradePages, sitePages } from "./site-content";
-import { renderMachineGuide, renderRobots, renderSitePage, renderSitemap, siteOrigin, sitePath, stockPhotos } from "./site-pages";
+import { renderMachineGuide, renderRobots, renderSitePage, renderSitemap, siteOrigin, sitePath, socialLinks, stockPhotos } from "./site-pages";
 
 describe("public learning guides", () => {
   it("publishes distinct, readable pages without requiring JavaScript", () => {
@@ -26,6 +26,7 @@ describe("public learning guides", () => {
         const href = a.getAttribute("href")!;
         expect(href === "/" || href === "#content" || sitePages.some(p => sitePath(p) === href) ||
           (href.startsWith("/books/") && href.endsWith(".pdf")) ||
+          socialLinks.some(social => social.url === href) ||
           Object.values(stockPhotos).some(photo => photo.source === href)).toBe(true);
       }
     }
@@ -153,6 +154,29 @@ describe("public learning guides", () => {
       total += countWords(doc.querySelector("article")?.textContent ?? "");
     }
     expect(total).toBeGreaterThanOrEqual(10000);
+  });
+  it("links every social media account from the footer of every page", () => {
+    expect(socialLinks).toEqual([
+      { name: "Instagram", url: "https://www.instagram.com/learnplaychampion" },
+      { name: "Threads", url: "https://www.threads.net/@learnplaychampion" },
+      { name: "Pinterest", url: "https://www.pinterest.com/learnplaychampion" },
+      { name: "X", url: "https://x.com/learnplaychamp" },
+    ]);
+    for (const page of sitePages) {
+      const doc = new DOMParser().parseFromString(renderSitePage(page), "text/html");
+      const nav = doc.querySelector('.site-footer nav[aria-label="Social media"]');
+      expect(nav).not.toBeNull();
+      expect(nav!.querySelector("h2")?.textContent).toBe("Follow us");
+      const links = [...nav!.querySelectorAll("a")];
+      expect(links.map(a => a.getAttribute("href"))).toEqual(socialLinks.map(social => social.url));
+      for (const [index, a] of links.entries()) {
+        expect(a.textContent).toBe(socialLinks[index].name);
+        expect(a.getAttribute("target")).toBe("_blank");
+        expect(a.getAttribute("rel")).toBe("noopener noreferrer");
+      }
+      // The existing footer content stays alongside the social links.
+      expect(doc.querySelector(".site-footer")?.textContent).toContain("Building bright minds for future generations.");
+    }
   });
   it("escapes editorial text in markup, metadata, and structured data", () => {
     const page = { ...sitePages[0], title: '<script>alert("x")</script>', description: 'A "quote" & <tag>' };
