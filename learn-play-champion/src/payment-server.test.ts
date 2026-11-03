@@ -126,6 +126,48 @@ describe("server checkout authority", () => {
     expect(JSON.stringify(await response.json())).not.toContain("server-secret");
   });
 });
+describe("checkout config action and wallet orders", () => {
+  it("returns only the public client configuration, never the secret or webhook ID", async () => {
+    const fetcher = vi.fn<typeof fetch>();
+    const response = await checkoutHandler(checkout({ action: "config" }), env, fetcher);
+    expect(response.status).toBe(200);
+    const body = await response.json();
+    expect(body).toEqual({ enabled: true, environment: "sandbox", clientId: "client-id" });
+    expect(JSON.stringify(body)).not.toContain("server-secret");
+    expect(JSON.stringify(body)).not.toContain("configured-hook");
+    expect(fetcher).not.toHaveBeenCalled();
+  });
+  it("reports disabled checkout in the config action instead of failing", async () => {
+    const response = await checkoutHandler(checkout({ action: "config" }),
+      key => key === "PAYMENTS_ENABLED" ? "false" : env(key), vi.fn<typeof fetch>());
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ enabled: false, environment: null, clientId: null });
+  });
+  it("rejects config requests from other origins", async () => {
+    const response = await checkoutHandler(checkout({ action: "config" }, { Origin: "https://evil.example" }), env, vi.fn<typeof fetch>());
+    expect(response.status).toBe(403);
+  });
+  it("creates a wallet order without a redirect payment source and returns its ID", async () => {
+    const fetcher = service([auth,
+      { path: "/rpc/begin_donation", data: { ...intent, paypal_order_id: null } }, oauth,
+      { path: "/v2/checkout/orders", data: order("CREATED") },
+      { path: "donation_orders?id=", status: 204 }, { path: "donation_orders?select=", data: [intent] },
+      { path: "/orders/ORDER123", data: order("CREATED") },
+    ]);
+    const result = await checkoutHandler(checkout({ action: "create", requestId, amountCents: 500, adultConfirmed: true, wallet: "googlepay" }), env, fetcher);
+    expect(result.status).toBe(200);
+    expect(await result.json()).toEqual({ orderId: "ORDER123", environment: "sandbox" });
+    const body = JSON.parse(String(fetcher.mock.calls[3][1]?.body));
+    expect(body.payment_source).toBeUndefined();
+    expect(body.purchase_units[0]).toMatchObject({ custom_id: requestId, amount });
+  });
+  it("rejects unknown wallet values before any storage or PayPal call", async () => {
+    const fetcher = service([auth]);
+    const response = await checkoutHandler(checkout({ action: "create", requestId, amountCents: 500, adultConfirmed: true, wallet: "applepay" }), env, fetcher);
+    expect(response.status).toBe(400);
+    expect(fetcher).toHaveBeenCalledTimes(1);
+  });
+});
 describe("PayPal webhook verification and minimal ledger", () => {
   it("does not write records for missing headers or failed signature verification", async () => {
     const empty = vi.fn<typeof fetch>();

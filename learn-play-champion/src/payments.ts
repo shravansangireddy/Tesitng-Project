@@ -51,15 +51,26 @@ export async function loadPaymentEvents(client: SupabaseClient, before?: Payment
   if (error) throw new Error(`Could not load payment records: ${error.message}`);
   return parsePaymentEvents(data);
 }
+export interface CheckoutResponse {
+  approvalUrl?: string;
+  orderId?: string;
+  status?: "COMPLETED" | "PENDING";
+  captureId?: string;
+  environment: "sandbox" | "live";
+}
 export async function checkoutRequest(client: SupabaseClient, body: {
-  action: "create" | "capture"; requestId: string; amountCents?: number;
-}) {
+  action: "create" | "capture"; requestId: string; amountCents?: number; wallet?: "googlepay";
+}): Promise<CheckoutResponse> {
   const { data, error } = await client.functions.invoke("paypal-checkout", { body: { ...body, adultConfirmed: true } });
   if (error) throw new Error("PayPal checkout request failed. Check sign-in, connection, and payment deployment. Retry the same attempt; check PayPal before starting another.");
   if (!object(data)) throw new Error("Invalid checkout response.");
   if (typeof data.error === "string") throw new Error(data.error);
   if (data.environment !== "sandbox" && data.environment !== "live") throw new Error("Invalid PayPal environment.");
   if (body.action === "create") {
+    if (body.wallet === "googlepay") {
+      if (!id(data.orderId)) throw new Error("PayPal order reference was missing.");
+      return { orderId: data.orderId, environment: data.environment };
+    }
     if (typeof data.approvalUrl !== "string") throw new Error("PayPal approval link was missing.");
     const url = new URL(data.approvalUrl);
     const expected = data.environment === "live" ? "www.paypal.com" : "www.sandbox.paypal.com";
@@ -70,6 +81,21 @@ export async function checkoutRequest(client: SupabaseClient, body: {
   if ((data.status !== "COMPLETED" && data.status !== "PENDING") || !id(data.captureId))
     throw new Error("PayPal did not confirm a capture. Check PayPal before trying again.");
   return { status: data.status, captureId: data.captureId, environment: data.environment };
+}
+export interface CheckoutConfig {
+  enabled: boolean;
+  environment: "sandbox" | "live" | null;
+  clientId: string | null;
+}
+export async function checkoutConfig(client: SupabaseClient): Promise<CheckoutConfig> {
+  const { data, error } = await client.functions.invoke("paypal-checkout", { body: { action: "config" } });
+  if (error) throw new Error("PayPal checkout configuration could not be loaded.");
+  if (!object(data) || typeof data.enabled !== "boolean") throw new Error("Invalid checkout configuration response.");
+  if (!data.enabled) return { enabled: false, environment: null, clientId: null };
+  if ((data.environment !== "sandbox" && data.environment !== "live") ||
+    typeof data.clientId !== "string" || !data.clientId)
+    throw new Error("Invalid checkout configuration response.");
+  return { enabled: true, environment: data.environment, clientId: data.clientId };
 }
 export function donationReturn() {
   const query = new URLSearchParams(location.search);
