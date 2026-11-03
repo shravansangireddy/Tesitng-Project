@@ -2113,6 +2113,40 @@ export default function App({
             <span>Made for curious minds & kind hearts.</span>
             <a href="/learn/">For grown-ups: learning guides</a>
             <span>
+              Follow us:{" "}
+              <a
+                href="https://www.instagram.com/learnplaychampion"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram
+              </a>
+              {" · "}
+              <a
+                href="https://www.threads.net/@learnplaychampion"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Threads
+              </a>
+              {" · "}
+              <a
+                href="https://www.pinterest.com/learnplaychampion"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Pinterest
+              </a>
+              {" · "}
+              <a
+                href="https://x.com/learnplaychamp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                X
+              </a>
+            </span>
+            <span>
               <LockKeyhole size={12} />{" "}
               {cloudProgress
                 ? "Private account progress"
