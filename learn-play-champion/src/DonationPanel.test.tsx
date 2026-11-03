@@ -59,11 +59,15 @@ describe("connected donations", () => {
     await act(async () => root.render(<DonationPanel adult client={client(vi.fn(), invoke)} />));
     await click(button("Donate with PayPal"));
     expect(container.querySelector('[role="alert"]')?.textContent).toContain("same attempt");
-    const first = invoke.mock.calls[0][1].body;
+    // The panel also asks the server for its public checkout config on mount
+    // (for Google Pay eligibility), so select the create calls by action.
+    const creates = () => invoke.mock.calls.filter(call => call[1].body.action === "create");
+    const first = creates()[0][1].body;
     expect(first).toMatchObject({ action: "create", amountCents: 500, adultConfirmed: true });
     expect(container.querySelector<HTMLSelectElement>("select")?.disabled).toBe(true);
     await click(button("Retry the same"));
-    expect(invoke.mock.calls[1][1].body.requestId).toBe(first.requestId);
+    expect(creates()).toHaveLength(2);
+    expect(creates()[1][1].body.requestId).toBe(first.requestId);
   });
   it("does not capture automatically from a forged return link and shows pending accurately", async () => {
     state.enabled = true;
@@ -108,6 +112,115 @@ describe("connected donations", () => {
     await click(button("Privacy & data"));
     expect(container.querySelector(".donation-panel")).not.toBeNull();
     expect(localStorage.getItem(STORAGE_KEY)).toBeNull();
+  });
+});
+describe("google pay donations", () => {
+  const gpSdkConfig = {
+    allowedPaymentMethods: [{ type: "CARD",
+      parameters: { allowedAuthMethods: ["PAN_TOKEN", "CRYPTOGRAM_3DS"], allowedCardNetworks: ["VISA"] },
+      tokenizationSpecification: { type: "PAYMENT_GATEWAY", parameters: { gateway: "paypal", gatewayMerchantId: "MERCHANT123" } } }],
+    countryCode: "US", merchantInfo: { merchantName: "Learn & Play Champion" },
+  };
+  interface GpWindow { paypal?: unknown; google?: unknown }
+  let callbacks: { onPaymentAuthorized(paymentData: unknown): Promise<unknown> } | null;
+  let clientOptions: Record<string, unknown>[];
+  let paymentRequests: Record<string, unknown>[];
+  function installGooglePay(sheet: "authorize" | "cancel", ready = true) {
+    const order: string[] = [];
+    const confirmOrder = vi.fn(async () => { order.push("confirmOrder"); return { status: "APPROVED" }; });
+    class PaymentsClient {
+      constructor(options: Record<string, unknown>) {
+        clientOptions.push(options);
+        callbacks = options.paymentDataCallbacks as typeof callbacks;
+      }
+      isReadyToPay() { return Promise.resolve({ result: ready }); }
+      async loadPaymentData(request: Record<string, unknown>) {
+        paymentRequests.push(request);
+        if (sheet === "cancel") throw { statusCode: "CANCELED" };
+        return callbacks?.onPaymentAuthorized({ paymentMethodData: { type: "CARD", info: {} } });
+      }
+    }
+    Object.assign(window, {
+      paypal: { Googlepay: () => ({ config: async () => gpSdkConfig, confirmOrder }) },
+      google: { payments: { api: { PaymentsClient } } },
+    });
+    return { order, confirmOrder };
+  }
+  function gpInvoke(order: string[], configEnabled = true) {
+    return vi.fn().mockImplementation((_name: string, args: { body: Record<string, unknown> }) => {
+      order.push(`invoke:${String(args.body.action)}`);
+      if (args.body.action === "config") return Promise.resolve({ data: configEnabled
+        ? { enabled: true, environment: "sandbox", clientId: "CLIENT123" }
+        : { enabled: false, environment: null, clientId: null }, error: null });
+      if (args.body.action === "create") return Promise.resolve({ data: { orderId: "ORDER123", environment: "sandbox" }, error: null });
+      if (args.body.action === "capture") return Promise.resolve({ data: { status: "COMPLETED", captureId: "CAPTURE123", environment: "sandbox" }, error: null });
+      return Promise.resolve({ data: null, error: new Error("Unexpected action") });
+    });
+  }
+  async function flush(rounds = 8) {
+    for (let i = 0; i < rounds; i++) await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
+  }
+  function googlePayButton() {
+    return [...container.querySelectorAll<HTMLButtonElement>("button")].find(b => b.textContent?.includes("Google Pay"));
+  }
+  beforeEach(() => { callbacks = null; clientOptions = []; paymentRequests = []; });
+  afterEach(() => { delete (window as GpWindow).paypal; delete (window as GpWindow).google; });
+  it("renders no Google Pay button when the device is not eligible", async () => {
+    state.enabled = true;
+    const { order } = installGooglePay("authorize", false);
+    await act(async () => root.render(<DonationPanel adult client={client(vi.fn(), gpInvoke(order))} />));
+    await flush();
+    expect(googlePayButton()).toBeUndefined();
+    expect(button("Donate with PayPal")).toBeDefined();
+  });
+  it("renders no Google Pay button when the server reports checkout disabled", async () => {
+    state.enabled = true;
+    const { order } = installGooglePay("authorize");
+    await act(async () => root.render(<DonationPanel adult client={client(vi.fn(), gpInvoke(order, false))} />));
+    await flush();
+    expect(googlePayButton()).toBeUndefined();
+    expect(order).toEqual(["invoke:config"]);
+  });
+  it("renders the Google Pay button when the device is eligible", async () => {
+    state.enabled = true;
+    const { order } = installGooglePay("authorize");
+    await act(async () => root.render(<DonationPanel adult client={client(vi.fn(), gpInvoke(order))} />));
+    await flush();
+    expect(googlePayButton()).toBeDefined();
+    expect(clientOptions[0]).toMatchObject({ environment: "TEST" });
+    expect(order).toEqual(["invoke:config"]);
+  });
+  it("creates, confirms, and captures in order and reports the completed capture", async () => {
+    state.enabled = true;
+    const gp = installGooglePay("authorize");
+    const invoke = gpInvoke(gp.order);
+    await act(async () => root.render(<DonationPanel adult client={client(vi.fn(), invoke)} />));
+    await flush();
+    await click(googlePayButton()!);
+    await flush();
+    expect(gp.order).toEqual(["invoke:config", "invoke:create", "confirmOrder", "invoke:capture"]);
+    const bodies = invoke.mock.calls.map(call => call[1].body);
+    const create = bodies.find(body => body.action === "create");
+    const capture = bodies.find(body => body.action === "capture");
+    expect(create).toMatchObject({ amountCents: 500, wallet: "googlepay", adultConfirmed: true });
+    expect(capture.requestId).toBe(create.requestId);
+    expect(gp.confirmOrder).toHaveBeenCalledWith({ orderId: "ORDER123", paymentMethodData: { type: "CARD", info: {} } });
+    expect(paymentRequests[0].transactionInfo).toMatchObject({ totalPrice: "5.00", currencyCode: "USD", countryCode: "US" });
+    expect(paymentRequests[0].callbackIntents).toEqual(["PAYMENT_AUTHORIZATION"]);
+    expect(container.textContent).toContain("PayPal reports a completed capture (CAPTURE123)");
+    expect(container.textContent).toContain("Sandbox test only — no real money.");
+  });
+  it("shows no success when the user cancels the Google Pay sheet", async () => {
+    state.enabled = true;
+    const gp = installGooglePay("cancel");
+    const invoke = gpInvoke(gp.order);
+    await act(async () => root.render(<DonationPanel adult client={client(vi.fn(), invoke)} />));
+    await flush();
+    await click(googlePayButton()!);
+    await flush();
+    expect(gp.order).toEqual(["invoke:config"]);
+    expect(container.textContent).toContain("Google Pay checkout was cancelled. No success is assumed.");
+    expect(container.textContent).not.toContain("completed capture");
   });
 });
 describe("protected payment console", () => {
