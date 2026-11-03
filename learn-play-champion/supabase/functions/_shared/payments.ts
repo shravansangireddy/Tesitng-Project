@@ -131,9 +131,52 @@ function approval(s: Settings, order: Json) {
   return url.href;
 }
 
+async function probeAction(request: Request): Promise<string | null> {
+  // Peek at a clone so the config action can be answered without disturbing
+  // the create/capture flow, which re-reads the original body itself.
+  try {
+    const reader = request.clone().body?.getReader();
+    if (!reader) return null;
+    const chunks: Uint8Array[] = []; let size = 0;
+    while (true) {
+      const part = await reader.read();
+      if (part.done) break;
+      size += part.value.length;
+      if (size > 65536) { await reader.cancel(); return null; }
+      chunks.push(part.value);
+    }
+    const all = new Uint8Array(size); let offset = 0;
+    for (const chunk of chunks) { all.set(chunk, offset); offset += chunk.length; }
+    const parsed: unknown = JSON.parse(new TextDecoder().decode(all));
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return null;
+    const action = (parsed as Json).action;
+    return typeof action === "string" ? action : null;
+  } catch { return null; }
+}
+function checkoutConfig(request: Request, env: PaymentEnv): Response {
+  // Public client configuration only: the PayPal client ID is a public
+  // identifier printed in the SDK script URL. The client secret and the
+  // webhook ID are never returned here.
+  let app: URL;
+  try { app = new URL(env("APP_BASE_URL")?.trim() ?? ""); }
+  catch { return json({ error: "Payment service setup is incomplete: APP_BASE_URL." }, 503); }
+  if (app.username || app.password || app.search || app.hash)
+    return json({ error: "Payment service setup is incomplete: APP_BASE_URL." }, 503);
+  const cors = { "Access-Control-Allow-Origin": app.origin, Vary: "Origin",
+    "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
+    "Access-Control-Allow-Methods": "POST, OPTIONS" };
+  if (request.headers.get("Origin") !== app.origin)
+    return json({ error: "Payment requests must come from the configured app." }, 403, cors);
+  const mode = env("PAYPAL_ENV")?.trim(), clientId = env("PAYPAL_CLIENT_ID")?.trim();
+  const enabled = env("PAYMENTS_ENABLED")?.trim() === "true" && (mode === "sandbox" || mode === "live") && !!clientId;
+  return json(enabled ? { enabled: true, environment: mode, clientId }
+    : { enabled: false, environment: null, clientId: null }, 200, cors);
+}
+
 export async function checkoutHandler(request: Request, env: PaymentEnv, fetcher: Fetcher = fetch): Promise<Response> {
   let cors: Record<string, string> = {};
   try {
+    if (request.method === "POST" && await probeAction(request) === "config") return checkoutConfig(request, env);
     const s = settings(env);
     cors = { "Access-Control-Allow-Origin": s.app.origin, Vary: "Origin",
       "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
@@ -151,6 +194,8 @@ export async function checkoutHandler(request: Request, env: PaymentEnv, fetcher
     const input = await payload(request), id = uuid(input.requestId);
     if (input.adultConfirmed !== true) throw new HttpError(403, "The responsible adult must confirm this donation.");
     if (input.action !== "create" && input.action !== "capture") throw new HttpError(400, "Unknown donation action.");
+    const wallet = input.wallet === undefined ? null : input.wallet;
+    if (wallet !== null && wallet !== "googlepay") throw new HttpError(400, "Unknown wallet.");
     let intent: Json;
     if (input.action === "create") {
       if (!Number.isInteger(input.amountCents) || Number(input.amountCents) < 100 || Number(input.amountCents) > 50000 || Number(input.amountCents) % 100 !== 0)
@@ -173,10 +218,12 @@ export async function checkoutHandler(request: Request, env: PaymentEnv, fetcher
         intent: "CAPTURE",
         purchase_units: [{ custom_id: id, description: "Optional support for Learn & Play Champion",
           amount: { currency_code: "USD", value: (Number(intent.amount_cents) / 100).toFixed(2) } }],
-        payment_source: { paypal: { experience_context: {
+        // Wallet orders are confirmed in-page with the wallet's payment data,
+        // so they carry no PayPal redirect payment source or return/cancel URLs.
+        ...(wallet === "googlepay" ? {} : { payment_source: { paypal: { experience_context: {
           shipping_preference: "NO_SHIPPING", user_action: "CONTINUE",
           return_url: returnUrl.href, cancel_url: cancelUrl.href,
-        } } },
+        } } } }),
       }, id);
       const orderId = paypalId(order.id);
       await db(s, fetcher, `donation_orders?id=eq.${id}&user_id=eq.${user}&paypal_order_id=is.null`, "PATCH", { paypal_order_id: orderId });
@@ -190,6 +237,7 @@ export async function checkoutHandler(request: Request, env: PaymentEnv, fetcher
     }
     if (input.action === "create") {
       if (order.status !== "CREATED" && order.status !== "PAYER_ACTION_REQUIRED") throw new HttpError(409, "This order already advanced. Return to your existing checkout instead.");
+      if (wallet === "googlepay") return json({ orderId: paypalId(order.id), environment: s.mode }, 200, cors);
       return json({ approvalUrl: approval(s, order), environment: s.mode }, 200, cors);
     }
     if (order.status === "APPROVED") {
