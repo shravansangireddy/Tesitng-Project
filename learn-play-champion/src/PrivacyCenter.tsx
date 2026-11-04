@@ -6,10 +6,16 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import ContentStudio from "./ContentStudio";
 import KidLogins from "./KidLogins";
 import ParentPassword from "./ParentPassword";
+import TeacherStudio from "./TeacherStudio";
+import type { TeacherStore } from "./teacher-books";
 
-export default function PrivacyCenter({ progress, cloud, onErase, paymentClient, onContentDirty }: {
+export default function PrivacyCenter({ progress, cloud, onErase, paymentClient, onContentDirty, kidSession = false, teacherStore, onTeacherStoreChange }: {
   progress: Progress; cloud: boolean; onErase?: () => Promise<void>; paymentClient?: SupabaseClient | null;
   onContentDirty?: (dirty: boolean) => void;
+  // Kid login sessions never see grown-up account tools; the Teacher
+  // Studio additionally needs the device's teacher store wired in.
+  kidSession?: boolean; teacherStore?: TeacherStore;
+  onTeacherStoreChange?: (store: TeacherStore) => void;
 }) {
   const [adult, setAdult] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -59,6 +65,7 @@ export default function PrivacyCenter({ progress, cloud, onErase, paymentClient,
     {error && <p role="alert">{error}</p>}
     {cloud && paymentClient ? <KidLogins client={paymentClient} /> : null}
     {cloud && paymentClient ? <ParentPassword client={paymentClient} /> : null}
+    {cloud && !kidSession && teacherStore && onTeacherStoreChange ? <TeacherStudio store={teacherStore} onStoreChange={onTeacherStoreChange} /> : null}
     {adult && !busy ? <ContentStudio client={paymentClient} onDirty={(dirty) => {
       contentDirty.current = dirty; setStudioDirty(dirty); onContentDirty?.(dirty);
     }} /> : <p>Confirm the responsible adult above to open teacher/admin content tools. Server-assigned access is required.</p>}
