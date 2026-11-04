@@ -9,6 +9,7 @@ import {
   Flame,
   Gift,
   GraduationCap,
+  Heart,
   Home,
   Lightbulb,
   LockKeyhole,
@@ -37,6 +38,7 @@ import {
   completeCodingPuzzle,
   completeAILesson,
   completeWordBattle,
+  completeMotivationBook,
   initialProgress,
   localDate,
   makeRound,
@@ -65,6 +67,7 @@ import { isEarlyGrade, type VoiceAction } from "./speech";
 import CodingWorld from "./CodingWorld";
 import { isCodingGrade } from "./coding";
 import WordBattle from "./WordBattle";
+import MotivationBooks from "./MotivationBooks";
 import AIWorld from "./AIWorld";
 import { themes } from "./themes";
 import "./themes.css";
@@ -72,7 +75,7 @@ import PracticeRooms from "./PracticeRooms";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import PrivacyCenter from "./PrivacyCenter";
 import KidTasks from "./KidTasks";
-import { WORD_BATTLE_ACTIVITY } from "./kid-tasks";
+import { MOTIVATION_BOOKS_ACTIVITY, WORD_BATTLE_ACTIVITY } from "./kid-tasks";
 import BookShelf from "./BookShelf";
 import TeacherLibrary from "./TeacherLibrary";
 import { supabase } from "./supabase";
@@ -82,7 +85,7 @@ import ProgressCharts from "./ProgressCharts";
 import { totalChartedCorrect } from "./progress-charts";
 import QuestionShape from "./QuestionShape";
 
-type View = "home" | "adventures" | "rewards" | "leaderboard" | "team" | "coding" | "ai" | "rooms" | "privacy" | "books" | "teacher-library" | "learning-path" | "word-battle";
+type View = "home" | "adventures" | "rewards" | "leaderboard" | "team" | "coding" | "ai" | "rooms" | "privacy" | "books" | "teacher-library" | "learning-path" | "word-battle" | "motivation-books";
 type Session = {
   championship: boolean;
   grade: GradeId;
@@ -666,7 +669,7 @@ export default function App({
     setHint(false);
   };
   const visibleActivities = activities.filter((activity) => activity.subject === subject);
-  const voiceEnabled = !["coding", "ai", "rooms", "privacy", "books", "teacher-library", "learning-path", "word-battle"].includes(view) && (isEarlyGrade(grade) || session?.championship || result?.championship) &&
+  const voiceEnabled = !["coding", "ai", "rooms", "privacy", "books", "teacher-library", "learning-path", "word-battle", "motivation-books"].includes(view) && (isEarlyGrade(grade) || session?.championship || result?.championship) &&
     !avatarOpen && !helpOpen && !chestOpen;
   const readQuestion = currentQuestion
     ? `${currentQuestion.prompt}. ${currentQuestion.chart
@@ -768,7 +771,7 @@ export default function App({
           ? "My treasure room"
           : view === "leaderboard"
             ? "Friendly leaderboard"
-            : view === "coding" ? "Coding Cove" : view === "ai" ? "AI discovery" : view === "rooms" ? "Private rooms" : view === "privacy" ? "Privacy & data" : view === "books" ? "Picture books" : view === "teacher-library" ? "Teacher library" : view === "learning-path" ? "My learning path" : view === "word-battle" ? "Word Battle" : "Our team corner";
+            : view === "coding" ? "Coding Cove" : view === "ai" ? "AI discovery" : view === "rooms" ? "Private rooms" : view === "privacy" ? "Privacy & data" : view === "books" ? "Picture books" : view === "teacher-library" ? "Teacher library" : view === "learning-path" ? "My learning path" : view === "word-battle" ? "Word Battle" : view === "motivation-books" ? "Motivation Books" : "Our team corner";
   return (
     <div className="app-shell" data-theme={progress.theme ?? "island"}>
       <a className="skip-link" href="#main">
@@ -802,6 +805,7 @@ export default function App({
               { id: "teacher-library", label: "Teacher library", icon: GraduationCap },
               { id: "coding", label: "Coding Cove · 3–5", icon: Sparkles },
               { id: "word-battle", label: "Word Battle", icon: Swords },
+              { id: "motivation-books", label: "Motivation Books", icon: Heart },
               { id: "ai", label: "AI discovery · 3+", icon: Lightbulb },
               { id: "rooms", label: "Private rooms", icon: Users },
               { id: "rewards", label: "My rewards", icon: Gift },
@@ -963,6 +967,14 @@ export default function App({
               grade={grade}
               state={progress.wordBattle}
               onBattleEnd={(outcome) => setProgress((current) => completeWordBattle(current, outcome))}
+              onBack={() => navigate("adventures")}
+            />
+          ) : view === "motivation-books" ? (
+            <MotivationBooks
+              key={`${grade}:${progress.activeProfileId ?? "solo"}`}
+              grade={grade}
+              state={progress.motivationBooks}
+              onBookComplete={(outcome) => setProgress((current) => completeMotivationBook(current, outcome))}
               onBack={() => navigate("adventures")}
             />
           ) : session && currentQuestion ? (
@@ -1264,6 +1276,10 @@ export default function App({
                       navigate("word-battle");
                       return;
                     }
+                    if (activityId === MOTIVATION_BOOKS_ACTIVITY) {
+                      navigate("motivation-books");
+                      return;
+                    }
                     const activity = activities.find(
                       (item) => item.id === activityId,
                     );
@@ -1472,6 +1488,21 @@ export default function App({
                       {" "}Mastered words: {Object.values(progress.wordBattle?.wordMastery ?? {}).filter((count) => count >= 3).length}.</p>
                     <button className="button primary" onClick={() => navigate("word-battle")}>
                       Enter Word Battle
+                    </button>
+                  </div>
+                </section>
+              )}
+              {(view === "home" || view === "adventures") && (
+                <section className="motivation-books-banner panel" aria-label="Motivation Books">
+                  <span style={{ fontSize: 30 }} aria-hidden="true">📚</span>
+                  <div>
+                    <h2>Motivation Books</h2>
+                    <p>{gradeLabels[grade]} · Short, warm stories about feelings and choices —
+                      patience, kindness, honesty, and courage.
+                      Read the story, answer five questions, and earn +10 points per correct answer.</p>
+                    <p>Books finished: {progress.motivationBooks?.completed.length ?? 0}/14.</p>
+                    <button className="button primary" onClick={() => navigate("motivation-books")}>
+                      Open Motivation Books
                     </button>
                   </div>
                 </section>

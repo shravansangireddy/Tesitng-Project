@@ -1,0 +1,133 @@
+/* Motivation Books world styles. Global .panel/.button/.eyebrow/
+   .answer-grid classes come from styles.css; mb- classes are local. */
+.motivation-books-banner {
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 20px 0;
+}
+.motivation-books-banner p {
+  margin: 12px 0;
+}
+.mb-shelf-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+.mb-shelf-count {
+  font-weight: 600;
+}
+.mb-shelf-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.mb-book-card {
+  display: grid;
+  justify-items: start;
+  gap: 0.3rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(160deg, #fdf6e3, #eef7ee);
+}
+.mb-book-card.is-finished {
+  outline: 2px solid #57c785;
+}
+.mb-book-emoji {
+  font-size: 3.2rem;
+  line-height: 1.1;
+  display: block;
+}
+.mb-book-theme {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  opacity: 0.75;
+}
+.mb-book-meta {
+  opacity: 0.7;
+}
+.mb-finished {
+  font-weight: 700;
+  color: #2f7a4d;
+}
+.mb-stars {
+  letter-spacing: 0.1em;
+}
+.mb-read {
+  margin-top: 0.5rem;
+}
+.mb-reader-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+.mb-reader-head .mb-book-emoji {
+  font-size: 4rem;
+}
+.mb-page-status {
+  font-weight: 700;
+  opacity: 0.8;
+  margin-bottom: 0.25rem;
+}
+.mb-reader progress {
+  width: 100%;
+}
+.mb-page-text {
+  font-size: 1.25rem;
+  line-height: 1.65;
+  margin: 1.25rem 0;
+}
+.mb-early-text {
+  font-size: 1.6rem;
+}
+.mb-page-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.mb-round-label {
+  font-weight: 700;
+  opacity: 0.8;
+}
+.mb-prompt {
+  font-size: 1.5rem;
+  margin: 0.5rem 0 1rem;
+}
+.mb-feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #fdf6e3;
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+.mb-done {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+}
+.mb-done .mb-book-emoji {
+  font-size: 4rem;
+}
+.mb-done-stars {
+  font-size: 1.8rem;
+  margin: 0;
+}
+.mb-done-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}

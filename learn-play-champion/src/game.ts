@@ -4,6 +4,7 @@ import { aiLessonIds } from "./ai-learning";
 import { themes, type ThemeId } from "./themes";
 import { validPathChecks, type PathChecks } from "./learning-path";
 import { monsterIds } from "./word-battle";
+import { motivationBookIds, POINTS_PER_CORRECT } from "./motivation-books";
 export type Subject = "english" | "math";
 export type ActivityId = LessonId;
 export type Avatar = "owl" | "fox" | "cat" | "unicorn";
@@ -155,6 +156,10 @@ export interface WordBattleProgress {
   collection: string[];
   wordMastery: Record<string, number>;
 }
+export interface MotivationBooksProgress {
+  completed: string[];
+  bestScores: Record<string, number>;
+}
 export interface Progress {
   version: 1;
   points: number;
@@ -175,6 +180,7 @@ export interface Progress {
   codingCompleted?: string[];
   aiCompleted?: string[];
   wordBattle?: WordBattleProgress;
+  motivationBooks?: MotivationBooksProgress;
   selectedGrade?: GradeId;
   theme?: ThemeId;
   pathChecks?: PathChecks;
@@ -338,6 +344,43 @@ export function completeWordBattle(
     wordBattle: { collection, wordMastery },
   };
 }
+export interface MotivationBookOutcome {
+  bookId: string;
+  correct: number;
+}
+export function completeMotivationBook(
+  progress: Progress,
+  outcome: MotivationBookOutcome,
+): Progress {
+  if (!motivationBookIds.includes(outcome.bookId))
+    throw new Error("Unknown motivation book.");
+  if (
+    !Number.isInteger(outcome.correct) ||
+    outcome.correct < 0 ||
+    outcome.correct > 5
+  )
+    throw new Error("A finished book reports zero to five correct answers.");
+  const current = progress.motivationBooks ?? { completed: [], bestScores: {} };
+  const completed = current.completed.includes(outcome.bookId)
+    ? current.completed
+    : [...current.completed, outcome.bookId];
+  const bestScores = {
+    ...current.bestScores,
+    [outcome.bookId]: Math.max(
+      current.bestScores[outcome.bookId] ?? 0,
+      outcome.correct,
+    ),
+  };
+  // A finished book pays the usual +10 per correct answer, like a won Word
+  // Battle. Books never touch rounds/answered, so there is no double
+  // counting with rounds; re-reading a favorite book pays again, just as
+  // re-battling a collected monster does.
+  return {
+    ...progress,
+    points: progress.points + outcome.correct * POINTS_PER_CORRECT,
+    motivationBooks: { completed, bestScores },
+  };
+}
 export function claimHelp(progress: Progress, today = localDate()): Progress {
   return progress.helpDate === today
     ? progress
@@ -399,6 +442,48 @@ function sanitizeWordBattle(value: unknown): WordBattleProgress | undefined {
     }
   }
   return { collection, wordMastery };
+}
+// Motivation Books data is cleaned leniently for the same reason as Word
+// Battle: drop unknown book ids and out-of-range scores instead of
+// discarding a child's whole save.
+function sanitizeMotivationBooks(
+  value: unknown,
+): MotivationBooksProgress | undefined {
+  if (value === undefined) return undefined;
+  if (!value || typeof value !== "object" || Array.isArray(value))
+    return undefined;
+  const raw = value as Record<string, unknown>;
+  const completed: string[] = [];
+  if (Array.isArray(raw.completed)) {
+    for (const id of raw.completed) {
+      if (
+        typeof id === "string" &&
+        motivationBookIds.includes(id) &&
+        !completed.includes(id)
+      )
+        completed.push(id);
+    }
+  }
+  const bestScores: Record<string, number> = {};
+  if (
+    raw.bestScores &&
+    typeof raw.bestScores === "object" &&
+    !Array.isArray(raw.bestScores)
+  ) {
+    for (const [id, score] of Object.entries(
+      raw.bestScores as Record<string, unknown>,
+    )) {
+      if (
+        motivationBookIds.includes(id) &&
+        typeof score === "number" &&
+        Number.isInteger(score) &&
+        score >= 0 &&
+        score <= 5
+      )
+        bestScores[id] = score;
+    }
+  }
+  return { completed, bestScores };
 }
 function parseProgressObject(value: unknown, nested: boolean): Progress {
   if (!value || typeof value !== "object")
@@ -497,14 +582,28 @@ function parseProgressObject(value: unknown, nested: boolean): Progress {
     validateProfiles(p);
   }
   const parsed = value as Progress;
+  let result = parsed;
   const wordBattle = sanitizeWordBattle(p.wordBattle);
   if (wordBattle === undefined) {
-    if (!("wordBattle" in p)) return parsed;
-    const copy = { ...parsed };
-    delete copy.wordBattle;
-    return copy;
+    if ("wordBattle" in p) {
+      const copy = { ...result };
+      delete copy.wordBattle;
+      result = copy;
+    }
+  } else {
+    result = { ...result, wordBattle };
   }
-  return { ...parsed, wordBattle };
+  const motivationBooks = sanitizeMotivationBooks(p.motivationBooks);
+  if (motivationBooks === undefined) {
+    if ("motivationBooks" in p) {
+      const copy = { ...result };
+      delete copy.motivationBooks;
+      result = copy;
+    }
+  } else {
+    result = { ...result, motivationBooks };
+  }
+  return result;
 }
 function validateProfiles(p: Record<string, unknown>): void {
   const invalid = (): never => {

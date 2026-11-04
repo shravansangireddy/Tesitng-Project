@@ -15,10 +15,15 @@ import { activities, type ActivityId } from "./game";
  * catalog, but a task can still deep-link to it: the stored activity value
  * "word-battle" opens the Word Battle view. Default starter tasks seeded
  * when a kid login is created use it (see the kid-accounts Edge Function).
+ * Motivation Books deep-links the same way with "motivation-books".
  */
 export const WORD_BATTLE_ACTIVITY = "word-battle";
+export const MOTIVATION_BOOKS_ACTIVITY = "motivation-books";
 
-export type TaskActivityId = ActivityId | typeof WORD_BATTLE_ACTIVITY;
+export type TaskActivityId =
+  | ActivityId
+  | typeof WORD_BATTLE_ACTIVITY
+  | typeof MOTIVATION_BOOKS_ACTIVITY;
 
 export interface KidTask {
   id: string;
@@ -49,12 +54,17 @@ export function isActivityId(value: unknown): value is ActivityId {
 }
 
 export function isTaskActivityId(value: unknown): value is TaskActivityId {
-  return isActivityId(value) || value === WORD_BATTLE_ACTIVITY;
+  return (
+    isActivityId(value) ||
+    value === WORD_BATTLE_ACTIVITY ||
+    value === MOTIVATION_BOOKS_ACTIVITY
+  );
 }
 
 export function activityTitle(activityId: TaskActivityId | null): string {
   if (!activityId) return "";
   if (activityId === WORD_BATTLE_ACTIVITY) return "Word Battle";
+  if (activityId === MOTIVATION_BOOKS_ACTIVITY) return "Motivation Books";
   return activities.find((activity) => activity.id === activityId)?.title ?? "";
 }
 
