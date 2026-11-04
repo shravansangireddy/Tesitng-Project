@@ -36,12 +36,14 @@ async function readOpenBook() {
 }
 
 describe("Motivation Books", () => {
-  it("shelves the two books for the current level and hides other levels", async () => {
+  it("shelves the four books for the current level and hides other levels", async () => {
     await act(async () => root.render(
       <MotivationBooks grade="prek" state={undefined} onBookComplete={() => {}} onBack={() => {}} />,
     ));
     expect(container.textContent).toContain("Nia and the Tiny Seed");
     expect(container.textContent).toContain("Benny Shares the Blocks");
+    expect(container.textContent).toContain("Zoe Says How She Feels");
+    expect(container.textContent).toContain("Ari's Gentle Hands");
     expect(container.textContent).not.toContain("Kai and the Empty Chair");
     await click(button("Show books for all levels"));
     expect(container.textContent).toContain("Kai and the Empty Chair");
@@ -101,6 +103,6 @@ describe("Motivation Books", () => {
       .find((entry) => entry.textContent?.includes("Nia and the Tiny Seed"));
     expect(card?.textContent).toContain("✓ Finished");
     expect(card?.querySelector(".mb-stars")?.getAttribute("aria-label")).toBe("3 of 3 stars");
-    expect(container.textContent).toContain("finished 1 of 14 books");
+    expect(container.textContent).toContain("finished 1 of 28 books");
   });
 });

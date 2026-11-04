@@ -68,6 +68,7 @@ import CodingWorld from "./CodingWorld";
 import { isCodingGrade } from "./coding";
 import WordBattle from "./WordBattle";
 import MotivationBooks from "./MotivationBooks";
+import { motivationBooks } from "./motivation-books";
 import AIWorld from "./AIWorld";
 import { themes } from "./themes";
 import "./themes.css";
@@ -1500,7 +1501,7 @@ export default function App({
                     <p>{gradeLabels[grade]} · Short, warm stories about feelings and choices —
                       patience, kindness, honesty, and courage.
                       Read the story, answer five questions, and earn +10 points per correct answer.</p>
-                    <p>Books finished: {progress.motivationBooks?.completed.length ?? 0}/14.</p>
+                    <p>Books finished: {progress.motivationBooks?.completed.length ?? 0}/{motivationBooks.length}.</p>
                     <button className="button primary" onClick={() => navigate("motivation-books")}>
                       Open Motivation Books
                     </button>
