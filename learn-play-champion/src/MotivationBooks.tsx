@@ -4,7 +4,6 @@ import type { MotivationBookOutcome, MotivationBooksProgress } from "./game";
 import { gradeLabels, type GradeId } from "./content-schema";
 import {
   POINTS_PER_CORRECT,
-  booksForGrade,
   motivationBooks,
   starsForScore,
   type MotivationBook,
@@ -22,11 +21,13 @@ function Stars({ count }: { count: number }) {
   );
 }
 
-export default function MotivationBooks({ grade, state, onBookComplete, onBack }: {
+export default function MotivationBooks({ grade, state, onBookComplete, onBack, extraBooks }: {
   grade: GradeId;
   state: MotivationBooksProgress | undefined;
   onBookComplete: (outcome: MotivationBookOutcome) => void;
   onBack: () => void;
+  /** Books a teacher added on this device (Teacher Studio uploads). */
+  extraBooks?: MotivationBook[];
 }) {
   const completed = state?.completed ?? [];
   const bestScores = state?.bestScores ?? {};
@@ -41,7 +42,22 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack }
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => { heading.current?.focus(); }, []);
 
-  const shelf = showAll ? motivationBooks : booksForGrade(grade);
+  // Teacher-uploaded books join the shelf next to the built-in library
+  // and play exactly the same way; they carry a "From my teacher" badge.
+  const uploadedBooks = extraBooks ?? [];
+  const uploadedIds = new Set(uploadedBooks.map((entry) => entry.id));
+  const allBooks = [
+    ...motivationBooks,
+    ...uploadedBooks.filter(
+      (entry) => !motivationBooks.some((book) => book.id === entry.id),
+    ),
+  ];
+  const shelf = showAll
+    ? allBooks
+    : allBooks.filter((entry) => entry.grade === grade);
+  const finishedCount = completed.filter((id) =>
+    allBooks.some((book) => book.id === id),
+  ).length;
   const question = book && phase === "questions"
     ? book.questions[questionIndex]
     : undefined;
@@ -113,7 +129,7 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack }
             </button>
           </div>
           <p className="mb-shelf-count">
-            You have finished {completed.length} of {motivationBooks.length} books.
+            You have finished {finishedCount} of {allBooks.length} books.
           </p>
           <ul className="mb-shelf-grid">
             {shelf.map((entry) => {
@@ -127,6 +143,9 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack }
                   <small className="mb-book-meta">
                     {gradeLabels[entry.grade]} · {entry.pages.length} pages
                   </small>
+                  {uploadedIds.has(entry.id) && (
+                    <span className="mb-teacher-badge">🧑‍🏫 From my teacher</span>
+                  )}
                   {finished && (
                     <span className="mb-finished">
                       ✓ Finished{best !== undefined && <> · best <Stars count={starsForScore(best)} /></>}

@@ -5,6 +5,7 @@ import { themes, type ThemeId } from "./themes";
 import { validPathChecks, type PathChecks } from "./learning-path";
 import { monsterIds } from "./word-battle";
 import { motivationBookIds, POINTS_PER_CORRECT } from "./motivation-books";
+import { isTeacherBookId } from "./teacher-books";
 export type Subject = "english" | "math";
 export type ActivityId = LessonId;
 export type Avatar = "owl" | "fox" | "cat" | "unicorn";
@@ -352,7 +353,9 @@ export function completeMotivationBook(
   progress: Progress,
   outcome: MotivationBookOutcome,
 ): Progress {
-  if (!motivationBookIds.includes(outcome.bookId))
+  // Built-in books are known by id; teacher-uploaded books carry a
+  // "u-…" id from Teacher Studio and finish exactly the same way.
+  if (!motivationBookIds.includes(outcome.bookId) && !isTeacherBookId(outcome.bookId))
     throw new Error("Unknown motivation book.");
   if (
     !Number.isInteger(outcome.correct) ||
@@ -458,7 +461,7 @@ function sanitizeMotivationBooks(
     for (const id of raw.completed) {
       if (
         typeof id === "string" &&
-        motivationBookIds.includes(id) &&
+        (motivationBookIds.includes(id) || isTeacherBookId(id)) &&
         !completed.includes(id)
       )
         completed.push(id);
@@ -474,7 +477,7 @@ function sanitizeMotivationBooks(
       raw.bestScores as Record<string, unknown>,
     )) {
       if (
-        motivationBookIds.includes(id) &&
+        (motivationBookIds.includes(id) || isTeacherBookId(id)) &&
         typeof score === "number" &&
         Number.isInteger(score) &&
         score >= 0 &&

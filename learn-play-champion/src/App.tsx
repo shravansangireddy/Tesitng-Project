@@ -68,6 +68,11 @@ import CodingWorld from "./CodingWorld";
 import { isCodingGrade } from "./coding";
 import WordBattle from "./WordBattle";
 import MotivationBooks from "./MotivationBooks";
+import {
+  loadTeacherStore,
+  saveTeacherStore,
+  type TeacherStore,
+} from "./teacher-books";
 import { motivationBooks } from "./motivation-books";
 import AIWorld from "./AIWorld";
 import { themes } from "./themes";
@@ -492,6 +497,12 @@ export default function App({
       : base;
   });
   const [storageError, setStorageError] = useState(loaded.error);
+  const [teacherStore, setTeacherStore] = useState<TeacherStore>(() =>
+    loadTeacherStore(),
+  );
+  useEffect(() => {
+    saveTeacherStore(teacherStore);
+  }, [teacherStore]);
   const initial = useRef(loaded.progress);
   const [view, setView] = useState<View>(() => new URLSearchParams(location.search).has("donation_return") ||
     new URLSearchParams(location.search).has("donation_cancel") ? "privacy" : "home");
@@ -940,6 +951,7 @@ export default function App({
             <BookShelf key={grade} grade={grade} onGradeChange={chooseGrade} />
           ) : view === "privacy" ? (
             <PrivacyCenter progress={progress} cloud={!!cloudProgress} paymentClient={roomClient}
+              kidSession={singleLearner} teacherStore={teacherStore} onTeacherStoreChange={setTeacherStore}
               onContentDirty={(dirty) => { contentDirty.current = dirty; }}
               onErase={cloudProgress ? (!cloudSaving ? onEraseCloud : undefined) : async () => {
                 localStorage.removeItem(STORAGE_KEY);
@@ -975,6 +987,7 @@ export default function App({
               key={`${grade}:${progress.activeProfileId ?? "solo"}`}
               grade={grade}
               state={progress.motivationBooks}
+              extraBooks={teacherStore.books}
               onBookComplete={(outcome) => setProgress((current) => completeMotivationBook(current, outcome))}
               onBack={() => navigate("adventures")}
             />
