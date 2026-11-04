@@ -107,6 +107,19 @@ function booksStrip() {
 <div class="gallery-grid">${picks.map(b => `<a class="gallery-card" href="/learn/books-for-curious-kids/"><span class="book-pick"><span class="book-mark" aria-hidden="true">${b.mark}</span><strong>${b.title}</strong><small>${b.text}</small></span></a>`).join("")}</div>
 <p class="photo-credit">Outside books sold by bookstores and online sellers — listed as reading ideas for families, not sold by Learn &amp; Play Champion.</p></section>`;
 }
+function motivationBooksSection() {
+  const steps = [
+    { mark: "📖", title: "Read a short story", text: "Just a few pages, written for your child's level." },
+    { mark: "💬", title: "Answer five questions", text: "Some check the story. Some ask: what would you do?" },
+    { mark: "⭐", title: "Earn points and stars", text: "Points for every right answer, stars for a best score." },
+    { mark: "🏡", title: "Grown-ups can assign one", text: "Send a book as a task, and cheer when it's finished." },
+  ];
+  return `<section class="catalog-section motivation-section" aria-labelledby="motivation-heading"><div class="section-heading"><div><p class="eyebrow">STORIES WITH HEART</p><h2 id="motivation-heading">Motivation Books: stories about feelings, choices, and growing up.</h2></div><p>Forty-two original stories.<br>Six for every level, Pre-K–Grade 5.</p></div>
+<p class="intro">Not every lesson is about letters and numbers. Motivation Books are short original stories about the rest of growing up — patience when a tower falls, kindness to a new classmate, the confidence to raise a hand, calm when feelings run big, friendship, and everyday school life.</p>
+<div class="gallery-grid">${steps.map(s => `<div class="gallery-card"><span class="book-pick"><span class="book-mark" aria-hidden="true">${s.mark}</span><strong>${s.title}</strong><small>${s.text}</small></span></div>`).join("")}</div>
+<div class="hero-actions"><a class="button" href="/">Explore Motivation Books <span aria-hidden="true">→</span></a></div>
+<p class="catalog-note">Free inside the app — no ads, no subscription, and guest play needs no account.</p></section>`;
+}
 function freeDownloads() {
   return `<section aria-labelledby="free-books-heading"><h2 id="free-books-heading">Free books to download, right here.</h2><p>These six real books are shared by their publishers under Creative Commons CC BY 4.0 licences — free to download, print, and share, with credit to the people who made them. No account, no cost, no catch. You can also read all six online, page by page, in the app's <a href="/">book shelf</a>.</p>
 <div class="download-grid">${freeBooks.map(b => `<article class="download-card"><h3>${escape(b.title)}</h3><p class="download-meta">${escape(b.ages)} · ${b.pages} pages · PDF ${escape(b.size)}</p><p>${escape(b.blurb)}</p><a class="button download-button" href="/books/${b.file}" download>Download PDF</a><p class="download-credit">${escape(b.credit)}</p></article>`).join("")}</div></section>`;
@@ -173,7 +186,7 @@ ${!home ? `<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/learn/">Le
 <div class="hero${photo ? " photo-hero" : ""}"><div class="hero-copy"><p class="eyebrow">PLAYFUL PRACTICE · PRE-K–GRADE 5</p>
 <h1>${escape(page.heading)}</h1><p class="intro">${escape(page.intro)}</p><div class="hero-actions"><a class="button" href="/">Start a learning adventure <span aria-hidden="true">→</span></a><a class="text-link" href="/learn/how-it-works/">See how it works</a></div>
 ${home ? `<p class="tagline">Building bright minds for future generations</p><p class="hero-footnote">Local guest play · No account or purchase required</p>` : ""}</div>${home ? islandArt() : photo ? `<figure class="guide-photo">${stockImage(photo)}<figcaption>${photoCredit(photo)}. Illustrative stock photo, not an app screenshot or endorsement.</figcaption></figure>` : ""}</div>
-${home ? `<p class="statement">Built by a frustrated parent, tired of kids' app subscriptions — so this one's free.</p><div class="learning-facts" aria-label="Inside the built-in library"><div><strong>7</strong><span>levels, Pre-K–5</span></div><div><strong>10,000+</strong><span>English &amp; math questions</span></div><div><strong>14</strong><span>illustrated mini-books</span></div><div><strong>18</strong><span>coding puzzles · Grades 3–5</span></div></div>${subjectCards()}${gradeCatalog()}${photoGallery()}${booksStrip()}${homeFeatures()}` : ""}
+${home ? `<p class="statement">Built by a frustrated parent, tired of kids' app subscriptions — so this one's free.</p><div class="learning-facts" aria-label="Inside the built-in library"><div><strong>7</strong><span>levels, Pre-K–5</span></div><div><strong>10,000+</strong><span>English &amp; math questions</span></div><div><strong>14</strong><span>illustrated mini-books</span></div><div><strong>18</strong><span>coding puzzles · Grades 3–5</span></div></div>${subjectCards()}${gradeCatalog()}${photoGallery()}${booksStrip()}${motivationBooksSection()}${homeFeatures()}` : ""}
 <div class="editorial-content">
 ${page.sections.map(section => `<section><h2>${escape(section.heading)}</h2>${section.paragraphs.map(p => `<p>${escape(p)}</p>`).join("")}${section.items ? `<ul>${section.items.map(item => `<li>${escape(item)}</li>`).join("")}</ul>` : ""}</section>`).join("")}
 ${page.slug === "books-for-curious-kids" ? freeDownloads() : ""}

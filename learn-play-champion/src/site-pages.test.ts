@@ -92,6 +92,19 @@ describe("public learning guides", () => {
     expect(doc.querySelectorAll("img[src^='http'],iframe,form")).toHaveLength(0);
     expect(doc.body.textContent).not.toContain("IXL");
   });
+  it("promotes Motivation Books on the landing page only", () => {
+    const home = new DOMParser().parseFromString(renderSitePage(sitePages[0]), "text/html");
+    const promo = home.querySelector(".motivation-section");
+    expect(promo).not.toBeNull();
+    expect(promo?.querySelector("h2")?.textContent).toContain("Motivation Books");
+    expect(promo?.textContent).toContain("Forty-two original stories");
+    expect(promo?.textContent).toContain("Pre-K–Grade 5");
+    expect(promo?.querySelector("a.button")?.getAttribute("href")).toBe("/");
+    for (const page of sitePages.filter(p => p.slug)) {
+      const doc = new DOMParser().parseFromString(renderSitePage(page), "text/html");
+      expect(doc.querySelector(".motivation-section")).toBeNull();
+    }
+  });
   it("keeps inner-page navigation consistent without showing the home-only promotion", () => {
     for (const page of sitePages.filter(p => p.slug)) {
       const doc = new DOMParser().parseFromString(renderSitePage(page), "text/html");
