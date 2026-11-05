@@ -5,6 +5,8 @@
 .room-rules, .room-setup { background: linear-gradient(120deg, var(--play-cool), #fff); }
 .room-consent { display: flex; align-items: flex-start; gap: 12px; margin: 20px 0; font-weight: 700; }
 .room-consent input { flex-shrink: 0; width: 22px; height: 22px; accent-color: var(--purple); }
+.room-consent-needed { background: var(--play-tint); border: 2px solid var(--purple); border-radius: 12px; padding: 12px 14px; }
+.room-hint { font-weight: 700; margin: 8px 0; }
 .room-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .room-entry { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .room-entry form { display: flex; flex-direction: column; align-items: start; gap: 12px; min-width: 0; }

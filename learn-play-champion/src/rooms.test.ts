@@ -38,7 +38,7 @@ describe("private room service boundaries", () => {
       { ...room, members: [{ ...member, isYou: false }] },
       { ...room, members: [{ ...member, isHost: false }] },
     ]) expect(() => parseRoom(invalid)).toThrow();
-    expect(() => parseRoom({ error: "Invite not found" })).toThrow("Invite not found");
+    expect(() => parseRoom({ error: "Invite not found" })).toThrow("didn't match an open room");
   });
   it("uses only the snapshot RPC, not public table enumeration", async () => {
     const mock = client(room);
@@ -60,11 +60,29 @@ describe("private room service boundaries", () => {
     await manageRoom(mock.client, "remove", member.id);
     expect(JSON.parse(String(mock.fetcher.mock.calls[0][1]?.body))).toEqual({ action: "remove", target_member: member.id });
   });
-  it("surfaces missing migrations, rate limits and connection errors", async () => {
-    await expect(loadRoom(client({ message: "function not found" }, 404).client)).rejects.toThrow("migration");
-    await expect(joinRoom(client({ error: "Too many join attempts" }).client, "a".repeat(32))).rejects.toThrow("Too many");
+  it("surfaces the server's own reason, rate limits and connection errors", async () => {
+    const failure = await loadRoom(client({ message: "function not found" }, 404).client)
+      .then(() => new Error("request unexpectedly succeeded"), (error: Error) => error);
+    expect(failure.message).toContain("function not found");
+    expect(failure.message).not.toContain("migration");
+    expect(failure.message).not.toContain("Check your connection");
+    await expect(joinRoom(client({ error: "Too many join attempts" }).client, "a".repeat(32)))
+      .rejects.toThrow("Too many tries — wait a while before trying another code.");
     const mock = client(null);
     mock.fetcher.mockRejectedValue(new Error("Offline"));
     await expect(loadRoom(mock.client)).rejects.toThrow("Offline");
+  });
+  it("maps known server refusals to plain language on both error paths", async () => {
+    // RPC-level error (raised exception) path.
+    await expect(createRoom(client({ message: "Leave or close your current room first." }, 400).client))
+      .rejects.toThrow("You're already in a room. Leave or close it first, then try again.");
+    // Returned-as-data error path (join failures are committed, not raised).
+    await expect(joinRoom(client({ error: "Invite not found or room closed. Ask the room host for a current code." }).client, "a".repeat(32)))
+      .rejects.toThrow("That code didn't match an open room. Check the code and try again.");
+    await expect(joinRoom(client({ error: "Too many join attempts. Try in an hour." }).client, "a".repeat(32)))
+      .rejects.toThrow("Too many tries — wait a while before trying another code.");
+    // Unknown reasons pass through unchanged so the real cause stays visible.
+    await expect(loadRoom(client({ message: "Something unexpected happened" }, 400).client))
+      .rejects.toThrow("Something unexpected happened");
   });
 });

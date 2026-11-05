@@ -3,10 +3,13 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { createRoom, joinRoom, loadRoom, manageRoom, type PracticeRoom } from "./rooms";
 import "./rooms.css";
 
-export default function PracticeRooms({ client, saving }: { client?: SupabaseClient; saving?: boolean }) {
+export default function PracticeRooms({ client, saving, saveFailed, onRetrySave }: {
+  client?: SupabaseClient; saving?: boolean; saveFailed?: boolean; onRetrySave?: () => void;
+}) {
   const [room, setRoom] = useState<PracticeRoom | null>(null);
   const [busy, setBusy] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [loadSettled, setLoadSettled] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [adult, setAdult] = useState(false);
@@ -33,7 +36,11 @@ export default function PracticeRooms({ client, saving }: { client?: SupabaseCli
   };
   useEffect(() => {
     if (!client) return;
-    void run(() => loadRoom(client), "Room refreshed.");
+    // Mark the first load settled either way: a failed load must still leave
+    // the create/join forms (and the Refresh retry) on screen, never a dead end.
+    void run(() => loadRoom(client), "Room refreshed.").then(() => {
+      if (active.current) setLoadSettled(true);
+    });
   }, [client]);
   const ready = !!client && !busy && !saving;
   const manage = (action: "rotate" | "remove" | "close" | "leave", member?: string) => {
@@ -43,8 +50,10 @@ export default function PracticeRooms({ client, saving }: { client?: SupabaseCli
         : action === "leave" ? "Leave this room? Your current standing disappears. Your own learning progress stays saved."
           : "Replace the invite code? Previously shared codes will stop working.";
     if (!window.confirm(prompt)) return;
-    void run(() => manageRoom(client, action, member), action === "rotate" || action === "remove"
-      ? "Room updated. The host should share the new invite code privately." : "Room membership updated.");
+    void run(() => manageRoom(client, action, member), action === "remove"
+      ? "Invite code changed — anyone joining needs the NEW code shown above."
+      : action === "rotate"
+        ? "Room updated. The host should share the new invite code privately." : "Room membership updated.");
   };
   const standings = room ? [...room.members].sort((a, b) => b.points - a.points || a.nickname.localeCompare(b.nickname)) : [];
   return <section className="practice-rooms" aria-label="Private practice rooms">
@@ -74,18 +83,28 @@ export default function PracticeRooms({ client, saving }: { client?: SupabaseCli
         <button className="button secondary" disabled={!ready} onClick={() => void run(() => loadRoom(client), "Standings refreshed from the server.")}>
           {busy ? "Working…" : "Refresh room"}
         </button>
-        {saving && <p role="status">Personal progress is saving. Wait, then refresh room standings.</p>}
+        {saveFailed ? <>
+          <p role="alert">Progress save hit a problem — rooms are paused.</p>
+          {onRetrySave && <button className="button secondary" onClick={onRetrySave}>Retry save</button>}
+        </> : saving && <p role="status">Personal progress is saving. Wait, then refresh room standings.</p>}
       </div>
       {error && <p className="room-error" role="alert">{error}</p>}
       {notice && <p role="status">{notice}</p>}
-      <label className="room-consent">
+      <label className={`room-consent${adult ? "" : " room-consent-needed"}`}>
         <input type="checkbox" checked={adult} onChange={(event) => setAdult(event.target.checked)} />
         I am a parent, guardian, or teacher. I approve sharing this learner's generated nickname and weekly practice points with invited room members.
       </label>
       <p className="room-privacy">This checkbox is an attestation, not age verification or complete child-privacy compliance.
         Keep the invite code private. Any grown-up account with the code can join; rotate it if shared outside your group.
         Host controls do not replace adult supervision.</p>
-      {loaded && !room && <div className="room-entry">
+      {!adult && <p className="room-hint" role="status">{room
+        ? "Tick the grown-up box above to manage this room."
+        : "Tick the grown-up box above to create or join a room."}</p>}
+      {!room && (loaded || loadSettled) && saveFailed &&
+        <p className="room-hint" role="status">Rooms are paused while the progress save has a problem — use “Retry save” above to unpause them.</p>}
+      {!room && (loaded || loadSettled) && !saveFailed && saving &&
+        <p className="room-hint" role="status">Personal progress is saving — Create and Join unlock as soon as it finishes.</p>}
+      {!room && (loaded || loadSettled) && <div className="room-entry">
         <div><h2>Start a private room</h2><p>You become the host. Share the code with known families or your class through a trusted adult channel.</p>
           <button className="button primary" disabled={!ready || !adult} onClick={() =>
             void run(() => createRoom(client), "Your private room is ready. Share the code only with people you know.")}>Create a room</button>

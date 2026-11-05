@@ -106,13 +106,50 @@ describe("private rooms UI", () => {
     await adult(); await click(button("Leave room"));
     expect(mocks.manage).toHaveBeenLastCalledWith(client, "leave", undefined);
   });
-  it("shows failed loads and retries instead of showing invented standings", async () => {
+  it("shows failed loads, still offers create/join, and retries instead of showing invented standings", async () => {
     mocks.load.mockRejectedValueOnce(new Error("Migration missing")).mockResolvedValueOnce(room);
     await mount();
     expect(container.querySelector('[role="alert"]')?.textContent).toContain("Migration missing");
-    expect(container.querySelector(".room-entry")).toBeNull();
+    expect(container.querySelector(".room-table")).toBeNull();
+    // A failed first load is not a dead end: the entry forms stay on screen.
+    expect(container.querySelector(".room-entry")).not.toBeNull();
+    expect(button("Create a room")).toBeDefined();
+    expect(container.querySelector("#room-invite")).not.toBeNull();
     await click(button("Refresh room"));
     expect(container.querySelector(".room-table")).not.toBeNull();
+  });
+  it("names the unticked grown-up box as the reason Create and Join are disabled", async () => {
+    await mount();
+    expect(button("Create a room").disabled).toBe(true);
+    expect(container.textContent).toContain("Tick the grown-up box above to create or join a room.");
+    expect(container.querySelector(".room-consent")?.classList.contains("room-consent-needed")).toBe(true);
+    await adult();
+    expect(container.textContent).not.toContain("Tick the grown-up box above to create or join a room.");
+    expect(container.querySelector(".room-consent")?.classList.contains("room-consent-needed")).toBe(false);
+    expect(button("Create a room").disabled).toBe(false);
+  });
+  it("pauses rooms on a failed progress save, offers Retry save, and recovers when the retry succeeds", async () => {
+    const onRetrySave = vi.fn();
+    await act(async () => root.render(<PracticeRooms client={client} saving saveFailed onRetrySave={onRetrySave} />));
+    expect(container.textContent).toContain("Progress save hit a problem — rooms are paused.");
+    expect(button("Create a room").disabled).toBe(true);
+    await click(button("Retry save"));
+    expect(onRetrySave).toHaveBeenCalledTimes(1);
+    // The retry cleared the save problem: rooms are usable again.
+    await act(async () => root.render(<PracticeRooms client={client} saving={false} />));
+    expect(container.textContent).not.toContain("Progress save hit a problem");
+    await adult();
+    expect(button("Create a room").disabled).toBe(false);
+    await click(button("Create a room"));
+    expect(mocks.create).toHaveBeenCalledWith(client);
+    expect(container.querySelector(".room-table")).not.toBeNull();
+  });
+  it("warns the host that removing a member changed the invite code", async () => {
+    mocks.load.mockResolvedValue(room); mocks.manage.mockResolvedValue(room);
+    await mount(); await adult();
+    await click(button("Remove"));
+    expect(mocks.manage).toHaveBeenCalledWith(client, "remove", room.members[1].id);
+    expect(container.textContent).toContain("Invite code changed — anyone joining needs the NEW code shown above.");
   });
   it("waits while personal progress is saving and blocks double room requests", async () => {
     await mount(true);
