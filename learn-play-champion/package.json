@@ -13,6 +13,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:rooms-db": "node scripts/test-rooms-db.mjs",
+    "test:kid-tasks-db": "node scripts/test-kid-tasks-db.mjs",
     "test:payments-db": "node scripts/test-payments-db.mjs",
     "test:content-db": "node scripts/test-content-db.mjs"
   },

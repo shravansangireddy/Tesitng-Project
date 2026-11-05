@@ -8,6 +8,13 @@ import { activities, type ActivityId } from "./game";
  * enforcement: a parent manages only their own kids' tasks, a kid reads and
  * updates only their own. The helpers here validate shapes and titles before
  * anything reaches the database.
+ *
+ * Completion is KID-ONLY by rule: only the kid, from their own login, may
+ * mark a task done — a parent can assign, view, and remove tasks, never
+ * complete them. The only caller of setKidTaskDone is the kid's own home
+ * card (KidTasks.tsx), and migration 202611040001 adds a database trigger
+ * that rejects any other authenticated caller who tries to change done /
+ * completed_at (or to create an already-completed task).
  */
 
 /**
