@@ -69,6 +69,7 @@ import { isCodingGrade } from "./coding";
 import WordBattle from "./WordBattle";
 import MotivationBooks from "./MotivationBooks";
 import MyKidsBoard from "./MyKidsBoard";
+import GradeBoards from "./GradeBoards";
 import {
   loadTeacherStore,
   saveTeacherStore,
@@ -2405,6 +2406,7 @@ function Competition({
   return (
     <>
       {myKidsClient ? <MyKidsBoard client={myKidsClient} /> : null}
+      {myKidsClient ? <GradeBoards client={myKidsClient} /> : null}
       <div className="demo-notice">
         <CircleHelp size={20} />
         <p>
