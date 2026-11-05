@@ -39,6 +39,7 @@ const LIMITS = {
   title: 120,
   theme: 60,
   emoji: 16,
+  description: 300,
   page: 1500,
   prompt: 300,
   option: 200,
@@ -104,12 +105,17 @@ export function sanitizeTeacherBook(value: unknown): MotivationBook | null {
     if (!explanation) return null;
     questions.push({ prompt, options, answer: question.answer, explanation });
   }
+  // The description is optional (grown-ups see it in place of the
+  // book); a stored value that no longer passes the text rules is
+  // quietly dropped, and the shelf falls back to the theme.
+  const description = cleanText(raw.description, LIMITS.description);
   return {
     id: raw.id,
     grade: raw.grade as GradeId,
     title,
     emoji,
     theme,
+    ...(description ? { description } : {}),
     pages,
     questions,
   };
@@ -156,6 +162,8 @@ export function saveTeacherStore(store: TeacherStore): void {
 //   GRADE: 2
 //   THEME: Kindness
 //   EMOJI: 🦊
+//   DESCRIPTION: (optional — one or two sentences about the story,
+//   shown to grown-ups; without it, the theme stands in)
 //
 //   --- PAGE 1 ---
 //   (page text)
@@ -335,6 +343,21 @@ export function parseTeacherBook(text: string): ParsedTeacherBook {
   // First code point is enough for a cover picture; fall back to 📖.
   const emoji = emojiRaw ? ([...emojiRaw][0] ?? "📖") : "📖";
 
+  // Optional: one or two sentences about the story. Grown-ups browsing
+  // Motivation Books see descriptions instead of the book itself, so a
+  // teacher can write their own; without one, the theme stands in.
+  const descriptionRaw = (header.get("description") ?? "")
+    .trim()
+    .replace(/\s+/g, " ");
+  let description: string | undefined;
+  if (descriptionRaw) {
+    if (descriptionRaw.length > LIMITS.description)
+      errors.push(
+        `The DESCRIPTION line is very long (${descriptionRaw.length} characters). Please shorten it to ${LIMITS.description} characters or fewer — one or two sentences is plenty.`,
+      );
+    else description = descriptionRaw;
+  }
+
   const pageSections = sections.filter((section) => section.kind === "page");
   const pages = pageSections.map(sectionText);
   if (pageSections.length < 3 || pageSections.length > 6)
@@ -423,7 +446,15 @@ export function parseTeacherBook(text: string): ParsedTeacherBook {
 
   if (errors.length || !grade) return { book: null, errors };
   return {
-    book: { grade, title, emoji, theme, pages, questions },
+    book: {
+      grade,
+      title,
+      emoji,
+      theme,
+      ...(description ? { description } : {}),
+      pages,
+      questions,
+    },
     errors: [],
   };
 }
@@ -434,6 +465,7 @@ export const TEACHER_BOOK_SKELETON = `BOOK TITLE:
 GRADE:
 THEME:
 EMOJI:
+DESCRIPTION:
 
 --- PAGE 1 ---
 
@@ -516,6 +548,11 @@ THE RULES THE CHECKER USES
   1, 2, 3, 4, or 5.
 - An emoji line is optional. Leave it out and the book uses a plain
   open-book picture instead.
+- A description line is optional too. It holds one or two sentences
+  about what your story is about and what it teaches. Grown-ups who
+  open Motivation Books see descriptions instead of the book itself,
+  so this is how a parent or teacher knows what your story holds.
+  Leave it out and the book's theme stands in as its description.
 - A book has 3 to 6 pages. Every page starts with its own dashed
   marker line, with the page number in the middle (the first one
   looks like three dashes, the words PAGE 1, then three dashes).
@@ -535,6 +572,7 @@ BOOK TITLE:
 GRADE:
 THEME:
 EMOJI:
+DESCRIPTION:
 
 --- PAGE 1 ---
 
@@ -592,6 +630,7 @@ BOOK TITLE: Tilly Helps a Friend
 GRADE: 1
 THEME: Helping
 EMOJI: 🐢
+DESCRIPTION: Tilly the turtle meets a baby duck who has lost its mom, and instead of hurrying past, she stays and helps look. A story about helping a friend who feels sad.
 
 --- PAGE 1 ---
 Tilly the turtle was walking to the pond. The sun was warm, and the grass was soft under her feet.

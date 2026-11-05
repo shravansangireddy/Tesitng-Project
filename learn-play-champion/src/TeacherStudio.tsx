@@ -194,6 +194,12 @@ export default function TeacherStudio({
                 {preview.pages.length} pages · {preview.questions.length}{" "}
                 questions
               </p>
+              {preview.description && (
+                <p>
+                  <strong>What grown-ups will see:</strong>{" "}
+                  {preview.description}
+                </p>
+              )}
               <p className="ts-preview-page">{preview.pages[0]}</p>
               <p>
                 Looking good! Press <strong>Save to the shelf</strong> to add

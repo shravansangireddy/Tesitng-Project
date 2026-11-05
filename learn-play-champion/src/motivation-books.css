@@ -139,3 +139,16 @@
   justify-content: center;
   margin-top: 0.5rem;
 }
+/* The grown-up description view: what a book is about, never the book. */
+.mb-description-text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin: 1rem 0 0.5rem;
+}
+.mb-grownup-note {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: #eef4fb;
+  font-weight: 600;
+}

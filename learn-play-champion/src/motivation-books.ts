@@ -19,8 +19,31 @@ export interface MotivationBook {
   title: string;
   emoji: string;
   theme: string;
+  /**
+   * One or two warm sentences — what the story is about and the heart
+   * lesson it teaches. This is what a grown-up session sees instead of
+   * the book itself (see MotivationBooks). Every built-in book carries
+   * one (the catalog tests assert it); a teacher book may omit it, in
+   * which case motivationBookDescription falls back to its theme.
+   */
+  description?: string;
   pages: string[];
   questions: MotivationQuestion[];
+}
+
+/**
+ * The description a grown-up sees for a book: the book's own text when
+ * it has one, or a theme-based line for a teacher book saved without a
+ * DESCRIPTION (the fallback the Teacher Studio format promises).
+ */
+export function motivationBookDescription(book: MotivationBook): string {
+  const text = book.description?.trim();
+  if (text) return text;
+  const theme = book.theme.trim();
+  const lowered = theme
+    ? theme.charAt(0).toLowerCase() + theme.slice(1)
+    : theme;
+  return `A teacher-made story about ${lowered}.`;
 }
 
 export const POINTS_PER_CORRECT = 10;
@@ -33,6 +56,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Nia and the Tiny Seed",
     emoji: "🌱",
     theme: "Patience",
+    description: "Nia plants a tiny seed, waters it, and waits and waits — until one happy day, a green sprout pops up. A gentle first story about patience and how good things take time to grow.",
     pages: [
       "Nia has a tiny seed. She puts it in the dirt.",
       "Nia gives it water. She waits. And waits.",
@@ -78,6 +102,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Benny Shares the Blocks",
     emoji: "🧱",
     theme: "Sharing & kindness",
+    description: "Benny has lots of blocks and Ana has none, so Benny invites her to build a tall, tall tower together. A sweet story about sharing, and how playing together is more fun.",
     pages: [
       "Benny has lots of blocks. Red, blue, and yellow!",
       "Ana has no blocks. She sits and watches.",
@@ -123,6 +148,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Milo and the Wobbly Tower",
     emoji: "🌈",
     theme: "Big feelings & calming down",
+    description: "Milo's tall tower crashes down and big mad feelings rush in — until he calms his body with a smell-the-flower, blow-the-candle breath and builds it again, stronger. A story about big feelings and calming down.",
     pages: [
       "Milo is building a tall tower. Higher and higher it goes.",
       "Crash! The tower falls down. Milo feels mad. His face feels hot, and his hands make fists.",
@@ -168,6 +194,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Sana's Thank-You Garden",
     emoji: "🌻",
     theme: "Gratitude",
+    description: "Sana thanks the sun, the rain, and her grandma for helping her garden grow, then shares a flower with every helper. A warm story about gratitude and noticing the helpers all around us.",
     pages: [
       "Sana loves her garden. Every day, helpers help the flowers grow.",
       "The sun gives warm light. “Thank you, Sun,” says Sana.",
@@ -213,6 +240,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Tara and the Cracked Cup",
     emoji: "🦉",
     theme: "Honesty",
+    description: "Tara chips her grandma's favorite blue cup, and even though her tummy feels tight, she tells the truth and says sorry. A story about honesty, and how telling the truth makes your heart feel light again.",
     pages: [
       "Tara is helping set the table. She picks up a cup — her grandma's favorite blue cup.",
       "Oops! The cup slips from her hands. Crack! A tiny chip breaks off the rim. Tara's tummy feels tight.",
@@ -259,6 +287,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Leo's Wobbly Star",
     emoji: "🚀",
     theme: "Keep trying",
+    description: "Leo's stars keep coming out wobbly and lopsided, but small, steady practice turns his fifth try into a star he is proud to hang on the wall. A story about keeping trying and growing a little with every attempt.",
     pages: [
       "Leo wants to draw a star for the class art wall. He picks his brightest crayon and starts.",
       "His first star is wobbly. His second star is lopsided. “Stars are hard,” Leo sighs.",
@@ -305,6 +334,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Room for One More",
     emoji: "🍎",
     theme: "Empathy & including others",
+    description: "Omar remembers his own fluttery first day and invites Hana, the new student sitting alone, to join his lunch table. A story about empathy, including others, and how one kind invitation can make a friend.",
     pages: [
       "On Monday, a new student joins Omar's class. Her name is Hana, and she doesn't know anyone yet.",
       "At lunch, Hana sits alone at the end of a long table. She opens her lunchbox slowly and looks down at the floor.",
@@ -351,6 +381,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Priya's Happy Mistake",
     emoji: "🎨",
     theme: "Learning from mistakes",
+    description: "A drip of blue paint seems to ruin Priya's beach painting — until she turns the blob into an ocean wave with a tiny red boat riding it. A story about how mistakes can turn into brand-new ideas.",
     pages: [
       "Priya is painting a picture of her family at the beach. She adds a big, round, yellow sun.",
       "Splash! Her brush drips blue paint right across the sun. “Oh no,” Priya whispers. “It's ruined.”",
@@ -397,6 +428,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "The Long Way Up Maple Hill",
     emoji: "⛰️",
     theme: "Courage & one step at a time",
+    description: "Maple Hill looks enormous and Dev wants to quit halfway up, so he aims for just the next bend — again and again — until he stands at the top. A story about courage and taking big challenges one step at a time.",
     pages: [
       "Dev's hiking club is climbing Maple Hill on Saturday. From the bus window, the hill looks enormous — its top disappears into the clouds.",
       "Halfway up, Dev's legs burn and his backpack feels like it is full of rocks. “I can't do this,” he thinks, as other hikers pass him on the trail.",
@@ -443,6 +475,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "June and the Borrowed Pencil",
     emoji: "✏️",
     theme: "Honesty & responsibility",
+    description: "June loses the lucky green pencil her friend Eli lent her, and instead of staying quiet, she tells him, says sorry, and buys him a new one. A story about honesty, responsibility, and how trust grows.",
     pages: [
       "June forgot her pencil case on the morning of the big science quiz. “Here,” said her friend Eli, “borrow my lucky green pencil. Just give it back when you're done.”",
       "June did well on her quiz. But at recess, the green pencil was gone. She checked her desk, her backpack, and the floor — nothing.",
@@ -489,6 +522,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Marcus and the Apology Note",
     emoji: "💌",
     theme: "Saying sorry & listening",
+    description: "Marcus shouts words he doesn't mean when Theo knocks over his block tower, then writes an apology note that puts their friendship back together. A story about saying sorry well and choosing a friend over a tower.",
     pages: [
       "Marcus and Theo had been best friends since kindergarten. They had a secret handshake, a favorite lunch table, and a standing rule: nobody builds the block tower alone.",
       "One rainy afternoon, Theo knocked over Marcus's block tower by accident during cleanup. Marcus's face went hot. “You ALWAYS ruin everything!” he shouted. The whole room went quiet.",
@@ -535,6 +569,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Amina's Deep-Sea Breath",
     emoji: "🌊",
     theme: "Calming down & believing in yourself",
+    description: "Amina knows her science presentation by heart, but stage fright strikes — until her deep-sea diver's breath slows her heart and steadies her voice. A story about calming down and believing in yourself.",
     pages: [
       "Amina knew her science presentation by heart. She had practiced in the mirror, performed it for her cat, and twice for her little brother. But standing in front of the class, her heart hammered like a drum.",
       "“Too fast,” her thoughts raced. “What if I forget a line? What if everyone stares?” Her hands felt shaky, and her voice felt stuck somewhere in her throat.",
@@ -581,6 +616,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "The Promise Poster",
     emoji: "🤝",
     theme: "Listening & teamwork",
+    description: "Sofia's poster team has four big ideas and zero listening, until a two-minutes-each rule helps every idea find its place on one poster. A story about teamwork, and how listening makes everyone's work better.",
     pages: [
       "For the school fair, Sofia's team had to design a poster about saving water. Four students, four big ideas — and one very blank sheet of paper.",
       "Jayden wanted a giant waterfall. Priya wanted charts and facts. Tomás wanted a joke in every corner. Sofia wanted her photo of the river near school. Everyone talked at once, and nobody listened to anybody.",
@@ -627,6 +663,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Kai and the Empty Chair",
     emoji: "🦁",
     theme: "Courage & kindness",
+    description: "Kai laughs along when classmates tease a boy eating alone — then chooses to carry his tray over and sit down across from him instead. A story about the quiet courage it takes to be kind when others aren't.",
     pages: [
       "Kai noticed it on Tuesday: a boy named Ren eating lunch alone again, his tray parked beside the empty chair that nobody ever chose.",
       "At Kai's table, someone snickered, “There's the quiet kid.” A few people laughed. Kai laughed too — a small, uncomfortable laugh that tasted bad the moment it left his mouth.",
@@ -674,6 +711,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Zoe Says How She Feels",
     emoji: "😊",
     theme: "Naming big feelings",
+    description: "Zoe feels happy, then sad, then mad in one busy day, and telling her dad 'I feel mad' brings a hug and a calmer heart. A first story about naming big feelings out loud.",
     pages: [
       "Zoe wakes up happy. Her smile is big and wide.",
       "Her tower falls. Zoe feels sad. A tear rolls down.",
@@ -719,6 +757,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Ari's Gentle Hands",
     emoji: "👐",
     theme: "Gentle hands & kind words",
+    description: "Ari pets the class bunny softly, and when he wants the red truck, he waits and asks kindly instead of grabbing. A gentle story about soft hands, kind words, and waiting your turn.",
     pages: [
       "Ari loves the class bunny, Coco. Ari pets her softly, soft, soft.",
       "Ari wants the red truck. Jon has it. Ari waits and asks, “My turn next, please?”",
@@ -764,6 +803,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Kenji's Listening Ears",
     emoji: "👂",
     theme: "Listening & focus",
+    description: "Kenji's ears keep wandering at circle time — to a truck outside, to his squeaky shoe — until he settles in and listens to the whole bear story. A story about listening ears and focusing to learn.",
     pages: [
       "It is circle time. Ms. Park is telling a story about a bear.",
       "Kenji hears a truck outside. He hears his shoe squeak. His ears want to wander!",
@@ -809,6 +849,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Fatima Raises Her Hand",
     emoji: "🙋",
     theme: "Asking for help",
+    description: "Fatima's coat zipper is stuck tight and pulling harder doesn't help, so she raises her hand and asks Mr. Lee, who fixes it in one zip. A story about how asking for help is a brave thing to do.",
     pages: [
       "Fatima is zipping her coat. Zip… stuck! The zipper will not go up.",
       "Fatima pulls and pulls. Her hands get tired. The coat stays stuck.",
@@ -855,6 +896,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Two Games at Recess",
     emoji: "💡",
     theme: "Different ideas are okay",
+    description: "Wren wants kickball and Diego wants to dig roads in the sandbox, and they discover that friends don't have to pick the same game. A story about respecting different ideas.",
     pages: [
       "The bell rings for recess. Wren grabs a ball. “Let's play kickball!” she calls.",
       "Diego shakes his head. “I want to dig in the sandbox and build a road.”",
@@ -901,6 +943,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Noah and the Stop-and-Think",
     emoji: "🛑",
     theme: "Stop, think, then act",
+    description: "Fast Noah races to be first in line and knocks into little Bea, spilling her crayons — then learns his teacher's trick: stop, think, then go. A story about slowing down and thinking before you act.",
     pages: [
       "Noah is fast. Fast to line up, fast to answer, fast to the water fountain.",
       "One day, Noah races to be first in line. Bump! He knocks into little Bea, and her crayons spill everywhere.",
@@ -947,6 +990,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Grace and the Purple Glasses",
     emoji: "🕊️",
     theme: "Calm words for teasing",
+    description: "When Cole teases Grace about her new purple glasses, she takes a slow breath, answers in a calm, clear voice, and walks to her friends. A story about meeting teasing with calm words and strong feet.",
     pages: [
       "Grace wears new glasses with purple frames. She picked them herself, and she loves them.",
       "At recess, Cole points and snickers. “Purple is a baby color,” he says, loud enough for others to hear.",
@@ -993,6 +1037,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Emeka's Morning Checklist",
     emoji: "🌅",
     theme: "Habits & independence",
+    description: "Emeka's wild mornings of lost shoes and loud rushing turn calm when he and his dad make a morning checklist to follow, step by step. A story about routines, good habits, and doing things all by yourself.",
     pages: [
       "Emeka used to have wild mornings. “Where's my shoe? Where's my folder?” Everyone rushed, and Dad's voice got louder every single day.",
       "One Sunday, Emeka and Dad drew a morning checklist together: Wake up. Get dressed. Eat breakfast. Brush teeth. Backpack by the door.",
@@ -1039,6 +1084,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Lucia and the Tablet Timer",
     emoji: "📱",
     theme: "Screen-time balance",
+    description: "Lucia's tablet swallows a whole Saturday and she misses the backyard fort, so she sets a thirty-minute timer and keeps her promise to put it down when it rings. A story about screen-time balance and not missing the real fun.",
     pages: [
       "Lucia loved her tablet. The building game, the drawing app, the funny cat videos — she could tap and scroll for hours without noticing the time at all.",
       "One Saturday, her cousin Mateo knocked on the door. “We're building a fort in the backyard!” Lucia didn't look up. “In a minute,” she said. She said it four more times.",
@@ -1085,6 +1131,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Hazel and the Broken Shell",
     emoji: "🐚",
     theme: "Forgiving & making up",
+    description: "When Ivy accidentally breaks Hazel's treasured shell, two days of angry silence teach Hazel that a glued-back shell — like a friendship — can have cracks and still be whole. A story about forgiving and making up.",
     pages: [
       "Hazel's favorite treasure was a smooth pink shell she had found at the beach with her best friend, Ivy. It sat on her desk in a place of honor.",
       "During art time, Ivy reached across Hazel's desk for the glue — and knocked the shell to the floor. Crack! It broke into three pieces. “Hazel, I'm so—” “Don't talk to me,” Hazel snapped.",
@@ -1131,6 +1178,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Deshawn's Hand Goes Up",
     emoji: "🎤",
     theme: "Confidence & a brave voice",
+    description: "Deshawn knows the science answers, but his voice feels too small for the whole room — until practicing in front of his sister's stuffed animals helps his hand go all the way up. A story about confidence and finding your brave voice.",
     pages: [
       "Deshawn had ideas. Good ones — the kind that arrived in his head fully built, like little machines. But in class, his ideas stayed locked behind his teeth while other students answered every question.",
       "During science, Ms. Chen asked why the moon changes shape. Deshawn knew. He had spent Saturday with a flashlight, an orange, and his uncle, testing it. His hand rose halfway… and sank back down. What if he said it wrong and everyone laughed?",
@@ -1177,6 +1225,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Ruth and the Finish Line",
     emoji: "🏁",
     theme: "Losing with grace",
+    description: "Ruth trains all spring for the fun-run, leads for two laps, and watches her friend Willa surge past at the finish — then chooses honest praise over excuses. A story about losing with grace and being glad for a friend.",
     pages: [
       "Ruth had trained for the school fun-run all spring. She ran before breakfast, she ran after dinner, and her stopwatch showed her times dropping week after week. This year, she was going to win the blue ribbon.",
       "On race day, Ruth flew off the start line. She led for two whole laps. Then, on the last turn, her friend Willa surged past, strong and steady, and crossed the line two steps ahead.",
@@ -1223,6 +1272,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Nadia's Night-Before Plan",
     emoji: "🌙",
     theme: "Calm before the test",
+    description: "Nadia's stomach does backflips before the big math test, until her brother helps her build a night-before plan: review, pack, rest, and one-problem-at-a-time self-talk. A story about preparing calmly and taking care of yourself.",
     pages: [
       "The state math test was on Friday, and by Wednesday, Nadia's stomach had started doing backflips. At dinner she pushed her pasta around her plate. Her thoughts kept sprinting ahead: What if I blank? What if it's all the hard kind of problems? What if I'm the only one who doesn't finish?",
       "Her older brother, Samir, slid into the chair beside her. “You look like I did last year,” he said. “Want to know what actually helped? It wasn't studying until midnight. It was having a plan.”",
@@ -1269,6 +1319,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Julian's Own Choice",
     emoji: "🧭",
     theme: "Peer pressure & my own choice",
+    description: "Dared to climb the fence for an off-limits shortcut, Julian listens to his own voice, says 'I'm good,' and takes the long way around. A story about peer pressure and making your own choice.",
     pages: [
       "The shortcut behind the gym was officially off-limits, which was exactly why Marco and his crew thought it was hilarious to dare each other to climb the fence and cut through it. On Thursday, the dare landed on Julian.",
       "“Come on,” Marco said, already halfway up the fence. “Everyone does it. Don't be a baby.” The words stung more than Julian expected. His hands were sweating. Part of him wanted to climb just to make the moment stop.",
@@ -1316,6 +1367,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Ruby Meets a New Friend",
     emoji: "🤝",
     theme: "Making a new friend",
+    description: "A new boy named Eli sits alone in Ruby's class, looking at his shoes — until Ruby waves, says hello, and asks him to play. A tiny, kind story about making a new friend.",
     pages: [
       "A new boy is in Ruby's class. His name is Eli.",
       "Eli sits alone. He looks at his shoes.",
@@ -1361,6 +1413,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "The Tidy-Up Team",
     emoji: "🧺",
     theme: "Tidy-up time",
+    description: "Blocks, books, and bears cover the whole rug — until Mia and Tom turn tidy-up time into team work and make the rug clean together. A cheerful story about helping and tidying up as a team.",
     pages: [
       "Blocks, books, and bears are all over the rug!",
       "Teacher sings, “Tidy-up time!” Mia claps. “Let's go, team!”",
@@ -1406,6 +1459,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Omar Says Sorry",
     emoji: "💛",
     theme: "Saying sorry and meaning it",
+    description: "Omar's elbow knocks Lily's water cup onto her painting, and his true sorry — plus helping blot the paint dry — helps fix the hurt. A story about saying sorry and meaning it.",
     pages: [
       "Omar runs to the art table. Oops! His elbow knocks Lily's water cup.",
       "Splash! Water spills on Lily's painting. Lily's lip shakes.",
@@ -1452,6 +1506,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Tessa Takes a Brave Bite",
     emoji: "🥕",
     theme: "Brave bites",
+    description: "Tessa is sure she won't like the orange food on her tray, until one tiny, brave bite of sweet potato surprises her. A story about brave bites and trying new foods.",
     pages: [
       "At lunch, Tessa sees something orange on her tray. “Yuck,” she says. “I don't like that.”",
       "Her friend Bo takes a bite. “It's a sweet potato. It's sweet like a cookie!”",
@@ -1498,6 +1553,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Ava Keeps Her Promise",
     emoji: "🌈",
     theme: "Keeping a promise",
+    description: "Ava promised to save Sadie a seat at lunch, and even when her favorite game calls her away, she keeps her hand on Sadie's chair. A story about keeping a promise, even when it is hard.",
     pages: [
       "At morning recess, Ava promised her friend Sadie, “I'll save you a seat at lunch. I promise.”",
       "At lunch, the table filled up fast. Ava put her book on the empty chair. “This seat is Sadie's.”",
@@ -1544,6 +1600,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Two Builders, One Bridge",
     emoji: "🌉",
     theme: "Partner work",
+    description: "Rosa wants the bridge tall and Ben wants it long, and only when they take turns talking and listening do their ideas join into one great bridge. A story about partner work and listening to each other.",
     pages: [
       "Ms. Chen gave the class a job: build a bridge with a partner. Rosa and Ben got the long blocks.",
       "Rosa said, “Let's make it tall!” Ben said, “Let's make it long.” They both talked at the same time. Crash! The blocks fell.",
@@ -1590,6 +1647,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Dev Gives a Hint",
     emoji: "🧩",
     theme: "Helping a classmate",
+    description: "Nora's last puzzle piece will not fit, and Dev helps in the best way — with a question, not by grabbing the piece — so Nora finds the click herself. A story about helping a classmate without doing it for them.",
     pages: [
       "During puzzle time, Nora stared at the last piece of the map puzzle. She turned it and turned it. It just would not fit.",
       "“I'm stuck,” Nora whispered. “I'll never finish.”",
@@ -1636,6 +1694,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Ivy Saves Her Coins",
     emoji: "🐷",
     theme: "Saving up",
+    description: "Ivy passes up candy week after week, dropping her coins into a jar until she can buy the red kite she has been dreaming of. A story about saving up and waiting for what you really want.",
     pages: [
       "In the shop window sat a red kite with a long, swirly tail. Ivy wanted it more than anything. It cost ten coins.",
       "Ivy had three coins. “I could buy candy today,” she thought. The candy would be gone in a minute. The kite would fly all spring.",
@@ -1682,6 +1741,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Four Names on the Poster",
     emoji: "🗺️",
     theme: "Fair shares & shared credit",
+    description: "Four classmates share one oceans poster, but the work isn't fair — until they split the jobs for real and put all four of their names on it. A story about fair shares and shared credit.",
     pages: [
       "For the oceans project, Ms. Rivera put Sam, Bea, Kofi, and Wren in one group. Their job: one big poster about ocean animals, presented on Friday.",
       "At first, the work was not fair at all. Bea drew almost every animal while Sam scrolled through facts he never wrote down, and Kofi and Wren argued about the title.",
@@ -1728,6 +1788,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "The Whisper That Grew",
     emoji: "🌀",
     theme: "Thinking before you repeat",
+    description: "A recess whisper about Tomas breaking the class tablet grows bigger at every stop, but Alba was there and knows it isn't true — so she says so, kindly and clearly. A story about thinking before you repeat a rumor.",
     pages: [
       "It started with one whisper at recess. “Did you hear? Tomas broke the class tablet.” By lunch, the whisper had grown: Tomas broke the tablet on purpose. By the bus line, it had grown again: Tomas was in big, big trouble.",
       "Alba had seen Tomas at recess. He had been nowhere near the tablet — he was playing four square the whole time.",
@@ -1774,6 +1835,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Elena's Quiet Corner",
     emoji: "📚",
     theme: "Homework focus",
+    description: "Elena's homework takes forever because everything else keeps winning, until she builds a quiet corner, a checklist, and a homework time of her own. A story about focus and making a system that works for you.",
     pages: [
       "Elena's homework used to take forever — not because it was hard, but because everything else kept winning. The TV murmured. Her little brother's game beeped. One math problem, check the window. Two problems, get a snack.",
       "One evening, her older cousin asked, “What if homework had its own place and its own time — like a tiny office?” Elena decided to try an experiment.",
@@ -1820,6 +1882,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "The Trophy and the Handshake",
     emoji: "🏆",
     theme: "Winning with humility",
+    description: "Sofia's team wins the championship by one point, and before she lifts the trophy she crosses the field to honor the other team's goalie. A story about winning with humility.",
     pages: [
       "The championship game came down to the final play. Sofia's team won by one point, and the trophy was theirs.",
       "Sofia's first feeling was pure fireworks. Her second feeling arrived when she saw the other team's goalie sitting on the grass, head down. Sofia remembered being that goalie last year.",
@@ -1866,6 +1929,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "The Science Fair Plan",
     emoji: "📅",
     theme: "Planning a big project",
+    description: "Determined not to repeat last year's two panicked nights, Hassan breaks the science fair into small steps on the kitchen calendar — and goes to bed early the night before. A story about planning a big project one honest step at a time.",
     pages: [
       "The science fair was two weeks away, and the assignment was the biggest of the year: build a working model, run an experiment, and present a poster. Hassan stared at the blank page in his notebook. Last year, he had done everything in two panicked nights. This year, he wanted a different story.",
       "So Hassan made a plan. He broke the mountain into steps: pick a question by Wednesday. Buy supplies Saturday. Build the model next week, a little each day. Run the experiment twice. Make the poster last, when he knew his results.",
@@ -1912,6 +1976,7 @@ export const motivationBooks: MotivationBook[] = [
     title: "Maya the Reading Buddy",
     emoji: "🌟",
     theme: "Mentoring a younger student",
+    description: "Fifth-grader Maya learns that helping her reading buddy Otis doesn't mean reading the words for him — it means waiting, cheering, and letting him become a reader himself. A story about mentoring and what real leadership looks like.",
     pages: [
       "Every Tuesday, the fifth graders walked down to the kindergarten wing for Reading Buddies. Maya's buddy was a small, serious boy named Otis, who held his book like it might run away.",
       "At first, Otis read in a whisper and stopped at every hard word. Maya's first instinct was to read the words for him — it would be so much faster. But she remembered being six, and how it felt when someone waited for you instead.",

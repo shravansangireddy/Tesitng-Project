@@ -12,6 +12,7 @@ import {
   type TeacherStore,
 } from "./teacher-books";
 import { VALID_BOOK_TEXT } from "./teacher-books-fixture";
+import { motivationBookDescription } from "./motivation-books";
 import {
   completeMotivationBook,
   initialProgress,
@@ -157,6 +158,38 @@ describe("teacher book parser", () => {
     expect(book?.grade).toBe("1");
     expect(book?.pages).toHaveLength(3);
     expect(book?.questions).toHaveLength(5);
+    expect(book?.description).toContain("Tilly the turtle");
+  });
+
+  it("carries an optional DESCRIPTION line into the parsed book", () => {
+    const withDescription = VALID_BOOK_TEXT.replace(
+      "EMOJI: 🦊\n",
+      "EMOJI: 🦊\nDESCRIPTION: Fox shares his warm bread with a hungry friend. A story about kindness.\n",
+    );
+    const { book, errors } = parseTeacherBook(withDescription);
+    expect(errors).toEqual([]);
+    expect(book?.description).toBe(
+      "Fox shares his warm bread with a hungry friend. A story about kindness.",
+    );
+  });
+
+  it("leaves the description out when the line is missing, and the theme stands in", () => {
+    const { book, errors } = parseTeacherBook(VALID_BOOK_TEXT);
+    expect(errors).toEqual([]);
+    expect(book?.description).toBeUndefined();
+    expect(
+      motivationBookDescription({ ...book!, id: "u-anything" }),
+    ).toBe("A teacher-made story about kindness.");
+  });
+
+  it("rejects a DESCRIPTION line that is far too long", () => {
+    const tooLong = VALID_BOOK_TEXT.replace(
+      "EMOJI: 🦊\n",
+      `EMOJI: 🦊\nDESCRIPTION: ${"word ".repeat(80)}\n`,
+    );
+    const { book, errors } = parseTeacherBook(tooLong);
+    expect(book).toBeNull();
+    expect(errors.join("\n")).toContain("DESCRIPTION");
   });
 });
 
@@ -189,6 +222,32 @@ describe("teacher store", () => {
     expect(localStorage.getItem(TEACHER_STORAGE_KEY)).toContain(saved.id);
     localStorage.removeItem(TEACHER_STORAGE_KEY);
     expect(loadTeacherStore()).toEqual({ teacher: false, books: [] });
+  });
+
+  it("keeps a saved description and quietly drops a malformed one", () => {
+    const { book } = parseTeacherBook(
+      VALID_BOOK_TEXT.replace(
+        "EMOJI: 🦊\n",
+        "EMOJI: 🦊\nDESCRIPTION: Fox shares his bread. A story about kindness.\n",
+      ),
+    );
+    const withDescription = { ...book!, id: newTeacherBookId() };
+    const malformed = {
+      ...withDescription,
+      id: newTeacherBookId(),
+      description: 42,
+    };
+    saveTeacherStore({
+      teacher: true,
+      books: [withDescription, malformed as never],
+    });
+    const loaded = loadTeacherStore();
+    expect(loaded.books).toHaveLength(2);
+    expect(loaded.books[0].description).toBe(
+      "Fox shares his bread. A story about kindness.",
+    );
+    expect(loaded.books[1].description).toBeUndefined();
+    localStorage.removeItem(TEACHER_STORAGE_KEY);
   });
 });
 
