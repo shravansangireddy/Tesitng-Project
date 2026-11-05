@@ -228,7 +228,7 @@ describe("published learner activities", () => {
   it("protects unsaved studio edits on navigation and adult-checkbox dismissal", async () => {
     const api = server();
     await act(async () => root.render(<App roomClient={api.client} cloudProgress={initialProgress} onProgressChange={vi.fn()} />));
-    await click(button("Privacy & data"));
+    await click(button("Parents dashboard"));
     await click(container.querySelector<HTMLInputElement>(".privacy-adult input")!);
     await click(button("Open content studio")); await click(button("Create content draft")); await fill("Title", "Unsaved");
     vi.mocked(window.confirm).mockReturnValue(false);

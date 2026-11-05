@@ -29,7 +29,7 @@ export const editorialPages: ContentPage[] = [
       ] },
       { heading: "Know where progress lives", paragraphs: [
         "Guest progress stays in this browser when storage is available. It does not automatically follow a child to another device, and clearing browser data removes it. Optional adult sign-in and cloud saving require the website operator to configure online services and privacy procedures.",
-        "The current account model supports one learner per adult account. Separate child profiles and a multi-child family dashboard are not included. Use Privacy & data to review the current save and available export or erasure controls.",
+        "The current account model supports one learner per adult account. Separate child profiles and a multi-child family dashboard are not included. Use the Parents dashboard to review the current save and available export or erasure controls.",
       ] },
     ],
   },
@@ -73,7 +73,7 @@ export const editorialPages: ContentPage[] = [
         "Grades 3–5 can also explore coding puzzles and introductory AI lessons. Those activities have their own completion markers rather than replacing English and math practice.",
       ] },
       { heading: "4. Review the save and privacy choices", paragraphs: [
-        "Local progress depends on browser storage. Optional cloud saving requires adult account setup and operator privacy readiness. Review Privacy & data for the current save, export and erasure options, and any operator notices before enabling online features.",
+        "Local progress depends on browser storage. Optional cloud saving requires adult account setup and operator privacy readiness. Review the Parents dashboard for the current save, export and erasure options, and any operator notices before enabling online features.",
       ] },
     ],
   },
@@ -93,7 +93,7 @@ export const editorialPages: ContentPage[] = [
       ] },
       { heading: "Clear limits matter", paragraphs: [
         "The project does not claim independent effectiveness research, accredited courses, nationally normed assessments, or COPPA/FERPA certification. There are no fabricated reviews, learner counts, or teacher endorsements here.",
-        "Deployment operators are responsible for accurate contact details, service configuration, privacy notices, consent or school authorization, and data handling. Consult the in-app Privacy & data area for deployment-specific information.",
+        "Deployment operators are responsible for accurate contact details, service configuration, privacy notices, consent or school authorization, and data handling. Consult the Parents dashboard in the app for deployment-specific information.",
       ] },
     ],
   },
@@ -108,7 +108,7 @@ export const editorialPages: ContentPage[] = [
         "Learn & Play Champion is original supplemental Pre-K–5 practice. It is designed to work alongside books, conversation, hands-on examples, and teacher-led instruction, not replace them.",
       ] },
       { heading: "For deployment-specific questions", paragraphs: [
-        "The app's Privacy & data area contains operator contact and retention information when configured. If online services are not configured, built-in guest learning can still be used locally.",
+        "The app's Parents dashboard contains operator contact and retention information when configured. If online services are not configured, built-in guest learning can still be used locally.",
       ] },
     ],
     questions: [
@@ -119,7 +119,7 @@ export const editorialPages: ContentPage[] = [
       { question: "Does voice work for every learner?", answer: "Optional browser voice support focuses on early grades and spelling-bee interactions. Browser compatibility, operator privacy settings, adult permission, and provider processing all affect availability. Buttons and typing remain available; the public guides do not use a microphone." },
       { question: "Are books and practice results saved?", answer: "Ordinary progress and completed learning-path summaries use the existing device or account save. Picture-book reading answers and unfinished checks are not saved. Guest saves can be lost when browser data is cleared." },
       { question: "Can children compete with others?", answer: "Configured private rooms offer asynchronous weekly practice standings through adult-shared invitations. Scores are client-reported and unproctored, not verified academic achievement. The separate demo leaderboard uses clearly labeled fictional classmates." },
-      { question: "Where do I ask about privacy or deletion?", answer: "Open Privacy & data in the app for save controls and the configured operator contact. Learning erasure does not remove every authentication, teaching, financial, provider-log, or backup record. The operator must handle those processes separately." },
+      { question: "Where do I ask about privacy or deletion?", answer: "Open the Parents dashboard in the app for save controls and the configured operator contact. Learning erasure does not remove every authentication, teaching, financial, provider-log, or backup record. The operator must handle those processes separately." },
     ],
   },
   {
@@ -326,7 +326,7 @@ export const editorialPages: ContentPage[] = [
     sections: [
       { heading: "Local play comes first", paragraphs: [
         "Guest progress is stored in the current browser, including the selected grade, rewards, and optional completed practice-check summaries. The app has no advertisements, tracking scripts, public child profiles, unrestricted chat, or external AI calls. A website host can still receive connection information such as IP addresses and browser logs.",
-        "The in-app Privacy & data area lets an adult review, export, and erase the current learning save. Clearing local browser data does not delete a separately saved cloud record.",
+        "The Parents dashboard in the app lets an adult review, export, and erase the current learning save. Clearing local browser data does not delete a separately saved cloud record.",
       ] },
       { heading: "Optional services have separate data flows", paragraphs: [
         "Configured Supabase services can process adult email, authentication information, learning progress, and private-room participation. Browser speech recognition or synthesis may send audio or text to the browser provider. The app does not promise that speech processing is local or offline.",
@@ -334,18 +334,18 @@ export const editorialPages: ContentPage[] = [
       ] },
       { heading: "Kid logins are created and controlled by a grown-up", paragraphs: [
         "A parent or guardian can create a kid login: a simple username and 4-digit PIN the child uses to sign in on any device and keep their own learning progress. A kid login needs no email address, and the username is never shown publicly — there are no public child profiles, followers, or chat.",
-        "The grown-ups who manage a kid login control it: the creator chooses the username, the child's display name (a first name or nickname is enough) and starting grade, and can share managing with another grown-up — for example the child's other parent — who can then also reset the PIN, pause the login, assign tasks, and see progress. A managing grown-up can delete the login at any time from Privacy & data. Deleting a kid login also deletes the progress saved under it. Kid logins store only the display name, grade, and learning progress — no photos, voice recordings, or contact details.",
-        "The same grown-up can also view the progress saved under each of their kid logins — points, streaks, badges, and best scores — from the Kid logins area in Privacy & data. No one else can see it: other accounts cannot read a kid login's progress.",
+        "The grown-ups who manage a kid login control it: the creator chooses the username, the child's display name (a first name or nickname is enough) and starting grade, and can share managing with another grown-up — for example the child's other parent — who can then also reset the PIN, pause the login, assign tasks, and see progress. A managing grown-up can delete the login at any time from the Parents dashboard. Deleting a kid login also deletes the progress saved under it. Kid logins store only the display name, grade, and learning progress — no photos, voice recordings, or contact details.",
+        "The same grown-up can also view the progress saved under each of their kid logins — points, streaks, badges, and best scores — from the Kid logins area in the Parents dashboard. No one else can see it: other accounts cannot read a kid login's progress.",
         "A grown-up can also give a kid login a task list: short jobs, like “Play Math Mountain”, that appear on the child's home screen after they sign in. A task can open its activity directly, and the child checks it off when finished; the grown-up can see which tasks are done. Tasks store only the job name and whether it is finished.",
       ] },
       { heading: "What the operator must do", paragraphs: [
         "Online features default to disabled until required privacy configuration is supplied. Configuration flags and adult checkboxes are not verified parental consent, a district agreement, or COPPA/FERPA certification. The operator must establish appropriate notices, authorization, security, retention, access, and deletion procedures.",
-        "Before online child use, open Privacy & data and check the operator contact and retention notice. If these are missing or unclear, keep online features disabled. Schools should confirm district authorization and contractual protections rather than assuming a teacher account is sufficient.",
+        "Before online child use, open the Parents dashboard and check the operator contact and retention notice. If these are missing or unclear, keep online features disabled. Schools should confirm district authorization and contractual protections rather than assuming a teacher account is sufficient.",
       ] },
     ],
     questions: [
       { question: "Is the app certified COPPA or FERPA compliant?", answer: "No. Compliance depends on the operator's actual practices, consent or school authorization, provider arrangements, applicable law, and deployment. The software does not provide a compliance certification." },
-      { question: "How do kid logins work?", answer: "A parent or guardian creates a username and 4-digit PIN for their child from Privacy & data in the app. The child signs in with that username and PIN — no email address is collected — and gets their own progress at the grade the grown-up chose. The grown-up can reset the PIN or delete the login and its progress at any time. Usernames are never displayed publicly." },
+      { question: "How do kid logins work?", answer: "A parent or guardian creates a username and 4-digit PIN for their child from the Parents dashboard in the app. The child signs in with that username and PIN — no email address is collected — and gets their own progress at the grade the grown-up chose. The grown-up can reset the PIN or delete the login and its progress at any time. Usernames are never displayed publicly." },
       { question: "Does learner erasure delete every record?", answer: "No. Cloud learning erasure removes learning and room records. Adult authentication, teaching records, financial records, provider logs, and backups require separate operator processes." },
     ],
   },

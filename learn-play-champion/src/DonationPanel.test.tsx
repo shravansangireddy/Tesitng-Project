@@ -14,7 +14,7 @@ import PaymentAdmin from "./PaymentAdmin";
 import { checkoutRequest, parsePaymentEvents } from "./payments";
 import { loadParentPointsStore, parentPointsAccountFor } from "./parent-points";
 import App from "./App";
-import { STORAGE_KEY } from "./game";
+import { initialProgress, STORAGE_KEY } from "./game";
 
 let root: Root, container: HTMLDivElement;
 const requestId = "11111111-1111-4111-8111-111111111111";
@@ -108,9 +108,9 @@ describe("connected donations", () => {
     }
   });
   it("exposes donations only inside the grown-up privacy area without changing learning progress", async () => {
-    await act(async () => root.render(<App />));
+    await act(async () => root.render(<App cloudProgress={initialProgress} onProgressChange={vi.fn()} />));
     expect(container.querySelector(".donation-panel")).toBeNull();
-    await click(button("Privacy & data"));
+    await click(button("Parents dashboard"));
     expect(container.querySelector(".donation-panel")).not.toBeNull();
     expect(localStorage.getItem(STORAGE_KEY)).toBeNull();
   });

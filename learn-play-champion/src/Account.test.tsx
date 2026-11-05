@@ -589,7 +589,7 @@ describe("account progress lifecycle", () => {
 describe("cloud learning data rights", () => {
   async function openPrivacy() {
     authenticated(); await mount();
-    await click(button("Privacy & data"));
+    await click(button("Parents dashboard"));
     await click(container.querySelector(".privacy-adult input"));
   }
   it("erases only through the own-account RPC and signs out after successful erasure", async () => {

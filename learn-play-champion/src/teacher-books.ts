@@ -504,7 +504,7 @@ HOW IT WORKS
 2. Type your story right into the format. Keep every label line and
    every dashed marker line exactly as shown. Labels do not have to
    be in capital letters, and extra blank lines are fine.
-3. In the app, open Privacy & data and turn on Teacher Studio. Paste
+3. In the app, open the Parents dashboard and turn on Teacher Studio. Paste
    your book text (or upload your .txt file) and press Check my book.
 4. Fix anything the checker points out, preview your book, and save.
    It appears on the Motivation Books shelf with a From my teacher

@@ -70,8 +70,12 @@ describe("privacy deployment defaults", () => {
 describe("adult privacy choices", () => {
   it("only attempts to erase the learning key and shows a storage error without hiding failure", async () => {
     const remove = vi.spyOn(Storage.prototype, "removeItem").mockImplementation(() => { throw new Error("Storage blocked"); });
+    // The old "Privacy & data" nav tile moved into the grown-up Parents
+    // dashboard; a guest reaches this view through the donation-return
+    // deep link, which still opens it directly.
+    history.replaceState(null, "", "/?donation_cancel=1");
     await act(async () => root.render(<App />));
-    await click(button("Privacy & data"));
+    history.replaceState(null, "", "/");
     await click(container.querySelector<HTMLInputElement>(".privacy-adult input")!);
     vi.spyOn(window, "confirm").mockReturnValue(true);
     await click(button("Erase local"));
