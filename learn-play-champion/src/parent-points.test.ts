@@ -1,20 +1,27 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it } from "vitest";
 import {
+  awardDonationPoints,
   awardParentPoints,
   dailyParentAssignments,
+  donationAwardKey,
   emptyParentPointsAccount,
   emptyParentPointsStore,
   hasAwardedOn,
+  kidAssignmentAwardKey,
   loadParentPointsStore,
   localDateString,
+  observeKidCompletions,
   parentPointsAccountFor,
+  recordDonationAward,
   saveParentPointsStore,
   totalParentPoints,
   withParentPointsAccount,
+  PARENT_DONATION_AWARD_LABEL,
   PARENT_POINTS_STORAGE_KEY,
   PARENT_POINT_SKILLS,
   PARENT_POINT_VALUES,
+  type KidTaskCompletion,
   type ParentKidRef,
 } from "./parent-points";
 
@@ -43,12 +50,16 @@ describe("parent point configuration", () => {
       "review-english": 5,
       "review-math": 5,
       "check-tasks": 5,
+      donation: 20,
+      "kid-assignment": 1,
     });
     expect(PARENT_POINT_SKILLS).toEqual({
       "check-in": "general",
       "review-english": "english",
       "review-math": "math",
       "check-tasks": "general",
+      donation: "general",
+      "kid-assignment": "general",
     });
   });
 });
@@ -360,5 +371,236 @@ describe("parent points store", () => {
   it("uses the local calendar day for the daily reset", () => {
     expect(localDateString(new Date("2026-01-05T23:59:00"))).toBe("2026-01-05");
     expect(localDateString(new Date("2026-12-25T00:01:00"))).toBe("2026-12-25");
+  });
+});
+
+const DONATION_ONE = "11111111-1111-4111-8111-111111111111";
+const DONATION_TWO = "22222222-2222-4222-8222-222222222222";
+
+describe("donation parent points", () => {
+  it("awards 20 General points once per donation, with the thank-you label", () => {
+    const result = awardDonationPoints(emptyParentPointsAccount(), {
+      donationKey: DONATION_ONE,
+      now: DAY_ONE,
+    });
+    expect(result.awarded).toBe(true);
+    expect(result.points).toBe(20);
+    expect(result.skill).toBe("general");
+    expect(result.account.totals).toEqual({ english: 0, math: 0, general: 20 });
+    expect(result.account.eventKeys).toEqual([donationAwardKey(DONATION_ONE)]);
+    expect(result.account.recent[0]).toMatchObject({
+      action: "donation",
+      label: PARENT_DONATION_AWARD_LABEL,
+      points: 20,
+      skill: "general",
+      date: "2026-11-04",
+    });
+    // Event awards are not daily assignments: no daily-guard record.
+    expect(result.account.awards).toEqual([]);
+  });
+
+  it("never double-awards the same donation, even on a later day", () => {
+    const first = awardDonationPoints(emptyParentPointsAccount(), {
+      donationKey: DONATION_ONE,
+      now: DAY_ONE,
+    });
+    const replay = awardDonationPoints(first.account, {
+      donationKey: DONATION_ONE,
+      now: DAY_TWO,
+    });
+    expect(replay.awarded).toBe(false);
+    expect(replay.points).toBe(0);
+    expect(replay.account).toBe(first.account);
+    expect(replay.account.totals.general).toBe(20);
+  });
+
+  it("awards again for a second, different donation", () => {
+    const first = awardDonationPoints(emptyParentPointsAccount(), {
+      donationKey: DONATION_ONE,
+      now: DAY_ONE,
+    });
+    const second = awardDonationPoints(first.account, {
+      donationKey: DONATION_TWO,
+      now: DAY_ONE,
+    });
+    expect(second.awarded).toBe(true);
+    expect(second.account.totals.general).toBe(40);
+    expect(second.account.eventKeys).toEqual([
+      donationAwardKey(DONATION_ONE),
+      donationAwardKey(DONATION_TWO),
+    ]);
+  });
+
+  it("rejects donation keys that are not checkout request ids", () => {
+    for (const donationKey of ["", "ab", "has space", "key/with/slashes"]) {
+      const result = awardDonationPoints(emptyParentPointsAccount(), {
+        donationKey,
+        now: DAY_ONE,
+      });
+      expect(result.awarded).toBe(false);
+      expect(result.account.totals.general).toBe(0);
+    }
+  });
+
+  it("keeps event keys when daily assignment points are earned afterwards", () => {
+    const donated = awardDonationPoints(emptyParentPointsAccount(), {
+      donationKey: DONATION_ONE,
+      now: DAY_ONE,
+    });
+    const checkedIn = awardParentPoints(donated.account, {
+      action: "check-in",
+      kidUserId: "",
+      label: "Daily check-in",
+      now: DAY_ONE,
+    });
+    expect(checkedIn.account.eventKeys).toEqual([
+      donationAwardKey(DONATION_ONE),
+    ]);
+    const replay = awardDonationPoints(checkedIn.account, {
+      donationKey: DONATION_ONE,
+      now: DAY_ONE,
+    });
+    expect(replay.awarded).toBe(false);
+  });
+
+  it("records the award in the grown-up's own store account, once, across reloads", () => {
+    expect(recordDonationAward("adult-one", DONATION_ONE, DAY_ONE)).toBe(true);
+    expect(recordDonationAward("adult-one", DONATION_ONE, DAY_ONE)).toBe(false);
+    const loaded = loadParentPointsStore();
+    const account = parentPointsAccountFor(loaded, "adult-one");
+    expect(account.totals.general).toBe(20);
+    expect(account.eventKeys).toEqual([donationAwardKey(DONATION_ONE)]);
+    expect(account.recent[0].label).toBe(PARENT_DONATION_AWARD_LABEL);
+    expect(account.recent[0].points).toBe(20);
+    // Another grown-up on the same device is unaffected — and the same
+    // donation key under their own account is a separate record.
+    expect(parentPointsAccountFor(loaded, "adult-two").totals.general).toBe(0);
+    expect(recordDonationAward("adult-two", DONATION_ONE, DAY_ONE)).toBe(true);
+    expect(recordDonationAward("", DONATION_TWO, DAY_ONE)).toBe(false);
+  });
+});
+
+describe("kid assignment parent points", () => {
+  const completion = (
+    kid: ParentKidRef,
+    date: string,
+  ): KidTaskCompletion => ({
+    kidUserId: kid.kidUserId,
+    kidName: kid.displayName,
+    date,
+  });
+
+  it("pays +1 once per kid per day even with several same-day completions", () => {
+    const result = observeKidCompletions(
+      emptyParentPointsAccount(),
+      [
+        completion(AVYAN, "2026-11-04"),
+        completion(AVYAN, "2026-11-04"),
+        completion(AVYAN, "2026-11-04"),
+      ],
+      DAY_ONE,
+    );
+    expect(result.awardedCount).toBe(1);
+    expect(result.points).toBe(1);
+    expect(result.account.totals.general).toBe(1);
+    expect(result.account.eventKeys).toEqual([
+      kidAssignmentAwardKey(AVYAN.kidUserId, "2026-11-04"),
+    ]);
+    expect(result.account.recent).toHaveLength(1);
+    expect(result.account.recent[0]).toMatchObject({
+      action: "kid-assignment",
+      kidUserId: AVYAN.kidUserId,
+      date: "2026-11-04",
+      label: "Avyan finished an assignment",
+      points: 1,
+      skill: "general",
+    });
+  });
+
+  it("pays +1 for each kid who finished on the same day", () => {
+    const result = observeKidCompletions(
+      emptyParentPointsAccount(),
+      [completion(AVYAN, "2026-11-04"), completion(ZARA, "2026-11-04")],
+      DAY_ONE,
+    );
+    expect(result.awardedCount).toBe(2);
+    expect(result.account.totals.general).toBe(2);
+    expect(result.account.recent.map((entry) => entry.label)).toEqual([
+      "Zara finished an assignment",
+      "Avyan finished an assignment",
+    ]);
+  });
+
+  it("pays +1 per day when the same kid finishes on different days", () => {
+    const result = observeKidCompletions(
+      emptyParentPointsAccount(),
+      [completion(AVYAN, "2026-11-03"), completion(AVYAN, "2026-11-04")],
+      DAY_ONE,
+    );
+    expect(result.awardedCount).toBe(2);
+    expect(result.account.totals.general).toBe(2);
+    expect(result.account.eventKeys).toEqual([
+      kidAssignmentAwardKey(AVYAN.kidUserId, "2026-11-03"),
+      kidAssignmentAwardKey(AVYAN.kidUserId, "2026-11-04"),
+    ]);
+  });
+
+  it("awards completions inside the 7-day window but never older ones", () => {
+    const result = observeKidCompletions(
+      emptyParentPointsAccount(),
+      [
+        completion(AVYAN, "2026-10-29"), // 6 days before Nov 4: inside
+        completion(ZARA, "2026-10-28"), // 7 days before: outside, no backfill
+        completion(ZARA, "2026-10-20"),
+      ],
+      DAY_ONE,
+    );
+    expect(result.awardedCount).toBe(1);
+    expect(result.account.eventKeys).toEqual([
+      kidAssignmentAwardKey(AVYAN.kidUserId, "2026-10-29"),
+    ]);
+    // Future-dated and malformed completions are ignored too.
+    const future = observeKidCompletions(
+      emptyParentPointsAccount(),
+      [completion(AVYAN, "2026-11-05"), completion(AVYAN, "not-a-date")],
+      DAY_ONE,
+    );
+    expect(future.awardedCount).toBe(0);
+  });
+
+  it("never double-awards on repeat observation, including after a reload", () => {
+    const completions = [completion(AVYAN, "2026-11-04")];
+    const first = observeKidCompletions(
+      emptyParentPointsAccount(),
+      completions,
+      DAY_ONE,
+    );
+    const second = observeKidCompletions(first.account, completions, DAY_TWO);
+    expect(second.awardedCount).toBe(0);
+    expect(second.account).toBe(first.account);
+
+    saveParentPointsStore(
+      withParentPointsAccount(
+        emptyParentPointsStore(),
+        "adult-one",
+        first.account,
+      ),
+    );
+    const reloaded = parentPointsAccountFor(loadParentPointsStore(), "adult-one");
+    expect(reloaded.totals.general).toBe(1);
+    expect(reloaded.eventKeys).toEqual([
+      kidAssignmentAwardKey(AVYAN.kidUserId, "2026-11-04"),
+    ]);
+    expect(reloaded.recent[0].label).toBe("Avyan finished an assignment");
+    const third = observeKidCompletions(reloaded, completions, DAY_TWO);
+    expect(third.awardedCount).toBe(0);
+    // A genuinely new completion day still pays on the reloaded account.
+    const nextDay = observeKidCompletions(
+      reloaded,
+      [completion(AVYAN, "2026-11-05")],
+      DAY_TWO,
+    );
+    expect(nextDay.awardedCount).toBe(1);
+    expect(nextDay.account.totals.general).toBe(2);
   });
 });

@@ -11,16 +11,20 @@ import {
   dailyParentAssignments,
   loadParentPointsStore,
   localDateString,
+  observeKidCompletions,
   parentPointsAccountFor,
   saveParentPointsStore,
   totalParentPoints,
   withParentPointsAccount,
+  PARENT_POINTS_UPDATED_EVENT,
   PARENT_POINT_SKILL_LABELS,
   requestParentReview,
+  type KidTaskCompletion,
   type ParentAssignment,
   type ParentPointsAccount,
   type ParentPointsStore,
 } from "./parent-points";
+import { fetchKidTasks } from "./kid-tasks";
 
 function failure(error: unknown): string {
   return error instanceof Error
@@ -37,6 +41,40 @@ function formatDay(isoDate: string): string {
         day: "numeric",
         year: "numeric",
       });
+}
+
+/**
+ * Read every managed kid's task list and collect the completions —
+ * the observe-and-award input for kid-assignment points. A kid whose
+ * tasks fail to load simply contributes nothing this time.
+ */
+async function fetchKidCompletions(
+  client: SupabaseClient,
+  kids: KidAccount[],
+): Promise<KidTaskCompletion[]> {
+  const lists = await Promise.all(
+    kids.map(async (kid) => {
+      try {
+        return await fetchKidTasks(client, kid.kidUserId);
+      } catch {
+        return [];
+      }
+    }),
+  );
+  const completions: KidTaskCompletion[] = [];
+  kids.forEach((kid, index) => {
+    for (const task of lists[index]) {
+      if (task.done && task.completedAt) {
+        completions.push({
+          kidUserId: kid.kidUserId,
+          kidName: kid.displayName,
+          // The done day, the same date the Kid logins list displays.
+          date: task.completedAt.slice(0, 10),
+        });
+      }
+    }
+  });
+  return completions;
 }
 
 /** Where an assignment's button takes the parent in the Kid logins list. */
@@ -93,7 +131,31 @@ export default function ParentPoints({ client }: { client: SupabaseClient }) {
         if (!active) return;
         setUserId(id);
         setKids(managed);
-        setStore(loadParentPointsStore());
+        const loadedStore = loadParentPointsStore();
+        setStore(loadedStore);
+        // Observe-and-award: +1 per kid per day for assignment
+        // completions in the last 7 days, from the kids' own task
+        // lists. Already-awarded days are remembered in the store, so
+        // this is safe to run on every load.
+        let completions: KidTaskCompletion[] = [];
+        try {
+          completions = await fetchKidCompletions(client, managed);
+        } catch {
+          completions = [];
+        }
+        if (!active || completions.length === 0) return;
+        const observed = observeKidCompletions(
+          parentPointsAccountFor(loadedStore, id),
+          completions,
+        );
+        if (observed.awardedCount === 0) return;
+        const next = withParentPointsAccount(
+          loadedStore,
+          id,
+          observed.account,
+        );
+        saveParentPointsStore(next);
+        if (active) setStore(next);
       } catch (loadFailure) {
         if (active) setError(failure(loadFailure));
       } finally {
@@ -104,6 +166,16 @@ export default function ParentPoints({ client }: { client: SupabaseClient }) {
       active = false;
     };
   }, [client]);
+
+  // Out-of-panel awards (a completed donation) write the same store
+  // from the DonationPanel below; reload when one lands so this
+  // panel's copy — totals, recent activity, done states — stays fresh.
+  useEffect(() => {
+    const refresh = () => setStore(loadParentPointsStore());
+    window.addEventListener(PARENT_POINTS_UPDATED_EVENT, refresh);
+    return () =>
+      window.removeEventListener(PARENT_POINTS_UPDATED_EVENT, refresh);
+  }, []);
 
   if (!loaded || isKid || !userId || !store) return null;
 

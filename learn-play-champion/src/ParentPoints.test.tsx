@@ -7,7 +7,9 @@ import ParentPoints from "./ParentPoints";
 import KidLogins from "./KidLogins";
 import {
   loadParentPointsStore,
+  localDateString,
   parentPointsAccountFor,
+  recordDonationAward,
   PARENT_POINTS_STORAGE_KEY,
   PARENT_REVIEW_EVENT,
   type ParentReviewRequest,
@@ -191,6 +193,95 @@ describe("Parent Points panel", () => {
     await mount(stubClient({ userId: "" }));
     expect(container.querySelector(".parent-points")).toBeNull();
     expect(container.textContent).toBe("");
+  });
+});
+
+describe("Parent Points event awards", () => {
+  const noonUtc = (date: string) => `${date}T12:00:00.000Z`;
+  const daysAgo = (days: number) => {
+    const day = new Date();
+    day.setDate(day.getDate() - days);
+    return localDateString(day);
+  };
+
+  function stubClientWithTasks() {
+    const today = localDateString();
+    const taskRows = [
+      // Two Avyan tasks done today still pay only +1 for Avyan today.
+      { id: "t1", kid_user_id: "kid-avyan", parent_id: "adult-one", title: "Read", activity: null, done: true, created_at: noonUtc(today), completed_at: noonUtc(today) },
+      { id: "t2", kid_user_id: "kid-avyan", parent_id: "adult-one", title: "Math", activity: null, done: true, created_at: noonUtc(today), completed_at: noonUtc(today) },
+      // Done long before the 7-day window: never backfills.
+      { id: "t3", kid_user_id: "kid-avyan", parent_id: "adult-one", title: "Old", activity: null, done: true, created_at: noonUtc(daysAgo(12)), completed_at: noonUtc(daysAgo(10)) },
+      { id: "t4", kid_user_id: "kid-zara", parent_id: "adult-one", title: "Spell", activity: null, done: true, created_at: noonUtc(today), completed_at: noonUtc(today) },
+      { id: "t5", kid_user_id: "kid-zara", parent_id: "adult-one", title: "Pending", activity: null, done: false, created_at: noonUtc(today), completed_at: null },
+    ];
+    const client = {
+      auth: {
+        getUser: async () => ({ data: { user: { id: "adult-one" } } }),
+      },
+      from: (table: string) => {
+        let kidFilter: string | null = null;
+        const builder: Record<string, unknown> = {
+          select: () => builder,
+          eq: (column: string, value: string) => {
+            if (column === "kid_user_id") kidFilter = value;
+            return builder;
+          },
+          order: () => builder,
+          maybeSingle: async () => ({ data: null, error: null }),
+          then: (resolve: (value: unknown) => void) =>
+            resolve({
+              data:
+                table === "kid_tasks"
+                  ? taskRows.filter((row) => row.kid_user_id === kidFilter)
+                  : table === "kid_accounts"
+                    ? KID_ROWS
+                    : [],
+              error: null,
+            }),
+        };
+        return builder;
+      },
+      functions: { invoke: vi.fn() },
+    };
+    return client as unknown as SupabaseClient;
+  }
+
+  it("awards +1 per kid for today's assignment completions on load, once", async () => {
+    const client = stubClientWithTasks();
+    await mount(client);
+    const text = container.textContent ?? "";
+    expect(text).toContain("2 parent points");
+    expect(text).toContain("Avyan finished an assignment");
+    expect(text).toContain("Zara finished an assignment");
+    const account = parentPointsAccountFor(
+      loadParentPointsStore(),
+      "adult-one",
+    );
+    expect(account.totals).toEqual({ english: 0, math: 0, general: 2 });
+    // A remount re-observes the same completions but never re-pays.
+    await act(async () => root.unmount());
+    root = createRoot(container);
+    await mount(client);
+    expect(container.textContent).toContain("2 parent points");
+    expect(
+      parentPointsAccountFor(loadParentPointsStore(), "adult-one").totals
+        .general,
+    ).toBe(2);
+  });
+
+  it("shows a donation award live when one is recorded while the panel is open", async () => {
+    await mount(stubClient());
+    expect(container.textContent).toContain("0 parent points");
+    await act(async () => {
+      recordDonationAward(
+        "adult-one",
+        "33333333-3333-4333-8333-333333333333",
+      );
+    });
+    const text = container.textContent ?? "";
+    expect(text).toContain("20 parent points");
+    expect(text).toContain("Donation — thank you");
   });
 });
 

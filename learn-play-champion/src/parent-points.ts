@@ -5,6 +5,9 @@ import { gradeLabels, type GradeId } from "./content-schema";
 // English and Math skills, and checking each kid's tasks. Points are
 // tracked per skill (English / Math / General) and every assignment can
 // be earned once per day (the per-kid ones once per kid per day).
+// Two event awards sit alongside the assignments (bottom of this file):
+// a flat thank-you for a completed donation, and +1 per kid per day a
+// kid finishes an assignment, observed from the kids' task lists.
 //
 // Storage: Parent Points live in a dedicated localStorage store, the
 // same pattern Teacher Studio uses for teacher content (a small,
@@ -28,7 +31,9 @@ export type ParentPointAction =
   | "check-in"
   | "review-english"
   | "review-math"
-  | "check-tasks";
+  | "check-tasks"
+  | "donation"
+  | "kid-assignment";
 
 /** Point value of every parent assignment — the single source of truth. */
 export const PARENT_POINT_VALUES: Record<ParentPointAction, number> = {
@@ -36,6 +41,8 @@ export const PARENT_POINT_VALUES: Record<ParentPointAction, number> = {
   "review-english": 5,
   "review-math": 5,
   "check-tasks": 5,
+  donation: 20,
+  "kid-assignment": 1,
 };
 
 /** Which skill bucket each assignment pays into. */
@@ -44,6 +51,8 @@ export const PARENT_POINT_SKILLS: Record<ParentPointAction, ParentPointSkill> = 
   "review-english": "english",
   "review-math": "math",
   "check-tasks": "general",
+  donation: "general",
+  "kid-assignment": "general",
 };
 
 export const PARENT_POINT_SKILL_LABELS: Record<ParentPointSkill, string> = {
@@ -57,6 +66,8 @@ const PARENT_POINT_ACTIONS: ParentPointAction[] = [
   "review-english",
   "review-math",
   "check-tasks",
+  "donation",
+  "kid-assignment",
 ];
 
 const PARENT_POINT_SKILL_IDS: ParentPointSkill[] = [
@@ -91,6 +102,14 @@ export interface ParentPointsAccount {
   totals: Record<ParentPointSkill, number>;
   awards: ParentPointAward[];
   recent: ParentPointActivity[];
+  /**
+   * Keys of one-time event awards already granted, oldest first.
+   * Event points (a completed donation, a kid finishing an assignment)
+   * are idempotent per event rather than per day, so their keys are
+   * kept apart from the daily-guard awards. Key formats:
+   * "donation:<requestId>" and "kid-assignment:<kidUserId>:<YYYY-MM-DD>".
+   */
+  eventKeys: string[];
 }
 
 export interface ParentPointsStore {
@@ -102,6 +121,7 @@ export function emptyParentPointsAccount(): ParentPointsAccount {
     totals: { english: 0, math: 0, general: 0 },
     awards: [],
     recent: [],
+    eventKeys: [],
   };
 }
 
@@ -132,9 +152,9 @@ function shiftDateString(date: string, days: number): string {
   return localDateString(parsed);
 }
 
-/** The kid scope an action is guarded on; the check-in is account-wide. */
+/** The kid scope an action is guarded on; check-in and donation are account-wide. */
 function awardKidScope(action: ParentPointAction, kidUserId: string): string {
-  return action === "check-in" ? "" : kidUserId;
+  return action === "check-in" || action === "donation" ? "" : kidUserId;
 }
 
 /** True when this action was already earned for this scope on this day. */
@@ -209,6 +229,7 @@ export function awardParentPoints(
       totals: { ...account.totals, [skill]: account.totals[skill] + points },
       awards,
       recent: [activity, ...account.recent].slice(0, RECENT_ACTIVITY_LIMIT),
+      eventKeys: account.eventKeys,
     },
     awarded: true,
     points,
@@ -359,6 +380,16 @@ function cleanCount(value: unknown): number {
     : 0;
 }
 
+/** Cap on stored event-award keys; the oldest fall off first. */
+const EVENT_KEY_LIMIT = 100;
+const EVENT_KEY_PATTERN = /^\S{3,160}$/;
+
+function sanitizeEventKey(value: unknown): string | null {
+  return typeof value === "string" && EVENT_KEY_PATTERN.test(value)
+    ? value
+    : null;
+}
+
 function sanitizeAward(value: unknown): ParentPointAward | null {
   if (!value || typeof value !== "object" || Array.isArray(value))
     return null;
@@ -429,6 +460,18 @@ export function sanitizeParentPointsAccount(
       if (account.recent.length >= RECENT_ACTIVITY_LIMIT) break;
     }
   }
+  if (Array.isArray(raw.eventKeys)) {
+    const seen = new Set<string>();
+    for (const entry of raw.eventKeys) {
+      const key = sanitizeEventKey(entry);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      account.eventKeys.push(key);
+    }
+    if (account.eventKeys.length > EVENT_KEY_LIMIT) {
+      account.eventKeys = account.eventKeys.slice(-EVENT_KEY_LIMIT);
+    }
+  }
   return account;
 }
 
@@ -482,4 +525,212 @@ export function withParentPointsAccount(
   account: ParentPointsAccount,
 ): ParentPointsStore {
   return { accounts: { ...store.accounts, [userId]: account } };
+}
+
+// ---------------------------------------------------------------------------
+// Event awards: donations and kid assignment completions
+// ---------------------------------------------------------------------------
+//
+// Alongside the daily assignments, a grown-up earns points for one-time
+// events: completing a donation, and each day one of their kids finishes
+// an assignment. Event awards are not daily assignments (they never
+// appear in the assignment list) and are not guarded per day — each is
+// idempotent per event via the account's eventKeys, so replays of the
+// same event (a refreshed return page, a repeated panel load) can never
+// pay twice, while a genuinely new event always pays again.
+
+/**
+ * Dispatched on window after an out-of-panel award (a donation) writes
+ * the store, so a mounted Parent Points panel can reload its copy
+ * instead of going stale — the two live in the same Privacy & data
+ * view. Mirrors the PARENT_REVIEW_EVENT pattern above.
+ */
+export const PARENT_POINTS_UPDATED_EVENT = "learn-play-parent-points-updated";
+
+/** Recent-activity label for the donation award. */
+export const PARENT_DONATION_AWARD_LABEL = "Donation — thank you";
+
+/** Event key for one donation, from its checkout request id. */
+export function donationAwardKey(donationKey: string): string {
+  return `donation:${donationKey}`;
+}
+
+const DONATION_KEY_PATTERN = /^[A-Za-z0-9_-]{3,100}$/;
+
+export interface AwardDonationPointsInput {
+  /**
+   * The donation's stable checkout request id — the id threaded through
+   * create, the PayPal return link, and capture, and reused verbatim on
+   * retries of the same donation, so one donation always maps to one key.
+   */
+  donationKey: string;
+  /** Defaults to the current moment; injectable for tests. */
+  now?: Date;
+}
+
+export interface EventAwardResult {
+  /** The account after the attempt (unchanged when not awarded). */
+  account: ParentPointsAccount;
+  awarded: boolean;
+  /** Points granted (0 when the event was already awarded). */
+  points: number;
+  skill: ParentPointSkill;
+}
+
+/**
+ * Award the donation points for one completed donation. Idempotent per
+ * donation key: a second call for the same donation returns the account
+ * untouched; a different donation awards again. Callers must only call
+ * this once a capture is known to have completed — never on checkout
+ * start, cancel, or a pending/failed capture.
+ */
+export function awardDonationPoints(
+  account: ParentPointsAccount,
+  input: AwardDonationPointsInput,
+): EventAwardResult {
+  const skill = PARENT_POINT_SKILLS.donation;
+  const points = PARENT_POINT_VALUES.donation;
+  if (!DONATION_KEY_PATTERN.test(input.donationKey)) {
+    return { account, awarded: false, points: 0, skill };
+  }
+  const key = donationAwardKey(input.donationKey);
+  if (account.eventKeys.includes(key)) {
+    return { account, awarded: false, points: 0, skill };
+  }
+  const now = input.now ?? new Date();
+  const activity: ParentPointActivity = {
+    action: "donation",
+    kidUserId: "",
+    date: localDateString(now),
+    label: PARENT_DONATION_AWARD_LABEL,
+    skill,
+    points,
+    at: now.toISOString(),
+  };
+  return {
+    account: {
+      totals: { ...account.totals, [skill]: account.totals[skill] + points },
+      awards: account.awards,
+      recent: [activity, ...account.recent].slice(0, RECENT_ACTIVITY_LIMIT),
+      eventKeys: [...account.eventKeys, key].slice(-EVENT_KEY_LIMIT),
+    },
+    awarded: true,
+    points,
+    skill,
+  };
+}
+
+/**
+ * Record a completed donation in the signed-in grown-up's own points
+ * account: fresh load → award → save, then notify any mounted panel.
+ * Returns true when points were newly awarded. A blank user id (no
+ * signed-in grown-up) or an already-awarded donation quietly returns
+ * false — points are a thank-you extra and must never interfere with
+ * the donation itself.
+ */
+export function recordDonationAward(
+  userId: string,
+  donationKey: string,
+  now: Date = new Date(),
+): boolean {
+  if (!userId) return false;
+  const store = loadParentPointsStore();
+  const result = awardDonationPoints(parentPointsAccountFor(store, userId), {
+    donationKey,
+    now,
+  });
+  if (!result.awarded) return false;
+  saveParentPointsStore(
+    withParentPointsAccount(store, userId, result.account),
+  );
+  window.dispatchEvent(
+    new CustomEvent(PARENT_POINTS_UPDATED_EVENT, { detail: { userId } }),
+  );
+  return true;
+}
+
+/** Days back (including today) a kid completion can still earn points. */
+export const KID_ASSIGNMENT_WINDOW_DAYS = 7;
+
+/** Event key for one kid's assignment-completion day. */
+export function kidAssignmentAwardKey(kidUserId: string, date: string): string {
+  return `kid-assignment:${kidUserId}:${date}`;
+}
+
+/** One kid task completion, as observed from the kid's task list. */
+export interface KidTaskCompletion {
+  kidUserId: string;
+  /** The kid's display name, used in the activity label. */
+  kidName: string;
+  /** The day the task was marked done, YYYY-MM-DD. */
+  date: string;
+}
+
+export interface ObserveKidCompletionsResult {
+  /** The account after the attempt (unchanged when nothing awarded). */
+  account: ParentPointsAccount;
+  /** How many (kid, day) pairs were newly awarded. */
+  awardedCount: number;
+  /** Total points granted. */
+  points: number;
+}
+
+/**
+ * Observe-and-award for kid assignment completions: +1 per kid per day
+ * for each completion whose done date falls in the last
+ * KID_ASSIGNMENT_WINDOW_DAYS days (today included). Several tasks done
+ * by one kid on one day still pay once; two kids or two days pay per
+ * pair. Completions outside the window never pay — including on first
+ * observation, so old completions do not backfill — and awarded pairs
+ * are remembered in eventKeys, so repeat observations never re-pay.
+ */
+export function observeKidCompletions(
+  account: ParentPointsAccount,
+  completions: KidTaskCompletion[],
+  now: Date = new Date(),
+): ObserveKidCompletionsResult {
+  const today = localDateString(now);
+  const earliest = shiftDateString(today, -(KID_ASSIGNMENT_WINDOW_DAYS - 1));
+  const pairs = new Map<string, KidTaskCompletion>();
+  for (const completion of completions) {
+    if (!completion.kidUserId || !DATE_PATTERN.test(completion.date))
+      continue;
+    if (completion.date < earliest || completion.date > today) continue;
+    const key = kidAssignmentAwardKey(completion.kidUserId, completion.date);
+    if (!pairs.has(key)) pairs.set(key, completion);
+  }
+  const fresh = [...pairs.entries()]
+    .filter(([key]) => !account.eventKeys.includes(key))
+    .sort((a, b) => a[1].date.localeCompare(b[1].date));
+  if (fresh.length === 0) return { account, awardedCount: 0, points: 0 };
+  const pointsEach = PARENT_POINT_VALUES["kid-assignment"];
+  const skill = PARENT_POINT_SKILLS["kid-assignment"];
+  let totals = account.totals;
+  let recent = account.recent;
+  let eventKeys = account.eventKeys;
+  for (const [key, completion] of fresh) {
+    const name = completion.kidName.trim() || "Your child";
+    const activity: ParentPointActivity = {
+      action: "kid-assignment",
+      kidUserId: completion.kidUserId,
+      date: completion.date,
+      label: `${name} finished an assignment`,
+      skill,
+      points: pointsEach,
+      at: now.toISOString(),
+    };
+    totals = { ...totals, [skill]: totals[skill] + pointsEach };
+    recent = [activity, ...recent].slice(0, RECENT_ACTIVITY_LIMIT);
+    eventKeys = [...eventKeys, key];
+  }
+  return {
+    account: {
+      totals,
+      awards: account.awards,
+      recent,
+      eventKeys: eventKeys.slice(-EVENT_KEY_LIMIT),
+    },
+    awardedCount: fresh.length,
+    points: fresh.length * pointsEach,
+  };
 }
