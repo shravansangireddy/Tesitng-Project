@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { checkoutConfig, checkoutEnabled, checkoutRequest, donationReturn } from "./payments";
+import { checkoutConfig, checkoutEnabled, checkoutRequest, donationReturn, type CheckoutResponse } from "./payments";
+import { recordDonationAward } from "./parent-points";
 import PaymentAdmin from "./PaymentAdmin";
 
 interface GooglePaySdkConfig {
@@ -41,6 +42,26 @@ function loadScript(src: string): Promise<void> {
   });
   scriptLoads.set(src, load);
   return load;
+}
+/**
+ * Parent Points thank-you for a completed donation. Only a COMPLETED
+ * capture counts — a pending capture is not a completed donation, and
+ * starting, cancelling, or failing a checkout never reaches this. The
+ * award is keyed by the donation's request id, so a replayed success
+ * (a refreshed return page, a retried completion) can never pay twice,
+ * while a new donation pays again. Points are a small extra: any
+ * failure here is swallowed so it can never change the donation's own
+ * outcome, and with no signed-in grown-up there is simply no award.
+ */
+function noteDonationPoints(donor: SupabaseClient, response: CheckoutResponse, donationKey: string): void {
+  if (response.status !== "COMPLETED") return;
+  void (async () => {
+    try {
+      const { data } = await donor.auth.getUser();
+      const userId = data.user?.id;
+      if (userId) recordDonationAward(userId, donationKey);
+    } catch { /* points never affect the donation itself */ }
+  })();
 }
 function captureMessage(response: { status?: string; captureId?: string; environment: string }): string {
   return response.status === "COMPLETED"
@@ -91,6 +112,7 @@ export default function DonationPanel({ adult, client }: { adult: boolean; clien
           throw new Error("Google Pay did not approve this donation. No capture was taken; check PayPal before trying again.");
         const captured = await checkoutRequest(current.client, { action: "capture", requestId: id });
         if (!captured.status) throw new Error("PayPal did not confirm a capture. Check PayPal before trying again.");
+        noteDonationPoints(current.client, captured, id);
         if (active.current && context.current.adult && context.current.client === current.client) {
           setResult(captureMessage(captured)); setReturnId(null);
         }
@@ -173,6 +195,7 @@ export default function DonationPanel({ adult, client }: { adult: boolean; clien
       if (!active.current || !context.current.adult || context.current.client !== client) return;
       if (response.approvalUrl) { location.assign(response.approvalUrl); return; }
       setResult(captureMessage(response));
+      noteDonationPoints(client, response, id);
       setReturnId(null);
       const url = new URL(location.href);
       for (const key of ["donation_return", "token", "PayerID"]) url.searchParams.delete(key);

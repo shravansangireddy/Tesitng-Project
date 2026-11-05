@@ -12,6 +12,7 @@ vi.mock("./payments", async importOriginal => ({
 import DonationPanel from "./DonationPanel";
 import PaymentAdmin from "./PaymentAdmin";
 import { checkoutRequest, parsePaymentEvents } from "./payments";
+import { loadParentPointsStore, parentPointsAccountFor } from "./parent-points";
 import App from "./App";
 import { STORAGE_KEY } from "./game";
 
@@ -210,6 +211,36 @@ describe("google pay donations", () => {
     expect(container.textContent).toContain("PayPal reports a completed capture (CAPTURE123)");
     expect(container.textContent).toContain("Sandbox test only — no real money.");
   });
+  it("awards parent points once for the completed Google Pay donation", async () => {
+    state.enabled = true;
+    const gp = installGooglePay("authorize");
+    const invoke = gpInvoke(gp.order);
+    const authed = { rpc: vi.fn(), functions: { invoke },
+      auth: { getUser: vi.fn().mockResolvedValue({ data: { user: { id: "adult-one" } } }) } } as unknown as SupabaseClient;
+    await act(async () => root.render(<DonationPanel adult client={authed} />));
+    await flush();
+    await click(googlePayButton()!);
+    await flush();
+    expect(container.textContent).toContain("PayPal reports a completed capture (CAPTURE123)");
+    const account = parentPointsAccountFor(loadParentPointsStore(), "adult-one");
+    expect(account.totals.general).toBe(20);
+    expect(account.recent[0].label).toBe("Donation — thank you");
+    expect(account.eventKeys).toHaveLength(1);
+    expect(account.eventKeys[0]).toMatch(/^donation:/);
+  });
+  it("awards no parent points when the Google Pay sheet is cancelled", async () => {
+    state.enabled = true;
+    const gp = installGooglePay("cancel");
+    const invoke = gpInvoke(gp.order);
+    const authed = { rpc: vi.fn(), functions: { invoke },
+      auth: { getUser: vi.fn().mockResolvedValue({ data: { user: { id: "adult-one" } } }) } } as unknown as SupabaseClient;
+    await act(async () => root.render(<DonationPanel adult client={authed} />));
+    await flush();
+    await click(googlePayButton()!);
+    await flush();
+    expect(container.textContent).toContain("Google Pay checkout was cancelled. No success is assumed.");
+    expect(parentPointsAccountFor(loadParentPointsStore(), "adult-one").totals.general).toBe(0);
+  });
   it("shows no success when the user cancels the Google Pay sheet", async () => {
     state.enabled = true;
     const gp = installGooglePay("cancel");
@@ -221,6 +252,63 @@ describe("google pay donations", () => {
     expect(gp.order).toEqual(["invoke:config"]);
     expect(container.textContent).toContain("Google Pay checkout was cancelled. No success is assumed.");
     expect(container.textContent).not.toContain("completed capture");
+  });
+});
+describe("parent points for donations", () => {
+  function authedClient(invoke: ReturnType<typeof vi.fn>, userId: string | null = "adult-one") {
+    return { rpc: vi.fn(), functions: { invoke },
+      auth: { getUser: vi.fn().mockResolvedValue({ data: { user: userId ? { id: userId } : null } }) },
+    } as unknown as SupabaseClient;
+  }
+  async function flush(rounds = 8) {
+    for (let i = 0; i < rounds; i++) await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
+  }
+  const completedInvoke = () => vi.fn().mockResolvedValue({
+    data: { status: "COMPLETED", captureId: "CAPTURE123", environment: "sandbox" }, error: null,
+  });
+  it("awards 20 parent points once when the returned donation capture completes", async () => {
+    state.enabled = true;
+    history.replaceState(null, "", `/?donation_return=${requestId}`);
+    const invoke = completedInvoke();
+    await act(async () => root.render(<DonationPanel adult client={authedClient(invoke)} />));
+    await click(button("Complete approved donation"));
+    await flush();
+    expect(container.textContent).toContain("PayPal reports a completed capture (CAPTURE123)");
+    const account = parentPointsAccountFor(loadParentPointsStore(), "adult-one");
+    expect(account.totals.general).toBe(20);
+    expect(account.eventKeys).toEqual([`donation:${requestId}`]);
+    expect(account.recent[0].label).toBe("Donation — thank you");
+    // Replaying the same return (refresh, revisit, retry) never pays twice.
+    await act(async () => root.unmount());
+    root = createRoot(container);
+    history.replaceState(null, "", `/?donation_return=${requestId}`);
+    await act(async () => root.render(<DonationPanel adult client={authedClient(invoke)} />));
+    await click(button("Complete approved donation"));
+    await flush();
+    expect(parentPointsAccountFor(loadParentPointsStore(), "adult-one").totals.general).toBe(20);
+  });
+  it("awards nothing for a pending capture", async () => {
+    state.enabled = true;
+    history.replaceState(null, "", `/?donation_return=${requestId}`);
+    const invoke = vi.fn().mockResolvedValue({
+      data: { status: "PENDING", captureId: "CAPTURE123", environment: "sandbox" }, error: null,
+    });
+    await act(async () => root.render(<DonationPanel adult client={authedClient(invoke)} />));
+    await click(button("Complete approved donation"));
+    await flush();
+    expect(container.textContent).toContain("pending capture, not a completed donation");
+    const account = parentPointsAccountFor(loadParentPointsStore(), "adult-one");
+    expect(account.totals.general).toBe(0);
+    expect(account.eventKeys).toEqual([]);
+  });
+  it("completes the donation but awards nothing when nobody is signed in", async () => {
+    state.enabled = true;
+    history.replaceState(null, "", `/?donation_return=${requestId}`);
+    await act(async () => root.render(<DonationPanel adult client={authedClient(completedInvoke(), null)} />));
+    await click(button("Complete approved donation"));
+    await flush();
+    expect(container.textContent).toContain("PayPal reports a completed capture (CAPTURE123)");
+    expect(loadParentPointsStore()).toEqual({ accounts: {} });
   });
 });
 describe("protected payment console", () => {
