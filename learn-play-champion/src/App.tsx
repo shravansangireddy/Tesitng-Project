@@ -783,7 +783,7 @@ export default function App({
           ? "My treasure room"
           : view === "leaderboard"
             ? "Friendly leaderboard"
-            : view === "coding" ? "Coding Cove" : view === "ai" ? "AI discovery" : view === "rooms" ? "Private rooms" : view === "privacy" ? "Privacy & data" : view === "books" ? "Picture books" : view === "teacher-library" ? "Teacher library" : view === "learning-path" ? "My learning path" : view === "word-battle" ? "Word Battle" : view === "motivation-books" ? "Motivation Books" : "Our team corner";
+            : view === "coding" ? "Coding Cove" : view === "ai" ? "AI discovery" : view === "rooms" ? "Private rooms" : view === "privacy" ? "Parents dashboard" : view === "books" ? "Picture books" : view === "teacher-library" ? "Teacher library" : view === "learning-path" ? "My learning path" : view === "word-battle" ? "Word Battle" : view === "motivation-books" ? "Motivation Books" : "Our team corner";
   return (
     <div className="app-shell" data-theme={progress.theme ?? "island"}>
       <a className="skip-link" href="#main">
@@ -823,7 +823,6 @@ export default function App({
               { id: "rewards", label: "My rewards", icon: Gift },
               { id: "leaderboard", label: "Leaderboard", icon: Trophy },
               { id: "team", label: "Team corner", icon: Users },
-              { id: "privacy", label: "Privacy & data", icon: LockKeyhole },
             ] as const
           ).map((item) => (
             <button
@@ -869,6 +868,17 @@ export default function App({
             </strong>
           </div>
           <div className="topbar-right">
+            {cloudProgress && !singleLearner && (
+              <button
+                className="account-button"
+                onClick={() => navigate("privacy")}
+                aria-label="Open the parents dashboard"
+                title="Kid logins, parent points, and privacy & data tools"
+              >
+                <LockKeyhole size={16} />
+                <span>Parents dashboard</span>
+              </button>
+            )}
             <div
               onClickCapture={(event) => {
                 voiceControls.current?.stop();

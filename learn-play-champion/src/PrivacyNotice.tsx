@@ -23,7 +23,7 @@ export default function PrivacyNotice() {
     <p><strong>Operator contact:</strong> {privacy.contact || "Not supplied: online collection is disabled."}<br />
       <strong>Retention/deletion:</strong> {privacy.retention || "No operator retention policy supplied. Guest data remains until cleared in this browser."}</p>
     {privacy.noticeUrl && <p><a href={privacy.noticeUrl} target="_blank" rel="noreferrer">Read the operator's full privacy notice (external site)</a></p>}
-    <p>Use Privacy &amp; data in the app to review/export the current learning save and erase local progress.
+    <p>Use the Parents dashboard in the app to review/export the current learning save and erase local progress.
       Cloud erasure removes learning/room records, not the adult login identity, emails, provider logs, or backups.
       Contact the operator for access, consent withdrawal, full account deletion, and applicable backup/deletion timelines.
       Do not enable online features until those requests can actually be fulfilled.</p>

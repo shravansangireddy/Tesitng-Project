@@ -415,7 +415,7 @@ export default function Account() {
       setAuthError(
         signInFailure instanceof Error &&
           /banned/i.test(signInFailure.message)
-          ? "This login is turned off right now. Ask your grown-up to turn it back on in Privacy & data."
+          ? "This login is turned off right now. Ask your grown-up to turn it back on in the Parents dashboard."
           : "That username and PIN didn't match. Check the numbers — or ask your grown-up to reset it for you.",
       );
     } finally {
@@ -436,7 +436,7 @@ export default function Account() {
       setPwPassword("");
     } catch {
       setAuthError(
-        "That email and password didn't match. If you haven't set a password yet, sign in with the email link once, then set one in Privacy & data.",
+        "That email and password didn't match. If you haven't set a password yet, sign in with the email link once, then set one in the Parents dashboard.",
       );
     } finally {
       setPwSigningIn(false);
@@ -599,7 +599,7 @@ export default function Account() {
           />
         </div>
         <p className="kid-signin-note">
-          Use the password you set in Privacy &amp; data. New here, or never
+          Use the password you set in the Parents dashboard. New here, or never
           set one? Use the email link first — you can add a password after
           you sign in.
         </p>

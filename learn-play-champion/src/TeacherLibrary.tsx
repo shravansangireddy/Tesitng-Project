@@ -31,7 +31,7 @@ export default function TeacherLibrary({ client, grade }: { client?: SupabaseCli
     <p>Extra passages and practice questions reviewed and published by this site's content administrators.
       An adult can help you choose. To change the grade, use your dashboard grade selector.</p>
     <p>Practice here has no competitive points or saved answers. Approval is human review, not a guarantee of
-      accuracy. Tell your grown-up if something seems wrong or unsafe; use the operator contact in Privacy &amp; data.</p>
+      accuracy. Tell your grown-up if something seems wrong or unsafe; use the operator contact in the Parents dashboard.</p>
     {!client ? <p>The online teacher library is not connected. Your built-in books and activities still work.
       The operator must configure Supabase and complete the privacy review before loading shared content.</p> : <>
       <button className="button secondary" disabled={busy} onClick={() => void load(false)}>

@@ -23,9 +23,9 @@ export default function PrivacyCenter({ progress, cloud, onErase, paymentClient,
   const [error, setError] = useState("");
   const contentDirty = useRef(false);
   const [studioDirty, setStudioDirty] = useState(false);
-  return <section className="privacy-center panel" aria-label="Privacy and data">
-    <h1>Privacy &amp; data</h1>
-    <p>For a parent, guardian, or authorized school adult. Learning without online sharing is always available as guest play.</p>
+  return <section className="privacy-center panel" aria-label="Parents dashboard">
+    <h1>Parents dashboard</h1>
+    <p>For a parent, guardian, or authorized school adult — kid logins, parent points, and your privacy &amp; data tools live here. Learning without online sharing is always available as guest play.</p>
     <PrivacyNotice />
     <label className="privacy-adult"><input type="checkbox" checked={adult} disabled={busy}
       onChange={(event) => {
