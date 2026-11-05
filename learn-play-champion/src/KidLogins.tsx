@@ -688,7 +688,9 @@ function KidTasksManager({
       <h3>Tasks for {kid.displayName}</h3>
       <p className="kid-tasks-manager-note">
         Tasks appear on {kid.displayName}'s home screen after they sign in. A
-        task with an activity opens that adventure directly.
+        task with an activity opens that adventure directly. Only{" "}
+        {kid.displayName} can tick a task off as done — grown-ups can't mark
+        tasks done for them.
       </p>
       {taskError && (
         <p className="kid-logins-error" role="alert">
