@@ -1460,6 +1460,21 @@ progress::-moz-progress-bar {
 .leaderboard-panel .section-heading h2 {
   font-size: 20px;
 }
+.my-kids-board {
+  padding: 26px;
+  margin-bottom: 24px;
+}
+.my-kids-board .section-heading h2 {
+  font-size: 20px;
+}
+.my-kids-note {
+  font-size: 12px;
+  color: #81718d;
+  margin: 10px 0 4px;
+}
+.my-kids-list {
+  margin-top: 8px;
+}
 .compact {
   margin: 21px 0;
 }
