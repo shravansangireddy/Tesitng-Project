@@ -68,6 +68,7 @@ import CodingWorld from "./CodingWorld";
 import { isCodingGrade } from "./coding";
 import WordBattle from "./WordBattle";
 import MotivationBooks from "./MotivationBooks";
+import MyKidsBoard from "./MyKidsBoard";
 import {
   loadTeacherStore,
   saveTeacherStore,
@@ -2087,7 +2088,14 @@ export default function App({
                   </section>
                 </>
               )}
-              {view === "leaderboard" && <Competition progress={progress} />}
+              {view === "leaderboard" && (
+                <Competition
+                  progress={progress}
+                  myKidsClient={
+                    cloudProgress && !singleLearner ? roomClient : undefined
+                  }
+                />
+              )}
               {view === "team" && (
                 <>
                   <div className="demo-notice">
@@ -2358,7 +2366,15 @@ export default function App({
     </div>
   );
 }
-function Competition({ progress }: { progress: Progress }) {
+function Competition({
+  progress,
+  myKidsClient,
+}: {
+  progress: Progress;
+  /** Set only for signed-in grown-up cloud sessions: shows the real
+   * "My kids" positions board above the demo cheer board. */
+  myKidsClient?: SupabaseClient;
+}) {
   const [scope, setScope] = useState<"class" | "friends">("class");
   const demos =
     scope === "class"
@@ -2383,6 +2399,7 @@ function Competition({ progress }: { progress: Progress }) {
   ].sort((a, b) => b.score - a.score);
   return (
     <>
+      {myKidsClient ? <MyKidsBoard client={myKidsClient} /> : null}
       <div className="demo-notice">
         <CircleHelp size={20} />
         <p>
