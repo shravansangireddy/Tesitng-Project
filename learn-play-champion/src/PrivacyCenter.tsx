@@ -5,6 +5,7 @@ import DonationPanel from "./DonationPanel";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import ContentStudio from "./ContentStudio";
 import KidLogins from "./KidLogins";
+import ParentPoints from "./ParentPoints";
 import ParentPassword from "./ParentPassword";
 import TeacherStudio from "./TeacherStudio";
 import type { TeacherStore } from "./teacher-books";
@@ -64,6 +65,7 @@ export default function PrivacyCenter({ progress, cloud, onErase, paymentClient,
     {studioDirty && <p role="status">Save or close unsaved content edits before erasing learning data.</p>}
     {error && <p role="alert">{error}</p>}
     {cloud && paymentClient ? <KidLogins client={paymentClient} /> : null}
+    {cloud && paymentClient ? <ParentPoints client={paymentClient} /> : null}
     {cloud && paymentClient ? <ParentPassword client={paymentClient} /> : null}
     {cloud && !kidSession && teacherStore && onTeacherStoreChange ? <TeacherStudio store={teacherStore} onStoreChange={onTeacherStoreChange} /> : null}
     {adult && !busy ? <ContentStudio client={paymentClient} onDirty={(dirty) => {
