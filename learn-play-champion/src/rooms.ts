@@ -19,11 +19,27 @@ export interface PracticeRoom {
 function object(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
+// The room RPCs explain refusals in their own messages. Translate the known
+// ones into plain language and pass anything else through unchanged — never
+// bury the real reason under generic setup advice.
+const ROOM_ERROR_MESSAGES: [RegExp, string][] = [
+  [/leave or close your current room first/i, "You're already in a room. Leave or close it first, then try again."],
+  [/invite not found/i, "That code didn't match an open room. Check the code and try again."],
+  [/too many join attempts/i, "Too many tries — wait a while before trying another code."],
+  [/room creation limit reached/i, "You've reached today's room creation limit. Try again tomorrow."],
+  [/room is full/i, "That room is full (30 learners), so nobody else can join right now."],
+  [/the room is closed/i, "That room has been closed by its host."],
+  [/not in a room/i, "You're not in a room right now. Refresh and try again."],
+];
+export function roomErrorMessage(raw: string): string {
+  for (const [pattern, friendly] of ROOM_ERROR_MESSAGES) if (pattern.test(raw)) return friendly;
+  return raw;
+}
 const uuid = (value: unknown): value is string =>
   typeof value === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
 export function parseRoom(value: unknown): PracticeRoom | null {
   if (value === null) return null;
-  if (object(value) && typeof value.error === "string") throw new Error(value.error);
+  if (object(value) && typeof value.error === "string") throw new Error(roomErrorMessage(value.error));
   if (!object(value) || !uuid(value.id) || typeof value.isHost !== "boolean" ||
     (value.isHost ? typeof value.inviteCode !== "string" || !/^[0-9a-f]{32}$/.test(value.inviteCode) : value.inviteCode !== null) ||
     typeof value.weekStart !== "string" || !Number.isFinite(Date.parse(value.weekStart)) ||
@@ -53,7 +69,7 @@ export function parseRoom(value: unknown): PracticeRoom | null {
 }
 async function request(client: SupabaseClient, name: string, args?: Record<string, unknown>): Promise<PracticeRoom | null> {
   const { data, error } = await client.rpc(name, args);
-  if (error) throw new Error(`Room request failed: ${error.message}. Check your connection and deploy the private rooms migration if needed.`);
+  if (error) throw new Error(roomErrorMessage(error.message));
   return parseRoom(data);
 }
 export const loadRoom = (client: SupabaseClient) => request(client, "practice_room_snapshot");

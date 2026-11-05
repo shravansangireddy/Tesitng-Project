@@ -468,6 +468,8 @@ export default function App({
   initialGrade,
   roomClient,
   cloudSaving,
+  cloudSaveFailed,
+  onRetryCloudSave,
   onEraseCloud,
   singleLearner,
   taskClient,
@@ -479,6 +481,9 @@ export default function App({
   initialGrade?: GradeId;
   roomClient?: SupabaseClient;
   cloudSaving?: boolean;
+  /** A latched cloud-save failure (not an in-flight save): rooms show a retry path for it. */
+  cloudSaveFailed?: boolean;
+  onRetryCloudSave?: () => void;
   onEraseCloud?: () => Promise<void>;
   /** Kid-login sessions are one learner by definition: hide the profile switcher. */
   singleLearner?: boolean;
@@ -969,7 +974,7 @@ export default function App({
                 location.reload();
               }} />
           ) : view === "rooms" ? (
-            <PracticeRooms client={roomClient} saving={cloudSaving} />
+            <PracticeRooms client={roomClient} saving={cloudSaving} saveFailed={cloudSaveFailed} onRetrySave={onRetryCloudSave} />
           ) : view === "ai" ? (
             <AIWorld
               initialGrade={isCodingGrade(grade) ? grade : "3"}

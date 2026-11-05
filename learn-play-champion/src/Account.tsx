@@ -943,6 +943,8 @@ function CloudWorkspace({
         cloudProgress={record.progress}
         roomClient={client}
         cloudSaving={pending || saving || !!saveError}
+        cloudSaveFailed={!!saveError}
+        onRetryCloudSave={() => setSaveError(null)}
         singleLearner={!!kidAccount}
         taskClient={kidAccount ? client : undefined}
         kidUserId={kidAccount ? userId : undefined}
