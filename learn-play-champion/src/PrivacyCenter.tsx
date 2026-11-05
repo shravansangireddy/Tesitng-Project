@@ -7,6 +7,7 @@ import ContentStudio from "./ContentStudio";
 import KidLogins from "./KidLogins";
 import ParentPoints from "./ParentPoints";
 import ParentPassword from "./ParentPassword";
+import PrivacyConsent from "./PrivacyConsent";
 import TeacherStudio from "./TeacherStudio";
 import type { TeacherStore } from "./teacher-books";
 
@@ -67,6 +68,7 @@ export default function PrivacyCenter({ progress, cloud, onErase, paymentClient,
     {cloud && paymentClient ? <KidLogins client={paymentClient} /> : null}
     {cloud && paymentClient ? <ParentPoints client={paymentClient} /> : null}
     {cloud && paymentClient ? <ParentPassword client={paymentClient} /> : null}
+    {cloud && !kidSession && paymentClient ? <PrivacyConsent client={paymentClient} /> : null}
     {cloud && !kidSession && teacherStore && onTeacherStoreChange ? <TeacherStudio store={teacherStore} onStoreChange={onTeacherStoreChange} /> : null}
     {adult && !busy ? <ContentStudio client={paymentClient} onDirty={(dirty) => {
       contentDirty.current = dirty; setStudioDirty(dirty); onContentDirty?.(dirty);

@@ -6,6 +6,14 @@ export interface PrivacySettings {
   retention: string;
   error: string;
 }
+/**
+ * The privacy policy version a grown-up agrees to in the Parents
+ * dashboard. Date-based: when the operator's published notice changes,
+ * move this to the new effective date — agreements already recorded stay
+ * on file under the version that was current when they were made, and
+ * the dashboard asks for a fresh agreement to the new version.
+ */
+export const PRIVACY_POLICY_VERSION = "2026-11-04";
 export function privacySettings(env: Record<string, string | undefined>): PrivacySettings {
   const noticeUrl = env.VITE_PRIVACY_NOTICE_URL?.trim() ?? "";
   const contact = env.VITE_PRIVACY_CONTACT?.trim() ?? "";
