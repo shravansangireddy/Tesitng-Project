@@ -42,6 +42,16 @@ describe("motivation book catalog", () => {
       }
     }
   });
+  it("gives every book a description for grown-ups", () => {
+    for (const book of motivationBooks) {
+      // The grown-up view shows ONLY this text in place of the book,
+      // so every built-in must carry a real one: a sentence or two
+      // about the story and what it teaches.
+      expect(book.description?.trim().length).toBeGreaterThan(30);
+      expect(book.description!.trim().length).toBeLessThanOrEqual(400);
+      expect(book.description).not.toContain(book.pages[0]);
+    }
+  });
   it("gives every book exactly five questions with one correct answer each", () => {
     expect(QUESTIONS_PER_BOOK).toBe(5);
     for (const book of motivationBooks) {

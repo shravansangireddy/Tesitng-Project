@@ -1005,6 +1005,9 @@ export default function App({
               grade={grade}
               state={progress.motivationBooks}
               extraBooks={teacherStore.books}
+              grownUpClient={
+                cloudProgress && !singleLearner ? roomClient : undefined
+              }
               onBookComplete={(outcome) => setProgress((current) => completeMotivationBook(current, outcome))}
               onBack={() => navigate("adventures")}
             />

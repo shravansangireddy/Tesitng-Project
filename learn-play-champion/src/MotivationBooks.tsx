@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import "./motivation-books.css";
 import type { MotivationBookOutcome, MotivationBooksProgress } from "./game";
 import { gradeLabels, type GradeId } from "./content-schema";
+import { fetchOwnKidAccount } from "./kid-accounts";
 import {
   POINTS_PER_CORRECT,
+  motivationBookDescription,
   motivationBooks,
   starsForScore,
   type MotivationBook,
@@ -21,13 +24,24 @@ function Stars({ count }: { count: number }) {
   );
 }
 
-export default function MotivationBooks({ grade, state, onBookComplete, onBack, extraBooks }: {
+export default function MotivationBooks({ grade, state, onBookComplete, onBack, extraBooks, grownUpClient }: {
   grade: GradeId;
   state: MotivationBooksProgress | undefined;
   onBookComplete: (outcome: MotivationBookOutcome) => void;
   onBack: () => void;
   /** Books a teacher added on this device (Teacher Studio uploads). */
   extraBooks?: MotivationBook[];
+  /**
+   * The cloud client, passed ONLY for a grown-up cloud session (App
+   * threads `cloudProgress && !singleLearner ? roomClient : undefined`,
+   * the same gate as the My kids board). When it is present, the
+   * session is confirmed in-component the way MyKidsBoard confirms it
+   * — signed in, and not itself a kid login — and a confirmed grown-up
+   * sees each book's DESCRIPTION only: the story pages and questions
+   * are never rendered for them. Kid logins, guests, and device
+   * profiles get no client and keep the full books.
+   */
+  grownUpClient?: SupabaseClient;
 }) {
   const completed = state?.completed ?? [];
   const bestScores = state?.bestScores ?? {};
@@ -41,6 +55,39 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack, 
   const reported = useRef(false);
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => { heading.current?.focus(); }, []);
+
+  // Grown-up confirmation, mirroring MyKidsBoard: App only passes a
+  // client for a grown-up-shaped cloud session, and here we verify the
+  // signed-in user is not itself a kid login before trusting that.
+  // Until the check settles, a session WITH a client is treated as a
+  // grown-up (description mode), so story text can never flash for a
+  // grown-up; if the check finds a kid login, the full books return.
+  const [adult, setAdult] = useState(false);
+  const [adultSettled, setAdultSettled] = useState(!grownUpClient);
+  useEffect(() => {
+    if (!grownUpClient) return;
+    let active = true;
+    (async () => {
+      try {
+        const { data } = await grownUpClient.auth.getUser();
+        const userId = data.user?.id ?? "";
+        if (!userId) {
+          if (active) setAdultSettled(true);
+          return;
+        }
+        const own = await fetchOwnKidAccount(grownUpClient, userId);
+        if (!active) return;
+        if (!own) setAdult(true);
+        setAdultSettled(true);
+      } catch {
+        if (active) setAdultSettled(true);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [grownUpClient]);
+  const descriptionMode = !!grownUpClient && (!adultSettled || adult);
 
   // Teacher-uploaded books join the shelf next to the built-in library
   // and play exactly the same way; they carry a "From my teacher" badge.
@@ -110,9 +157,15 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack, 
         <div>
           <span className="eyebrow">MOTIVATION BOOKS · {gradeLabels[grade].toUpperCase()}</span>
           <h1 ref={heading} tabIndex={-1}>Little books, big feelings.</h1>
-          <p>Read a short story about feelings and choices, then answer five questions.
-            Every correct answer earns +{POINTS_PER_CORRECT} points, just like a regular adventure.
-            Finished books get a ✓ on your shelf.</p>
+          {descriptionMode ? (
+            <p>Short stories about feelings and choices, written for kids.
+              Grown-ups see what each book is about here — the full story
+              and its five questions are for kids, from their own login.</p>
+          ) : (
+            <p>Read a short story about feelings and choices, then answer five questions.
+              Every correct answer earns +{POINTS_PER_CORRECT} points, just like a regular adventure.
+              Finished books get a ✓ on your shelf.</p>
+          )}
         </div>
       </div>
 
@@ -128,15 +181,21 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack, 
               {showAll ? `Show only ${gradeLabels[grade]} books` : "Show books for all levels"}
             </button>
           </div>
-          <p className="mb-shelf-count">
-            You have finished {finishedCount} of {allBooks.length} books.
-          </p>
+          {descriptionMode ? (
+            <p className="mb-shelf-count">
+              {allBooks.length} books — pick one to see what it is about.
+            </p>
+          ) : (
+            <p className="mb-shelf-count">
+              You have finished {finishedCount} of {allBooks.length} books.
+            </p>
+          )}
           <ul className="mb-shelf-grid">
             {shelf.map((entry) => {
               const finished = completed.includes(entry.id);
               const best = bestScores[entry.id];
               return (
-                <li key={entry.id} className={`mb-book-card ${finished ? "is-finished" : ""}`}>
+                <li key={entry.id} className={`mb-book-card ${!descriptionMode && finished ? "is-finished" : ""}`}>
                   <span className="mb-book-emoji" aria-hidden="true">{entry.emoji}</span>
                   <strong>{entry.title}</strong>
                   <small className="mb-book-theme">{entry.theme}</small>
@@ -146,14 +205,20 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack, 
                   {uploadedIds.has(entry.id) && (
                     <span className="mb-teacher-badge">🧑‍🏫 From my teacher</span>
                   )}
-                  {finished && (
+                  {!descriptionMode && finished && (
                     <span className="mb-finished">
                       ✓ Finished{best !== undefined && <> · best <Stars count={starsForScore(best)} /></>}
                     </span>
                   )}
-                  <button className="button primary mb-read" onClick={() => open(entry)}>
-                    {finished ? `Read again` : `Read this book`}
-                  </button>
+                  {descriptionMode ? (
+                    <button className="button primary mb-read" onClick={() => open(entry)}>
+                      See description
+                    </button>
+                  ) : (
+                    <button className="button primary mb-read" onClick={() => open(entry)}>
+                      {finished ? `Read again` : `Read this book`}
+                    </button>
+                  )}
                 </li>
               );
             })}
@@ -161,7 +226,31 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack, 
         </div>
       )}
 
-      {book && phase === "reading" && (
+      {book && descriptionMode && (
+        <article className="panel mb-description" aria-label={book.title}>
+          <button className="text-button" onClick={close}>Back to the bookshelf</button>
+          <div className="mb-reader-head">
+            <span className="mb-book-emoji" aria-hidden="true">{book.emoji}</span>
+            <div>
+              <h2>{book.title}</h2>
+              <p className="mb-book-theme">{book.theme} · {gradeLabels[book.grade]}</p>
+            </div>
+          </div>
+          {uploadedIds.has(book.id) && (
+            <p><span className="mb-teacher-badge">🧑‍🏫 From my teacher</span></p>
+          )}
+          <p className="mb-description-text">{motivationBookDescription(book)}</p>
+          <p className="mb-book-meta">
+            {book.pages.length}-page story · {book.questions.length} questions
+          </p>
+          <p className="mb-grownup-note">
+            Grown-ups see the description. Kids get the full story and
+            questions from their own login.
+          </p>
+        </article>
+      )}
+
+      {book && !descriptionMode && phase === "reading" && (
         <article className="panel mb-reader" aria-label={book.title}>
           <button className="text-button" onClick={close}>Back to the bookshelf</button>
           <div className="mb-reader-head">
@@ -198,7 +287,7 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack, 
         </article>
       )}
 
-      {book && phase === "questions" && question && (
+      {book && !descriptionMode && phase === "questions" && question && (
         <div className="panel mb-quiz">
           <button className="text-button" onClick={close}>Back to the bookshelf</button>
           <p className="mb-round-label">
@@ -233,7 +322,7 @@ export default function MotivationBooks({ grade, state, onBookComplete, onBack, 
         </div>
       )}
 
-      {book && phase === "done" && (
+      {book && !descriptionMode && phase === "done" && (
         <div className="panel mb-done">
           <span className="mb-book-emoji" aria-hidden="true">🎉</span>
           <h2>You finished “{book.title}”!</h2>
