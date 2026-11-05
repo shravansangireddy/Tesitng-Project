@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { gradeIds, gradeLabels, type GradeId } from "./content-schema";
 import {
@@ -37,6 +37,10 @@ import {
   type KidTask,
 } from "./kid-tasks";
 import ProgressCharts from "./ProgressCharts";
+import {
+  PARENT_REVIEW_EVENT,
+  parseParentReviewRequest,
+} from "./parent-points";
 import { barFraction, totalChartedCorrect } from "./progress-charts";
 
 function failure(error: unknown): string {
@@ -268,6 +272,7 @@ function KidLoginRow({
   const [parentsOpen, setParentsOpen] = useState(false);
   const [kidParents, setKidParents] = useState<KidParent[] | null>(null);
   const [shareEmail, setShareEmail] = useState("");
+  const rowRef = useRef<HTMLLIElement>(null);
 
   const loadParents = async () => {
     try {
@@ -336,6 +341,27 @@ function KidLoginRow({
     setProgressOpen(next);
     if (next && progressState === "idle") void loadProgress();
   };
+
+  // Parent Points assignments ask to open this kid's progress or tasks:
+  // open the progress panel for progress reviews (the tasks manager is
+  // always visible in the row) and bring the row into view.
+  useEffect(() => {
+    const onReviewRequest = (event: Event) => {
+      const request = parseParentReviewRequest(event);
+      if (!request || request.kidUserId !== kid.kidUserId) return;
+      if (request.view === "progress") {
+        setProgressOpen(true);
+        if (progressState === "idle") void loadProgress();
+      }
+      const row = rowRef.current;
+      if (row && typeof row.scrollIntoView === "function") {
+        row.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    window.addEventListener(PARENT_REVIEW_EVENT, onReviewRequest);
+    return () =>
+      window.removeEventListener(PARENT_REVIEW_EVENT, onReviewRequest);
+  }, [kid.kidUserId, progressState]);
 
   const commitName = async () => {
     const trimmed = name.trim();
@@ -429,7 +455,7 @@ function KidLoginRow({
   };
 
   return (
-    <li className="kid-logins-row">
+    <li className="kid-logins-row" id={`kid-row-${kid.kidUserId}`} ref={rowRef}>
       <div className="kid-logins-row-main">
         <input
           aria-label={`Name for ${kid.username}`}

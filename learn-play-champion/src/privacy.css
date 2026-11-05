@@ -51,3 +51,16 @@
 .kid-progress-stats { display: flex; flex-wrap: wrap; gap: 8px 18px; }
 .kid-progress-bests { margin: 6px 0; padding-left: 22px; }
 .kid-progress-meta { color: #5b5480; margin-bottom: 0 !important; }
+.parent-points { border-top: 2px solid #d5c9ec; margin-top: 32px; padding-top: 24px; }
+.parent-points h2 { margin-bottom: 8px; }
+.parent-points-summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px; background: #f5f2fd; border-radius: 12px; padding: 14px 16px; margin: 16px 0; }
+.parent-points-total { font-size: 1.1rem; color: #302d49; }
+.parent-points-breakdown { display: flex; flex-wrap: wrap; gap: 4px 14px; color: #5b5480; }
+.parent-points-kid h4 { margin: 18px 0 6px; color: #302d49; }
+.parent-points-list { list-style: none; margin: 8px 0; padding: 0; display: grid; gap: 10px; }
+.parent-points-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; background: white; border: 1px solid #d5c9ec; border-radius: 12px; padding: 10px 14px; }
+.parent-points-assignment { display: grid; gap: 2px; color: #302d49; }
+.parent-points-value { color: #5b5480; font-size: 0.9rem; font-weight: 700; }
+.parent-points-done { color: #1d6f42; font-weight: 700; }
+.parent-points-recent { margin: 8px 0; padding-left: 22px; color: #302d49; }
+.parent-points-recent li { margin: 6px 0; }
