@@ -64,3 +64,6 @@
 .parent-points-done { color: #1d6f42; font-weight: 700; }
 .parent-points-recent { margin: 8px 0; padding-left: 22px; color: #302d49; }
 .parent-points-recent li { margin: 6px 0; }
+.privacy-consent { border-top: 2px solid #d5c9ec; margin-top: 32px; padding-top: 24px; overflow-wrap: anywhere; }
+.privacy-consent h2 { margin-bottom: 8px; }
+.privacy-consent a { text-decoration: underline; }
