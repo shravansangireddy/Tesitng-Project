@@ -4,6 +4,7 @@ import PrivacyNotice from "./PrivacyNotice";
 import DonationPanel from "./DonationPanel";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import ContentStudio from "./ContentStudio";
+import AdminParents from "./AdminParents";
 import KidLogins from "./KidLogins";
 import ParentPoints from "./ParentPoints";
 import ParentPassword from "./ParentPassword";
@@ -74,5 +75,6 @@ export default function PrivacyCenter({ progress, cloud, onErase, paymentClient,
       contentDirty.current = dirty; setStudioDirty(dirty); onContentDirty?.(dirty);
     }} /> : <p>Confirm the responsible adult above to open teacher/admin content tools. Server-assigned access is required.</p>}
     <DonationPanel adult={adult && !busy} client={paymentClient} />
+    {adult && !busy && paymentClient ? <AdminParents client={paymentClient} /> : null}
   </section>;
 }
