@@ -106,7 +106,7 @@ describe("Motivation Books", () => {
       .find((entry) => entry.textContent?.includes("Nia and the Tiny Seed"));
     expect(card?.textContent).toContain("✓ Finished");
     expect(card?.querySelector(".mb-stars")?.getAttribute("aria-label")).toBe("3 of 3 stars");
-    expect(container.textContent).toContain("finished 1 of 42 books");
+    expect(container.textContent).toContain("finished 1 of 50 books");
   });
 });
 
