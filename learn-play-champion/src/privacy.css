@@ -17,6 +17,11 @@
 .donation-checkout label { display: grid; gap: 8px; max-width: 260px; margin: 20px 0; }
 .donation-checkout select { padding: 12px; font: inherit; border-radius: 10px; background: white; color: #302d49; }
 .payment-admin { margin-top: 24px; padding-top: 24px; border-top: 1px solid #d5c9ec; }
+.admin-parents-list { list-style: none; margin: 16px 0; padding: 0; display: grid; gap: 16px; }
+.admin-parents-row { background: #f5f2fd; border-radius: 14px; padding: 16px; overflow-wrap: anywhere; }
+.admin-parents-meta { color: #5b5480; margin: 6px 0 0 !important; }
+.admin-parents-tasks { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+.admin-parents-tasks li { color: #302d49; }
 .payment-table-wrap { max-width: 100%; overflow-x: auto; margin: 20px 0; }
 .payment-table-wrap table { width: 100%; min-width: 650px; border-collapse: collapse; background: white; color: #302d49; }
 .payment-table-wrap th, .payment-table-wrap td { padding: 12px; text-align: left; vertical-align: top; border: 1px solid #d5c9ec; }
