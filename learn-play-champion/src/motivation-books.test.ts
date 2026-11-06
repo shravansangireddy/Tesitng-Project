@@ -18,16 +18,19 @@ import {
 } from "./motivation-books";
 
 describe("motivation book catalog", () => {
-  it("has exactly six original books for every level, forty-two in all", () => {
-    expect(motivationBooks).toHaveLength(42);
-    expect(new Set(motivationBookIds).size).toBe(42);
-    expect(new Set(motivationBooks.map((book) => book.title)).size).toBe(42);
+  it("has fifty original books: six per level, plus Pack 4 habit stories for grades 2-5", () => {
+    expect(motivationBooks).toHaveLength(50);
+    expect(new Set(motivationBookIds).size).toBe(50);
+    expect(new Set(motivationBooks.map((book) => book.title)).size).toBe(50);
     for (const grade of gradeIds) {
-      expect(booksForGrade(grade)).toHaveLength(6);
+      const expected = ["2", "3", "4", "5"].includes(grade) ? 8 : 6;
+      expect(booksForGrade(grade)).toHaveLength(expected);
     }
     expect(bookById("prek-seed").title).toBe("Nia and the Tiny Seed");
     expect(bookById("p2-g5-choice").title).toBe("Julian's Own Choice");
     expect(bookById("p3-g5-mentor").title).toBe("Maya the Reading Buddy");
+    expect(bookById("p4-g2-start").title).toBe("Pip and the Two-Minute Start");
+    expect(bookById("p4-g5-day").title).toBe("Lena Designs Her Day");
     expect(() => bookById("the-very-hungry-caterpillar")).toThrow();
   });
   it("gives every book a title, emoji, theme, and 3-6 pages of story", () => {
