@@ -8,11 +8,34 @@ import { activities } from "./game";
 import { isTaskActivityId, MAX_TASK_TITLE } from "./kid-tasks";
 
 /**
- * The default starter tasks live in the kid-accounts Edge Function's shared
- * module (supabase/functions/_shared/kid-task-defaults.ts) and are seeded
- * server-side when a kid login is created. These tests pin the sets per
- * grade band and prove every seeded deep-link is one the app can open.
+ * The default tasks live in the kid-accounts Edge Function's shared module
+ * (supabase/functions/_shared/kid-task-defaults.ts) and are seeded
+ * server-side when a kid login is created. Owner's decision (2026-11-05,
+ * "Add all skills"): every new kid gets ALL skills at every grade — every
+ * catalog activity plus Word Battle and Motivation Books. These tests pin
+ * that full set and prove every seeded deep-link is one the app can open.
  */
+
+const ALL_SKILLS = [
+  { title: "Play Word Safari", activity: "sight" },
+  { title: "Play Meaning Match", activity: "vocabulary" },
+  { title: "Play Spelling Spark", activity: "spelling" },
+  { title: "Play Story Explorer", activity: "reading" },
+  { title: "Play Sentence Builder", activity: "sentence" },
+  { title: "Play Fact Finder", activity: "informational" },
+  { title: "Play Writer's Workshop", activity: "writing" },
+  { title: "Play Number Sprint", activity: "arithmetic" },
+  { title: "Play Times Adventure", activity: "multiply" },
+  { title: "Play Pattern Detective", activity: "patterns" },
+  { title: "Play Math in the Wild", activity: "problems" },
+  { title: "Play Shape Quest", activity: "geometry" },
+  { title: "Play Place Value Lab", activity: "place" },
+  { title: "Play Parts & Wholes", activity: "fractions" },
+  { title: "Play Measurement Mission", activity: "measurement" },
+  { title: "Play Data Detective", activity: "data" },
+  { title: "Play Word Battle", activity: "word-battle" },
+  { title: "Read a Motivation Book", activity: "motivation-books" },
+];
 
 describe("gradeBandForGrade", () => {
   it("maps every grade id to its band", () => {
@@ -32,54 +55,39 @@ describe("gradeBandForGrade", () => {
 });
 
 describe("defaultTasksForGrade", () => {
-  it("gives Pre-K and Kindergarten the gentle set with a picture-book task", () => {
-    for (const grade of ["prek", "k"]) {
-      expect(defaultTasksForGrade(grade)).toEqual([
-        { title: "Play Story Explorer", activity: "reading" },
-        { title: "Play Number Sprint", activity: "arithmetic" },
-        { title: "Play Word Safari", activity: "sight" },
-        { title: "Read a picture book", activity: null },
-      ]);
+  it("gives every grade the full all-skills set", () => {
+    for (const grade of ["prek", "k", "1", "2", "3", "4", "5"]) {
+      expect(defaultTasksForGrade(grade)).toEqual(ALL_SKILLS);
     }
   });
 
-  it("gives grades 1–2 Word Safari plus Word Battle", () => {
-    for (const grade of ["1", "2"]) {
-      expect(defaultTasksForGrade(grade)).toEqual([
-        { title: "Play Story Explorer", activity: "reading" },
-        { title: "Play Number Sprint", activity: "arithmetic" },
-        { title: "Play Word Safari", activity: "sight" },
-        { title: "Play Word Battle", activity: "word-battle" },
-      ]);
+  it("covers every activity in the app catalog exactly once", () => {
+    const seeded = defaultTasksForGrade("2")
+      .map((task) => task.activity)
+      .filter((activity) => activity !== null);
+    for (const activity of activities) {
+      expect(seeded.filter((id) => id === activity.id)).toHaveLength(1);
     }
-  });
-
-  it("gives grades 3–5 Spelling Spark plus Word Battle", () => {
-    for (const grade of ["3", "4", "5"]) {
-      expect(defaultTasksForGrade(grade)).toEqual([
-        { title: "Play Story Explorer", activity: "reading" },
-        { title: "Play Number Sprint", activity: "arithmetic" },
-        { title: "Play Spelling Spark", activity: "spelling" },
-        { title: "Play Word Battle", activity: "word-battle" },
-      ]);
-    }
+    expect(seeded).toContain("word-battle");
+    expect(seeded).toContain("motivation-books");
+    expect(seeded).toHaveLength(activities.length + 2);
+    expect(new Set(seeded).size).toBe(seeded.length);
   });
 
   it("only seeds deep-links the app can open, with titles that fit", () => {
     for (const grade of ["prek", "k", "1", "2", "3", "4", "5"]) {
       const tasks = defaultTasksForGrade(grade);
-      expect(tasks).toHaveLength(4);
+      expect(tasks).toHaveLength(ALL_SKILLS.length);
       for (const task of tasks) {
         expect(task.title.length).toBeLessThanOrEqual(MAX_TASK_TITLE);
-        if (task.activity !== null) {
-          // A real catalog activity or the Word Battle world — nothing the
-          // kid's Start button would silently drop.
-          expect(isTaskActivityId(task.activity)).toBe(true);
-          if (task.activity !== "word-battle") {
-            expect(
-              activities.some((activity) => activity.id === task.activity),
-            ).toBe(true);
-          }
+        expect(task.activity).not.toBeNull();
+        // A real catalog activity, the Word Battle world, or Motivation
+        // Books — nothing the kid's Start button would silently drop.
+        expect(isTaskActivityId(task.activity!)).toBe(true);
+        if (task.activity !== "word-battle" && task.activity !== "motivation-books") {
+          expect(
+            activities.some((activity) => activity.id === task.activity),
+          ).toBe(true);
         }
       }
     }
@@ -90,8 +98,8 @@ describe("defaultTasksForGrade", () => {
     first[0].title = "Changed";
     first.pop();
     const second = defaultTasksForGrade("2");
-    expect(second).toHaveLength(4);
-    expect(second[0].title).toBe("Play Story Explorer");
+    expect(second).toHaveLength(ALL_SKILLS.length);
+    expect(second[0].title).toBe("Play Word Safari");
   });
 });
 
