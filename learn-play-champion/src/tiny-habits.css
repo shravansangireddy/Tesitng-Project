@@ -1,0 +1,215 @@
+/* Tiny Habits with Pip. Global .panel/.button/.eyebrow classes come from
+   styles.css; th- classes are local to this feature. */
+.tiny-habits-banner {
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 20px 0;
+}
+.tiny-habits-banner p {
+  margin: 12px 0;
+}
+.th-pip-panel {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(145deg, #fff8dc, #eef8e8);
+}
+.th-pip-character {
+  position: relative;
+  flex: 0 0 8.5rem;
+  width: 8.5rem;
+  height: 8.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px #dcecc9;
+}
+.th-pip-ant {
+  font-size: 4.8rem;
+  line-height: 1;
+}
+.th-pip-leaf {
+  position: absolute;
+  right: 0.3rem;
+  bottom: 0.45rem;
+  font-size: 2.4rem;
+  line-height: 1;
+}
+.th-pip-copy h2 {
+  margin: 0.2rem 0 0.5rem;
+}
+.th-pip-message {
+  font-size: 1.12rem;
+  line-height: 1.5;
+  margin: 0.35rem 0;
+}
+.th-pip-motto {
+  font-weight: 700;
+  color: #397347;
+}
+.th-level-progress {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 35rem;
+}
+.th-level-progress progress {
+  width: 100%;
+}
+.th-habits-panel {
+  padding: 1.5rem;
+}
+.th-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.th-panel-head h2 {
+  margin: 0.2rem 0;
+}
+.th-today {
+  font-weight: 700;
+  opacity: 0.75;
+}
+.th-habit-list {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.th-habit-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(150deg, #fdf6e3, #eef7ee);
+}
+.th-habit-main {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.th-habit-main h3,
+.th-habit-main p {
+  margin: 0.15rem 0;
+}
+.th-habit-emoji {
+  font-size: 2.6rem;
+  line-height: 1;
+}
+.th-week-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.4rem;
+}
+.th-week {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(2.35rem, 1fr));
+  gap: 0.4rem;
+  padding: 0;
+  margin: 0;
+  max-width: 34rem;
+}
+.th-week li {
+  min-height: 3.25rem;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.1rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid #d9e4d2;
+  color: #64705e;
+}
+.th-week li span {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.th-week li strong {
+  font-size: 1rem;
+}
+.th-week li.is-checked {
+  background: #57c785;
+  border-color: #57c785;
+  color: #fff;
+}
+.th-week li.is-today {
+  outline: 3px solid #f2b84b;
+  outline-offset: 2px;
+}
+.th-habit-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.th-check-in {
+  min-height: 3.2rem;
+  padding-inline: 1.4rem;
+  font-size: 1.05rem;
+}
+.th-remove {
+  color: #9b3d35;
+}
+.th-empty {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.th-add-section {
+  border-top: 1px solid #dce5d5;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+}
+.th-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.7rem;
+}
+.th-preset-button {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3.4rem;
+  padding: 0.75rem 0.9rem;
+  border: 2px solid #cfe0c4;
+  border-radius: 0.9rem;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+.th-preset-button:hover,
+.th-preset-button:focus-visible {
+  border-color: #57c785;
+  background: #f2fbf2;
+}
+.th-preset-button span:first-child {
+  font-size: 1.5rem;
+}
+@media (max-width: 620px) {
+  .th-pip-panel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .th-week {
+    gap: 0.25rem;
+  }
+  .th-week li {
+    min-height: 3rem;
+  }
+}

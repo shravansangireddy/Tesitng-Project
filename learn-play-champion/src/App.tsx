@@ -11,6 +11,7 @@ import {
   GraduationCap,
   Heart,
   Home,
+  Leaf,
   Lightbulb,
   LockKeyhole,
   Map,
@@ -68,6 +69,8 @@ import CodingWorld from "./CodingWorld";
 import { isCodingGrade } from "./coding";
 import WordBattle from "./WordBattle";
 import MotivationBooks from "./MotivationBooks";
+import TinyHabits from "./TinyHabits";
+import { isTinyHabitGrade, pipLevelProgress, totalTinyHabitCheckIns } from "./tiny-habits";
 import MyKidsBoard from "./MyKidsBoard";
 import GradeBoards from "./GradeBoards";
 import {
@@ -93,7 +96,7 @@ import ProgressCharts from "./ProgressCharts";
 import { totalChartedCorrect } from "./progress-charts";
 import QuestionShape from "./QuestionShape";
 
-type View = "home" | "adventures" | "rewards" | "leaderboard" | "team" | "coding" | "ai" | "rooms" | "privacy" | "books" | "teacher-library" | "learning-path" | "word-battle" | "motivation-books";
+type View = "home" | "adventures" | "rewards" | "leaderboard" | "team" | "coding" | "ai" | "rooms" | "privacy" | "books" | "teacher-library" | "learning-path" | "word-battle" | "motivation-books" | "tiny-habits";
 type Session = {
   championship: boolean;
   grade: GradeId;
@@ -531,6 +534,13 @@ export default function App({
   const gradePack = grades[grade];
   const gradeBest = (id: ActivityId) =>
     progress.gradeBestRounds?.[`${grade}:${id}`] || 0;
+  // Tiny Habits is a learner-only treat for grades 2-5. Grown-up cloud
+  // sessions (the Parents dashboard shape) do not get an entry point;
+  // kid logins, device profiles, and guests follow the learner's grade.
+  const canUseTinyHabits =
+    isTinyHabitGrade(grade) && !(cloudProgress && !singleLearner);
+  const tinyHabitTotal = totalTinyHabitCheckIns(progress.tinyHabits);
+  const pipProgress = pipLevelProgress(tinyHabitTotal);
   const [session, setSession] = useState<Session | null>(null);
   const [result, setResult] = useState<RoundResult | null>(null);
   const [answer, setAnswer] = useState("");
@@ -688,7 +698,7 @@ export default function App({
     setHint(false);
   };
   const visibleActivities = activities.filter((activity) => activity.subject === subject);
-  const voiceEnabled = !["coding", "ai", "rooms", "privacy", "books", "teacher-library", "learning-path", "word-battle", "motivation-books"].includes(view) && (isEarlyGrade(grade) || session?.championship || result?.championship) &&
+  const voiceEnabled = !["coding", "ai", "rooms", "privacy", "books", "teacher-library", "learning-path", "word-battle", "motivation-books", "tiny-habits"].includes(view) && (isEarlyGrade(grade) || session?.championship || result?.championship) &&
     !avatarOpen && !helpOpen && !chestOpen;
   const readQuestion = currentQuestion
     ? `${currentQuestion.prompt}. ${currentQuestion.chart
@@ -790,7 +800,7 @@ export default function App({
           ? "My treasure room"
           : view === "leaderboard"
             ? "Friendly leaderboard"
-            : view === "coding" ? "Coding Cove" : view === "ai" ? "AI discovery" : view === "rooms" ? "Private rooms" : view === "privacy" ? "Parents dashboard" : view === "books" ? "Picture books" : view === "teacher-library" ? "Teacher library" : view === "learning-path" ? "My learning path" : view === "word-battle" ? "Word Battle" : view === "motivation-books" ? "Motivation Books" : "Our team corner";
+            : view === "coding" ? "Coding Cove" : view === "ai" ? "AI discovery" : view === "rooms" ? "Private rooms" : view === "privacy" ? "Parents dashboard" : view === "books" ? "Picture books" : view === "teacher-library" ? "Teacher library" : view === "learning-path" ? "My learning path" : view === "word-battle" ? "Word Battle" : view === "motivation-books" ? "Motivation Books" : view === "tiny-habits" ? "Tiny Habits with Pip" : "Our team corner";
   return (
     <div className="app-shell" data-theme={progress.theme ?? "island"}>
       <a className="skip-link" href="#main">
@@ -825,13 +835,14 @@ export default function App({
               { id: "coding", label: "Coding Cove · 3–5", icon: Sparkles },
               { id: "word-battle", label: "Word Battle", icon: Swords },
               { id: "motivation-books", label: "Motivation Books", icon: Heart },
+              { id: "tiny-habits", label: "Tiny Habits with Pip", icon: Leaf },
               { id: "ai", label: "AI discovery · 3+", icon: Lightbulb },
               { id: "rooms", label: "Private rooms", icon: Users },
               { id: "rewards", label: "My rewards", icon: Gift },
               { id: "leaderboard", label: "Leaderboard", icon: Trophy },
               { id: "team", label: "Team corner", icon: Users },
             ] as const
-          ).map((item) => (
+          ).filter((item) => item.id !== "tiny-habits" || canUseTinyHabits).map((item) => (
             <button
               key={item.id}
               className={`nav-item ${view === item.id && !session && !result ? "active" : ""}`}
@@ -1011,6 +1022,18 @@ export default function App({
               onBookComplete={(outcome) => setProgress((current) => completeMotivationBook(current, outcome))}
               onBack={() => navigate("adventures")}
             />
+          ) : view === "tiny-habits" ? (
+            canUseTinyHabits ? (
+              <TinyHabits
+                key={`${grade}:${progress.activeProfileId ?? "solo"}`}
+                grade={grade}
+                state={progress.tinyHabits}
+                onChange={(tinyHabits) =>
+                  setProgress((current) => ({ ...current, tinyHabits }))
+                }
+                onBack={() => navigate("adventures")}
+              />
+            ) : null
           ) : session && currentQuestion ? (
             <>
               <button
@@ -1537,6 +1560,22 @@ export default function App({
                     <p>Books finished: {progress.motivationBooks?.completed.length ?? 0}/{motivationBooks.length}.</p>
                     <button className="button primary" onClick={() => navigate("motivation-books")}>
                       Open Motivation Books
+                    </button>
+                  </div>
+                </section>
+              )}
+              {(view === "home" || view === "adventures") && canUseTinyHabits && (
+                <section className="tiny-habits-banner panel" aria-label="Tiny Habits with Pip">
+                  <span style={{ fontSize: 30 }} aria-hidden="true">🐜</span>
+                  <div>
+                    <h2>Tiny Habits with Pip</h2>
+                    <p>{gradeLabels[grade]} · Tiny steps, every day. Pick up to three tiny habits,
+                      check them off, build streaks, and help Pip carry a bigger leaf.
+                      Streaks and Pip&apos;s levels are the reward — no points.</p>
+                    <p>Pip is a Level {pipProgress.current.level} {pipProgress.current.name} {pipProgress.current.leaf}
+                      {" "}· {tinyHabitTotal} total check-in{tinyHabitTotal === 1 ? "" : "s"}.</p>
+                    <button className="button primary" onClick={() => navigate("tiny-habits")}>
+                      Open Tiny Habits
                     </button>
                   </div>
                 </section>
