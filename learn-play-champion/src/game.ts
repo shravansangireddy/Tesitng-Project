@@ -5,6 +5,11 @@ import { themes, type ThemeId } from "./themes";
 import { validPathChecks, type PathChecks } from "./learning-path";
 import { monsterIds } from "./word-battle";
 import { motivationBookIds, POINTS_PER_CORRECT } from "./motivation-books";
+import {
+  isTinyHabitDate,
+  tinyHabitPresetIds,
+  type TinyHabitsProgress,
+} from "./tiny-habits";
 import { isTeacherBookId } from "./teacher-books";
 export type Subject = "english" | "math";
 export type ActivityId = LessonId;
@@ -161,6 +166,7 @@ export interface MotivationBooksProgress {
   completed: string[];
   bestScores: Record<string, number>;
 }
+export type { TinyHabitsProgress } from "./tiny-habits";
 export interface Progress {
   version: 1;
   points: number;
@@ -182,6 +188,7 @@ export interface Progress {
   aiCompleted?: string[];
   wordBattle?: WordBattleProgress;
   motivationBooks?: MotivationBooksProgress;
+  tinyHabits?: TinyHabitsProgress;
   selectedGrade?: GradeId;
   theme?: ThemeId;
   pathChecks?: PathChecks;
@@ -488,6 +495,43 @@ function sanitizeMotivationBooks(
   }
   return { completed, bestScores };
 }
+// Tiny Habits data is also cleaned leniently: keep at most three known
+// preset habits and only valid, unique check-in dates for habits that are
+// still tracked. Junk values fall away without discarding the whole save.
+function sanitizeTinyHabits(
+  value: unknown,
+): TinyHabitsProgress | undefined {
+  if (value === undefined) return undefined;
+  if (!value || typeof value !== "object" || Array.isArray(value))
+    return undefined;
+  const raw = value as Record<string, unknown>;
+  const habits: string[] = [];
+  if (Array.isArray(raw.habits)) {
+    for (const id of raw.habits) {
+      if (
+        typeof id === "string" &&
+        tinyHabitPresetIds.includes(id) &&
+        !habits.includes(id) &&
+        habits.length < 3
+      )
+        habits.push(id);
+    }
+  }
+  const checkIns: Record<string, string[]> = {};
+  if (
+    raw.checkIns &&
+    typeof raw.checkIns === "object" &&
+    !Array.isArray(raw.checkIns)
+  ) {
+    for (const habitId of habits) {
+      const dates = (raw.checkIns as Record<string, unknown>)[habitId];
+      if (!Array.isArray(dates)) continue;
+      const cleaned = [...new Set(dates.filter(isTinyHabitDate))].sort();
+      if (cleaned.length) checkIns[habitId] = cleaned;
+    }
+  }
+  return { habits, checkIns };
+}
 function parseProgressObject(value: unknown, nested: boolean): Progress {
   if (!value || typeof value !== "object")
     throw new Error("Saved progress is not an object.");
@@ -605,6 +649,16 @@ function parseProgressObject(value: unknown, nested: boolean): Progress {
     }
   } else {
     result = { ...result, motivationBooks };
+  }
+  const tinyHabits = sanitizeTinyHabits(p.tinyHabits);
+  if (tinyHabits === undefined) {
+    if ("tinyHabits" in p) {
+      const copy = { ...result };
+      delete copy.tinyHabits;
+      result = copy;
+    }
+  } else {
+    result = { ...result, tinyHabits };
   }
   return result;
 }
