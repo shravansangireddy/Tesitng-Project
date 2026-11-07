@@ -5,7 +5,11 @@ import {
   shouldSeedDefaultTasks,
 } from "../supabase/functions/_shared/kid-task-defaults.ts";
 import { activities } from "./game";
-import { isTaskActivityId, MAX_TASK_TITLE } from "./kid-tasks";
+import {
+  ALL_SKILL_TASKS,
+  isTaskActivityId,
+  MAX_TASK_TITLE,
+} from "./kid-tasks";
 
 /**
  * The default tasks live in the kid-accounts Edge Function's shared module
@@ -108,5 +112,22 @@ describe("shouldSeedDefaultTasks", () => {
     expect(shouldSeedDefaultTasks(0)).toBe(true);
     expect(shouldSeedDefaultTasks(1)).toBe(false);
     expect(shouldSeedDefaultTasks(4)).toBe(false);
+  });
+});
+
+describe("client skill presets (src/kid-tasks.ts ALL_SKILL_TASKS)", () => {
+  it("are identical to the server seed set at every grade, so the two lists can never drift", () => {
+    // The "Add all skills" button in Kid logins tops a kid up from the
+    // client copy of this list; the Edge Function seeds new kids from the
+    // server copy. They must stay exactly the same list — same titles,
+    // same activities, same order.
+    const clientList = ALL_SKILL_TASKS.map((preset) => ({
+      title: preset.title,
+      activity: preset.activityId,
+    }));
+    for (const grade of ["prek", "k", "1", "2", "3", "4", "5"]) {
+      expect(clientList).toEqual(defaultTasksForGrade(grade));
+    }
+    expect(clientList).toEqual(ALL_SKILLS);
   });
 });
