@@ -489,6 +489,16 @@
   padding: 6px 12px;
   white-space: nowrap;
 }
+/* The grown-up mirror of .kid-chip: who is signed in. A long address
+   truncates on narrow screens; the full email stays on the chip title. */
+.parent-chip {
+  max-width: min(52vw, 340px);
+}
+.parent-chip-email {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* Kid tasks: the signed-in kid's job list on Home, and the grown-up's
    task manager inside each Kid logins row. */
