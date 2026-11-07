@@ -38,6 +38,7 @@ import type { Progress } from "./game";
 import { gradeIds, gradeLabels, type GradeId } from "./content-schema";
 import PrivacyNotice from "./PrivacyNotice";
 import { donationReturn } from "./payments";
+import { requestParentWelcomeEmail } from "./welcome";
 
 function message(error: unknown): string {
   return error instanceof Error
@@ -804,6 +805,12 @@ function CloudWorkspace({
       .then(([next, kid]) => {
         if (cancelled) return;
         setKidAccount(kid);
+        // A signed-in grown-up session is established: give the
+        // welcome-email function its once-per-page-session chance to
+        // welcome a brand-new parent. Kid sessions never trigger it
+        // (the function would refuse them anyway); every outcome is
+        // ignored by design.
+        requestParentWelcomeEmail(client, !!kid);
         const requested = gradeRequest.current;
         // A kid login starts at the grade its grown-up set; an explicit
         // grade from a sign-in link wins when both are present.
