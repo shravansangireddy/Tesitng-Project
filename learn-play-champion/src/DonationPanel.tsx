@@ -69,7 +69,15 @@ function captureMessage(response: { status?: string; captureId?: string; environ
     : `PayPal reports a pending capture, not a completed donation. ${response.environment === "sandbox" ? "Sandbox test only. " : ""}Check PayPal; do not pay again to resolve a pending payment.`;
 }
 
-export default function DonationPanel({ adult, client }: { adult: boolean; client?: SupabaseClient | null }) {
+export default function DonationPanel({ adult, client, showPaymentAdmin = false }: {
+  adult: boolean; client?: SupabaseClient | null;
+  // The protected payment console is admin-only UI: the Parents
+  // dashboard passes true only after its up-front is_payment_admin
+  // check confirms this grown-up. Default false (fail closed) — the
+  // console stays hidden, and the server re-checks on every call
+  // regardless.
+  showPaymentAdmin?: boolean;
+}) {
   const [amount, setAmount] = useState("5");
   const [requestId, setRequestId] = useState<string | null>(null);
   const [returnId, setReturnId] = useState(donationReturn);
@@ -265,6 +273,6 @@ export default function DonationPanel({ adult, client }: { adult: boolean; clien
         button click, or screenshot as proof of payment. Donations are not claimed to be tax-deductible.
         Recipient eligibility, charitable claims, receipts, and refund policies are the operator's responsibility.</p>
     </details>}
-    {adult && client && <PaymentAdmin client={client} />}
+    {adult && client && showPaymentAdmin && <PaymentAdmin client={client} />}
   </section>;
 }

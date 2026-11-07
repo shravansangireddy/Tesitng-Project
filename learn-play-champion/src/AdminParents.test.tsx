@@ -144,8 +144,13 @@ describe("Registered parents admin panel", () => {
 });
 
 describe("Registered parents in the Parents dashboard", () => {
-  /** Broad stub for the whole Parents dashboard (wiring checks only). */
-  function stubDashboardClient() {
+  /** Broad stub for the whole Parents dashboard (wiring checks only).
+   * `admin` is what the is_payment_admin RPC reports for this grown-up;
+   * a function form lets a test keep the check pending and settle it
+   * later. */
+  function stubDashboardClient(
+    admin: boolean | (() => Promise<{ data: boolean; error: null }>),
+  ) {
     const builder: Record<string, unknown> = {
       select: () => builder,
       eq: () => builder,
@@ -159,14 +164,37 @@ describe("Registered parents in the Parents dashboard", () => {
         getUser: async () => ({ data: { user: { id: "adult-one" } } }),
       },
       from: vi.fn(() => builder),
-      rpc: vi.fn(async () => ({ data: null, error: null })),
+      rpc: vi.fn(async (name: string) => {
+        if (name === "is_payment_admin") {
+          return typeof admin === "function"
+            ? admin()
+            : { data: admin, error: null };
+        }
+        return { data: null, error: null };
+      }),
       functions: { invoke: vi.fn() },
     } as unknown as SupabaseClient;
     return client;
   }
 
+  async function renderDashboard(client: SupabaseClient) {
+    await act(async () =>
+      root.render(
+        <PrivacyCenter
+          progress={initialProgress}
+          cloud
+          paymentClient={client}
+          onErase={vi.fn().mockResolvedValue(undefined)}
+        />,
+      ),
+    );
+    const adultBox = container.querySelector<HTMLInputElement>(".privacy-adult input");
+    if (!adultBox) throw new Error("Missing responsible-adult checkbox");
+    await click(adultBox);
+  }
+
   it("mounts beside the donation panel once the responsible adult confirms", async () => {
-    const client = stubDashboardClient();
+    const client = stubDashboardClient(true);
     await act(async () =>
       root.render(
         <PrivacyCenter
@@ -183,5 +211,34 @@ describe("Registered parents in the Parents dashboard", () => {
     await click(adultBox);
     expect(container.textContent).toContain("Registered parents");
     expect(button("Open registered parents")).toBeDefined();
+    // The other admin-only block shows for the administrator too.
+    expect(container.textContent).toContain("Payment admin console");
+    expect(button("Open payment records")).toBeDefined();
+  });
+
+  it("hides both admin blocks from a grown-up who is not a payment admin", async () => {
+    const client = stubDashboardClient(false);
+    await renderDashboard(client);
+    // The donations form stays available to every grown-up…
+    expect(container.textContent).toContain("Optional grown-up donations");
+    // …but neither admin-only block appears anywhere.
+    expect(container.textContent).not.toContain("Payment admin console");
+    expect(container.textContent).not.toContain("Registered parents");
+    expect(container.textContent).not.toContain("Open payment records");
+    expect(container.textContent).not.toContain("Open registered parents");
+  });
+
+  it("shows neither admin block while the admin check is still pending, then both once it passes", async () => {
+    let settle!: (value: { data: boolean; error: null }) => void;
+    const client = stubDashboardClient(
+      () => new Promise((resolve) => { settle = resolve; }),
+    );
+    await renderDashboard(client);
+    expect(container.textContent).toContain("Optional grown-up donations");
+    expect(container.textContent).not.toContain("Payment admin console");
+    expect(container.textContent).not.toContain("Registered parents");
+    await act(async () => settle({ data: true, error: null }));
+    expect(container.textContent).toContain("Payment admin console");
+    expect(container.textContent).toContain("Registered parents");
   });
 });

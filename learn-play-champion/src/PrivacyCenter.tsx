@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Progress } from "./game";
 import PrivacyNotice from "./PrivacyNotice";
 import DonationPanel from "./DonationPanel";
+import { paymentAdmin } from "./payments";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import ContentStudio from "./ContentStudio";
 import AdminParents from "./AdminParents";
@@ -25,6 +26,29 @@ export default function PrivacyCenter({ progress, cloud, onErase, paymentClient,
   const [error, setError] = useState("");
   const contentDirty = useRef(false);
   const [studioDirty, setStudioDirty] = useState(false);
+  // Payment-administrator status for the admin-only blocks (the payment
+  // records console and Registered parents). Resolved up front when a
+  // signed-in client is present: null while the check is pending (render
+  // neither block — no flash of admin UI), true/false once it settles.
+  // Any check failure fails closed: the grown-up is treated as a
+  // non-admin and the blocks simply never appear. The server still
+  // re-checks is_payment_admin on every protected call; this gate is
+  // visibility only.
+  const [isPaymentAdmin, setIsPaymentAdmin] = useState<boolean | null>(null);
+  useEffect(() => {
+    setIsPaymentAdmin(null);
+    if (!paymentClient) return;
+    let current = true;
+    void (async () => {
+      try {
+        const result = await paymentAdmin(paymentClient);
+        if (current) setIsPaymentAdmin(result);
+      } catch {
+        if (current) setIsPaymentAdmin(false);
+      }
+    })();
+    return () => { current = false; };
+  }, [paymentClient]);
   return <section className="privacy-center panel" aria-label="Parents dashboard">
     <h1>Parents dashboard</h1>
     <p>For a parent, guardian, or authorized school adult — kid logins, parent points, and your privacy &amp; data tools live here. Learning without online sharing is always available as guest play.</p>
@@ -74,7 +98,7 @@ export default function PrivacyCenter({ progress, cloud, onErase, paymentClient,
     {adult && !busy ? <ContentStudio client={paymentClient} onDirty={(dirty) => {
       contentDirty.current = dirty; setStudioDirty(dirty); onContentDirty?.(dirty);
     }} /> : <p>Confirm the responsible adult above to open teacher/admin content tools. Server-assigned access is required.</p>}
-    <DonationPanel adult={adult && !busy} client={paymentClient} />
-    {adult && !busy && paymentClient ? <AdminParents client={paymentClient} /> : null}
+    <DonationPanel adult={adult && !busy} client={paymentClient} showPaymentAdmin={isPaymentAdmin === true} />
+    {adult && !busy && paymentClient && isPaymentAdmin ? <AdminParents client={paymentClient} /> : null}
   </section>;
 }

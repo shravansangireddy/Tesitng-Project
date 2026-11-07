@@ -595,7 +595,12 @@ describe("cloud learning data rights", () => {
   it("erases only through the own-account RPC and signs out after successful erasure", async () => {
     await openPrivacy();
     await click(button("Erase cloud learning"));
-    expect(mocks.rpc).toHaveBeenCalledExactlyOnceWith("erase_my_learning_data");
+    // Erasure itself goes through the own-account RPC, exactly once. The
+    // only other RPC in the session is the dashboard's read-only
+    // is_payment_admin visibility check for its admin-only blocks.
+    const rpcNames = mocks.rpc.mock.calls.map((call) => call[0]);
+    expect(rpcNames.filter((name) => name === "erase_my_learning_data")).toHaveLength(1);
+    expect(new Set(rpcNames)).toEqual(new Set(["is_payment_admin", "erase_my_learning_data"]));
     expect(mocks.signOut).toHaveBeenCalledWith({ scope: "local" });
     expect(container.textContent).toContain("Welcome to the island");
     expect(mocks.save).not.toHaveBeenCalled();
