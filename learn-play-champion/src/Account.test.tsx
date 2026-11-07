@@ -703,6 +703,40 @@ describe("kid logins", () => {
   });
 });
 
+describe("signed-in identity chip", () => {
+  it("shows the grown-up's email in a parent chip after login", async () => {
+    mocks.session = {
+      user: { id: "adult-one", email: "parent@example.com" },
+    } as Session;
+    await mount();
+    const chip = container.querySelector(".parent-chip");
+    expect(chip?.textContent).toContain("parent@example.com");
+    expect(chip?.getAttribute("title")).toBe("parent@example.com");
+    // Grown-up sessions never get the kid identity chip.
+    expect(container.querySelector(".kid-chip:not(.parent-chip)")).toBeNull();
+  });
+
+  it("shows the kid chip, never a parent email chip, in a kid session", async () => {
+    mocks.session = {
+      user: { id: "kid-one", email: "avyan_7@kids.learnplaychampion.com" },
+    } as Session;
+    mocks.kidRow = {
+      kid_user_id: "kid-one",
+      parent_id: "adult-one",
+      username: "avyan_7",
+      display_name: "Avyan",
+      grade: "4",
+      created_at: "2026-10-31T00:00:00Z",
+    };
+    await mount();
+    expect(container.textContent).toContain("Avyan · Grade 4");
+    expect(container.querySelector(".parent-chip")).toBeNull();
+    expect(container.textContent).not.toContain(
+      "avyan_7@kids.learnplaychampion.com",
+    );
+  });
+});
+
 describe("grown-up password sign-in", () => {
   async function fillGrownUpPasswordForm(email: string, password: string) {
     for (const [selector, value] of [

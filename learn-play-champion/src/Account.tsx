@@ -383,6 +383,7 @@ export default function Account() {
         key={session.user.id}
         client={supabase}
         userId={session.user.id}
+        userEmail={session.user.email}
         signOut={signOut}
         requestedGrade={requestedGrade}
         onGradeApplied={clearGradeRequest}
@@ -761,12 +762,14 @@ export default function Account() {
 function CloudWorkspace({
   client,
   userId,
+  userEmail,
   signOut,
   requestedGrade,
   onGradeApplied,
 }: {
   client: SupabaseClient;
   userId: string;
+  userEmail?: string;
   signOut: () => Promise<void>;
   requestedGrade?: GradeId;
   onGradeApplied: () => void;
@@ -1000,6 +1003,11 @@ function CloudWorkspace({
                 <Cloud size={14} />
                 {pending || saving ? "Saving…" : "Cloud saved"}
               </span>
+              {userEmail ? (
+                <span className="kid-chip parent-chip" title={userEmail}>
+                  👤 <span className="parent-chip-email">{userEmail}</span>
+                </span>
+              ) : null}
               <button
                 className="account-button"
                 disabled={pending || saving || signingOut}
