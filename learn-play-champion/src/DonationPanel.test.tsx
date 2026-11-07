@@ -54,6 +54,15 @@ describe("connected donations", () => {
     expect(container.textContent).toContain("Connected checkout is not configured");
     expect(container.textContent).toContain("does not grant administrator access");
   });
+  it("shows the protected payment console only when the dashboard's admin check passed", async () => {
+    const rpc = vi.fn().mockResolvedValue({ data: false, error: null });
+    await act(async () => root.render(<DonationPanel adult client={client(rpc)} />));
+    expect(container.textContent).not.toContain("Payment admin console");
+    expect(container.querySelector(".payment-admin")).toBeNull();
+    await act(async () => root.render(<DonationPanel adult client={client(rpc)} showPaymentAdmin />));
+    expect(container.textContent).toContain("Payment admin console");
+    expect(button("Open payment records")).toBeDefined();
+  });
   it("reuses the same request ID on a failed create instead of silently starting a new payment", async () => {
     state.enabled = true;
     const invoke = vi.fn().mockResolvedValue({ data: null, error: new Error("Offline") });
