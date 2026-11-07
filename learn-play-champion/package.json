@@ -17,6 +17,7 @@
     "test:privacy-consents-db": "node scripts/test-privacy-consents-db.mjs",
     "test:grade-leaderboard-db": "node scripts/test-grade-leaderboard-db.mjs",
     "test:admin-parents-db": "node scripts/test-admin-parents-db.mjs",
+    "test:welcome-email-db": "node scripts/test-welcome-email-db.mjs",
     "test:payments-db": "node scripts/test-payments-db.mjs",
     "test:content-db": "node scripts/test-content-db.mjs"
   },
