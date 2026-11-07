@@ -75,6 +75,97 @@ export function activityTitle(activityId: TaskActivityId | null): string {
   return activities.find((activity) => activity.id === activityId)?.title ?? "";
 }
 
+export interface SkillTaskPreset {
+  title: string;
+  activityId: TaskActivityId;
+}
+
+/**
+ * The full skill set: one task per skill a kid can be assigned — every
+ * activity in the catalog, plus the Word Battle world and Motivation
+ * Books. This is the same set the kid-accounts Edge Function seeds for a
+ * brand-new kid login (supabase/functions/_shared/kid-task-defaults.ts).
+ * The app bundle cannot import that Deno module, so the list lives here
+ * too — and kid-task-defaults.test.ts asserts the two lists are identical,
+ * so they can never drift apart. Order matches the server's seed order:
+ * English, then Math, then Word Battle and Motivation Books.
+ */
+export const ALL_SKILL_TASKS: readonly SkillTaskPreset[] = [
+  { title: "Play Word Safari", activityId: "sight" },
+  { title: "Play Meaning Match", activityId: "vocabulary" },
+  { title: "Play Spelling Spark", activityId: "spelling" },
+  { title: "Play Story Explorer", activityId: "reading" },
+  { title: "Play Sentence Builder", activityId: "sentence" },
+  { title: "Play Fact Finder", activityId: "informational" },
+  { title: "Play Writer's Workshop", activityId: "writing" },
+  { title: "Play Number Sprint", activityId: "arithmetic" },
+  { title: "Play Times Adventure", activityId: "multiply" },
+  { title: "Play Pattern Detective", activityId: "patterns" },
+  { title: "Play Math in the Wild", activityId: "problems" },
+  { title: "Play Shape Quest", activityId: "geometry" },
+  { title: "Play Place Value Lab", activityId: "place" },
+  { title: "Play Parts & Wholes", activityId: "fractions" },
+  { title: "Play Measurement Mission", activityId: "measurement" },
+  { title: "Play Data Detective", activityId: "data" },
+  { title: "Play Word Battle", activityId: WORD_BATTLE_ACTIVITY },
+  { title: "Read a Motivation Book", activityId: MOTIVATION_BOOKS_ACTIVITY },
+];
+
+/**
+ * The skill presets this kid has no task for yet, in set order. A skill
+ * counts as covered by ANY existing task with its activity — whatever the
+ * task's title, and whether or not it is done. A title-only task
+ * (activityId null) never covers a skill.
+ */
+export function missingSkillTasks(
+  existing: readonly KidTask[],
+): SkillTaskPreset[] {
+  const covered = new Set<TaskActivityId>();
+  for (const task of existing) {
+    if (task.activityId !== null) covered.add(task.activityId);
+  }
+  return ALL_SKILL_TASKS.filter((preset) => !covered.has(preset.activityId));
+}
+
+export interface AddAllSkillTasksResult {
+  added: KidTask[];
+  failed: number;
+}
+
+/**
+ * Tops a kid's task list up to the full skill set, creating every missing
+ * skill through the same createKidTask path as a hand-added task (same
+ * RLS, same parent/kid attribution). Every missing skill is attempted even
+ * if an earlier one fails; the result reports honestly what was added and
+ * how many failed, and the successful tasks stand either way.
+ */
+export async function addAllSkillTasks(
+  client: SupabaseClient,
+  input: {
+    parentId: string;
+    kidUserId: string;
+    existing: readonly KidTask[];
+  },
+): Promise<AddAllSkillTasksResult> {
+  const added: KidTask[] = [];
+  let failed = 0;
+  for (const preset of missingSkillTasks(input.existing)) {
+    try {
+      added.push(
+        await createKidTask(client, {
+          parentId: input.parentId,
+          kidUserId: input.kidUserId,
+          title: preset.title,
+          activityId: preset.activityId,
+        }),
+      );
+    } catch {
+      failed += 1;
+    }
+  }
+  return { added, failed };
+}
+
 export function parseKidTask(row: unknown): KidTask | null {
   if (!row || typeof row !== "object") return null;
   const value = row as Record<string, unknown>;

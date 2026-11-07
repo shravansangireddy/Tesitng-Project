@@ -568,6 +568,15 @@
   justify-content: space-between;
   gap: 10px;
 }
+.kid-tasks-manager-add-all {
+  margin: 0 0 12px;
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+}
+.kid-tasks-manager-add-all p {
+  margin: 0;
+}
 .kid-tasks-manager-form {
   display: grid;
   gap: 8px;

@@ -30,6 +30,8 @@ import {
   type FamilyLeaderboardRow,
 } from "./family-leaderboard";
 import {
+  addAllSkillTasks,
+  ALL_SKILL_TASKS,
   createKidTask,
   deleteKidTask,
   fetchKidTasks,
@@ -628,6 +630,9 @@ function KidTasksManager({
   const [title, setTitle] = useState("");
   const [activityId, setActivityId] = useState<ActivityId | "">("");
   const [adding, setAdding] = useState(false);
+  const [addingAll, setAddingAll] = useState(false);
+  const [skillStatus, setSkillStatus] = useState("");
+  const [skillError, setSkillError] = useState("");
   const [taskError, setTaskError] = useState("");
 
   useEffect(() => {
@@ -665,10 +670,50 @@ function KidTasksManager({
       setTasks((current) => [...(current ?? []), created]);
       setTitle("");
       setActivityId("");
+      setSkillStatus("");
+      setSkillError("");
     } catch (addFailure) {
       setTaskError(failure(addFailure));
     } finally {
       setAdding(false);
+    }
+  };
+
+  const addAllSkills = async () => {
+    if (addingAll || tasks === null) return;
+    setAddingAll(true);
+    setSkillStatus("");
+    setSkillError("");
+    try {
+      const { added, failed } = await addAllSkillTasks(client, {
+        parentId,
+        kidUserId: kid.kidUserId,
+        existing: tasks,
+      });
+      if (added.length > 0) {
+        setTasks((current) => [...(current ?? []), ...added]);
+      }
+      const skillWord = (count: number) =>
+        count === 1 ? "skill" : "skills";
+      if (failed > 0) {
+        setSkillError(
+          added.length > 0
+            ? `Added ${added.length} ${skillWord(added.length)}, but ${failed} couldn't be added. Please try again.`
+            : "The skills couldn't be added. Please try again.",
+        );
+      } else if (added.length === 0) {
+        setSkillStatus(
+          `All ${ALL_SKILL_TASKS.length} skills are already on ${kid.displayName}'s list.`,
+        );
+      } else {
+        setSkillStatus(
+          `Added ${added.length} ${skillWord(added.length)} to ${kid.displayName}'s list.`,
+        );
+      }
+    } catch (allFailure) {
+      setSkillError(failure(allFailure));
+    } finally {
+      setAddingAll(false);
     }
   };
 
@@ -678,6 +723,8 @@ function KidTasksManager({
       setTasks((current) =>
         (current ?? []).filter((item) => item.id !== task.id),
       );
+      setSkillStatus("");
+      setSkillError("");
     } catch (removeFailure) {
       setTaskError(failure(removeFailure));
     }
@@ -723,6 +770,22 @@ function KidTasksManager({
           ))}
         </ul>
       )}
+      <div className="kid-tasks-manager-add-all">
+        <button
+          type="button"
+          className="button secondary"
+          onClick={() => void addAllSkills()}
+          disabled={addingAll || adding || tasks === null}
+        >
+          {addingAll ? "Adding skills…" : "Add all skills"}
+        </button>
+        {skillStatus && <p role="status">{skillStatus}</p>}
+        {skillError && (
+          <p className="kid-logins-error" role="alert">
+            {skillError}
+          </p>
+        )}
+      </div>
       <form className="kid-tasks-manager-form" onSubmit={add}>
         <label>
           New task

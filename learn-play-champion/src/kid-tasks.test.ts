@@ -2,15 +2,20 @@ import { describe, expect, it, vi } from "vitest";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import {
   activityTitle,
+  addAllSkillTasks,
+  ALL_SKILL_TASKS,
   createKidTask,
   deleteKidTask,
   fetchKidTasks,
   isActivityId,
   isTaskActivityId,
+  missingSkillTasks,
   parseKidTask,
   setKidTaskDone,
   taskTitleError,
   WORD_BATTLE_ACTIVITY,
+  type KidTask,
+  type TaskActivityId,
 } from "./kid-tasks";
 
 const ROW = {
@@ -181,5 +186,185 @@ describe("kid task queries", () => {
     expect(typeof (update?.args[0] as { completed_at: unknown }).completed_at).toBe("string");
     await deleteKidTask(client, "task-1");
     expect(calls.some((call) => call.method === "delete")).toBe(true);
+  });
+});
+
+function existingTask(
+  activityId: TaskActivityId | null,
+  title = "An existing task",
+): KidTask {
+  return {
+    id: `task-${activityId ?? "plain"}-${title}`,
+    kidUserId: "kid-one",
+    parentId: "adult-one",
+    title,
+    activityId,
+    done: false,
+    createdAt: "2026-11-01T09:00:00Z",
+    completedAt: null,
+  };
+}
+
+/** A stub whose insert echoes the inserted row back from single(), and
+ * whose inserts fail for the activities named in failActivities. */
+function echoClient(failActivities: string[] = []) {
+  const inserts: Record<string, unknown>[] = [];
+  let lastInsert: Record<string, unknown> | null = null;
+  let counter = 0;
+  const builder: Record<string, unknown> = {
+    select: () => builder,
+    eq: () => builder,
+    order: () => builder,
+    insert: (payload: Record<string, unknown>) => {
+      inserts.push(payload);
+      lastInsert = payload;
+      return builder;
+    },
+    update: () => builder,
+    delete: () => builder,
+    single: async () => {
+      if (
+        lastInsert &&
+        failActivities.includes(lastInsert.activity as string)
+      ) {
+        return { data: null, error: { message: "insert blocked" } };
+      }
+      counter += 1;
+      return {
+        data: {
+          id: `task-new-${counter}`,
+          kid_user_id: lastInsert?.kid_user_id,
+          parent_id: lastInsert?.parent_id,
+          title: lastInsert?.title,
+          activity: lastInsert?.activity,
+          done: false,
+          created_at: "2026-11-07T12:00:00Z",
+          completed_at: null,
+        },
+        error: null,
+      };
+    },
+    then: (resolve: (value: unknown) => void) =>
+      resolve({ data: [], error: null }),
+  };
+  const client = {
+    from: vi.fn(() => builder),
+  } as unknown as SupabaseClient;
+  return { client, inserts };
+}
+
+describe("missingSkillTasks", () => {
+  it("returns every skill for a kid with no tasks", () => {
+    expect(missingSkillTasks([])).toEqual(ALL_SKILL_TASKS);
+    expect(ALL_SKILL_TASKS).toHaveLength(18);
+  });
+
+  it("returns exactly the skills a kid does not have yet", () => {
+    const existing = [
+      existingTask("sight"),
+      existingTask("arithmetic"),
+      existingTask("word-battle"),
+      // A title-only task never covers a skill.
+      existingTask(null, "Read a picture book"),
+    ];
+    const missing = missingSkillTasks(existing);
+    expect(missing).toHaveLength(15);
+    expect(missing.map((preset) => preset.activityId)).not.toContain("sight");
+    expect(missing.map((preset) => preset.activityId)).not.toContain(
+      "arithmetic",
+    );
+    expect(missing.map((preset) => preset.activityId)).not.toContain(
+      "word-battle",
+    );
+    // Set order is preserved: English first, books last.
+    expect(missing[0].activityId).toBe("vocabulary");
+    expect(missing[missing.length - 1].activityId).toBe("motivation-books");
+  });
+
+  it("counts a skill as covered by any task with its activity, whatever the title or done state", () => {
+    const custom = existingTask("sight", "Spot the words, please!");
+    custom.done = true;
+    const missing = missingSkillTasks([custom]);
+    expect(missing.map((preset) => preset.activityId)).not.toContain("sight");
+    expect(missing).toHaveLength(17);
+  });
+
+  it("returns nothing when the kid already has all 18 skills", () => {
+    const existing = ALL_SKILL_TASKS.map((preset) =>
+      existingTask(preset.activityId, preset.title),
+    );
+    expect(missingSkillTasks(existing)).toEqual([]);
+  });
+});
+
+describe("addAllSkillTasks", () => {
+  it("creates exactly the missing skills for a kid with 3 of the 18", async () => {
+    const { client, inserts } = echoClient();
+    const existing = [
+      existingTask("sight"),
+      existingTask("arithmetic"),
+      existingTask("word-battle"),
+    ];
+    const result = await addAllSkillTasks(client, {
+      parentId: "adult-one",
+      kidUserId: "kid-one",
+      existing,
+    });
+    expect(result.failed).toBe(0);
+    expect(result.added).toHaveLength(15);
+    expect(inserts).toHaveLength(15);
+    // Same attribution as a hand-added task, canonical titles, set order.
+    expect(inserts[0]).toMatchObject({
+      kid_user_id: "kid-one",
+      parent_id: "adult-one",
+      title: "Play Meaning Match",
+      activity: "vocabulary",
+    });
+    expect(inserts[14]).toMatchObject({
+      title: "Read a Motivation Book",
+      activity: "motivation-books",
+    });
+    expect(result.added.map((task) => task.title)).toContain(
+      "Play Data Detective",
+    );
+  });
+
+  it("creates nothing when the kid already has all 18 skills", async () => {
+    const { client, inserts } = echoClient();
+    const existing = ALL_SKILL_TASKS.map((preset) =>
+      existingTask(preset.activityId, preset.title),
+    );
+    const result = await addAllSkillTasks(client, {
+      parentId: "adult-one",
+      kidUserId: "kid-one",
+      existing,
+    });
+    expect(result).toEqual({ added: [], failed: 0 });
+    expect(inserts).toEqual([]);
+  });
+
+  it("attempts every skill and reports honest counts when some inserts fail", async () => {
+    const { client, inserts } = echoClient(["data", "geometry"]);
+    const existing = [
+      existingTask("sight"),
+      existingTask("arithmetic"),
+      existingTask("word-battle"),
+    ];
+    const result = await addAllSkillTasks(client, {
+      parentId: "adult-one",
+      kidUserId: "kid-one",
+      existing,
+    });
+    // All 15 missing skills were attempted; 2 failed, 13 stand.
+    expect(inserts).toHaveLength(15);
+    expect(result.failed).toBe(2);
+    expect(result.added).toHaveLength(13);
+    expect(result.added.map((task) => task.activityId)).not.toContain("data");
+    expect(result.added.map((task) => task.activityId)).not.toContain(
+      "geometry",
+    );
+    expect(result.added.map((task) => task.activityId)).toContain(
+      "motivation-books",
+    );
   });
 });
