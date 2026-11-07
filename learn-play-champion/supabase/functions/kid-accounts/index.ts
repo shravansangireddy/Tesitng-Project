@@ -17,6 +17,8 @@ import {
   defaultTasksForGrade,
   shouldSeedDefaultTasks,
 } from "../_shared/kid-task-defaults.ts";
+import { sendEmail } from "../_shared/mailer.ts";
+import { buildKidWelcomeEmail } from "../_shared/welcome.ts";
 
 declare const Deno: {
   env: { get(name: string): string | undefined };
@@ -32,6 +34,17 @@ const corsHeaders: Record<string, string> = {
 
 const KID_EMAIL_DOMAIN = "kids.learnplaychampion.com";
 const GRADE_IDS = ["prek", "k", "1", "2", "3", "4", "5"];
+// Mirrors gradeLabels in src/content-schema.ts (functions cannot import
+// from src); used in the kid welcome email.
+const GRADE_LABELS: Record<string, string> = {
+  prek: "Pre-K",
+  k: "Kindergarten",
+  "1": "Grade 1",
+  "2": "Grade 2",
+  "3": "Grade 3",
+  "4": "Grade 4",
+  "5": "Grade 5",
+};
 const MAX_KID_ACCOUNTS = 6;
 
 function json(body: Record<string, unknown>): Response {
@@ -193,6 +206,70 @@ async function seedDefaultTasks(
   }
 }
 
+async function parentEmail(parentId: string): Promise<string> {
+  const response = await fetch(
+    `${env("SUPABASE_URL")}/auth/v1/admin/users/${parentId}`,
+    { headers: serviceHeaders() },
+  );
+  if (!response.ok) return "";
+  const user = (await response.json()) as { email?: unknown };
+  return typeof user.email === "string" ? user.email : "";
+}
+
+/**
+ * Send the creating grown-up the "your kid's login is ready" welcome
+ * (copy in ../_shared/welcome.ts). Best-effort in the strongest sense:
+ * the caller does not await this, and every failure — the dedupe lookup,
+ * the parent-email lookup, SMTP, the log write — is swallowed, because
+ * a kid login must never fail, or wait on mail, to be created. The
+ * welcome_email_log row is written only after a successful send, so an
+ * unconfigured or failed attempt can still welcome a later kid (and a
+ * retry of this kid's row is skipped once a row exists).
+ */
+async function sendKidWelcomeEmail(
+  parentId: string,
+  kidUserId: string,
+  kid: { displayName: string; username: string; grade: string },
+): Promise<void> {
+  try {
+    const logged = await rest(
+      `welcome_email_log?user_id=eq.${parentId}&kind=eq.kid_welcome&kid_user_id=eq.${kidUserId}&select=id&limit=1`,
+      { method: "GET" },
+    );
+    if (!logged.ok) return;
+    const rows = (await logged.json()) as unknown;
+    if (Array.isArray(rows) && rows.length > 0) return;
+
+    const to = await parentEmail(parentId);
+    if (!to) return;
+    const email = buildKidWelcomeEmail({
+      kidDisplayName: kid.displayName,
+      kidUsername: kid.username,
+      gradeLabel: GRADE_LABELS[kid.grade] ?? kid.grade,
+    });
+    const result = await sendEmail({
+      to,
+      subject: email.subject,
+      text: email.text,
+      html: email.html,
+    });
+    if (!result.sent) return;
+    await rest("welcome_email_log", {
+      method: "POST",
+      headers: {
+        Prefer: "resolution=ignore-duplicates,return=minimal",
+      },
+      body: JSON.stringify({
+        user_id: parentId,
+        kind: "kid_welcome",
+        kid_user_id: kidUserId,
+      }),
+    });
+  } catch {
+    // Ignore: a welcome email is a nice-to-have, never a blocker.
+  }
+}
+
 async function createKid(
   parentId: string,
   body: Record<string, unknown>,
@@ -271,6 +348,20 @@ async function createKid(
     return fail("Could not save the kid login. Please try again.");
   }
   await seedDefaultTasks(parentId, user.id, grade);
+  // Fire-and-forget kid welcome email: never awaited (mail latency is
+  // not the family's wait), registered with the runtime when possible
+  // so it can finish after this response, and internally failure-proof.
+  const welcome = sendKidWelcomeEmail(parentId, user.id, {
+    displayName,
+    username,
+    grade,
+  });
+  const runtime = (
+    globalThis as {
+      EdgeRuntime?: { waitUntil(promise: Promise<unknown>): void };
+    }
+  ).EdgeRuntime;
+  if (runtime) runtime.waitUntil(welcome);
   return json({
     kid: {
       kidUserId: user.id,
