@@ -31,7 +31,7 @@ async function click(element: HTMLElement) {
 function play(progress: Progress, activity: ActivityId, correctCount: number): Progress {
   const attempts: Attempt[] = Array.from({ length: 5 }, (_, index) => ({
     correct: index < correctCount,
-    speed: false,
+    focused: false,
   }));
   return completeRound(progress, activity, attempts).progress;
 }

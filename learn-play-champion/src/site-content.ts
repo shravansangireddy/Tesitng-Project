@@ -66,7 +66,7 @@ export const editorialPages: ContentPage[] = [
       ] },
       { heading: "2. Try five questions", paragraphs: [
         "An ordinary adventure includes five questions with encouraging feedback. Use a hint when you need one and read the explanation before moving on. Some activities use choices, while spelling uses typed answers.",
-        "Correct answers and completed rounds can earn game points and rewards. Ordinary rounds can include speed bonuses, but speed is not required to complete the work. Rewards are cosmetic; they do not certify academic proficiency.",
+        "Correct answers and completed rounds can earn game points and rewards. Ordinary rounds can include focus bonuses for correct answers given without a hint, but hints are always free and speed is never required to complete the work. Rewards are cosmetic; they do not certify academic proficiency.",
       ] },
       { heading: "3. Decide what to explore next", paragraphs: [
         "Return to a favorite activity, turn the pages of a mini-book, or try a learning-path check. The check has eight questions, no timer or points, and rule-based recommendations. It does not automatically adjust difficulty or change grades.",
@@ -161,7 +161,7 @@ export const editorialPages: ContentPage[] = [
         "Each selected level offers word recognition, vocabulary, spelling, story comprehension, sentence building, informational reading, and writing preparation. The focus changes with the level: early learners notice letters and sounds, while older learners work with meaning, evidence, structure, and language choices.",
       ], items: ["Read a short passage and look back for evidence.", "Compare word meanings and notice useful word parts.", "Practice spelling in an ordinary activity or a solo five-word spelling bee.", "Choose sentences and plan ideas before writing on paper."] },
       { heading: "Read, discuss, then try", paragraphs: [
-        "Before answering, invite the child to say what the question is asking. After an incorrect answer, read the explanation together and ask what clue could help next time. Hints are available during ordinary adventures; speed is never required to finish.",
+        "Before answering, invite the child to say what the question is asking. After an incorrect answer, read the explanation together and ask what clue could help next time. Hints are available during ordinary adventures, and there is no timer — speed is never required to finish.",
         "Writing questions are multiple-choice preparation, not an assessment of an original essay. Use the suggested adult-led paper tasks for actual writing and personal feedback. The app does not collect or automatically grade those papers.",
       ] },
       { heading: "Make room for rereading", paragraphs: [
@@ -181,7 +181,7 @@ export const editorialPages: ContentPage[] = [
       ] },
       { heading: "Help children show their thinking", paragraphs: [
         "Ask, 'How did you work that out?' Counters, drawings, number lines, and folded paper can make an abstract question concrete. When an answer is incorrect, use the explanation as a starting point rather than asking the child to guess repeatedly.",
-        "Charts include text-table alternatives, and shape questions include labeled illustrations. Ordinary rounds offer hints. Some ordinary answers can earn an optional speed bonus, but taking more time never prevents a child from finishing or receiving correct-answer points.",
+        "Charts include text-table alternatives, and shape questions include labeled illustrations. Ordinary rounds offer hints. Some ordinary answers can earn an optional focus bonus when the child answers without a hint, but taking more time never prevents a child from finishing or receiving correct-answer points.",
       ] },
       { heading: "Practice scores have limits", paragraphs: [
         "Each activity uses five fixed grade-specific questions with shuffled choices on replay. A best round of four out of five highlights practice success; it does not certify standards mastery. Use unfamiliar examples away from the screen to see whether a child can apply the idea in a new situation.",

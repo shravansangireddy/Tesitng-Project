@@ -25,7 +25,7 @@ import {
 const date = new Date(2026, 9, 29, 12);
 const perfect: Attempt[] = Array.from({ length: 5 }, () => ({
   correct: true,
-  speed: false,
+  focused: true,
 }));
 
 describe("playable activities", () => {
@@ -96,8 +96,12 @@ describe("playable activities", () => {
 describe("points and progress", () => {
   it("awards answers, perfect bonus and daily challenge exactly", () => {
     const completed = completeRound(initialProgress, "sight", perfect, date);
-    expect(completed.result.points).toBe(200);
-    expect(completed.progress.points).toBe(200);
+    // Pattern A worked example: 50 answers + 25 focus + 50 perfect + 25
+    // daily = 150 for a perfect, hint-free first round of the day.
+    expect(completed.result.points).toBe(150);
+    expect(completed.result.focusPoints).toBe(25);
+    expect(completed.result.streakPoints).toBe(0);
+    expect(completed.progress.points).toBe(150);
     expect(completed.progress.correct).toBe(5);
     expect(completed.progress.answered).toBe(5);
     expect(completed.progress.rounds).toBe(1);
@@ -108,7 +112,7 @@ describe("points and progress", () => {
   it("awards daily challenge once per local calendar day", () => {
     const first = completeRound(initialProgress, "sight", perfect, date);
     const second = completeRound(first.progress, "sight", perfect, date);
-    expect(second.result.points).toBe(100);
+    expect(second.result.points).toBe(125);
     expect(second.result.dailyBonus).toBe(false);
     const nextDay = completeRound(
       second.progress,
@@ -117,15 +121,15 @@ describe("points and progress", () => {
       new Date(2026, 9, 30, 12),
     );
     expect(nextDay.result.dailyBonus).toBe(true);
-    expect(nextDay.result.points).toBe(200);
+    expect(nextDay.result.points).toBe(150);
   });
-  it("only adds speed points for correct speedy answers", () => {
+  it("only adds focus points for correct answers given without a hint", () => {
     const attempts = [
-      { correct: true, speed: true },
-      { correct: true, speed: false },
-      { correct: false, speed: true },
-      { correct: false, speed: false },
-      { correct: true, speed: true },
+      { correct: true, focused: true },
+      { correct: true, focused: false },
+      { correct: false, focused: true },
+      { correct: false, focused: false },
+      { correct: true, focused: true },
     ];
     const completed = completeRound(
       { ...initialProgress, missionDate: localDate(date) },
@@ -133,18 +137,92 @@ describe("points and progress", () => {
       attempts,
       date,
     );
+    // 30 for the answers + 10 focus (the hinted correct answer earns
+    // none); the longest correct run is two, so no streak bonus.
     expect(completed.result.points).toBe(40);
-    expect(completed.result.speedPoints).toBe(10);
+    expect(completed.result.focusPoints).toBe(10);
+    expect(completed.result.streakPoints).toBe(0);
     expect(completed.result.perfect).toBe(false);
+  });
+  it("adds a streak bonus for three correct in a row in an imperfect round", () => {
+    const attempts: Attempt[] = [
+      { correct: true, focused: true },
+      { correct: true, focused: true },
+      { correct: true, focused: true },
+      { correct: false, focused: true },
+      { correct: false, focused: false },
+    ];
+    const completed = completeRound(
+      { ...initialProgress, missionDate: localDate(date) },
+      "sight",
+      attempts,
+      date,
+    );
+    // Pattern A worked example: 30 answers + 15 focus + 10 streak = 55.
+    expect(completed.result.correct).toBe(3);
+    expect(completed.result.focusPoints).toBe(15);
+    expect(completed.result.streakPoints).toBe(10);
+    expect(completed.result.points).toBe(55);
+  });
+  it("never adds a streak bonus on top of a perfect round", () => {
+    const completed = completeRound(
+      { ...initialProgress, missionDate: localDate(date) },
+      "sight",
+      perfect,
+      date,
+    );
+    expect(completed.result.perfect).toBe(true);
+    expect(completed.result.streakPoints).toBe(0);
+    expect(completed.result.focusPoints).toBe(25);
+    expect(completed.result.points).toBe(125);
+  });
+  it("does not add a streak bonus for a longest run of only two", () => {
+    const attempts: Attempt[] = [
+      { correct: true, focused: true },
+      { correct: true, focused: true },
+      { correct: false, focused: false },
+      { correct: true, focused: true },
+      { correct: true, focused: true },
+    ];
+    const completed = completeRound(
+      { ...initialProgress, missionDate: localDate(date) },
+      "sight",
+      attempts,
+      date,
+    );
+    expect(completed.result.streakPoints).toBe(0);
+    expect(completed.result.points).toBe(60);
+  });
+  it("scores championship rounds with focus and streak, with no timing element", () => {
+    const attempts: Attempt[] = [
+      { correct: true, focused: true },
+      { correct: true, focused: true },
+      { correct: true, focused: true },
+      { correct: false, focused: true },
+      { correct: false, focused: true },
+    ];
+    const completed = completeRound(
+      { ...initialProgress, missionDate: localDate(date) },
+      "spelling",
+      attempts,
+      date,
+      "2",
+      true,
+    );
+    expect(completed.result.championship).toBe(true);
+    expect(completed.result.focusPoints).toBe(15);
+    expect(completed.result.streakPoints).toBe(10);
+    expect(completed.result.points).toBe(55);
   });
   it("rewards effort on an all-incorrect round without inventing mastery", () => {
     const completed = completeRound(
       initialProgress,
       "arithmetic",
-      perfect.map(() => ({ correct: false, speed: false })),
+      perfect.map(() => ({ correct: false, focused: false })),
       date,
     );
-    expect(completed.result.points).toBe(100);
+    // No answer points at all — only the +25 daily bonus for showing up.
+    expect(completed.result.points).toBe(25);
     expect(completed.progress.mastery.arithmetic).toBe(0);
     expect(completed.progress.bestRounds.arithmetic).toBe(0);
     expect(
@@ -161,7 +239,7 @@ describe("points and progress", () => {
     const next = completeRound(
       first,
       "arithmetic",
-      perfect.map((_, i) => ({ correct: i < 2, speed: false })),
+      perfect.map((_, i) => ({ correct: i < 2, focused: false })),
       date,
     ).progress;
     expect(next.bestRounds.arithmetic).toBe(5);
@@ -180,7 +258,7 @@ describe("points and progress", () => {
   });
   it("celebrates trying every activity without requiring perfect scores", () => {
     let progress = initialProgress;
-    const attempts = perfect.map(() => ({ correct: false, speed: false }));
+    const attempts = perfect.map(() => ({ correct: false, focused: false }));
     const explorerBadge = badges.find(
       (badge) => badge.name === "Curious Explorer",
     )!;

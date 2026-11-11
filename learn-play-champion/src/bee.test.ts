@@ -5,7 +5,7 @@ import { completeRound, initialProgress, parseProgress, type Attempt } from "./g
 
 const date = new Date(2026, 9, 29);
 const attempts = (correct: number): Attempt[] => Array.from(
-  { length: 5 }, (_, i) => ({ correct: i < correct, speed: true }),
+  { length: 5 }, (_, i) => ({ correct: i < correct, focused: true }),
 );
 describe("solo spelling bee scoring", () => {
   for (const grade of gradeIds) {
@@ -13,15 +13,21 @@ describe("solo spelling bee scoring", () => {
       const regular = completeRound(initialProgress, "spelling", attempts(4), date, grade).progress;
       const first = completeRound(regular, "spelling", attempts(3), date, grade, true);
       expect(first.result.championship).toBe(true);
-      expect(first.result.speedPoints).toBe(0);
-      expect(first.result.points).toBe(30);
+      // Pattern A: championship rounds earn focus and streak like any
+      // round — 30 answers + 15 focus + 10 streak (run of three) = 55.
+      expect(first.result.focusPoints).toBe(15);
+      expect(first.result.streakPoints).toBe(10);
+      expect(first.result.points).toBe(55);
       expect(first.progress.beeBestRounds?.[grade]).toBe(3);
       expect(first.progress.gradeBestRounds?.[`${grade}:spelling`]).toBe(4);
       expect(first.progress.mastery).toEqual(regular.mastery);
       expect(first.progress.bestRounds).toEqual(regular.bestRounds);
       const nextGrade = grade === "5" ? "prek" : "5";
       const perfect = completeRound(first.progress, "spelling", attempts(5), date, nextGrade, true);
-      expect(perfect.result.points).toBe(100);
+      // 50 answers + 25 focus + 50 perfect; the daily bonus was already
+      // claimed by the day's first round, and a perfect round earns no
+      // streak bonus on top.
+      expect(perfect.result.points).toBe(125);
       expect(perfect.progress.beeBestRounds).toEqual({ [grade]: 3, [nextGrade]: 5 });
       expect(parseProgress(JSON.stringify(perfect.progress))).toEqual(perfect.progress);
       const lower = completeRound(perfect.progress, "spelling", attempts(0), date, grade, true);
@@ -32,7 +38,7 @@ describe("solo spelling bee scoring", () => {
   it("uses the same daily completion reward and records a zero-score attempt", () => {
     const first = completeRound(initialProgress, "spelling", attempts(0), date, "prek", true);
     expect(first.progress.beeBestRounds).toEqual({ prek: 0 });
-    expect(first.result.points).toBe(100);
+    expect(first.result.points).toBe(25);
     expect(first.result.dailyBonus).toBe(true);
     const next = completeRound(first.progress, "sight", attempts(5), date, "1");
     expect(next.result.dailyBonus).toBe(false);
