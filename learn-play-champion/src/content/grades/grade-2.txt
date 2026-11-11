@@ -289,6 +289,186 @@
           ],
           "Middle comes after collecting and before finishing.",
           "Removing the ink happens in the middle of the process."
+        ],
+        [
+          "Which part of a plant takes in water from the soil?",
+          "the roots",
+          [
+            "the flower",
+            "the leaves",
+            "the roots",
+            "the stem"
+          ],
+          "This part grows underground.",
+          "Roots grow underground and soak up water from the soil."
+        ],
+        [
+          "Which part of a plant holds it up and carries water to the leaves?",
+          "the stem",
+          [
+            "the petal",
+            "the roots",
+            "the seed",
+            "the stem"
+          ],
+          "It is the plant's main stalk.",
+          "The stem holds the plant up and moves water to the leaves."
+        ],
+        [
+          "Which part of a plant uses sunlight to help make food?",
+          "the leaves",
+          [
+            "the flower",
+            "the leaves",
+            "the roots",
+            "the trunk"
+          ],
+          "These parts are usually flat and green.",
+          "Leaves catch sunlight and use it to help make food for the plant."
+        ],
+        [
+          "Which part of a plant can grow into a brand-new plant?",
+          "a seed",
+          [
+            "a leaf",
+            "a petal",
+            "a seed",
+            "the stem"
+          ],
+          "It is small and often found inside a fruit or flower.",
+          "A seed can sprout and grow into a new plant."
+        ],
+        [
+          "Which part of a tree is its thick, woody stem?",
+          "the trunk",
+          [
+            "the branches",
+            "the leaves",
+            "the roots",
+            "the trunk"
+          ],
+          "It is the biggest, strongest part of the tree.",
+          "A tree's trunk is its thick, woody stem."
+        ],
+        [
+          "What comes right after a bean seed sprouts?",
+          "A young seedling pushes out of the soil.",
+          [
+            "A bean pod forms.",
+            "A young seedling pushes out of the soil.",
+            "The plant makes flowers.",
+            "The seed dries out."
+          ],
+          "A sprout is just the beginning.",
+          "After sprouting, a small seedling grows up out of the soil."
+        ],
+        [
+          "A caterpillar has spun its chrysalis. What comes out when the change is finished?",
+          "a butterfly",
+          [
+            "a butterfly",
+            "a frog",
+            "a seed",
+            "another egg"
+          ],
+          "The chrysalis is where the big change happens.",
+          "Inside the chrysalis, the caterpillar changes into a butterfly."
+        ],
+        [
+          "A tadpole has just grown back legs. What happens next in its life cycle?",
+          "It becomes a young frog.",
+          [
+            "It becomes a fish.",
+            "It becomes a young frog.",
+            "It lays eggs in the water.",
+            "It turns into an egg."
+          ],
+          "Legs mean the tadpole is almost ready for land.",
+          "With legs grown, the tadpole becomes a young frog called a froglet."
+        ],
+        [
+          "A flower on a bean plant has been pollinated. What forms next?",
+          "A pod with seeds inside",
+          [
+            "A pod with seeds inside",
+            "A root",
+            "A tadpole",
+            "New leaves only"
+          ],
+          "The cycle continues with the part that can grow new plants.",
+          "After pollination, the flower forms a pod holding seeds."
+        ],
+        [
+          "What is the FIRST stage of a butterfly's life cycle?",
+          "The butterfly lays eggs.",
+          [
+            "A caterpillar eats leaves.",
+            "The butterfly lays eggs.",
+            "The chrysalis forms.",
+            "Wings dry in the sun."
+          ],
+          "Every cycle starts at the beginning.",
+          "The cycle starts when a butterfly lays eggs, usually on a leaf."
+        ],
+        [
+          "Which material is most likely to FLOAT in water?",
+          "a dry wooden stick",
+          [
+            "a dry wooden stick",
+            "a glass marble",
+            "a metal spoon",
+            "a smooth stone"
+          ],
+          "Think about which object is light for its size.",
+          "Wood floats because it is light for its size and holds tiny pockets of air."
+        ],
+        [
+          "A plant is kept in a dark closet with no sunlight. What will most likely happen to it?",
+          "It will grow weak and pale.",
+          [
+            "It will grow taller and darker green.",
+            "It will grow weak and pale.",
+            "It will make many flowers.",
+            "It will not change at all."
+          ],
+          "Plants need light to make food.",
+          "Without light, the plant cannot make food well, so it grows weak and pale."
+        ],
+        [
+          "Which animal is awake mostly at night while most people sleep?",
+          "an owl",
+          [
+            "a butterfly",
+            "a hen",
+            "an owl",
+            "a robin"
+          ],
+          "This hunter has big eyes for seeing in the dark.",
+          "Owls are nocturnal: they hunt at night and rest during the day."
+        ],
+        [
+          "Which clue best tells you that a puppy is a living thing?",
+          "It grows and needs food and water.",
+          [
+            "It can be held.",
+            "It grows and needs food and water.",
+            "It has a name.",
+            "It is soft and furry."
+          ],
+          "Living things grow and need food and water.",
+          "Growing and needing food and water are signs of life."
+        ],
+        [
+          "Two plants get the same water. Only one sits in sunlight. Which plant will most likely grow taller and greener?",
+          "the plant in sunlight",
+          [
+            "both plants equally",
+            "neither plant",
+            "the plant in shade",
+            "the plant in sunlight"
+          ],
+          "Sunlight helps plants make food.",
+          "The sunlit plant can make more food, so it grows taller and greener."
         ]
       ]
     },
@@ -9575,6 +9755,66 @@
           ],
           "Say each word slowly and listen to its sounds.",
           "The word “move” is spelled m-o-v-e."
+        ],
+        [
+          "Which letter completes the word? Clue: the dark time after the sun goes down. n _ ght",
+          "i",
+          [
+            "a",
+            "e",
+            "i",
+            "o"
+          ],
+          "The letters igh work together here. Say n-i-ght.",
+          "The letter i completes the word night."
+        ],
+        [
+          "Which letter completes the word? Clue: you do this with the pages of a book. r _ ad",
+          "e",
+          [
+            "a",
+            "e",
+            "i",
+            "o"
+          ],
+          "The letters ea say a long e sound here.",
+          "The letter e completes the word read."
+        ],
+        [
+          "Which letter completes the word? Clue: a sandy place beside the sea. _ each",
+          "b",
+          [
+            "b",
+            "p",
+            "r",
+            "t"
+          ],
+          "Listen for the first sound: b-each.",
+          "The letter b completes the word beach."
+        ],
+        [
+          "Which letter completes the word? Clue: round metal money. c _ in",
+          "o",
+          [
+            "a",
+            "i",
+            "o",
+            "u"
+          ],
+          "The letters oi make one sound. Say c-oi-n.",
+          "The letter o completes the word coin."
+        ],
+        [
+          "Which letter completes the word? Clue: how you feel when you smile. happ _",
+          "y",
+          [
+            "a",
+            "e",
+            "i",
+            "y"
+          ],
+          "Listen for the last sound in happy.",
+          "The letter y completes the word happy."
         ]
       ]
     },
@@ -11614,6 +11854,66 @@
           ],
           "One tool changes how students talk.",
           "The talking stick solves the problem."
+        ],
+        [
+          "What happened FIRST in Eli's story?",
+          "Eli kept losing his place while he tried to read.",
+          [
+            "Eli finished his story.",
+            "Eli kept losing his place while he tried to read.",
+            "The class built a quiet corner.",
+            "Children chose quiet reading."
+          ],
+          "Think about the problem Eli had at the start.",
+          "The noisy room made Eli lose his place, and that problem starts the story."
+        ],
+        [
+          "What did Eli do right AFTER he kept losing his place?",
+          "He asked his teacher if the class could make a quiet corner.",
+          [
+            "He drew a sign.",
+            "He finished his story.",
+            "He moved cushions.",
+            "He asked his teacher if the class could make a quiet corner."
+          ],
+          "Eli took his idea to someone first.",
+          "Eli asked his teacher, and she invited him to suggest a plan."
+        ],
+        [
+          "What did Eli and his friends do NEXT, after the teacher agreed?",
+          "They moved cushions beside the bookshelf.",
+          [
+            "They moved cushions beside the bookshelf.",
+            "They waited for a rainy day.",
+            "They read in the corner.",
+            "They built tall towers."
+          ],
+          "The plan became real with furniture and a sign.",
+          "They set up the corner with cushions by the bookshelf and drew a quiet sign."
+        ],
+        [
+          "What happened on the NEXT rainy day?",
+          "Children could choose busy games or quiet reading.",
+          [
+            "The corner was taken away.",
+            "Children could choose busy games or quiet reading.",
+            "Eli lost his place again.",
+            "The class stopped reading."
+          ],
+          "Look at the last paragraph.",
+          "On the next rainy day, the corner gave children a choice."
+        ],
+        [
+          "What happened LAST in Eli's story?",
+          "Even the tower builders visited the corner for a peaceful break.",
+          [
+            "Eli asked his teacher for a corner.",
+            "Even the tower builders visited the corner for a peaceful break.",
+            "Eli kept losing his place.",
+            "The friends drew a sign."
+          ],
+          "Think about the very end of the story.",
+          "The story ends with the tower builders enjoying the quiet corner too."
         ]
       ]
     },
@@ -13703,6 +14003,66 @@
           ],
           "The word “I” is always written with a capital letter.",
           "“I am six.” is written correctly."
+        ],
+        [
+          "Which word fixes this sentence? 'The cat run fast.'",
+          "runs",
+          [
+            "run",
+            "runs",
+            "running",
+            "runed"
+          ],
+          "One cat needs a verb that agrees with it.",
+          "The cat runs fast: one cat goes with runs."
+        ],
+        [
+          "Which word fixes this sentence? 'Yesterday, Ana goes to the store.'",
+          "went",
+          [
+            "go",
+            "goes",
+            "going",
+            "went"
+          ],
+          "Yesterday tells you the action already happened.",
+          "Went is the past tense of go, so it fits yesterday."
+        ],
+        [
+          "Which sentence correctly fixes 'we ride the bus on monday.'?",
+          "We ride the bus on Monday.",
+          [
+            "we ride the bus on Monday.",
+            "We ride the bus on monday.",
+            "We ride the bus on Monday.",
+            "we Ride the bus on Monday."
+          ],
+          "Names of days begin with capital letters, and so do sentences.",
+          "We and Monday both begin with capitals in the correct sentence."
+        ],
+        [
+          "Which pair of words is correct? '___ orange and ___ banana'",
+          "an orange, a banana",
+          [
+            "a orange, an banana",
+            "an orange, a banana",
+            "an orange, an banana",
+            "a orange, a banana"
+          ],
+          "Use an before a vowel sound and a before other sounds.",
+          "An comes before orange, which starts with a vowel sound, and a comes before banana."
+        ],
+        [
+          "Which word fixes this sentence? 'Every morning, the dogs barks at the truck.'",
+          "bark",
+          [
+            "bark",
+            "barks",
+            "barking",
+            "barked"
+          ],
+          "Every morning points to a present-tense action, and dogs is plural.",
+          "Plural dogs goes with bark: the dogs bark."
         ]
       ]
     },
@@ -27106,6 +27466,125 @@
           ],
           "Each number drops by 10.",
           "The pattern subtracts 10 each time, so after 171 comes 161."
+        ],
+        [
+          "A number line makes equal jumps: 120, 130, __, 150, 160. What number belongs in the blank?",
+          "140",
+          [
+            "135",
+            "140",
+            "145",
+            "150"
+          ],
+          "Count by tens.",
+          "The jumps are 10: 130 + 10 = 140."
+        ],
+        [
+          "A number line makes equal jumps: 205, 210, 215, __, 225. What number belongs in the blank?",
+          "220",
+          [
+            "218",
+            "220",
+            "222",
+            "230"
+          ],
+          "Count by fives.",
+          "The jumps are 5: 215 + 5 = 220."
+        ],
+        [
+          "A number line makes equal jumps: 300, 400, 500, __, 700. What number belongs in the blank?",
+          "600",
+          [
+            "550",
+            "600",
+            "650",
+            "700"
+          ],
+          "Count by hundreds.",
+          "The jumps are 100: 500 + 100 = 600."
+        ],
+        [
+          "A number line makes equal jumps: 75, 100, 125, __, 175. What number belongs in the blank?",
+          "150",
+          [
+            "135",
+            "140",
+            "150",
+            "160"
+          ],
+          "Each jump adds 25.",
+          "The jumps are 25: 125 + 25 = 150."
+        ],
+        [
+          "A number line makes equal jumps: 460, 470, 480, 490, __. What number belongs at the end?",
+          "500",
+          [
+            "495",
+            "500",
+            "505",
+            "510"
+          ],
+          "Count by tens to extend the line.",
+          "The jumps are 10: 490 + 10 = 500."
+        ],
+        [
+          "2, 3, 5, 8, 12. The jumps grow by one each time: +1, +2, +3, +4. What number comes next?",
+          "17",
+          [
+            "15",
+            "16",
+            "17",
+            "18"
+          ],
+          "The next jump is +5.",
+          "12 + 5 = 17."
+        ],
+        [
+          "10, 13, 17, 22, 28. What number comes next?",
+          "35",
+          [
+            "30",
+            "32",
+            "35",
+            "36"
+          ],
+          "Watch how the jumps change: +3, +4, +5, +6.",
+          "The jumps grow by one each time, so the next jump is +7: 28 + 7 = 35."
+        ],
+        [
+          "B, D, F, H. Which letter comes next?",
+          "J",
+          [
+            "I",
+            "J",
+            "K",
+            "L"
+          ],
+          "Skip one letter each time.",
+          "B, D, F, H skip one letter at a time, so J comes next."
+        ],
+        [
+          "50, 45, 41, 38, 36. What number comes next?",
+          "35",
+          [
+            "33",
+            "34",
+            "35",
+            "36"
+          ],
+          "The jumps get smaller: back 5, back 4, back 3, back 2.",
+          "Counting back by 5, 4, 3, 2, then 1 gives 35."
+        ],
+        [
+          "Circle, square, square, triangle, circle, square, square, triangle. What comes next?",
+          "circle",
+          [
+            "circle",
+            "square",
+            "triangle"
+          ],
+          "The pattern repeats: circle, square, square, triangle.",
+          "Circle starts the pattern again."
         ]
       ]
     },
@@ -29960,6 +30439,61 @@
           ],
           "Subtract what is already there from what is needed.",
           "158 − 97 = 61 more needed."
+        ],
+        [
+          "A baker arranges muffins on 4 trays. Each tray holds 6 muffins. How many muffins are there in all?",
+          "24",
+          [
+            "20",
+            "24",
+            "28"
+          ],
+          "Multiply the equal groups: 4 × 6.",
+          "4 trays of 6 make 24 muffins."
+        ],
+        [
+          "There are 5 pages of stamps. Each page has 8 stamps. How many stamps are there in all?",
+          "40",
+          [
+            "35",
+            "40",
+            "45"
+          ],
+          "Multiply the equal groups: 5 × 8.",
+          "5 pages of 8 make 40 stamps."
+        ],
+        [
+          "A teacher pours 30 pencils equally into 5 jars. How many pencils are in each jar?",
+          "6",
+          [
+            "5",
+            "6",
+            "7"
+          ],
+          "Share 30 into 5 equal groups.",
+          "30 ÷ 5 = 6 pencils in each jar."
+        ],
+        [
+          "A tile pattern has 6 rows. Each row has 7 tiles. How many tiles are there in all?",
+          "42",
+          [
+            "36",
+            "42",
+            "48"
+          ],
+          "Multiply the equal groups: 6 × 7.",
+          "6 rows of 7 make 42 tiles."
+        ],
+        [
+          "There are 3 shelves with 9 books on each shelf. 5 books are checked out. How many books are left on the shelves?",
+          "22",
+          [
+            "21",
+            "22",
+            "27"
+          ],
+          "First multiply: 3 × 9 = 27. Then subtract 5.",
+          "27 - 5 = 22 books left."
         ]
       ]
     },
@@ -31726,6 +32260,342 @@
           ],
           "Solid shapes are thick and take up space.",
           "A cube is a solid shape."
+        ]
+      ]
+    },
+    "guitar": {
+      "title": "Strings, Frets, and First Chords",
+      "skill": "Play Em and Am, press behind the frets, and read a chord picture",
+      "questions": [
+        [
+          "Starting from the THINNEST string, the string names run…",
+          "E, B, G, D, A, E",
+          [
+            "E, B, G, D, A, E",
+            "E, A, D, G, B, E",
+            "B, G, D, A, E, E"
+          ],
+          "Just read the usual row backwards.",
+          "From the thinnest string the row runs E, B, G, D, A, E — the thick-to-thin row played backwards."
+        ],
+        [
+          "In our sentence 'Every Ant Digs Gigantic Blue Eggs,' the word 'Blue' stands for which string?",
+          "the B string",
+          [
+            "the B string",
+            "the G string",
+            "the high E string"
+          ],
+          "Count to the fifth word.",
+          "Blue is the fifth word, and the fifth string from the thickest is B."
+        ],
+        [
+          "Mina plucks the strings one by one from thickest to thinnest and sings along. Which note does she sing FOURTH?",
+          "G",
+          [
+            "D",
+            "G",
+            "B"
+          ],
+          "Count along: E(1), A(2), D(3)…",
+          "Thick to thin the notes are E, A, D, G, B, E — the fourth note is G."
+        ],
+        [
+          "Which string is directly between the A string and the G string?",
+          "the D string",
+          [
+            "the D string",
+            "the B string",
+            "the low E string"
+          ],
+          "Use the row: E, A, D, G, B, E.",
+          "D sits between A and G in the string row."
+        ],
+        [
+          "The two E strings sound different because one is…",
+          "much higher than the other",
+          [
+            "much higher than the other",
+            "made of wood",
+            "longer than the guitar"
+          ],
+          "Same name, different voices.",
+          "Both outside strings are named E, but the thin one sings much higher than the thick one."
+        ],
+        [
+          "Your song sheet says 'strum strings 6, 5, and 4 to start.' Which strings are those?",
+          "the three thickest strings",
+          [
+            "the three thickest strings",
+            "the three thinnest strings",
+            "strings 1, 2, and 3"
+          ],
+          "Big numbers live on the thick side.",
+          "Strings 6, 5, and 4 are the three thick strings: low E, A, and D."
+        ],
+        [
+          "Which string number would you play to add a sparkly high sound?",
+          "string 1",
+          [
+            "string 1",
+            "string 6",
+            "string 4"
+          ],
+          "Sparkles live on the thinnest string.",
+          "String 1, the thinnest high E, adds the sparkly high sound."
+        ],
+        [
+          "A chord uses strings 5, 4, 3, 2, and 1 but NOT string 6. Why might that be?",
+          "string 6's low note does not belong in that chord",
+          [
+            "string 6's low note does not belong in that chord",
+            "string 6 is only for grown-ups",
+            "string 6 is broken"
+          ],
+          "Every chord chooses its notes carefully.",
+          "Some chords leave out the thick low E string because its note would clash with the chord's sound."
+        ],
+        [
+          "Which string is number 4, counting from the thinnest?",
+          "the D string",
+          [
+            "the D string",
+            "the A string",
+            "the G string"
+          ],
+          "Count up: 1 E, 2 B, 3 G, 4…",
+          "Counting from the thinnest string: 1 is E, 2 is B, 3 is G, and 4 is D."
+        ],
+        [
+          "If a string feels thick and sings deep, its number is probably…",
+          "a big number, like 5 or 6",
+          [
+            "a big number, like 5 or 6",
+            "a small number, like 1 or 2",
+            "number 0"
+          ],
+          "Thick strings get the big numbers.",
+          "The thickest, deepest strings carry the biggest numbers: 6 for the thickest, then 5."
+        ],
+        [
+          "Your finger presses a string at the 3rd fret. Frets are counted starting from which end of the neck?",
+          "the head end",
+          [
+            "the head end",
+            "the body end",
+            "the middle"
+          ],
+          "Always count frets starting at the head.",
+          "Frets are counted from the head end of the neck, so the 3rd fret is the third space along from there."
+        ],
+        [
+          "Your thumb's best home while you play chords is…",
+          "behind the neck, in the middle",
+          [
+            "behind the neck, in the middle",
+            "wrapped over the top squeezing the strings",
+            "pressing the strings too"
+          ],
+          "Your thumb is a quiet helper, not a player.",
+          "The thumb rests behind the middle of the neck, giving your fingers a strong, relaxed squeeze."
+        ],
+        [
+          "A pressed string buzzes loudly. What is the FIRST thing to check?",
+          "that your fingertip is close behind the fret and pressing firmly",
+          [
+            "that your fingertip is close behind the fret and pressing firmly",
+            "that the guitar is loud enough",
+            "that you are singing the right word"
+          ],
+          "Buzzing usually means a shy finger.",
+          "Buzzing usually means the fingertip is too far from the fret or pressing too lightly — snuggle it close behind the fret and press firmly."
+        ],
+        [
+          "Why do players curl their fingers like little hooks when pressing strings?",
+          "so each fingertip touches only its own string",
+          [
+            "so each fingertip touches only its own string",
+            "to make their hands look fancy",
+            "to hide their fingernails"
+          ],
+          "Flat fingers squish the strings next door.",
+          "Curled fingers let each fingertip press one string without muting the strings beside it."
+        ],
+        [
+          "Playing a note at the 1st fret, then the 2nd, then the 3rd makes the notes go…",
+          "higher and higher",
+          [
+            "higher and higher",
+            "lower and lower",
+            "louder and louder"
+          ],
+          "Each fret shortens the string a little more.",
+          "Moving up the frets shortens the string step by step, so the notes climb higher and higher."
+        ],
+        [
+          "Em's fret numbers, from the thickest string to the thinnest, are 0-2-2-0-0-0. What does the 0 on the low E string mean?",
+          "play it open, with no finger on it",
+          [
+            "play it open, with no finger on it",
+            "do not play it at all",
+            "press it at the last fret"
+          ],
+          "Zero means open — and it still gets played!",
+          "A 0 means the string rings open, with no finger pressing it — and in Em, the low E string is played open."
+        ],
+        [
+          "Which two strings does Em press down?",
+          "the A string and the D string, both at fret 2",
+          [
+            "the A string and the D string, both at fret 2",
+            "the G string and the B string, both at fret 1",
+            "only the low E string, at fret 3"
+          ],
+          "Both fingers stand on the same fret.",
+          "Em presses the A string and the D string, both at the 2nd fret, with the middle and ring fingers."
+        ],
+        [
+          "What makes Em such a friendly first chord to learn?",
+          "it needs only two fingers and no string is skipped",
+          [
+            "it needs only two fingers and no string is skipped",
+            "it needs no strumming",
+            "it only uses one string"
+          ],
+          "Two fingers, all six strings — a friendly start.",
+          "Em is a gentle first chord: two fingers only, and every string gets to ring."
+        ],
+        [
+          "In Em, which fingers do the pressing?",
+          "the middle finger and the ring finger",
+          [
+            "the middle finger and the ring finger",
+            "the index finger and the pinky",
+            "the thumb and the index finger"
+          ],
+          "They stand side by side on the A and D strings.",
+          "Em is pressed by the middle finger (A string) and the ring finger (D string)."
+        ],
+        [
+          "You strum Em and one string sounds dull and thuddy. What is the likeliest cause?",
+          "a finger is touching a string it should leave alone",
+          [
+            "a finger is touching a string it should leave alone",
+            "the song is too fast",
+            "the strings are too new"
+          ],
+          "A stray finger can mute a neighbor string.",
+          "A dull string usually means a finger is leaning on it — curl your fingers so each string rings free."
+        ],
+        [
+          "Am is written x-0-2-2-1-0. What does the x on the low E string mean?",
+          "do not play that string",
+          [
+            "do not play that string",
+            "play it extra loudly",
+            "press it at fret 10"
+          ],
+          "X marks the string to skip.",
+          "In chord numbers and pictures, x means leave that string silent — do not strum it."
+        ],
+        [
+          "In Am, your index finger presses which string at the 1st fret?",
+          "the B string",
+          [
+            "the B string",
+            "the G string",
+            "the A string"
+          ],
+          "It is the lone finger on the 1st fret.",
+          "Am's index finger presses the B string (string 2) at the 1st fret."
+        ],
+        [
+          "In Am, the middle and ring fingers both press at the 2nd fret — on which strings?",
+          "the D string and the G string",
+          [
+            "the D string and the G string",
+            "the A string and the B string",
+            "the two E strings"
+          ],
+          "They stand side by side on the middle strings.",
+          "In Am, the middle finger presses the D string and the ring finger presses the G string, both at the 2nd fret."
+        ],
+        [
+          "Which strings ring OPEN in Am, with no finger pressing them?",
+          "the A string and the high E string",
+          [
+            "the A string and the high E string",
+            "the D string and the G string",
+            "the low E string and the B string"
+          ],
+          "Check the zeros in x-0-2-2-1-0.",
+          "In Am, the A string and the high E string ring open — the zeros in x-0-2-2-1-0."
+        ],
+        [
+          "Em and Am are both minor chords. How do their feelings compare?",
+          "both sound soft and a little sad next to major chords",
+          [
+            "both sound soft and a little sad next to major chords",
+            "they sound exactly like major chords",
+            "they cannot be played in the same song"
+          ],
+          "Minor is a feeling the two chords share.",
+          "Em and Am are both minor chords, so both carry that soft, slightly sad feeling next to bright major chords."
+        ],
+        [
+          "In a chord picture, an 'o' above a string means…",
+          "play that string open",
+          [
+            "play that string open",
+            "skip that string",
+            "press that string at the last fret"
+          ],
+          "O is for open.",
+          "An o above a string means play it open, with no finger pressing it."
+        ],
+        [
+          "In a chord picture, an 'x' above the low E string in Am tells you…",
+          "to leave the low E string out of the strum",
+          [
+            "to leave the low E string out of the strum",
+            "to strum the low E string first",
+            "to tune the low E string"
+          ],
+          "Skipped strings stay silent.",
+          "The x tells you to leave the low E string silent, so your strum starts on the A string."
+        ],
+        [
+          "A chord picture shows dots on the 1st and 2nd fret rows only. Where do your fingers go?",
+          "in the first two fret spaces, near the head",
+          [
+            "in the first two fret spaces, near the head",
+            "in the middle of the neck",
+            "near the sound hole"
+          ],
+          "Picture rows count from the top, by the head.",
+          "Chord pictures count frets from the top row beside the nut, so those dots sit in the first two fret spaces near the head."
+        ],
+        [
+          "You are reading the Em picture. How many dots should you count?",
+          "two dots",
+          [
+            "two dots",
+            "four dots",
+            "six dots"
+          ],
+          "One dot for each busy finger.",
+          "Em's picture shows exactly two dots — the two fingers on the A and D strings at fret 2."
+        ],
+        [
+          "Why do chord pictures draw the guitar facing you instead of how you see it looking down?",
+          "so the strings line up left-to-right the same way every time",
+          [
+            "so the strings line up left-to-right the same way every time",
+            "because guitars are shy",
+            "so the picture can be smaller"
+          ],
+          "Pictures always keep thick strings on the left.",
+          "Facing-you pictures keep every chord diagram consistent: thick string on the left, thin string on the right."
         ]
       ]
     }
