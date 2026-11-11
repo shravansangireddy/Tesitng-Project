@@ -9,6 +9,7 @@ import {
   Flame,
   Gift,
   GraduationCap,
+  Guitar,
   Heart,
   Home,
   Leaf,
@@ -719,7 +720,7 @@ export default function App({
         : `${gradeLabels[grade]}. ${view === "home"
             ? "Welcome to Champion Island. Say English, Math, Adventures, or spelling bee."
             : view === "adventures"
-              ? `${subject === "english" ? "English Forest" : "Math Mountain"}. ${visibleActivities.map((a, i) => `Activity ${i + 1}: ${gradePack.lessons[a.id].title}`).join(". ")}. Say start activity and its number, or spelling bee.`
+              ? `${subject === "english" ? "English Forest" : subject === "math" ? "Math Mountain" : "Guitar Stage"}. ${visibleActivities.map((a, i) => `Activity ${i + 1}: ${gradePack.lessons[a.id].title}`).join(". ")}. Say start activity and its number, or spelling bee.`
               : "Use the buttons to explore this page. You can say Home, Adventures, English, or Math."}`,
     ...(session?.championship && !feedback ? { word: `Your ${session.grade === "prek" ? "letter" : "word"} is ${currentQuestion?.answer}.` } : {}),
     story: currentQuestion?.passage,
@@ -817,7 +818,7 @@ export default function App({
           aria-label="Learn and Play Champion home"
         >
           <span className="brand-icon">
-            <GraduationCap size={27} />
+            <img className="brand-logo" src="/logo.png" alt="" />
           </span>
           <span>
             Learn & Play<small>CHAMPION</small>
@@ -1049,7 +1050,9 @@ export default function App({
                 <span className={`eyebrow ${session.activity.subject}`}>
                   {session.activity.subject === "english"
                     ? "ENGLISH FOREST"
-                    : "MATH MOUNTAIN"}
+                    : session.activity.subject === "math"
+                      ? "MATH MOUNTAIN"
+                      : "GUITAR STAGE"}
                 </span>
                 <h1 ref={heading} tabIndex={-1}>
                   {session.activity.title}
@@ -1564,6 +1567,38 @@ export default function App({
                   </div>
                 </section>
               )}
+              {(view === "home" || view === "adventures") && (
+                <section className="practice-pack-banner panel" aria-label="New practice pack">
+                  <span style={{ fontSize: 30 }} aria-hidden="true">🧩</span>
+                  <div>
+                    <h2>New: Practice Pack</h2>
+                    <p>{gradeLabels[grade]} · Fresh ways to practice, mixed into your adventures:
+                      phonics letter puzzles, fix-the-sentence challenges, story order,
+                      number lines, science labels and life cycles — plus coding steps
+                      and online safety for Grades 3–5.</p>
+                    <button className="button primary" onClick={() => navigate("adventures")}>
+                      Explore the new practice
+                    </button>
+                  </div>
+                </section>
+              )}
+              {(view === "home" || view === "adventures") && (
+                <section className="guitar-banner panel" aria-label="Guitar Quest">
+                  <span style={{ fontSize: 30 }} aria-hidden="true">🎸</span>
+                  <div>
+                    <h2>New: Guitar Quest</h2>
+                    <p>{gradeLabels[grade]} · A brand-new skill: learn the guitar the full way —
+                      string names, notes on the fretboard, real chords like Em, Am, C and G,
+                      and how songs fit together.</p>
+                    <button className="button primary" onClick={() => {
+                      setSubject("general");
+                      navigate("adventures");
+                    }}>
+                      Try Guitar Quest
+                    </button>
+                  </div>
+                </section>
+              )}
               {(view === "home" || view === "adventures") && canUseTinyHabits && (
                 <section className="tiny-habits-banner panel" aria-label="Tiny Habits with Pip">
                   <span style={{ fontSize: 30 }} aria-hidden="true">🐜</span>
@@ -1941,6 +1976,14 @@ export default function App({
                       <Mountain size={20} />
                       Math Mountain
                     </button>
+                    <button
+                      aria-pressed={subject === "general"}
+                      className={subject === "general" ? "selected general-tab" : ""}
+                      onClick={() => setSubject("general")}
+                    >
+                      <Guitar size={20} />
+                      Guitar Stage
+                    </button>
                   </div>
                   <div className={`adventure-banner ${subject}`}>
                     <Mascot animal={subject === "english" ? "owl" : "fox"} />
@@ -1948,12 +1991,16 @@ export default function App({
                       <h2>
                         {subject === "english"
                           ? "Words are a wonderful adventure."
-                          : "You’ve got a mind for discovery."}
+                          : subject === "math"
+                            ? "You’ve got a mind for discovery."
+                            : "Every song starts with a single string."}
                       </h2>
                       <p>
                         {subject === "english"
                           ? "Join Pip for stories, spelling, and a little word magic."
-                          : "Join Nova for numbers, patterns, and playful puzzles."}
+                          : subject === "math"
+                            ? "Join Nova for numbers, patterns, and playful puzzles."
+                            : "Join Nova for strings, chords, and songs you will love to play."}
                       </p>
                       <span>
                         5 questions per round · Free hints · No time limits

@@ -256,7 +256,7 @@ function echoClient(failActivities: string[] = []) {
 describe("missingSkillTasks", () => {
   it("returns every skill for a kid with no tasks", () => {
     expect(missingSkillTasks([])).toEqual(ALL_SKILL_TASKS);
-    expect(ALL_SKILL_TASKS).toHaveLength(18);
+    expect(ALL_SKILL_TASKS).toHaveLength(19);
   });
 
   it("returns exactly the skills a kid does not have yet", () => {
@@ -268,7 +268,7 @@ describe("missingSkillTasks", () => {
       existingTask(null, "Read a picture book"),
     ];
     const missing = missingSkillTasks(existing);
-    expect(missing).toHaveLength(15);
+    expect(missing).toHaveLength(16);
     expect(missing.map((preset) => preset.activityId)).not.toContain("sight");
     expect(missing.map((preset) => preset.activityId)).not.toContain(
       "arithmetic",
@@ -286,10 +286,10 @@ describe("missingSkillTasks", () => {
     custom.done = true;
     const missing = missingSkillTasks([custom]);
     expect(missing.map((preset) => preset.activityId)).not.toContain("sight");
-    expect(missing).toHaveLength(17);
+    expect(missing).toHaveLength(18);
   });
 
-  it("returns nothing when the kid already has all 18 skills", () => {
+  it("returns nothing when the kid already has all 19 skills", () => {
     const existing = ALL_SKILL_TASKS.map((preset) =>
       existingTask(preset.activityId, preset.title),
     );
@@ -298,7 +298,7 @@ describe("missingSkillTasks", () => {
 });
 
 describe("addAllSkillTasks", () => {
-  it("creates exactly the missing skills for a kid with 3 of the 18", async () => {
+  it("creates exactly the missing skills for a kid with 3 of the 19", async () => {
     const { client, inserts } = echoClient();
     const existing = [
       existingTask("sight"),
@@ -311,8 +311,8 @@ describe("addAllSkillTasks", () => {
       existing,
     });
     expect(result.failed).toBe(0);
-    expect(result.added).toHaveLength(15);
-    expect(inserts).toHaveLength(15);
+    expect(result.added).toHaveLength(16);
+    expect(inserts).toHaveLength(16);
     // Same attribution as a hand-added task, canonical titles, set order.
     expect(inserts[0]).toMatchObject({
       kid_user_id: "kid-one",
@@ -320,7 +320,7 @@ describe("addAllSkillTasks", () => {
       title: "Play Meaning Match",
       activity: "vocabulary",
     });
-    expect(inserts[14]).toMatchObject({
+    expect(inserts[15]).toMatchObject({
       title: "Read a Motivation Book",
       activity: "motivation-books",
     });
@@ -329,7 +329,7 @@ describe("addAllSkillTasks", () => {
     );
   });
 
-  it("creates nothing when the kid already has all 18 skills", async () => {
+  it("creates nothing when the kid already has all 19 skills", async () => {
     const { client, inserts } = echoClient();
     const existing = ALL_SKILL_TASKS.map((preset) =>
       existingTask(preset.activityId, preset.title),
@@ -355,10 +355,10 @@ describe("addAllSkillTasks", () => {
       kidUserId: "kid-one",
       existing,
     });
-    // All 15 missing skills were attempted; 2 failed, 13 stand.
-    expect(inserts).toHaveLength(15);
+    // All 16 missing skills were attempted; 2 failed, 14 stand.
+    expect(inserts).toHaveLength(16);
     expect(result.failed).toBe(2);
-    expect(result.added).toHaveLength(13);
+    expect(result.added).toHaveLength(14);
     expect(result.added.map((task) => task.activityId)).not.toContain("data");
     expect(result.added.map((task) => task.activityId)).not.toContain(
       "geometry",

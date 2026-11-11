@@ -11,7 +11,7 @@ import {
   type TinyHabitsProgress,
 } from "./tiny-habits";
 import { isTeacherBookId } from "./teacher-books";
-export type Subject = "english" | "math";
+export type Subject = "english" | "math" | "general";
 export type ActivityId = LessonId;
 export type Avatar = "owl" | "fox" | "cat" | "unicorn";
 export interface Activity {
@@ -133,6 +133,13 @@ export const activities: Activity[] = [
     title: "Data Detective",
     description: "Organize observations and read data.",
     symbol: "Data",
+  },
+  {
+    id: "guitar",
+    subject: "general",
+    title: "Guitar Quest",
+    description: "Strings, notes, chords — the full way.",
+    symbol: "🎸",
   },
 ];
 export { makeRound } from "./questions";

@@ -121,6 +121,13 @@ button svg {
   place-items: center;
   box-shadow: 0 4px 0 #e8defc;
 }
+.brand-icon .brand-logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  display: block;
+}
 .island-label {
   color: #aaa7b7;
   letter-spacing: 1.8px;
@@ -1213,6 +1220,9 @@ h1 > span:not(.wave) {
 .subject-tabs button.math-tab {
   color: #518b70;
 }
+.subject-tabs button.general-tab {
+  color: #b06a12;
+}
 .adventure-banner {
   display: flex;
   align-items: center;
@@ -1227,6 +1237,10 @@ h1 > span:not(.wave) {
   background: #e9f4ee;
   border-color: #dbeade;
 }
+.adventure-banner.general {
+  background: #fdf3e0;
+  border-color: #efdfba;
+}
 .adventure-banner .mascot {
   width: 115px;
 }
@@ -1236,6 +1250,9 @@ h1 > span:not(.wave) {
 }
 .adventure-banner.math h2 {
   color: #43745c;
+}
+.adventure-banner.general h2 {
+  color: #96660f;
 }
 .adventure-banner p {
   color: #9183a4;
@@ -1273,6 +1290,10 @@ h1 > span:not(.wave) {
 .activity-symbol.math {
   background: #e8f5ee;
   color: #569578;
+}
+.activity-symbol.general {
+  background: #fdf0da;
+  color: #c07f13;
 }
 .activity-card h3 {
   font-size: 19px;
@@ -1685,6 +1706,9 @@ progress::-moz-progress-bar {
 }
 .quiz-heading .math {
   color: #6d9e86;
+}
+.quiz-heading .general {
+  color: #c07f13;
 }
 .quiz-card {
   max-width: 780px;
@@ -3480,6 +3504,26 @@ summary:focus-visible {
   display: block;
   font-size: 11px;
   font-weight: 500;
+}
+.practice-pack-banner {
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 20px 0;
+}
+.practice-pack-banner p {
+  margin: 12px 0;
+}
+.guitar-banner {
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 20px 0;
+}
+.guitar-banner p {
+  margin: 12px 0;
 }
 .bee-banner {
   padding: 24px;

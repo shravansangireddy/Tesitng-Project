@@ -29,11 +29,13 @@ export interface ProgressBar {
 export const SUBJECT_BAR_COLORS: Record<Subject, string> = {
   english: "#7650d9",
   math: "#3d7760",
+  general: "#c07f13",
 };
 
 const SUBJECT_LABELS: Record<Subject, string> = {
   english: "English",
   math: "Math",
+  general: "General",
 };
 
 /** Fraction of the fullest bar, clamped to [0, 1]; 0 when there is nothing to scale by. */

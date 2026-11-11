@@ -37,6 +37,7 @@ const ALL_SKILLS = [
   { title: "Play Parts & Wholes", activity: "fractions" },
   { title: "Play Measurement Mission", activity: "measurement" },
   { title: "Play Data Detective", activity: "data" },
+  { title: "Play Guitar Quest", activity: "guitar" },
   { title: "Play Word Battle", activity: "word-battle" },
   { title: "Read a Motivation Book", activity: "motivation-books" },
 ];

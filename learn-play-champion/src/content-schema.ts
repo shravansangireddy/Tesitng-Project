@@ -58,7 +58,19 @@ export const curriculumLessonIds = [
   "measurement",
   "data",
 ] as const;
-export const lessonIds = [...coreLessonIds, ...curriculumLessonIds] as const;
+/**
+ * Enrichment lessons sit outside the English/Math core and carry no
+ * standards guide: grade-level content in every grade file (the parser
+ * requires every lesson id in every pack), played with a chosen grade
+ * like the curriculum lessons, but never part of the grade-less banks,
+ * the Curious Explorer badge, or the standards-guide checks.
+ */
+export const enrichmentLessonIds = ["guitar"] as const;
+export const lessonIds = [
+  ...coreLessonIds,
+  ...curriculumLessonIds,
+  ...enrichmentLessonIds,
+] as const;
 export type LessonId = (typeof lessonIds)[number];
 export interface LessonGuide {
   standards: string[];
