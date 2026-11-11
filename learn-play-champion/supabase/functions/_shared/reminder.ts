@@ -54,7 +54,7 @@ export function buildParentReminderEmail(): ReminderEmail {
     "",
     "You took the first step and created a free Learn & Play Champion account — your child's practice is ready and waiting whenever they are. All that's missing is their very own login.",
     "",
-    "Adding it takes about a minute: sign in, open Parents dashboard → Kid logins, and create your child's login. They'll get all 19 skills for their grade, stories to explore, and progress that's all their own to be proud of.",
+    "Adding it takes about a minute: sign in, open Parents dashboard → Kid logins, and create your child's login. They'll get all 20 skills for their grade, stories to explore, and progress that's all their own to be proud of.",
     "",
     `Add your kid's login: ${APP_URL}`,
     "",
@@ -69,7 +69,7 @@ export function buildParentReminderEmail(): ReminderEmail {
       "You took the first step and created a free Learn &amp; Play Champion account — your child's practice is ready and waiting whenever they are. All that's missing is their very own login.",
     ),
     paragraph(
-      "Adding it takes about a minute: sign in, open <strong>Parents dashboard → Kid logins</strong>, and create your child's login. They'll get all 19 skills for their grade, stories to explore, and progress that's all their own to be proud of.",
+      "Adding it takes about a minute: sign in, open <strong>Parents dashboard → Kid logins</strong>, and create your child's login. They'll get all 20 skills for their grade, stories to explore, and progress that's all their own to be proud of.",
     ),
     buttonHtml("Add your kid's login"),
     paragraph(

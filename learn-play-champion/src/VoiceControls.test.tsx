@@ -305,30 +305,31 @@ async function typeAnswer(value: string) {
   });
 }
 describe("voice and spelling bee in the actual app", () => {
-  it("stops voice before native navigation confirmation even when leaving is canceled", async () => {
+  it("stops voice and leaves a round immediately, with no navigation confirmation", async () => {
     await act(async () => root.render(<App />));
     await click(button("Start spelling bee"));
     await allowMic();
     await click(button("Listen for one command"));
     const active = last(MockRecognition.instances);
     const delayed = active.onresult!;
-    const confirm = vi.spyOn(window, "confirm").mockImplementation(() => {
-      expect(active.abort).toHaveBeenCalled();
-      return false;
-    });
+    const confirm = vi.spyOn(window, "confirm").mockImplementation(() => true);
     await click(button("Adventures"));
-    expect(confirm).toHaveBeenCalledOnce();
-    expect(container.querySelector(".quiz-heading")?.textContent).toContain("Spelling Bee Championship");
+    // Leaving a round asks nothing: voice stops first, no "Leave this
+    // adventure?" confirm appears, and the quiz is gone at once. (The old
+    // confirm made kids read the quiz as broken when it stayed on screen —
+    // 2026-11-11 report.)
+    expect(active.abort).toHaveBeenCalled();
+    expect(confirm).not.toHaveBeenCalled();
+    expect(container.querySelector(".quiz-heading")).toBeNull();
     await act(async () => delayed(event("C A T")));
     expect(container.querySelector(".voice-candidate")).toBeNull();
+    await click(button("Start spelling bee"));
     await click(button("Hear the bee word"));
     cancel.mockClear();
-    confirm.mockImplementation(() => {
-      expect(cancel).toHaveBeenCalled();
-      return false;
-    });
     await click(button("Adventures"));
-    expect(confirm).toHaveBeenCalledTimes(2);
+    expect(cancel).toHaveBeenCalled();
+    expect(confirm).not.toHaveBeenCalled();
+    expect(container.querySelector(".quiz-heading")).toBeNull();
     expect(container.textContent).not.toContain("Reading aloud…");
   });
   it("adds Pre-K with simpler content, no fake standards, and a separate score", async () => {

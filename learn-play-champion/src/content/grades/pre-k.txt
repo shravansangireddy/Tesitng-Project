@@ -18144,6 +18144,312 @@
           "Playing a little bit every day is how guitar players grow. Tiny practice, big music!"
         ]
       ]
+    },
+    "wordpower": {
+      "title": "Word Detective Jr.",
+      "skill": "Sort words, spot opposites, and build big words from small ones",
+      "questions": [
+        [
+          "Which one belongs with apple, banana, and grape?",
+          "orange",
+          [
+            "shoe",
+            "orange",
+            "chair",
+            "spoon"
+          ],
+          "Think about foods that grow on plants and make a sweet snack.",
+          "Apple, banana, grape, and orange are all fruits."
+        ],
+        [
+          "Which one does NOT belong with dog, cat, and bird?",
+          "truck",
+          [
+            "fish",
+            "truck",
+            "frog",
+            "bee"
+          ],
+          "Three of these are alive and can move on their own.",
+          "Dog, cat, bird, and fish are animals. A truck is a vehicle, not an animal."
+        ],
+        [
+          "Which one belongs with sock, hat, and coat?",
+          "mitten",
+          [
+            "mitten",
+            "apple",
+            "ball",
+            "cup"
+          ],
+          "Think about things you put on your body to stay warm.",
+          "Socks, hats, coats, and mittens are clothes we wear."
+        ],
+        [
+          "Which one does NOT belong with red, blue, and green?",
+          "happy",
+          [
+            "yellow",
+            "purple",
+            "happy",
+            "pink"
+          ],
+          "Three of these are colors you can see on a rainbow.",
+          "Red, blue, green, yellow, purple, and pink are colors. Happy is a feeling, not a color."
+        ],
+        [
+          "Which one belongs with bed, chair, and table?",
+          "sofa",
+          [
+            "sofa",
+            "dog",
+            "sun",
+            "egg"
+          ],
+          "Think about big things inside a home that you can sit or rest on.",
+          "Beds, chairs, tables, and sofas are furniture."
+        ],
+        [
+          "The pitcher is EMPTY — there is no juice inside. What is the opposite of empty?",
+          "full",
+          [
+            "full",
+            "soft",
+            "wet",
+            "loud"
+          ],
+          "A cup filled all the way to the top is the opposite of empty.",
+          "Empty means nothing inside. Full is its opposite."
+        ],
+        [
+          "Sam can run FAST. What is the opposite of fast?",
+          "slow",
+          [
+            "quick",
+            "slow",
+            "happy",
+            "big"
+          ],
+          "Think about how a turtle moves.",
+          "Fast and slow are opposites. Slow means taking a long time to move."
+        ],
+        [
+          "Careful — the soup is HOT! What is the opposite of hot?",
+          "cold",
+          [
+            "warm",
+            "yummy",
+            "cold",
+            "red"
+          ],
+          "Ice feels the opposite of hot soup.",
+          "Hot and cold are opposites that tell how something feels."
+        ],
+        [
+          "The bear is BIG. What is the opposite of big?",
+          "little",
+          [
+            "huge",
+            "little",
+            "tall",
+            "loud"
+          ],
+          "Think of a tiny mouse standing next to the bear.",
+          "Big and little are opposites that tell about size."
+        ],
+        [
+          "It is DAY, and we play outside. What is the opposite of day?",
+          "night",
+          [
+            "morning",
+            "night",
+            "sun",
+            "play"
+          ],
+          "When it gets dark and the moon comes out, day has turned into its opposite.",
+          "Day and night are opposites — light time and dark time."
+        ],
+        [
+          "Put two small words together: rain + bow. What big word do you make?",
+          "rainbow",
+          [
+            "raincoat",
+            "rainbow",
+            "raindrop",
+            "bowrain"
+          ],
+          "It arcs across the sky after the rain stops.",
+          "Rain + bow makes rainbow, the colorful arc in the sky."
+        ],
+        [
+          "Put two small words together: cup + cake. What big word do you make?",
+          "cupcake",
+          [
+            "cupcake",
+            "pancake",
+            "cakecup",
+            "muffin"
+          ],
+          "It is a small cake you can hold in one hand.",
+          "Cup + cake makes cupcake, a little cake baked in a cup shape."
+        ],
+        [
+          "Put two small words together: sun + flower. What big word do you make?",
+          "sunflower",
+          [
+            "sunshine",
+            "flowerpot",
+            "sunflower",
+            "sunset"
+          ],
+          "This tall yellow flower turns its face toward the sun.",
+          "Sun + flower makes sunflower."
+        ],
+        [
+          "Put two small words together: tooth + brush. What big word do you make?",
+          "toothbrush",
+          [
+            "toothpaste",
+            "brushfire",
+            "hairbrush",
+            "toothbrush"
+          ],
+          "You use it every morning and night to keep your smile clean.",
+          "Tooth + brush makes toothbrush."
+        ],
+        [
+          "Put two small words together: butter + fly. What big word do you make?",
+          "butterfly",
+          [
+            "butterfly",
+            "dragonfly",
+            "buttercup",
+            "flyswatter"
+          ],
+          "It has wings and visits flowers, but it is not made of butter.",
+          "Butter + fly makes butterfly, the winged insect."
+        ],
+        [
+          "The word BAT can mean a flying animal that sleeps upside down. What else can BAT mean?",
+          "a stick used to hit a ball",
+          [
+            "a kind of hat",
+            "a stick used to hit a ball",
+            "a baby dog",
+            "a sweet drink"
+          ],
+          "Think about the game of baseball.",
+          "A bat is a flying animal, and a bat is also the stick a player swings at a ball."
+        ],
+        [
+          "The word BARK can mean the sound a dog makes. What else can BARK mean?",
+          "the rough covering on a tree trunk",
+          [
+            "a dog's dinner bowl",
+            "the rough covering on a tree trunk",
+            "a loud horn",
+            "a fast run"
+          ],
+          "Touch the outside of a big tree — that rough part has the same name.",
+          "Bark is a dog's sound, and bark is also the rough skin that covers a tree trunk."
+        ],
+        [
+          "The word BANK can mean the ground beside a river. What else can BANK mean?",
+          "a place that keeps money safe",
+          [
+            "a place that keeps money safe",
+            "a boat with oars",
+            "a tall mountain",
+            "a rain cloud"
+          ],
+          "Grown-ups visit this place to keep their money safe.",
+          "A bank is the edge of a river, and a bank is also a place that keeps money safe."
+        ],
+        [
+          "The word WAVE can mean moving water at the beach. What else can WAVE mean?",
+          "to move your hand to say hello",
+          [
+            "to dig a hole",
+            "to sing a song",
+            "to move your hand to say hello",
+            "to ride a bike"
+          ],
+          "You do this with your hand when a friend arrives.",
+          "A wave is water rolling in at the beach, and to wave is to move your hand in greeting."
+        ],
+        [
+          "The word PARK can mean a place with grass and swings. What else can PARK mean?",
+          "to stop a car and leave it in a place",
+          [
+            "to stop a car and leave it in a place",
+            "to plant a seed",
+            "to read a book",
+            "to feed a duck"
+          ],
+          "A driver does this when the trip is over.",
+          "A park is a grassy place to play, and to park is to stop a car and leave it somewhere."
+        ],
+        [
+          "Which list puts the happy feelings in order from a small happy to the biggest happy?",
+          "glad, happy, thrilled",
+          [
+            "thrilled, glad, happy",
+            "glad, happy, thrilled",
+            "happy, thrilled, glad",
+            "glad, thrilled, happy"
+          ],
+          "Thrilled is the biggest, most excited happy feeling of all.",
+          "Glad is a small happy, happy is more, and thrilled is the biggest happy feeling."
+        ],
+        [
+          "Leo smiled a tiny bit. Ana grinned a big grin. Zoe jumped up and down, shouting with joy. Who feels the MOST happy?",
+          "Zoe",
+          [
+            "Leo",
+            "Ana",
+            "Zoe",
+            "They all feel the same"
+          ],
+          "Jumping and shouting shows the biggest feeling.",
+          "Feelings come in sizes. Zoe's jumping and shouting shows the most happy feeling."
+        ],
+        [
+          "Which word means MORE happy than 'glad'?",
+          "thrilled",
+          [
+            "sleepy",
+            "thrilled",
+            "bored",
+            "quiet"
+          ],
+          "This word is for the happiest, most excited feeling.",
+          "Thrilled is a much stronger happy feeling than glad."
+        ],
+        [
+          "Mia got one small sticker and feels a little bit happy. Which word fits her small happy feeling best?",
+          "glad",
+          [
+            "thrilled",
+            "furious",
+            "glad",
+            "overjoyed"
+          ],
+          "A tiny happy feeling needs a small feeling word.",
+          "Glad fits a small, quiet happy feeling. Thrilled and overjoyed are much bigger."
+        ],
+        [
+          "Tom finally got the one gift he wished for all year. Which word shows his BIGGEST happy feeling?",
+          "thrilled",
+          [
+            "glad",
+            "calm",
+            "thrilled",
+            "okay"
+          ],
+          "This is the top-size happy word.",
+          "Thrilled shows the biggest happy feeling — much more than just glad."
+        ]
+      ]
     }
   }
 }

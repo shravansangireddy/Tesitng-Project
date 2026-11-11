@@ -193,18 +193,18 @@ describe("Guitar Quest catalog and task wiring", () => {
     expect(guitar[0].title).toBe("Guitar Quest");
     expect(guitar[0].subject).toBe("general");
     expect(guitar[0].symbol).toBe("🎸");
-    expect(activities).toHaveLength(17);
+    expect(activities).toHaveLength(18);
   });
 
-  it("is one of the 19 skill tasks on both the client and the server seed", () => {
-    expect(ALL_SKILL_TASKS).toHaveLength(19);
+  it("is one of the 20 skill tasks on both the client and the server seed", () => {
+    expect(ALL_SKILL_TASKS).toHaveLength(20);
     expect(
       ALL_SKILL_TASKS.filter((preset) => preset.activityId === "guitar"),
     ).toEqual([{ title: "Play Guitar Quest", activityId: "guitar" }]);
     expect(activityTitle("guitar")).toBe("Guitar Quest");
     for (const grade of gradeIds) {
       const seeded = defaultTasksForGrade(grade);
-      expect(seeded).toHaveLength(19);
+      expect(seeded).toHaveLength(20);
       expect(
         seeded.filter((task) => task.activity === "guitar"),
       ).toEqual([{ title: "Play Guitar Quest", activity: "guitar" }]);

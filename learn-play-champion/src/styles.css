@@ -3525,6 +3525,16 @@ summary:focus-visible {
 .guitar-banner p {
   margin: 12px 0;
 }
+.wordpower-banner {
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 20px 0;
+}
+.wordpower-banner p {
+  margin: 12px 0;
+}
 .bee-banner {
   padding: 24px;
   display: flex;

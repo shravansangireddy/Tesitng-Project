@@ -37,6 +37,13 @@ export const activities: Activity[] = [
     symbol: "Ab",
   },
   {
+    id: "wordpower",
+    subject: "english",
+    title: "Word Power",
+    description: "Figure out any word — parts, clues, and shades.",
+    symbol: "🔤",
+  },
+  {
     id: "spelling",
     subject: "english",
     title: "Spelling Spark",

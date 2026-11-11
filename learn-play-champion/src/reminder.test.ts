@@ -29,7 +29,7 @@ describe("buildParentReminderEmail", () => {
       "free Learn & Play Champion account",
       "about a minute",
       "Parents dashboard → Kid logins",
-      "all 19 skills",
+      "all 20 skills",
       "watch their progress grow",
       "Building bright minds for future generations",
     ]) {

@@ -622,13 +622,11 @@ export default function App({
     if (view === "coding" && codingDirty.current &&
       !window.confirm("Leave Coding Cove? Your block plan is temporary and will be cleared. Solved puzzles stay saved."))
       return false;
-    if (
-      session &&
-      !window.confirm(
-        "Leave this adventure? This unfinished round will not be saved.",
-      )
-    )
-      return false;
+    // Leaving an unfinished round just leaves: no confirmation popup.
+    // Kids tapped "Back to adventures", met the old "Leave this adventure?"
+    // browser confirm, and read the quiz as broken when it stayed on screen
+    // (2026-11-11 report). Rounds award nothing until question 5, so an
+    // early exit loses only the answers given — the exit must simply work.
     setSession(null);
     setResult(null);
     setView(next);
@@ -1432,7 +1430,7 @@ export default function App({
                   </div>
                   <p>{gradePack.overview}</p>
                   <small>
-                    10,000+ questions in the library · 16 activities · 1 story and 1 nonfiction text per grade.{" "}
+                    18,216 questions in the library · 18 activities · 1 story and 1 nonfiction text per grade.{" "}
                     {grade === "prek"
                       ? "Adult-supported early exploration; no formal Pre-K standards alignment claimed."
                       : "Original practice informed by U.S. standards, not a complete curriculum."}{" "}
@@ -1595,6 +1593,23 @@ export default function App({
                       navigate("adventures");
                     }}>
                       Try Guitar Quest
+                    </button>
+                  </div>
+                </section>
+              )}
+              {(view === "home" || view === "adventures") && (
+                <section className="wordpower-banner panel" aria-label="Word Power">
+                  <span style={{ fontSize: 30 }} aria-hidden="true">🔤</span>
+                  <div>
+                    <h2>New: Word Power</h2>
+                    <p>{gradeLabels[grade]} · A brand-new English skill: figure out any word —
+                      word parts like un- and -ful, sentence clues, sound-alike words, roots,
+                      and shades of meaning.</p>
+                    <button className="button primary" onClick={() => {
+                      setSubject("english");
+                      navigate("adventures");
+                    }}>
+                      Try Word Power
                     </button>
                   </div>
                 </section>

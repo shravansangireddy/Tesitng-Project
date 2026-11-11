@@ -82,7 +82,7 @@ describe("public learning guides", () => {
     expect(doc.querySelectorAll(".step-cards li")).toHaveLength(3);
     expect(doc.querySelectorAll(".audience-card")).toHaveLength(2);
     expect(doc.querySelector(".hero-art svg title")?.textContent).toContain("Pip the owl");
-    expect(doc.querySelector(".learning-facts")?.textContent).toContain("10,000+");
+    expect(doc.querySelector(".learning-facts")?.textContent).toContain("18,216");
     expect(doc.querySelectorAll("nav[aria-label=Primary] details")).toHaveLength(2);
     expect(doc.querySelector('a[href="/learn/for-families/"]')).not.toBeNull();
     expect(doc.querySelector('a[href="/learn/for-teachers/"]')).not.toBeNull();

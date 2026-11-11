@@ -33,7 +33,7 @@ describe("buildParentWelcomeEmail", () => {
     for (const fact of [
       "Pre-K–Grade 5",
       "English and Math",
-      "10,000+ original questions",
+      "18,216 original questions",
       "no ads and no subscriptions",
     ]) {
       expect(email.text).toContain(fact);
@@ -72,7 +72,7 @@ describe("buildKidWelcomeEmail", () => {
     for (const fact of [
       "Username: avyan",
       "Grade 4",
-      "All 19 skills",
+      "All 20 skills",
       "4-digit PIN",
       "Parents dashboard → Kid logins",
     ]) {

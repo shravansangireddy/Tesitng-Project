@@ -41,7 +41,7 @@ export const editorialPages: ContentPage[] = [
     intro: "Use short English and math activities as a starting point for discussion, guided practice, or a hands-on follow-up. Teacher observation remains central: game scores are not a replacement for assessment.",
     sections: [
       { heading: "Choose an activity with a clear purpose", paragraphs: [
-        "Browse the seven levels from Pre-K through Grade 5 and choose a skill that fits your instructional goal. Grade-selected activities draw on a library of 10,000+ questions across 16 strands. Selected lessons offer teaching tips and adult-led extensions.",
+        "Browse the seven levels from Pre-K through Grade 5 and choose a skill that fits your instructional goal. Grade-selected activities draw on a library of 18,216 questions across 18 strands. Selected lessons offer teaching tips and adult-led extensions.",
         "The library is original supplemental content informed by selected U.S. standards, not complete standards coverage or a full-year curriculum. Familiar questions repeat. Introduce a new example to check whether the idea transfers.",
       ] },
       { heading: "Contribute content, with review before publication", paragraphs: [
@@ -134,7 +134,7 @@ export const editorialPages: ContentPage[] = [
         "Points, badges, avatar choices, and colorful themes celebrate participation. They are game rewards, not a measure of a child's intelligence or a certified record of academic achievement.",
       ] },
       { heading: "Choose a starting point", paragraphs: [
-        "Use the grade selector to find familiar work. Each level has 16 activities and 80 practice questions, along with a story and an informational text. The separate picture-book shelf offers two original illustrated mini-books per level.",
+        "Use the grade selector to find familiar work. Each level has 18 activities and 80 practice questions, along with a story and an informational text. The separate picture-book shelf offers two original illustrated mini-books per level.",
         "My Learning Path offers an optional eight-question practice check and rule-based next-step suggestions. It does not automatically move a child between grades or provide a validated diagnostic score.",
       ] },
       { heading: "Explore beyond English and math", paragraphs: [

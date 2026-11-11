@@ -88,7 +88,7 @@ export function buildParentWelcomeEmail(): WelcomeEmail {
   const text = [
     "Welcome to Learn & Play Champion!",
     "",
-    "We're so glad you're here. Learn & Play Champion is free Pre-K–Grade 5 English and Math practice for your family: 10,000+ original questions, stories, spelling games, and little adventures — with no ads and no subscriptions, ever.",
+    "We're so glad you're here. Learn & Play Champion is free Pre-K–Grade 5 English and Math practice for your family: 18,216 original questions, stories, spelling games, and little adventures — with no ads and no subscriptions, ever.",
     "",
     `Start exploring: ${APP_URL}`,
     "",
@@ -100,7 +100,7 @@ export function buildParentWelcomeEmail(): WelcomeEmail {
   ].join("\n");
   const html = wrapHtml(escapeHtml("Welcome to Learn & Play Champion! 🎉"), [
     paragraph(
-      "We're so glad you're here. Learn &amp; Play Champion is free Pre-K–Grade 5 English and Math practice for your family: 10,000+ original questions, stories, spelling games, and little adventures — with no ads and no subscriptions, ever.",
+      "We're so glad you're here. Learn &amp; Play Champion is free Pre-K–Grade 5 English and Math practice for your family: 18,216 original questions, stories, spelling games, and little adventures — with no ads and no subscriptions, ever.",
     ),
     buttonHtml("Start exploring"),
     paragraph(
@@ -130,7 +130,7 @@ export function buildKidWelcomeEmail(input: KidWelcomeInput): WelcomeEmail {
     `Username: ${input.kidUsername}`,
     `Grade: ${input.gradeLabel}`,
     "",
-    `All 19 skills are already waiting on ${name}'s home screen — reading, math, spelling, Word Battle, and a Motivation Book to start. Every step is small, friendly, and free.`,
+    `All 20 skills are already waiting on ${name}'s home screen — reading, math, spelling, Word Battle, and a Motivation Book to start. Every step is small, friendly, and free.`,
     "",
     `Open Learn & Play Champion: ${APP_URL}`,
     "",
@@ -148,7 +148,7 @@ export function buildKidWelcomeEmail(input: KidWelcomeInput): WelcomeEmail {
       `Username: <strong>${escapeHtml(input.kidUsername)}</strong><br>Grade: <strong>${escapeHtml(input.gradeLabel)}</strong>`,
     ),
     paragraph(
-      `All 19 skills are already waiting on ${safeName}'s home screen — reading, math, spelling, Word Battle, and a Motivation Book to start. Every step is small, friendly, and free.`,
+      `All 20 skills are already waiting on ${safeName}'s home screen — reading, math, spelling, Word Battle, and a Motivation Book to start. Every step is small, friendly, and free.`,
     ),
     buttonHtml("Open Learn & Play Champion"),
     paragraph(
