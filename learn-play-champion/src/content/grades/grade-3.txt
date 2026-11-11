@@ -36006,6 +36006,372 @@
           "One full group of beats is a bar (also called a measure). Chord changes often happen at the start of a new bar."
         ]
       ]
+    },
+    "wordpower": {
+      "title": "Strategy Toolkit",
+      "skill": "Affixes, roots, idioms, and context working together",
+      "questions": [
+        [
+          "What does MISPLACE mean?",
+          "to lose something by putting it in the wrong place",
+          [
+            "to put something in its exact spot",
+            "to lose something by putting it in the wrong place",
+            "to find something quickly",
+            "to carry something heavy"
+          ],
+          "Mis- means wrongly. Where do your keys go when you cannot find them?",
+          "Mis- means wrongly, so misplace means to put something in the wrong place and lose it."
+        ],
+        [
+          "What does DISAGREE mean?",
+          "to not agree",
+          [
+            "to agree twice",
+            "to not agree",
+            "to agree first",
+            "to shout loudly"
+          ],
+          "Dis- can flip a word into its opposite.",
+          "Dis- often means not, so disagree means to not agree — to hold a different opinion."
+        ],
+        [
+          "What does PRECOOK mean?",
+          "to cook ahead of time",
+          [
+            "to cook ahead of time",
+            "to cook the wrong way",
+            "to never cook at all",
+            "to cook again and again"
+          ],
+          "A cook does this the day BEFORE a big party.",
+          "Pre- means before, so precook means to cook ahead of time."
+        ],
+        [
+          "In MISREAD, the prefix MIS- means…",
+          "wrongly",
+          [
+            "before",
+            "wrongly",
+            "again",
+            "under"
+          ],
+          "If you misread a sign, you did not read it correctly.",
+          "Mis- means wrongly: misread means read wrongly."
+        ],
+        [
+          "What does DISAPPEAR mean?",
+          "to pass out of sight",
+          [
+            "to pass out of sight",
+            "to appear twice",
+            "to look very closely",
+            "to shine brightly"
+          ],
+          "A magician's coin does this in a closed hand.",
+          "Disappear means to pass out of sight — to seem to be gone."
+        ],
+        [
+          "What does KINDNESS mean?",
+          "the state of being kind",
+          [
+            "being unkind",
+            "the state of being kind",
+            "kind again",
+            "a kind person's name"
+          ],
+          "The suffix -ness names a state or quality.",
+          "-ness means the state of being, so kindness is the state of being kind."
+        ],
+        [
+          "What does BREAKABLE mean?",
+          "able to be broken",
+          [
+            "able to be broken",
+            "already broken",
+            "never able to break",
+            "broken two times"
+          ],
+          "Handle a breakable dish with care!",
+          "The suffix -able means able to be, so breakable means able to be broken."
+        ],
+        [
+          "In 'She spoke SOFTLY so the baby kept sleeping,' softly means…",
+          "in a soft way",
+          [
+            "in a loud way",
+            "in a soft way",
+            "without making any sound at all",
+            "in a big hurry"
+          ],
+          "The suffix -ly often tells HOW something is done.",
+          "-ly means in a certain way: softly means in a soft way."
+        ],
+        [
+          "What does DARKNESS mean?",
+          "the state of being dark",
+          [
+            "a little bit of light",
+            "the state of being dark",
+            "dark again",
+            "being afraid of the dark"
+          ],
+          "When the lights go out, this is what fills the room.",
+          "Darkness is the state of being dark."
+        ],
+        [
+          "In WASHABLE, the suffix -ABLE means…",
+          "able to be",
+          [
+            "full of",
+            "able to be",
+            "without",
+            "the state of"
+          ],
+          "A washable marker can handle soap and water.",
+          "-able means able to be: washable means able to be washed."
+        ],
+        [
+          "In 'The ANCIENT castle has stood on this hill for a thousand years,' which word could replace ancient and keep the meaning?",
+          "old",
+          [
+            "old",
+            "new",
+            "tiny",
+            "wooden"
+          ],
+          "A thousand years is a very long time.",
+          "Ancient means very old. A castle standing for a thousand years is old."
+        ],
+        [
+          "In 'Unlike his TIMID brother, Mateo was BOLD and spoke up first,' the word UNLIKE is a clue that bold is the opposite of…",
+          "timid",
+          [
+            "brave",
+            "timid",
+            "loud",
+            "first"
+          ],
+          "Unlike sets up a contrast between the two brothers.",
+          "Unlike signals an antonym clue: bold is the opposite of timid, which means shy and fearful."
+        ],
+        [
+          "In 'The puppy was TINY, not HUGE like the farm horse,' tiny is presented as the opposite of…",
+          "huge",
+          [
+            "small",
+            "huge",
+            "young",
+            "furry"
+          ],
+          "The words 'not huge' give the contrast away.",
+          "The sentence contrasts tiny with huge: they are antonyms here, opposite in size."
+        ],
+        [
+          "In 'Rosa was THRILLED when her poem won — she felt pure joy,' which word means almost the same as thrilled?",
+          "delighted",
+          [
+            "bored",
+            "delighted",
+            "nervous",
+            "confused"
+          ],
+          "Pure joy is the synonym clue hiding in the same sentence.",
+          "Thrilled means delighted — extremely happy. 'Pure joy' is the synonym clue."
+        ],
+        [
+          "In 'The trail was PERILOUS, full of dangers at every turn,' perilous means…",
+          "dangerous",
+          [
+            "dangerous",
+            "peaceful",
+            "famous",
+            "crowded"
+          ],
+          "The phrase after the comma explains the word.",
+          "Perilous means dangerous — the sentence explains it with 'full of dangers.'"
+        ],
+        [
+          "The root BIO means life. A BIOGRAPHY is…",
+          "a book written about someone's life",
+          [
+            "a book written about someone's life",
+            "a book about rocks",
+            "a book of maps",
+            "a book about weather"
+          ],
+          "Put the root meaning together with -graphy, writing.",
+          "Bio means life, so a biography is a written account of someone's life."
+        ],
+        [
+          "The root GEO means earth. GEOLOGY is the study of…",
+          "the earth and its rocks",
+          [
+            "living things",
+            "the earth and its rocks",
+            "the stars",
+            "word meanings"
+          ],
+          "Geologists climb mountains and study what the ground is made of.",
+          "Geo means earth, so geology is the study of the earth and its rocks."
+        ],
+        [
+          "The root THERM means heat. A THERMOMETER measures…",
+          "how hot or cold something is",
+          [
+            "how deep water is",
+            "how hot or cold something is",
+            "how fast the wind blows",
+            "how heavy an object is"
+          ],
+          "You use one when you have a fever — or to check the weather.",
+          "Therm means heat, so a thermometer measures temperature — how hot or cold something is."
+        ],
+        [
+          "The root BIO means life. BIOLOGY is the study of…",
+          "living things",
+          [
+            "living things",
+            "the earth",
+            "heat",
+            "machines"
+          ],
+          "Biology class is where you learn about animals, plants, and your own body.",
+          "Bio means life, so biology is the study of living things."
+        ],
+        [
+          "A GEODE is a stone with crystals hidden inside. Its root GEO connects it to…",
+          "the earth",
+          [
+            "the ocean",
+            "the earth",
+            "living plants",
+            "fire"
+          ],
+          "Geodes are found in the ground and dug up.",
+          "Geo means earth. A geode comes from the earth, like geology, the study of the earth."
+        ],
+        [
+          "In 'That spelling test was a piece of cake,' the idiom A PIECE OF CAKE means…",
+          "very easy",
+          [
+            "very easy",
+            "very tasty",
+            "a birthday treat",
+            "a small slice"
+          ],
+          "Nobody is eating dessert here — the idiom is about the test.",
+          "A piece of cake is an idiom meaning very easy — the test took no effort at all."
+        ],
+        [
+          "In 'The welcome game helped BREAK THE ICE at the new school,' break the ice means…",
+          "help people feel comfortable and start talking",
+          [
+            "crack frozen water",
+            "help people feel comfortable and start talking",
+            "start a snowball fight",
+            "open a window"
+          ],
+          "New students were shy and quiet until the game started.",
+          "To break the ice means to help people relax and start talking in a new group."
+        ],
+        [
+          "In 'It is raining cats and dogs out there!' the idiom means…",
+          "raining very hard",
+          [
+            "animals are falling from the sky",
+            "raining very hard",
+            "a storm with thunder only",
+            "the pets are playing outside"
+          ],
+          "Umbrellas up — this is a downpour, not a pet parade.",
+          "Raining cats and dogs is an idiom meaning raining very hard."
+        ],
+        [
+          "In 'Hold your horses — wait for the signal before you run,' HOLD YOUR HORSES means…",
+          "slow down and wait",
+          [
+            "grab the reins tightly",
+            "feed the horses first",
+            "slow down and wait",
+            "ride much faster"
+          ],
+          "There are no real horses at the starting line.",
+          "Hold your horses is an idiom meaning slow down and wait."
+        ],
+        [
+          "In 'Sam stayed home feeling under the weather,' UNDER THE WEATHER means…",
+          "feeling sick",
+          [
+            "standing in the rain",
+            "feeling sick",
+            "watching the sky",
+            "feeling great"
+          ],
+          "Sam is not outside at all — he is resting in bed.",
+          "Under the weather is an idiom meaning feeling sick."
+        ],
+        [
+          "Which group of words all share the prefix UN- meaning NOT?",
+          "unhappy, unfair, unlock",
+          [
+            "unhappy, unfair, unlock",
+            "uncle, union, uniform",
+            "under, upon, until",
+            "unhappy, replay, preview"
+          ],
+          "Watch out: some words just START with the letters u-n without the prefix.",
+          "Unhappy (not happy), unfair (not fair), and unlock (not locked) all use un- meaning not. Uncle and union only start with the same letters."
+        ],
+        [
+          "Which group of words all share the prefix RE- meaning AGAIN?",
+          "rewrite, reread, rebuild",
+          [
+            "ready, really, reason",
+            "rewrite, reread, rebuild",
+            "remember, report, result",
+            "replay, unhappy, fearless"
+          ],
+          "One group is full of do-it-again words.",
+          "Rewrite, reread, and rebuild all use re- meaning again. Words like ready only start with the same letters."
+        ],
+        [
+          "Which word belongs in the -FUL group (full of): careful, joyful, ___?",
+          "grateful",
+          [
+            "grateful",
+            "careless",
+            "hopeless",
+            "fearless"
+          ],
+          "The new word must mean FULL OF something good.",
+          "Grateful means full of thanks, so it joins the -ful group. The others end in -less, meaning without."
+        ],
+        [
+          "Which word belongs in the -LESS group (without): hopeless, careless, ___?",
+          "fearless",
+          [
+            "hopeful",
+            "fearless",
+            "helpful",
+            "joyful"
+          ],
+          "The new word must mean WITHOUT something.",
+          "Fearless means without fear, so it joins the -less group. The others end in -ful, meaning full of."
+        ],
+        [
+          "Which group of words all share the prefix PRE- meaning BEFORE?",
+          "preview, prepay, preheat",
+          [
+            "pretty, present, press",
+            "preview, prepay, preheat",
+            "prepare, pretend, prevent",
+            "precook, misread, disagree"
+          ],
+          "One group is all about doing things ahead of time.",
+          "Preview (see before), prepay (pay before), and preheat (heat before) all use pre- meaning before. Pretty and press only start with the same letters."
+        ]
+      ]
     }
   }
 }

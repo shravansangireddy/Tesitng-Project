@@ -32674,6 +32674,372 @@
           "An accent gives one strum extra strength — often beat 1 — so the pattern has shape and energy."
         ]
       ]
+    },
+    "wordpower": {
+      "title": "Root Digger",
+      "skill": "Greek and Latin roots, connotation, analogies, and reference skills",
+      "questions": [
+        [
+          "The root PORT means to carry. To TRANSPORT something means…",
+          "to carry it from one place to another",
+          [
+            "to carry it from one place to another",
+            "to build it",
+            "to name it",
+            "to hide it"
+          ],
+          "Trucks, trains, and ships all do this job.",
+          "Port means carry, so transport means to carry something from one place to another."
+        ],
+        [
+          "The root DICT means to say. To PREDICT means…",
+          "to say what will happen before it happens",
+          [
+            "to say what will happen before it happens",
+            "to carry something heavy",
+            "to write a story",
+            "to look very closely"
+          ],
+          "A weather reporter does this about tomorrow's rain.",
+          "Dict means say and pre- means before: predict means to say what will happen before it happens."
+        ],
+        [
+          "The root SCRIB means to write. In long-ago Egypt, a SCRIBE was a person whose job was…",
+          "writing records",
+          [
+            "writing records",
+            "carrying water",
+            "building pyramids",
+            "sailing ships"
+          ],
+          "A scribe's tools were a brush and papyrus, not a hammer.",
+          "Scrib means write. A scribe was a professional writer who kept records."
+        ],
+        [
+          "The root SPECT means to look. To INSPECT a bike before a long ride means…",
+          "to look it over carefully",
+          [
+            "to ride it quickly",
+            "to look it over carefully",
+            "to carry it upstairs",
+            "to write its name down"
+          ],
+          "You check the brakes, tires, and chain with your eyes.",
+          "Spect means look, so inspect means to look something over carefully."
+        ],
+        [
+          "The root PORT means to carry. A PORTABLE radio is one that…",
+          "can be carried around easily",
+          [
+            "can be carried around easily",
+            "is very loud",
+            "never needs power",
+            "plays only one song"
+          ],
+          "You can take this radio to the park, the beach, anywhere.",
+          "Portable means able to be carried — built from port, to carry."
+        ],
+        [
+          "Which group of words all use a prefix meaning NOT?",
+          "dislike, dishonest, impossible",
+          [
+            "dislike, dishonest, impossible",
+            "discover, distance, disco",
+            "rewrite, replay, return",
+            "preview, prepay, pretest"
+          ],
+          "One group flips every word into its opposite.",
+          "Dislike (not like), dishonest (not honest), and impossible (not possible) all use a not-prefix. Discover and distance only start with the same letters."
+        ],
+        [
+          "Which group of words all use the suffix -NESS, meaning the state of being?",
+          "happiness, darkness, kindness",
+          [
+            "happiness, darkness, kindness",
+            "quickly, softly, sadly",
+            "teacher, farmer, baker",
+            "harness, witness, unless"
+          ],
+          "One group names qualities you can have.",
+          "Happiness, darkness, and kindness all use -ness to name a state of being. Harness and witness only end with the same letters."
+        ],
+        [
+          "Which word has BOTH a prefix and a suffix?",
+          "unhelpful",
+          [
+            "help",
+            "unhelpful",
+            "helper",
+            "helping"
+          ],
+          "Look for a word part at the front AND at the back.",
+          "Unhelpful has the prefix un- at the front and the suffix -ful at the back."
+        ],
+        [
+          "In UNBREAKABLE, the prefix UN- and the suffix -ABLE work together to mean…",
+          "not able to be broken",
+          [
+            "not able to be broken",
+            "broken many times",
+            "easy to break",
+            "broken long ago"
+          ],
+          "Build the meaning piece by piece: un- + break + -able.",
+          "Un- means not and -able means able to be, so unbreakable means not able to be broken."
+        ],
+        [
+          "Which group of words all mean doing something AGAIN?",
+          "redo, rethink, rewash",
+          [
+            "redo, rethink, rewash",
+            "reduce, refuse, region",
+            "unhappy, unfair, undo",
+            "misplace, misread, mistake"
+          ],
+          "Every word in the right group starts with the same do-it-again prefix.",
+          "Redo, rethink, and rewash all use re- meaning again. Mistake uses mis-, meaning wrongly."
+        ],
+        [
+          "Which word sounds KINDER for someone who watches their money carefully?",
+          "frugal",
+          [
+            "cheap",
+            "stingy",
+            "frugal",
+            "greedy"
+          ],
+          "Three of these words make the person sound bad. One makes them sound wise.",
+          "Frugal has a positive feeling — careful and wise with money. Cheap, stingy, and greedy all sound insulting."
+        ],
+        [
+          "Which word sounds HARSHER for a very thin dog?",
+          "scrawny",
+          [
+            "slim",
+            "thin",
+            "scrawny",
+            "lean"
+          ],
+          "One of these makes the dog sound unhealthy and neglected.",
+          "Scrawny has a harsh, negative feeling. Slim and lean sound fine, and thin is neutral."
+        ],
+        [
+          "A house ad calls a small house 'cozy' instead of 'cramped.' The writer chose 'cozy' because…",
+          "it gives a warm, pleasant feeling",
+          [
+            "it gives a warm, pleasant feeling",
+            "cramped is the kinder word",
+            "the two words have nothing in common",
+            "cozy means the house is bigger"
+          ],
+          "Advertisers pick words for the feelings they create.",
+          "Cozy feels warm and pleasant, while cramped feels uncomfortable — same small size, different feeling."
+        ],
+        [
+          "Which word gives a POSITIVE feeling for a smell?",
+          "fragrance",
+          [
+            "stench",
+            "odor",
+            "fragrance",
+            "smell"
+          ],
+          "Think of perfume versus a garbage bin.",
+          "Fragrance is a pleasant smell. A stench is a terrible one, and odor and smell are neutral."
+        ],
+        [
+          "Two classmates describe the new student: one says 'curious,' the other says 'nosy.' Which word is the COMPLIMENT?",
+          "curious",
+          [
+            "nosy",
+            "curious",
+            "both are compliments",
+            "neither is a compliment"
+          ],
+          "Both words mean wanting to know things — but one sounds rude.",
+          "Curious is positive: eager to learn. Nosy is negative: prying into things that are not your business."
+        ],
+        [
+          "Author is to book as artist is to…",
+          "painting",
+          [
+            "painting",
+            "museum",
+            "brush",
+            "gallery"
+          ],
+          "Match each maker with the thing they make.",
+          "An author makes a book; an artist makes a painting."
+        ],
+        [
+          "Hungry is to eat as thirsty is to…",
+          "drink",
+          [
+            "water",
+            "drink",
+            "cup",
+            "thirst"
+          ],
+          "What action fixes each feeling?",
+          "When you are hungry you eat; when you are thirsty you drink."
+        ],
+        [
+          "Chapter is to book as scene is to…",
+          "play",
+          [
+            "actor",
+            "stage",
+            "play",
+            "ticket"
+          ],
+          "A chapter is one part of a bigger work. A scene is one part of what?",
+          "A chapter is part of a book; a scene is part of a play."
+        ],
+        [
+          "Kennel is to dog as hive is to…",
+          "bee",
+          [
+            "honey",
+            "bee",
+            "bear",
+            "nest"
+          ],
+          "Match each animal with its home.",
+          "A dog lives in a kennel; a bee lives in a hive."
+        ],
+        [
+          "Cautious is to careful as brave is to…",
+          "courageous",
+          [
+            "afraid",
+            "courageous",
+            "quiet",
+            "careless"
+          ],
+          "The first pair are synonyms — find the synonym in the second pair.",
+          "Cautious and careful are synonyms, and brave and courageous are synonyms too."
+        ],
+        [
+          "A dictionary page has guide words MAPLE and MOOSE. Which word belongs on this page?",
+          "melon",
+          [
+            "apple",
+            "melon",
+            "zebra",
+            "kite"
+          ],
+          "The word must fall between MAPLE and MOOSE in alphabetical order.",
+          "Melon comes after maple (ma) and before moose (mo), so it belongs on that page."
+        ],
+        [
+          "Guide words sit at the top of a dictionary page. What do they show?",
+          "the first and last words on that page",
+          [
+            "the first and last words on that page",
+            "the longest words in the book",
+            "the words the author likes best",
+            "only words that start with A"
+          ],
+          "They help you decide if your word is on the page before you scan it.",
+          "Guide words show the first and last entries on a dictionary page."
+        ],
+        [
+          "Which word comes FIRST in a dictionary?",
+          "pencil",
+          [
+            "piano",
+            "pencil",
+            "pizza",
+            "plant"
+          ],
+          "Compare the second letter of each word: e, i, i, l.",
+          "Pencil (pe) beats piano and pizza (pi) and plant (pl) because e comes before i and l."
+        ],
+        [
+          "A page's guide words are TIGER and TURTLE. Which word would you find on this page?",
+          "tulip",
+          [
+            "tent",
+            "tulip",
+            "umbrella",
+            "stone"
+          ],
+          "Check each word against the range from TIGER to TURTLE.",
+          "Tulip (tu-l) falls between tiger (ti) and turtle (tu-r). Tent (te) comes before tiger, and the others fall outside the range."
+        ],
+        [
+          "Why are the words in a dictionary arranged in alphabetical order?",
+          "so readers can find a word quickly by its letters",
+          [
+            "so readers can find a word quickly by its letters",
+            "so the book looks neat",
+            "because short words must always go first",
+            "so every page has the same number of words"
+          ],
+          "Think about how you hunt for one word among thousands.",
+          "Alphabetical order lets readers home in on a word quickly by its letters, page by page."
+        ],
+        [
+          "In 'After weeks of practice, the recital felt like a walk in the park for Lena,' A WALK IN THE PARK means…",
+          "something easy and pleasant",
+          [
+            "something easy and pleasant",
+            "a trip to a real park",
+            "a long, tiring hike",
+            "a race against friends"
+          ],
+          "Lena practiced so much that performing felt effortless.",
+          "A walk in the park is an idiom for something easy and pleasant."
+        ],
+        [
+          "In 'Don't spill the beans about the surprise party!' SPILL THE BEANS means…",
+          "tell the secret",
+          [
+            "drop the dinner",
+            "tell the secret",
+            "cook a meal",
+            "make a mess in the kitchen"
+          ],
+          "There are no beans at this party — only a secret.",
+          "To spill the beans means to tell a secret, usually by accident."
+        ],
+        [
+          "In 'Marcus hit the books the night before the science quiz,' HIT THE BOOKS means…",
+          "started studying",
+          [
+            "dropped his backpack",
+            "started studying",
+            "closed the books loudly",
+            "returned books to the library"
+          ],
+          "The night before a quiz is study time, not punching time.",
+          "To hit the books means to start studying seriously."
+        ],
+        [
+          "In 'The new game console costs an arm and a leg,' COSTS AN ARM AND A LEG means…",
+          "is very expensive",
+          [
+            "is very expensive",
+            "is hard to carry",
+            "comes with extra parts",
+            "is on sale this week"
+          ],
+          "Nobody pays with body parts — the idiom is about the price.",
+          "Costs an arm and a leg is an idiom meaning is very expensive."
+        ],
+        [
+          "In 'Ana has a green thumb — her tomato plants are enormous,' A GREEN THUMB means…",
+          "a talent for growing plants",
+          [
+            "paint on her hands",
+            "a talent for growing plants",
+            "a love of green food",
+            "a sore finger"
+          ],
+          "Look at the evidence after the dash: her plants thrive.",
+          "A green thumb is an idiom for a talent for growing plants."
+        ]
+      ]
     }
   }
 }

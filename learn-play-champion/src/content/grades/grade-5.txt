@@ -29515,6 +29515,372 @@
           "Listening back reveals rushing, dragging, and buzzing strings your ears miss while playing — then you know exactly what to practice."
         ]
       ]
+    },
+    "wordpower": {
+      "title": "Word Master",
+      "skill": "Roots, nuance, analogies, and reference tools at full strength",
+      "questions": [
+        [
+          "The root CHRONO means time. A CHRONOLOGICAL list puts events…",
+          "in the order they happened",
+          [
+            "in the order they happened",
+            "in alphabetical order",
+            "from biggest to smallest",
+            "in a random order"
+          ],
+          "Historians arrange timelines this way.",
+          "Chrono means time, so chronological order is time order — the order events happened."
+        ],
+        [
+          "The root HYDRO means water. HYDROELECTRIC power is made using…",
+          "moving water",
+          [
+            "sunlight",
+            "moving water",
+            "wind",
+            "coal"
+          ],
+          "Dams hold back rivers to make this kind of power.",
+          "Hydro means water: hydroelectric power is electricity made from moving water."
+        ],
+        [
+          "The root AUTO means self. An AUTOBIOGRAPHY is…",
+          "the story of your own life, written by you",
+          [
+            "the story of your own life, written by you",
+            "a book about cars",
+            "a story written by someone else",
+            "a book of maps"
+          ],
+          "The writer and the subject are the same person.",
+          "Auto means self and bio means life: an autobiography is your own life story, written by you."
+        ],
+        [
+          "The root TELE means far. A TELESCOPE helps you…",
+          "see things that are far away",
+          [
+            "hear tiny sounds",
+            "see things that are far away",
+            "measure time exactly",
+            "carry heavy loads"
+          ],
+          "Astronomers point these at distant stars.",
+          "Tele means far and scope means look: a telescope lets you look at faraway things."
+        ],
+        [
+          "The root SCOPE means to look or watch. A MICROSCOPE is a tool that…",
+          "lets you look at things too small to see",
+          [
+            "lets you look at things too small to see",
+            "measures earthquakes",
+            "photographs the stars",
+            "records sound"
+          ],
+          "Micro means tiny — combine the two roots.",
+          "Micro (tiny) + scope (look): a microscope lets you look at things too small to see with your eyes alone."
+        ],
+        [
+          "Which verb makes the sentence sound STRONGEST: 'The storm ___ the little town'?",
+          "devastated",
+          [
+            "bothered",
+            "shook",
+            "devastated",
+            "touched"
+          ],
+          "A writer describing a truly destructive storm picks the most powerful word.",
+          "Devastated is the strongest choice — it means completely destroyed. The others are much weaker."
+        ],
+        [
+          "Which describing word gives a KIND feeling instead of a negative one?",
+          "gentle",
+          [
+            "timid",
+            "meek",
+            "gentle",
+            "fearful"
+          ],
+          "All four words suggest softness or fear — one sounds like a compliment.",
+          "Gentle sounds kind and positive. Timid, meek, and fearful make someone sound weak or scared."
+        ],
+        [
+          "In 'The guard ___ at the gate,' which word makes the guard sound angry and intense?",
+          "glared",
+          [
+            "looked",
+            "glanced",
+            "glared",
+            "noticed"
+          ],
+          "One of these looks comes with a scowl.",
+          "Glared means stared angrily. Looked and noticed are neutral, and glanced is quick and casual."
+        ],
+        [
+          "A review calls a meal 'inexpensive' instead of 'cheap.' The writer chose 'inexpensive' because…",
+          "it gives a more positive feeling",
+          [
+            "it gives a more positive feeling",
+            "it is a shorter word",
+            "cheap can never describe food",
+            "the two words are not related at all"
+          ],
+          "Both words mean low-priced — so the difference must be the feeling.",
+          "Inexpensive feels positive — good value. Cheap can suggest poor quality, a negative feeling."
+        ],
+        [
+          "Which list orders the feelings from weakest to strongest: annoyed, angry, furious?",
+          "annoyed, angry, furious",
+          [
+            "angry, annoyed, furious",
+            "annoyed, angry, furious",
+            "furious, angry, annoyed",
+            "annoyed, furious, angry"
+          ],
+          "Furious is the top of the scale — where does it belong?",
+          "Annoyed is a mild irritation, angry is stronger, and furious is the strongest."
+        ],
+        [
+          "Surgeon is to scalpel as carpenter is to…",
+          "hammer",
+          [
+            "hammer",
+            "wood",
+            "house",
+            "apron"
+          ],
+          "Match each worker with the tool of their trade.",
+          "A surgeon works with a scalpel; a carpenter works with a hammer."
+        ],
+        [
+          "Island is to water as oasis is to…",
+          "desert",
+          [
+            "palm tree",
+            "desert",
+            "sand",
+            "camel"
+          ],
+          "An island is land surrounded by water. An oasis is a wet, green spot surrounded by…",
+          "An island is surrounded by water; an oasis is surrounded by desert."
+        ],
+        [
+          "Famine is to food as drought is to…",
+          "water",
+          [
+            "water",
+            "heat",
+            "farm",
+            "summer"
+          ],
+          "A famine is a severe shortage of one thing. A drought is a severe shortage of another.",
+          "A famine is a shortage of food; a drought is a shortage of water."
+        ],
+        [
+          "Chapter is to book as verse is to…",
+          "poem",
+          [
+            "poem",
+            "novel",
+            "letter",
+            "play"
+          ],
+          "A verse is one section of a larger written work.",
+          "A chapter is a section of a book; a verse is a section of a poem."
+        ],
+        [
+          "Generous is to stingy as humble is to…",
+          "arrogant",
+          [
+            "arrogant",
+            "shy",
+            "kind",
+            "honest"
+          ],
+          "Both pairs are antonyms — opposites.",
+          "Generous and stingy are opposites, and humble and arrogant are opposites."
+        ],
+        [
+          "In 'Time is a thief,' the metaphor suggests that time…",
+          "steals moments from us without asking",
+          [
+            "steals moments from us without asking",
+            "moves too slowly",
+            "is a person who breaks the law",
+            "can be locked in a safe"
+          ],
+          "A metaphor compares two things directly. What does a thief take?",
+          "The metaphor compares time to a thief: moments slip away from us, taken without permission."
+        ],
+        [
+          "Which sentence uses PERSONIFICATION — giving human qualities to something non-human?",
+          "The wind whispered through the pines",
+          [
+            "The wind whispered through the pines",
+            "The wind was very strong last night",
+            "The wind felt like a cold blanket",
+            "The wind blew all night long"
+          ],
+          "Only people can whisper.",
+          "Whispering is a human action, so 'the wind whispered' gives the wind a human quality — personification."
+        ],
+        [
+          "In 'Her smile was sunshine after a week of rain,' the comparison shows her smile was…",
+          "warm and cheering",
+          [
+            "warm and cheering",
+            "bright yellow",
+            "hot and blinding",
+            "gone by evening"
+          ],
+          "Think about how sunshine feels after gloomy days.",
+          "The metaphor says her smile was like sunshine: warm, welcome, and cheering."
+        ],
+        [
+          "In 'His brain was a sponge, soaking up every fact,' the metaphor suggests he…",
+          "learned things quickly and eagerly",
+          [
+            "learned things quickly and eagerly",
+            "had a soft head",
+            "forgot everything at once",
+            "loved taking baths"
+          ],
+          "A sponge absorbs water fast and completely.",
+          "Like a sponge soaking up water, he absorbed facts quickly and eagerly."
+        ],
+        [
+          "Which phrase is a SIMILE?",
+          "as brave as a lion",
+          [
+            "as brave as a lion",
+            "the brave lion roared",
+            "bravery is a fire",
+            "her courage grew wings"
+          ],
+          "A simile compares using the words like or as.",
+          "'As brave as a lion' is a simile — it compares using as. The others are metaphors or plain statements."
+        ],
+        [
+          "You want a fresher word for HAPPY in your story. Which reference tool is built for finding words with similar meanings?",
+          "a thesaurus",
+          [
+            "a dictionary",
+            "a thesaurus",
+            "an atlas",
+            "a glossary"
+          ],
+          "This tool's whole job is synonyms.",
+          "A thesaurus lists synonyms — words with similar meanings — so you can swap in a fresher word."
+        ],
+        [
+          "What does a dictionary entry give you that a thesaurus usually does NOT?",
+          "the word's exact definition and how to pronounce it",
+          [
+            "the word's exact definition and how to pronounce it",
+            "a list of synonyms",
+            "pictures of the word",
+            "stories that use the word"
+          ],
+          "A thesaurus gives word choices; this tool gives the facts about one word.",
+          "A dictionary provides exact definitions, pronunciations, and word histories. A thesaurus mainly offers synonyms."
+        ],
+        [
+          "In a thesaurus, under the entry RAPID you would most likely find…",
+          "speedy, swift, and fast",
+          [
+            "speedy, swift, and fast",
+            "slow, steady, and calm",
+            "how to pronounce rapid",
+            "the history of the word rapid"
+          ],
+          "A thesaurus entry collects words that mean nearly the same thing.",
+          "Under rapid, a thesaurus lists synonyms like speedy, swift, and fast."
+        ],
+        [
+          "A dictionary shows two meanings for BRIGHT: 1. giving off light, 2. smart. In 'A bright student solved the puzzle,' which meaning fits?",
+          "meaning 2 — smart",
+          [
+            "meaning 1 — giving off light",
+            "meaning 2 — smart",
+            "both meanings at the same time",
+            "neither meaning"
+          ],
+          "Students do not glow — check the numbered meanings.",
+          "Here bright means smart: meaning 2. Context tells you which numbered definition fits."
+        ],
+        [
+          "A glossary at the back of a science book is most useful when you need…",
+          "the meaning of a special science word used in that book",
+          [
+            "the meaning of a special science word used in that book",
+            "a synonym for a common word",
+            "the author's biography",
+            "maps of the places in the book"
+          ],
+          "A glossary covers the book's own special vocabulary.",
+          "A glossary defines the special subject words used in that particular book."
+        ],
+        [
+          "In 'The ARID desert receives almost no rain; it is one of the driest places on Earth,' the restatement clue tells you arid means…",
+          "dry",
+          [
+            "dry",
+            "sandy",
+            "hot",
+            "empty"
+          ],
+          "The second half of the sentence restates the idea with simpler words.",
+          "The sentence restates it: driest places on Earth — arid means dry."
+        ],
+        [
+          "In 'Unlike the bustling market, the library at dawn was TRANQUIL,' the antonym clue tells you tranquil means…",
+          "calm and quiet",
+          [
+            "busy and loud",
+            "calm and quiet",
+            "old and dusty",
+            "bright and warm"
+          ],
+          "Unlike means the library was the opposite of the bustling market.",
+          "Unlike signals an antonym clue: the opposite of bustling is calm and quiet, so tranquil means calm and quiet."
+        ],
+        [
+          "In 'The scientist's PREDICTION — her careful guess about the eclipse — proved correct,' prediction means…",
+          "a careful guess about what will happen",
+          [
+            "a careful guess about what will happen",
+            "a proven fact",
+            "a difficult question",
+            "a detailed drawing"
+          ],
+          "The words between the dashes define the term.",
+          "The sentence defines it directly: a prediction is a careful guess about what will happen."
+        ],
+        [
+          "In 'He was ELATED — thrilled beyond words — when the letter arrived,' elated means…",
+          "extremely happy",
+          [
+            "extremely happy",
+            "deeply tired",
+            "a bit nervous",
+            "very confused"
+          ],
+          "A synonym clue hides between the dashes.",
+          "Thrilled beyond words is the synonym clue: elated means extremely happy."
+        ],
+        [
+          "In 'The instructions were VAGUE, not clear and specific like the ones before,' vague means…",
+          "unclear",
+          [
+            "lengthy",
+            "unclear",
+            "helpful",
+            "exact"
+          ],
+          "The words 'not clear and specific' set up an opposite.",
+          "The antonym clue gives it away: not clear means vague means unclear."
+        ]
+      ]
     }
   }
 }

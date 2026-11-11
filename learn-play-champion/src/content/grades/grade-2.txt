@@ -32598,6 +32598,372 @@
           "Facing-you pictures keep every chord diagram consistent: thick string on the left, thin string on the right."
         ]
       ]
+    },
+    "wordpower": {
+      "title": "Word Parts Power",
+      "skill": "Prefixes, suffixes, homophones, and context clues",
+      "questions": [
+        [
+          "What does PREHEAT mean?",
+          "to heat ahead of time",
+          [
+            "to heat ahead of time",
+            "to heat again",
+            "to never heat",
+            "to heat far too much"
+          ],
+          "A baker does this to the oven BEFORE the bread goes in.",
+          "Pre- means before, so preheat means to heat ahead of time."
+        ],
+        [
+          "What does REBUILD mean?",
+          "build again",
+          [
+            "build before",
+            "build again",
+            "never build",
+            "build quickly"
+          ],
+          "The tower fell down, so the class will do this to it.",
+          "Re- means again, so rebuild means build again."
+        ],
+        [
+          "What does UNSAFE mean?",
+          "not safe",
+          [
+            "very safe",
+            "safe again",
+            "not safe",
+            "safe and sound"
+          ],
+          "Un- flips a word to its opposite.",
+          "Un- means not, so unsafe means not safe."
+        ],
+        [
+          "What does PREVIEW mean?",
+          "to see something before others do",
+          [
+            "to see something before others do",
+            "to see something again",
+            "to stop seeing",
+            "to see in the dark"
+          ],
+          "Movie previews let you peek at a film before it opens.",
+          "Pre- means before and view means see, so preview means to see something before others do."
+        ],
+        [
+          "In PREPAY, the prefix PRE- means…",
+          "before",
+          [
+            "again",
+            "not",
+            "before",
+            "after"
+          ],
+          "You prepay for tickets before the show happens.",
+          "In prepay, pre- means before: you pay before."
+        ],
+        [
+          "What does HOPEFUL mean?",
+          "full of hope",
+          [
+            "full of hope",
+            "without hope",
+            "hope again",
+            "a tiny hope"
+          ],
+          "The suffix -ful means full of.",
+          "Hopeful means full of hope — expecting good things."
+        ],
+        [
+          "What does FEARLESS mean?",
+          "without fear",
+          [
+            "full of fear",
+            "afraid of everything",
+            "without fear",
+            "afraid one time"
+          ],
+          "The suffix -less means without.",
+          "Fearless means without fear — brave."
+        ],
+        [
+          "What does HELPFUL mean?",
+          "full of help",
+          [
+            "needing help",
+            "full of help",
+            "helped yesterday",
+            "never helping"
+          ],
+          "A helpful classmate is bursting with ways to assist others.",
+          "Helpful means full of help — ready to help others."
+        ],
+        [
+          "What does USELESS mean?",
+          "without any use",
+          [
+            "full of uses",
+            "without any use",
+            "used many times",
+            "used again"
+          ],
+          "A broken umbrella on a rainy day is like this.",
+          "Useless means without any use — good for nothing."
+        ],
+        [
+          "In HOMELESS, the suffix -LESS means…",
+          "without",
+          [
+            "full of",
+            "without",
+            "again",
+            "before"
+          ],
+          "Think about what homeless, fearless, and hopeless all share.",
+          "The suffix -less means without: homeless means without a home."
+        ],
+        [
+          "In 'Put the blocks over ___ on the shelf,' which word fits?",
+          "there",
+          [
+            "their",
+            "there",
+            "they're",
+            "theirs"
+          ],
+          "This word points to a place.",
+          "There points to a place. Their shows that something belongs to them."
+        ],
+        [
+          "In '___ dog loves to chase balls,' which word shows the dog belongs to them?",
+          "Their",
+          [
+            "There",
+            "Their",
+            "They're",
+            "Theirs"
+          ],
+          "The dog is theirs — it belongs to them.",
+          "Their shows belonging: their dog. There points to a place."
+        ],
+        [
+          "In 'You got every answer ___!' which word means CORRECT?",
+          "right",
+          [
+            "write",
+            "right",
+            "rite",
+            "ring"
+          ],
+          "The teacher is praising correct answers.",
+          "Right can mean correct. Write means to put words on paper."
+        ],
+        [
+          "In 'Please ___ your name at the top of the page,' which word fits?",
+          "write",
+          [
+            "right",
+            "write",
+            "wrong",
+            "read"
+          ],
+          "You need a pencil for this job.",
+          "Write means to put words on paper. Right means correct or a direction."
+        ],
+        [
+          "In 'Turn ___ at the big oak tree,' which word means the direction?",
+          "right",
+          [
+            "write",
+            "right",
+            "bright",
+            "tonight"
+          ],
+          "It is the opposite direction of left.",
+          "Right can mean a direction — the opposite of left. Write is for pencils and paper."
+        ],
+        [
+          "Use the clue: 'A HABITAT — the place where a living thing lives — gives it food and shelter.' Habitat means…",
+          "the place where a living thing lives",
+          [
+            "a kind of food",
+            "the place where a living thing lives",
+            "a baby animal",
+            "a long winter sleep"
+          ],
+          "The sentence defines the word right inside itself, between the dashes.",
+          "The sentence gives the definition: a habitat is the place where a living thing lives."
+        ],
+        [
+          "Use the example clue: 'NOCTURNAL animals, such as owls and bats, are awake at night.' Nocturnal means…",
+          "awake and active at night",
+          [
+            "sleeping all day and night",
+            "awake and active at night",
+            "afraid of the dark",
+            "hunting only in winter"
+          ],
+          "Owls and bats are the examples — think about when they are busy.",
+          "The examples give it away: nocturnal means awake and active at night."
+        ],
+        [
+          "Use the clue: 'The ENORMOUS elephant — it was as big as a small bus — barely fit through the gate.' Enormous means…",
+          "very, very big",
+          [
+            "very, very big",
+            "very small",
+            "very quiet",
+            "very old"
+          ],
+          "Compare the elephant to the bus in the sentence.",
+          "The comparison to a bus is the clue: enormous means very, very big."
+        ],
+        [
+          "Use the clue: 'She SCATTERED the seeds, spreading them all over the garden bed.' Scattered means…",
+          "spread around",
+          [
+            "picked up one by one",
+            "spread around",
+            "watered carefully",
+            "counted twice"
+          ],
+          "The words right after scattered explain it.",
+          "The sentence explains itself: scattered means spread around."
+        ],
+        [
+          "Use the clue: 'A SPROUT, a tiny new plant just starting to grow, pushed through the soil.' Sprout means…",
+          "a tiny new plant",
+          [
+            "a garden tool",
+            "a tiny new plant",
+            "a ripe fruit",
+            "a deep hole"
+          ],
+          "The definition hides right after the word, between commas.",
+          "The sentence defines it: a sprout is a tiny new plant just starting to grow."
+        ],
+        [
+          "What is the difference between BIG and HUGE?",
+          "Huge means much bigger than big",
+          [
+            "They mean exactly the same thing",
+            "Huge means much bigger than big",
+            "Huge means smaller than big",
+            "Huge means heavy, not big"
+          ],
+          "Both words are about size, but one is much stronger.",
+          "Huge is a stronger size word: a huge whale is much bigger than a big dog."
+        ],
+        [
+          "What is the difference between LOOK and STARE?",
+          "Stare means to look for a long time without looking away",
+          [
+            "Stare means to look for a long time without looking away",
+            "Stare means to close your eyes",
+            "Look means to use a telescope",
+            "They are both about listening"
+          ],
+          "One of these can feel rude if you do it at a stranger.",
+          "To stare is to look for a long time without looking away — stronger than just look."
+        ],
+        [
+          "What is the difference between WALK and MARCH?",
+          "March means to walk with strong, even steps",
+          [
+            "March is only the name of a month",
+            "March means to walk with strong, even steps",
+            "Walk means to run fast",
+            "March means to walk only on grass"
+          ],
+          "Think of soldiers in a parade moving together.",
+          "To march is to walk with strong, even, regular steps, like soldiers."
+        ],
+        [
+          "What is the difference between A LITTLE HUNGRY and STARVING?",
+          "Starving means very, very hungry",
+          [
+            "Starving means not hungry at all",
+            "Starving means very, very hungry",
+            "A little hungry is the stronger feeling",
+            "They mean exactly the same"
+          ],
+          "One word is for a small snack feeling; the other is for an empty, growling stomach.",
+          "Starving is a much stronger word: very, very hungry."
+        ],
+        [
+          "What is the difference between TIRED and EXHAUSTED?",
+          "Exhausted means completely worn out, much more than tired",
+          [
+            "Exhausted means completely worn out, much more than tired",
+            "Tired is the stronger word",
+            "Exhausted means ready to play",
+            "They are opposites"
+          ],
+          "After a whole day of hiking, which word fits best?",
+          "Exhausted is stronger than tired — it means completely worn out."
+        ],
+        [
+          "Bird is to nest as dog is to…",
+          "kennel",
+          [
+            "kennel",
+            "bone",
+            "bark",
+            "leash"
+          ],
+          "A nest is where a bird sleeps. Where does a dog sleep?",
+          "A bird rests in a nest; a dog rests in a kennel. Both pairs match an animal with its home."
+        ],
+        [
+          "Fish is to swim as bird is to…",
+          "fly",
+          [
+            "sing",
+            "fly",
+            "nest",
+            "egg"
+          ],
+          "How does each animal move through its home?",
+          "A fish moves by swimming; a bird moves by flying."
+        ],
+        [
+          "Puppy is to dog as kitten is to…",
+          "cat",
+          [
+            "cat",
+            "dog",
+            "mouse",
+            "hen"
+          ],
+          "A puppy is a baby dog. A kitten is a baby…",
+          "Puppy and kitten are babies; a puppy grows into a dog, and a kitten grows into a cat."
+        ],
+        [
+          "Day is to sun as night is to…",
+          "moon",
+          [
+            "moon",
+            "cloud",
+            "rain",
+            "wind"
+          ],
+          "Which sky light belongs to each time?",
+          "The sun lights the day; the moon lights the night."
+        ],
+        [
+          "Teacher is to school as doctor is to…",
+          "hospital",
+          [
+            "patient",
+            "hospital",
+            "medicine",
+            "nurse"
+          ],
+          "Where does each person do their job?",
+          "A teacher works at a school; a doctor works at a hospital."
+        ]
+      ]
     }
   }
 }

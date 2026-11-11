@@ -23958,6 +23958,372 @@
           "The thick top line stands for the nut — the little bar where the strings leave the head and start down the neck."
         ]
       ]
+    },
+    "wordpower": {
+      "title": "Clues in Sentences",
+      "skill": "Use sentence clues, word parts, and word friends",
+      "questions": [
+        [
+          "In 'The fox was SWIFT as it raced through the trees,' swift means…",
+          "fast",
+          [
+            "fast",
+            "sleepy",
+            "careful",
+            "lost"
+          ],
+          "Raced is the clue — the fox was moving quickly.",
+          "Swift means fast. The word raced in the sentence is the clue."
+        ],
+        [
+          "In 'Grandma gave me a TINY seed for the garden,' tiny means…",
+          "very small",
+          [
+            "very wet",
+            "very small",
+            "very loud",
+            "very old"
+          ],
+          "A seed fits on your fingertip.",
+          "Tiny means very small."
+        ],
+        [
+          "In 'Ben was BRAVE when he spoke in front of the class,' brave means…",
+          "not afraid to try",
+          [
+            "ready to nap",
+            "not afraid to try",
+            "very hungry",
+            "good at drawing"
+          ],
+          "Speaking in front of everyone can feel scary, but Ben did it anyway.",
+          "Brave means doing something even when it feels scary — not afraid to try."
+        ],
+        [
+          "In 'The clown made everyone GIGGLE,' giggle means…",
+          "laugh in a silly way",
+          [
+            "cry quietly",
+            "laugh in a silly way",
+            "run in circles",
+            "eat a snack"
+          ],
+          "Clowns make happy sounds come out of the audience.",
+          "To giggle is to laugh in a silly, bubbly way."
+        ],
+        [
+          "In 'Please SHUT the gate so the goats stay in,' shut means…",
+          "close",
+          [
+            "open",
+            "paint",
+            "close",
+            "climb"
+          ],
+          "The goats must not get out, so the gate must not stay open.",
+          "Shut means close."
+        ],
+        [
+          "The tower is TALL, but the garden wall beside it is the opposite. The opposite of tall is…",
+          "short",
+          [
+            "short",
+            "wide",
+            "stone",
+            "old"
+          ],
+          "A garden wall you can see over is not tall at all.",
+          "Tall and short are opposites about height."
+        ],
+        [
+          "Her first drawing was MESSY, but the new one is the opposite. The opposite of messy is…",
+          "neat",
+          [
+            "colorful",
+            "neat",
+            "big",
+            "funny"
+          ],
+          "In the new drawing, every line is in its place.",
+          "Messy and neat are opposites. Neat means tidy and in order."
+        ],
+        [
+          "The morning was BRIGHT, but by noon the storm sky turned the opposite. The opposite of bright is…",
+          "dim",
+          [
+            "dim",
+            "windy",
+            "busy",
+            "warm"
+          ],
+          "Storm clouds take the light away.",
+          "Bright and dim are opposites about light."
+        ],
+        [
+          "This puzzle is EASY — I finished it in a minute! Yesterday's puzzle was the opposite. The opposite of easy is…",
+          "hard",
+          [
+            "fun",
+            "hard",
+            "short",
+            "new"
+          ],
+          "Yesterday's puzzle took all afternoon and lots of thinking.",
+          "Easy and hard are opposites about how much work something takes."
+        ],
+        [
+          "The puppy is YOUNG, but the farm dog is the opposite. The opposite of young is…",
+          "old",
+          [
+            "small",
+            "playful",
+            "old",
+            "brown"
+          ],
+          "The farm dog has lived many, many years.",
+          "Young and old are opposites about age."
+        ],
+        [
+          "In 'We walked ___ school together,' which word fits?",
+          "to",
+          [
+            "too",
+            "two",
+            "to",
+            "toe"
+          ],
+          "This word points toward a place.",
+          "To points toward a place: walked to school. Two is a number; too means also."
+        ],
+        [
+          "In 'I want to play, ___!' which word means ALSO?",
+          "too",
+          [
+            "to",
+            "two",
+            "too",
+            "toe"
+          ],
+          "The speaker wants to join in as well.",
+          "Too can mean also. To points the way, and two is a number."
+        ],
+        [
+          "In 'The hen laid ___ eggs,' which word is the number word?",
+          "two",
+          [
+            "to",
+            "too",
+            "toe",
+            "two"
+          ],
+          "Count the eggs: one, then this number.",
+          "Two is the number word. It sounds like to and too but counts things."
+        ],
+        [
+          "In 'Please come ___ and sit by me,' which word means THIS PLACE?",
+          "here",
+          [
+            "hear",
+            "here",
+            "hare",
+            "hair"
+          ],
+          "The speaker is pointing to a spot right beside them.",
+          "Here means this place. Hear is what ears do."
+        ],
+        [
+          "In 'I can ___ the birds singing,' which word means to notice with your ears?",
+          "hear",
+          [
+            "here",
+            "hear",
+            "heart",
+            "herd"
+          ],
+          "Singing is a sound, and sounds reach you through your ears.",
+          "Hear means to notice a sound with your ears. Here means this place."
+        ],
+        [
+          "What does UNHAPPY mean?",
+          "not happy",
+          [
+            "very happy",
+            "not happy",
+            "happy again",
+            "happy and loud"
+          ],
+          "The prefix un- means not. Put it in front of happy.",
+          "Un- means not, so unhappy means not happy."
+        ],
+        [
+          "What does REREAD mean?",
+          "read again",
+          [
+            "read again",
+            "never read",
+            "read out loud",
+            "read a brand-new book"
+          ],
+          "The prefix re- means again. Your favorite story is worth it!",
+          "Re- means again, so reread means read again."
+        ],
+        [
+          "What does UNLOCK mean?",
+          "to open something that was locked",
+          [
+            "to keep something locked tight",
+            "to open something that was locked",
+            "to buy a new lock",
+            "to lose a key"
+          ],
+          "Un- can undo something: the lock is no longer holding the door shut.",
+          "Unlock means to undo a lock — to open something that was locked."
+        ],
+        [
+          "What does REPLAY mean?",
+          "play again",
+          [
+            "stop playing",
+            "play again",
+            "play alone",
+            "play outside"
+          ],
+          "The game was so fun that everyone wants another turn.",
+          "Re- means again, so replay means play again."
+        ],
+        [
+          "What does UNTIE mean?",
+          "to undo a knot",
+          [
+            "to tie a knot",
+            "to undo a knot",
+            "to cut the rope in half",
+            "to hold a knot up high"
+          ],
+          "Think of your shoelaces when it is time to take your shoes off.",
+          "Untie means to undo a knot — the opposite of tying it."
+        ],
+        [
+          "In 'A bat swooped out of the cave at dusk,' BAT means…",
+          "a flying animal",
+          [
+            "a flying animal",
+            "a hitting stick",
+            "a kind of boat",
+            "a winter hat"
+          ],
+          "Caves are where these animals sleep during the day.",
+          "In this sentence, bat is the flying animal. The same word can also mean a hitting stick."
+        ],
+        [
+          "In 'He hit the ball hard with the bat,' BAT means…",
+          "a hitting stick",
+          [
+            "a flying animal",
+            "a hitting stick",
+            "a kind of boat",
+            "a winter hat"
+          ],
+          "Think about what a player holds during a baseball game.",
+          "Here bat is the stick used to hit a ball. The sentence tells you which meaning fits."
+        ],
+        [
+          "In 'The bark of the pine tree is rough and thick,' BARK means…",
+          "the covering of a tree trunk",
+          [
+            "a dog's sound",
+            "the covering of a tree trunk",
+            "a boat ride",
+            "a loud song"
+          ],
+          "The sentence talks about a pine tree, not a dog.",
+          "Bark can mean a dog's sound, but here it means the rough covering of a tree trunk."
+        ],
+        [
+          "In 'Please wave to Grandpa from the window,' WAVE means…",
+          "move your hand in greeting",
+          [
+            "ocean water rolling in",
+            "move your hand in greeting",
+            "a curvy line in a drawing",
+            "a strong wind"
+          ],
+          "Grandpa is a person, and people greet each other with their hands.",
+          "Wave can mean ocean water, but here it means moving your hand to say hello."
+        ],
+        [
+          "In 'We sat on the bank of the quiet stream,' BANK means…",
+          "the ground beside the water",
+          [
+            "a place that keeps money",
+            "the ground beside the water",
+            "a glass piggy jar",
+            "a tall safe"
+          ],
+          "A stream has ground along its edges where you can sit.",
+          "Bank can mean a money place, but beside a stream it means the ground at the water's edge."
+        ],
+        [
+          "Which list puts the heat words in order from least hot to most hot?",
+          "warm, hot, boiling",
+          [
+            "hot, warm, boiling",
+            "warm, hot, boiling",
+            "boiling, hot, warm",
+            "warm, boiling, hot"
+          ],
+          "Boiling water bubbles and steams — it is the hottest of all.",
+          "Warm is a little heat, hot is more, and boiling is the most heat."
+        ],
+        [
+          "Which list puts the size words in order from smallest to biggest?",
+          "small, big, huge",
+          [
+            "big, small, huge",
+            "huge, big, small",
+            "small, big, huge",
+            "small, huge, big"
+          ],
+          "Huge is the biggest word on the list.",
+          "Small, then big, then huge — each word means a bigger size."
+        ],
+        [
+          "Of SIP, DRINK, and GULP, which word shows drinking the fastest, with the biggest swallows?",
+          "gulp",
+          [
+            "sip",
+            "drink",
+            "gulp",
+            "taste"
+          ],
+          "A sip is tiny. One of these words means swallowing a lot, quickly.",
+          "Gulp is the strongest word — drinking fast with big swallows. A sip is the weakest."
+        ],
+        [
+          "Of WHISPER, TALK, and SHOUT, which word is the loudest?",
+          "shout",
+          [
+            "whisper",
+            "talk",
+            "shout",
+            "listen"
+          ],
+          "One of these can be heard across a whole playground.",
+          "Shout is the loudest. Whisper is the quietest, and talk is in between."
+        ],
+        [
+          "Which list orders the sweet words from weakest to strongest?",
+          "a little sweet, sweet, sweetest",
+          [
+            "sweetest, sweet, a little sweet",
+            "a little sweet, sweet, sweetest",
+            "sweet, a little sweet, sweetest",
+            "a little sweet, sweetest, sweet"
+          ],
+          "Start with the weakest — just a little bit sweet.",
+          "Words have strengths: a little sweet is weakest, sweet is stronger, and sweetest is strongest."
+        ]
+      ]
     }
   }
 }

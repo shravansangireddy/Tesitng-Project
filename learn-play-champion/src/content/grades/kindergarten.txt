@@ -19992,6 +19992,312 @@
           "People play guitar to make music and share it — with family, friends, and anyone who loves a song."
         ]
       ]
+    },
+    "wordpower": {
+      "title": "Word Detective",
+      "skill": "Match words that go together and spot sound-alike words",
+      "questions": [
+        [
+          "In 'The puppy is TINY,' which word means almost the same as tiny?",
+          "small",
+          [
+            "small",
+            "loud",
+            "wet",
+            "fast"
+          ],
+          "Tiny puppies can fit in your two hands.",
+          "Tiny and small both mean not big at all."
+        ],
+        [
+          "In 'Mom was GLAD to see us,' which word means almost the same as glad?",
+          "happy",
+          [
+            "angry",
+            "happy",
+            "sleepy",
+            "hungry"
+          ],
+          "Think about the smile on Mom's face.",
+          "Glad and happy both name a good, cheerful feeling."
+        ],
+        [
+          "In 'Please be QUIET in the library,' which word means almost the same as quiet?",
+          "silent",
+          [
+            "noisy",
+            "silent",
+            "busy",
+            "silly"
+          ],
+          "In a library, nobody should be making sounds.",
+          "Quiet and silent both mean making no sound."
+        ],
+        [
+          "In 'The rabbit can LEAP over the log,' which word means almost the same as leap?",
+          "jump",
+          [
+            "sleep",
+            "jump",
+            "dig",
+            "hide"
+          ],
+          "A rabbit's long legs help it do this over a log.",
+          "To leap is to jump up or over something."
+        ],
+        [
+          "In 'We stared at the BIG elephant,' which word means almost the same as big?",
+          "huge",
+          [
+            "tiny",
+            "huge",
+            "thin",
+            "soft"
+          ],
+          "An elephant is the biggest land animal — pick the biggest word.",
+          "Big and huge both mean very large; huge is even stronger."
+        ],
+        [
+          "In 'The turtle is SLOW,' what is the opposite of slow?",
+          "fast",
+          [
+            "fast",
+            "sleepy",
+            "green",
+            "careful"
+          ],
+          "A cheetah moves in the opposite way from a turtle.",
+          "Slow and fast are opposites about speed."
+        ],
+        [
+          "In 'Her hands are CLEAN after washing,' what is the opposite of clean?",
+          "dirty",
+          [
+            "warm",
+            "dirty",
+            "dry",
+            "soft"
+          ],
+          "After playing in mud, hands are the opposite of clean.",
+          "Clean and dirty are opposites."
+        ],
+        [
+          "In 'This box is HEAVY,' what is the opposite of heavy?",
+          "light",
+          [
+            "big",
+            "square",
+            "light",
+            "new"
+          ],
+          "A feather is the opposite of a heavy box.",
+          "Heavy and light are opposites about how much something weighs."
+        ],
+        [
+          "In 'The puppy is AWAKE and ready to play,' what is the opposite of awake?",
+          "asleep",
+          [
+            "asleep",
+            "happy",
+            "noisy",
+            "young"
+          ],
+          "When the puppy's eyes close for a nap, it is the opposite of awake.",
+          "Awake and asleep are opposites."
+        ],
+        [
+          "In 'Turn the flashlight ON,' what is the opposite of on?",
+          "off",
+          [
+            "up",
+            "off",
+            "bright",
+            "round"
+          ],
+          "When the light goes dark, the flashlight is…",
+          "On and off are opposites for switches and lights."
+        ],
+        [
+          "Which word means the salty water where fish swim and waves roll?",
+          "sea",
+          [
+            "see",
+            "sea",
+            "bee",
+            "pea"
+          ],
+          "It sounds exactly like the word for using your eyes.",
+          "The sea is the salty ocean water. It sounds like see, but see is what eyes do."
+        ],
+        [
+          "Which word means what your eyes do when you look at a picture?",
+          "see",
+          [
+            "sea",
+            "see",
+            "tea",
+            "key"
+          ],
+          "It sounds exactly like the word for the ocean.",
+          "See is what your eyes do. It sounds like sea, the ocean water."
+        ],
+        [
+          "Which word means the hot, bright light in the sky that warms us all day?",
+          "sun",
+          [
+            "son",
+            "sun",
+            "fun",
+            "run"
+          ],
+          "It sounds like the word for a boy in a family.",
+          "The sun warms the Earth. It sounds like son, a boy in a family, but it means the sky light."
+        ],
+        [
+          "In 'I have ___ hands,' which sound-alike word means the number 2?",
+          "two",
+          [
+            "to",
+            "too",
+            "two",
+            "toe"
+          ],
+          "Count: one, then this number.",
+          "Two is the number word. To and too sound the same but mean different things."
+        ],
+        [
+          "In 'We are going ___ the park,' which little word fits?",
+          "to",
+          [
+            "two",
+            "too",
+            "to",
+            "toe"
+          ],
+          "This word points the way — it is not a number and does not mean 'also.'",
+          "To points toward a place. Two is a number, and too means 'also' or 'more than enough.'"
+        ],
+        [
+          "Which word is made by putting 'snow' and 'ball' together?",
+          "snowball",
+          [
+            "snowball",
+            "snowfall",
+            "balloon",
+            "snowman"
+          ],
+          "You throw this soft white ball in winter.",
+          "Snow + ball makes snowball."
+        ],
+        [
+          "Which two small words join to make BEDROOM?",
+          "bed + room",
+          [
+            "bed + room",
+            "be + droom",
+            "bedr + oom",
+            "bed + moon"
+          ],
+          "It is the room where your bed is.",
+          "Bedroom is a compound word made of bed + room."
+        ],
+        [
+          "Which word is made by putting 'play' and 'ground' together?",
+          "playground",
+          [
+            "playground",
+            "playhouse",
+            "groundhog",
+            "playtime"
+          ],
+          "It has slides and swings outside.",
+          "Play + ground makes playground."
+        ],
+        [
+          "Which word is made by putting 'star' and 'fish' together?",
+          "starfish",
+          [
+            "starlight",
+            "starfish",
+            "goldfish",
+            "starship"
+          ],
+          "This sea animal has five arms and looks like a star.",
+          "Star + fish makes starfish."
+        ],
+        [
+          "Which two small words join to make POPCORN?",
+          "pop + corn",
+          [
+            "pop + corn",
+            "po + pcorn",
+            "pop + cone",
+            "pops + corn"
+          ],
+          "Heat makes the kernels burst open — listen for the popping sound.",
+          "Popcorn is a compound word made of pop + corn."
+        ],
+        [
+          "Which one does NOT belong with carrot, potato, and bean?",
+          "cookie",
+          [
+            "pea",
+            "cookie",
+            "corn",
+            "onion"
+          ],
+          "Three of these grow in a garden as vegetables.",
+          "Carrots, potatoes, beans, peas, corn, and onions are vegetables. A cookie is a baked treat."
+        ],
+        [
+          "Which one belongs with bus, train, and car?",
+          "airplane",
+          [
+            "apple",
+            "airplane",
+            "shoe",
+            "book"
+          ],
+          "All of these carry people from place to place.",
+          "Buses, trains, cars, and airplanes are vehicles that carry people."
+        ],
+        [
+          "Which one does NOT belong with circle, square, and triangle?",
+          "banana",
+          [
+            "rectangle",
+            "oval",
+            "banana",
+            "diamond"
+          ],
+          "Three of these are shapes you can draw with lines.",
+          "Circles, squares, triangles, rectangles, ovals, and diamonds are shapes. A banana is a fruit."
+        ],
+        [
+          "Which one belongs with winter, spring, and summer?",
+          "fall",
+          [
+            "Monday",
+            "fall",
+            "breakfast",
+            "night"
+          ],
+          "These four take turns all year long.",
+          "Winter, spring, summer, and fall are the four seasons."
+        ],
+        [
+          "Which one does NOT belong with rain, snow, and wind?",
+          "puppy",
+          [
+            "cloud",
+            "puppy",
+            "storm",
+            "hail"
+          ],
+          "Three of these are kinds of weather.",
+          "Rain, snow, wind, clouds, storms, and hail are weather. A puppy is an animal."
+        ]
+      ]
     }
   }
 }
