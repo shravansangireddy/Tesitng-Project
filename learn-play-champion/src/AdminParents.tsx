@@ -5,6 +5,7 @@ import {
   ADMIN_PARENTS_UNAVAILABLE_MESSAGE,
   fetchAdminParents,
   isAdminParentsUnavailable,
+  sendParentReminder,
   type AdminParent,
 } from "./admin-parents";
 
@@ -37,6 +38,8 @@ export default function AdminParents({ client }: { client: SupabaseClient }) {
   const [error, setError] = useState("");
   const [unavailable, setUnavailable] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [sendingId, setSendingId] = useState<string | null>(null);
+  const [reminderNotes, setReminderNotes] = useState<Record<string, { ok: boolean; text: string }>>({});
   const active = useRef(true), inFlight = useRef(false);
   useEffect(() => { active.current = true; return () => { active.current = false; }; }, []);
   async function load() {
@@ -55,6 +58,38 @@ export default function AdminParents({ client }: { client: SupabaseClient }) {
         else setError(failure instanceof Error ? failure.message : "Could not load registered parents.");
       }
     } finally { inFlight.current = false; if (active.current) setBusy(false); }
+  }
+  async function remind(row: AdminParent) {
+    if (sendingId) return;
+    setSendingId(row.parentUserId);
+    const result = await sendParentReminder(client, row.parentUserId);
+    if (!active.current) return;
+    setSendingId(null);
+    if (result.sent) {
+      setReminderNotes((notes) => ({
+        ...notes,
+        [row.parentUserId]: { ok: true, text: `Reminder sent to ${row.email}.` },
+      }));
+      // Refresh so the row's reminder status (count + last sent)
+      // reflects the send the function just recorded.
+      await load();
+    } else if (result.reason === "not-configured") {
+      setReminderNotes((notes) => ({
+        ...notes,
+        [row.parentUserId]: {
+          ok: false,
+          text: "Email isn't switched on yet, so no reminder was sent.",
+        },
+      }));
+    } else {
+      setReminderNotes((notes) => ({
+        ...notes,
+        [row.parentUserId]: {
+          ok: false,
+          text: "The reminder couldn't be sent — please try again later.",
+        },
+      }));
+    }
   }
   return <section className="payment-admin admin-parents" aria-label="Registered parents admin panel">
     <h2>Registered parents</h2>
@@ -77,6 +112,23 @@ export default function AdminParents({ client }: { client: SupabaseClient }) {
               {task.done ? "✓" : "⏳"} {task.title}
             </li>)}
           </ul> : null}
+          <p className="admin-parents-reminder">
+            {row.reminderCount > 0 && row.lastReminderAt
+              ? `Reminder sent ${formatDate(row.lastReminderAt)}${row.reminderCount > 1 ? ` · ×${row.reminderCount}` : ""}`
+              : "No reminder sent yet"}
+          </p>
+          <button
+            className="button secondary"
+            disabled={sendingId !== null}
+            onClick={() => void remind(row)}
+          >
+            {sendingId === row.parentUserId ? "Sending…" : "📧 Remind to add kids"}
+          </button>
+          {reminderNotes[row.parentUserId] && (
+            <p role={reminderNotes[row.parentUserId].ok ? "status" : "alert"}>
+              {reminderNotes[row.parentUserId].text}
+            </p>
+          )}
         </li>)}
       </ul> : <p role="status">No parents registered yet.</p>}
     </>}

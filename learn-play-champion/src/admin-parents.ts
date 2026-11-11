@@ -26,6 +26,8 @@ export interface AdminParent {
   taskCount: number;
   tasksDone: number;
   tasks: AdminParentTask[];
+  reminderCount: number;
+  lastReminderAt: string | null;
 }
 
 /** Shown when the admin_registered_parents function is not deployed yet. */
@@ -104,6 +106,12 @@ export function parseAdminParents(value: unknown): AdminParent[] {
       !count(row.kid_count) ||
       !count(row.task_count) ||
       !count(row.tasks_done) ||
+      !count(row.reminder_count) ||
+      !(
+        row.last_reminder_at === null ||
+        (typeof row.last_reminder_at === "string" &&
+          Number.isFinite(Date.parse(row.last_reminder_at)))
+      ) ||
       !Array.isArray(row.task_titles) ||
       row.task_titles.length > 10000
     )
@@ -138,6 +146,9 @@ export function parseAdminParents(value: unknown): AdminParent[] {
       taskCount: Number(row.task_count),
       tasksDone: Number(row.tasks_done),
       tasks,
+      reminderCount: Number(row.reminder_count),
+      lastReminderAt:
+        typeof row.last_reminder_at === "string" ? row.last_reminder_at : null,
     };
   });
 }
@@ -152,4 +163,38 @@ export async function fetchAdminParents(
   const { data, error } = await client.rpc("admin_registered_parents");
   if (error) throw parentsFailure("Could not load registered parents", error);
   return parseAdminParents(data);
+}
+
+export interface ParentReminderResult {
+  sent: boolean;
+  reason?: string;
+}
+
+/**
+ * Asks the parent-reminder Edge Function to send one registered
+ * grown-up the "add your kid's login" reminder. The function owns
+ * every decision (administrator? grown-up target? mail configured?)
+ * and records the send; this helper only carries the outcome back.
+ * It never throws: a transport failure (function not deployed,
+ * network down) comes back as { sent: false, reason: "send-failed" }
+ * so the panel can report it like any other unsent outcome.
+ */
+export async function sendParentReminder(
+  client: SupabaseClient,
+  parentUserId: string,
+): Promise<ParentReminderResult> {
+  try {
+    const { data, error } = await client.functions.invoke("parent-reminder", {
+      body: { parentUserId },
+    });
+    if (error) return { sent: false, reason: "send-failed" };
+    if (!object(data) || typeof data.sent !== "boolean")
+      return { sent: false, reason: "send-failed" };
+    return {
+      sent: data.sent,
+      reason: typeof data.reason === "string" ? data.reason : undefined,
+    };
+  } catch {
+    return { sent: false, reason: "send-failed" };
+  }
 }

@@ -20,6 +20,8 @@ const PARENT_A = {
     { title: "Shared Task Two", done: false },
     { title: "A Kid Task", done: true },
   ],
+  reminder_count: 2,
+  last_reminder_at: "2026-02-10T12:00:00Z",
 };
 const PARENT_B = {
   parent_user_id: "22222222-2222-4222-8222-222222222222",
@@ -29,6 +31,8 @@ const PARENT_B = {
   task_count: 0,
   tasks_done: 0,
   task_titles: [],
+  reminder_count: 0,
+  last_reminder_at: null,
 };
 
 function registeredLabel(iso: string) {
@@ -98,6 +102,15 @@ describe("Registered parents admin panel", () => {
     expect(container.textContent).toContain("✓ A Kid Task");
     expect(container.textContent).toContain("b@example.com");
     expect(container.textContent).toContain("1 kid · 0 tasks (0 done)");
+    // Reminder status rides along: A's count + last sent, B never sent.
+    expect(container.textContent).toContain(
+      `Reminder sent ${new Date(PARENT_A.last_reminder_at).toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })} · ×2`,
+    );
+    expect(container.textContent).toContain("No reminder sent yet");
     // Nothing about any kid leaks into the panel.
     expect(container.textContent).not.toContain("Secret Kid");
   });
@@ -140,6 +153,77 @@ describe("Registered parents admin panel", () => {
     await click(button("Open registered parents"));
     expect(container.textContent).toContain(ADMIN_PARENTS_UNAVAILABLE_MESSAGE);
     expect(container.querySelector('[role="alert"]')).toBeNull();
+  });
+
+  function remindClient(rpc: ReturnType<typeof vi.fn>, invoke: ReturnType<typeof vi.fn>) {
+    return { rpc, functions: { invoke } } as unknown as SupabaseClient;
+  }
+  function remindButtons() {
+    return [...container.querySelectorAll<HTMLButtonElement>("button")].filter(
+      (b) => b.textContent?.includes("Remind to add kids"),
+    );
+  }
+
+  it("sends a reminder for one parent and refreshes that row's status", async () => {
+    const refreshedB = {
+      ...PARENT_B,
+      reminder_count: 1,
+      last_reminder_at: "2026-03-01T12:00:00Z",
+    };
+    const rpc = vi.fn()
+      .mockResolvedValueOnce({ data: true, error: null })
+      .mockResolvedValueOnce({ data: [PARENT_A, PARENT_B], error: null })
+      .mockResolvedValueOnce({ data: true, error: null })
+      .mockResolvedValueOnce({ data: [PARENT_A, refreshedB], error: null });
+    const invoke = vi.fn(async () => ({ data: { sent: true }, error: null }));
+    await act(async () => root.render(<AdminParents client={remindClient(rpc, invoke)} />));
+    await click(button("Open registered parents"));
+    expect(remindButtons()).toHaveLength(2);
+    await click(remindButtons()[1]);
+    expect(invoke).toHaveBeenCalledExactlyOnceWith("parent-reminder", {
+      body: { parentUserId: PARENT_B.parent_user_id },
+    });
+    expect(container.textContent).toContain(`Reminder sent to ${PARENT_B.email}.`);
+    // The refresh replaced B's "never sent" status with the send.
+    expect(container.textContent).toContain(
+      `Reminder sent ${new Date("2026-03-01T12:00:00Z").toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })}`,
+    );
+    expect(container.textContent).not.toContain("No reminder sent yet");
+  });
+
+  it("says plainly when email is not switched on yet, and keeps the status unsent", async () => {
+    const rpc = vi.fn()
+      .mockResolvedValueOnce({ data: true, error: null })
+      .mockResolvedValueOnce({ data: [PARENT_B], error: null });
+    const invoke = vi.fn(async () => ({
+      data: { sent: false, reason: "not-configured" },
+      error: null,
+    }));
+    await act(async () => root.render(<AdminParents client={remindClient(rpc, invoke)} />));
+    await click(button("Open registered parents"));
+    await click(remindButtons()[0]);
+    expect(container.textContent).toContain(
+      "Email isn't switched on yet, so no reminder was sent.",
+    );
+    expect(container.textContent).toContain("No reminder sent yet");
+  });
+
+  it("reports a failed send without claiming one went out", async () => {
+    const rpc = vi.fn()
+      .mockResolvedValueOnce({ data: true, error: null })
+      .mockResolvedValueOnce({ data: [PARENT_B], error: null });
+    const invoke = vi.fn(async () => ({ data: null, error: { message: "down" } }));
+    await act(async () => root.render(<AdminParents client={remindClient(rpc, invoke)} />));
+    await click(button("Open registered parents"));
+    await click(remindButtons()[0]);
+    expect(container.textContent).toContain(
+      "The reminder couldn't be sent — please try again later.",
+    );
+    expect(container.textContent).toContain("No reminder sent yet");
   });
 });
 
