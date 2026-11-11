@@ -39,6 +39,7 @@ export function gradeBandForGrade(grade: string): KidGradeBand {
 const ALL_SKILL_TASKS: DefaultKidTask[] = [
   { title: "Play Word Safari", activity: "sight" },
   { title: "Play Meaning Match", activity: "vocabulary" },
+  { title: "Play Word Power", activity: "wordpower" },
   { title: "Play Spelling Spark", activity: "spelling" },
   { title: "Play Story Explorer", activity: "reading" },
   { title: "Play Sentence Builder", activity: "sentence" },
