@@ -35,7 +35,7 @@ export function gradeBandForGrade(grade: string): KidGradeBand {
 }
 
 /** One task per skill, in the app catalog's order: English, then Math,
- * then the Word Battle world and Motivation Books. */
+ * then Guitar Quest, then the Word Battle world and Motivation Books. */
 const ALL_SKILL_TASKS: DefaultKidTask[] = [
   { title: "Play Word Safari", activity: "sight" },
   { title: "Play Meaning Match", activity: "vocabulary" },
@@ -53,6 +53,7 @@ const ALL_SKILL_TASKS: DefaultKidTask[] = [
   { title: "Play Parts & Wholes", activity: "fractions" },
   { title: "Play Measurement Mission", activity: "measurement" },
   { title: "Play Data Detective", activity: "data" },
+  { title: "Play Guitar Quest", activity: "guitar" },
   { title: "Play Word Battle", activity: "word-battle" },
   { title: "Read a Motivation Book", activity: "motivation-books" },
 ];

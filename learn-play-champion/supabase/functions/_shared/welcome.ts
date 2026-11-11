@@ -130,7 +130,7 @@ export function buildKidWelcomeEmail(input: KidWelcomeInput): WelcomeEmail {
     `Username: ${input.kidUsername}`,
     `Grade: ${input.gradeLabel}`,
     "",
-    `All 18 skills are already waiting on ${name}'s home screen — reading, math, spelling, Word Battle, and a Motivation Book to start. Every step is small, friendly, and free.`,
+    `All 19 skills are already waiting on ${name}'s home screen — reading, math, spelling, Word Battle, and a Motivation Book to start. Every step is small, friendly, and free.`,
     "",
     `Open Learn & Play Champion: ${APP_URL}`,
     "",
@@ -148,7 +148,7 @@ export function buildKidWelcomeEmail(input: KidWelcomeInput): WelcomeEmail {
       `Username: <strong>${escapeHtml(input.kidUsername)}</strong><br>Grade: <strong>${escapeHtml(input.gradeLabel)}</strong>`,
     ),
     paragraph(
-      `All 18 skills are already waiting on ${safeName}'s home screen — reading, math, spelling, Word Battle, and a Motivation Book to start. Every step is small, friendly, and free.`,
+      `All 19 skills are already waiting on ${safeName}'s home screen — reading, math, spelling, Word Battle, and a Motivation Book to start. Every step is small, friendly, and free.`,
     ),
     buttonHtml("Open Learn & Play Champion"),
     paragraph(
