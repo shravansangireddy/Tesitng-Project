@@ -105,7 +105,6 @@ type Session = {
   questions: Question[];
   index: number;
   attempts: Attempt[];
-  startedAt: number;
 };
 const avatarNames: Record<Avatar, string> = {
   owl: "Pip the Owl",
@@ -563,7 +562,6 @@ export default function App({
     setGrade(next.selectedGrade ?? "1");
     setView("home");
   };
-  const voiceAssisted = useRef(false);
   const voiceControls = useRef<VoiceHandle>(null);
   const codingDirty = useRef(false);
   const contentDirty = useRef(false);
@@ -636,7 +634,6 @@ export default function App({
     return true;
   };
   const start = (activity: Activity, championship = false) => {
-    voiceAssisted.current = false;
     setRoundId((id) => id + 1);
     setSession({
       championship,
@@ -649,7 +646,6 @@ export default function App({
       questions: makeRound(activity.id, Math.random, grade),
       index: 0,
       attempts: [],
-      startedAt: performance.now(),
     });
     setResult(null);
     setFeedback(null);
@@ -664,8 +660,9 @@ export default function App({
     setAnswer(value);
     setFeedback({
       correct,
-      speed: correct && !hint && !voiceAssisted.current &&
-        !session.championship && performance.now() - session.startedAt <= 8000,
+      // Focus is about the hint only: voice help is an accessibility aid
+      // and never costs the focus bonus, and there is no timing element.
+      focused: !hint,
     });
   };
   const nextQuestion = () => {
@@ -684,12 +681,10 @@ export default function App({
       setResult(completed.result);
       setSession(null);
     } else {
-      voiceAssisted.current = false;
       setSession({
         ...session,
         index: session.index + 1,
         attempts,
-        startedAt: performance.now(),
       });
     }
     setFeedback(null);
@@ -734,7 +729,7 @@ export default function App({
       ? visibleActivities.map((a) => gradePack.lessons[a.id].title) : undefined,
   };
   const voiceAction = (action: VoiceAction) => {
-    if (action === "hint") { voiceAssisted.current = true; setHint(true); }
+    if (action === "hint") { setHint(true); }
     else if (action === "next") nextQuestion();
     else if (action === "replay" && result)
       start(activities.find((a) => a.id === result.activity)!, !!result.championship);
@@ -953,7 +948,9 @@ export default function App({
               context={voiceContext}
               onAction={voiceAction}
               onAnswer={submitAnswer}
-              onAssist={() => { voiceAssisted.current = true; }}
+              // Read-aloud and voice help are accessibility aids: using
+              // them never changes scoring, so there is nothing to record.
+              onAssist={() => {}}
               onActivity={(index) => {
                 if (voiceContext.activities?.[index]) start(visibleActivities[index]);
               }}
@@ -1180,7 +1177,7 @@ export default function App({
                       {feedback.correct
                         ? "You’ve got it! Beautiful thinking."
                         : "Not quite yet. Let’s learn together."}
-                      {feedback.speed && " +5 speedy stars!"}
+                      {feedback.correct && feedback.focused && " +5 focus stars!"}
                     </strong>
                     <p>{currentQuestion.explanation}</p>
                     <button className="button primary" onClick={nextQuestion}>
@@ -1241,9 +1238,15 @@ export default function App({
                   <strong>+{result.correct * 10}</strong>
                 </div>
                 <div>
-                  <span>Speed bonuses</span>
-                  <strong>+{result.speedPoints}</strong>
+                  <span>Focus bonuses</span>
+                  <strong>+{result.focusPoints}</strong>
                 </div>
+                {result.streakPoints > 0 && (
+                  <div>
+                    <span>Streak bonus</span>
+                    <strong>+{result.streakPoints}</strong>
+                  </div>
+                )}
                 {result.perfect && (
                   <div>
                     <span>Perfect round bonus</span>
@@ -1253,7 +1256,7 @@ export default function App({
                 {result.dailyBonus && (
                   <div>
                     <span>Daily challenge complete</span>
-                    <strong>+100</strong>
+                    <strong>+25</strong>
                   </div>
                 )}
                 <div className="score-total">
@@ -1265,7 +1268,7 @@ export default function App({
               </div>
               <p className="mastery-note">
                 {result.championship
-                  ? `Solo practice, not a live championship. Your best ${gradeLabels[result.grade!]} bee score is ${progress.beeBestRounds?.[result.grade!] ?? 0}/5. No elimination and no speed bonus.`
+                  ? `Solo practice, not a live championship. Your best ${gradeLabels[result.grade!]} bee score is ${progress.beeBestRounds?.[result.grade!] ?? 0}/5. No elimination and no timer — bee rounds earn focus and streak bonuses too.`
                   : "Skills grow with correct answers, not points. Get 4/5 in an activity to make that skill shine."}
               </p>
               <div className="result-actions">
@@ -1640,8 +1643,9 @@ export default function App({
                       {grade === "prek" && " Pre-K explores five single letters with a grown-up."}
                       {" "}Uses this grade's spelling bank; not a live contest.</p>
                     <p>Best bee score: {progress.beeBestRounds?.[grade] ?? 0}/5.
-                      {" "}+10 per correct, +50 for five correct, usual daily completion reward;
-                      no speed bonus. Bee scores are separate from regular spelling scores.</p>
+                      {" "}+10 per correct, +5 focus bonus without a hint, +10 for three in a row,
+                      +50 for five correct, usual daily completion reward; no timer.
+                      Bee scores are separate from regular spelling scores.</p>
                     <button className="button primary"
                       onClick={() => start(activities.find((a) => a.id === "spelling")!, true)}>
                       Start spelling bee
@@ -2068,10 +2072,10 @@ export default function App({
                     <Lightbulb size={21} />
                     <p>
                       <strong>A score is just a snapshot.</strong> Earn 10
-                      points per correct answer, +5 for a correct answer within
-                      8 seconds without a hint, and +50 for a perfect round.
-                      There’s no timer to beat and no penalty for taking your
-                      time.
+                      points per correct answer, +5 focus bonus for each
+                      correct answer without a hint, +10 for three correct in
+                      a row, and +50 for a perfect round. There’s no timer to
+                      beat and no penalty for taking your time.
                     </p>
                   </div>
                 </>

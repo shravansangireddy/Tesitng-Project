@@ -69,7 +69,7 @@ describe("learning path rules and save compatibility", () => {
   });
   it("preserves checks during ordinary rounds, without treating them as room completions", () => {
     const checked = finishPathCheck(initialProgress, "1", responses(), date);
-    const updated = completeRound(checked, "sight", Array.from({ length: 5 }, () => ({ correct: true, speed: false })), new Date(), "1").progress;
+    const updated = completeRound(checked, "sight", Array.from({ length: 5 }, () => ({ correct: true, focused: false })), new Date(), "1").progress;
     expect(updated.pathChecks).toEqual(checked.pathChecks);
     expect(checked.rounds).toBe(0);
     expect(updated.rounds).toBe(1);

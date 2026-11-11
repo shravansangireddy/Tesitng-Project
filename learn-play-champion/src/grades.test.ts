@@ -34,7 +34,7 @@ const rawPacks = import.meta.glob<string>("./content/grades/*.txt", {
 const raw = (grade: GradeId) => rawPacks[`./content/${gradeFiles[grade]}`];
 const perfect: Attempt[] = Array.from({ length: 5 }, () => ({
   correct: true,
-  speed: false,
+  focused: false,
 }));
 
 describe("original Pre-K through Grade 5 library", () => {
@@ -196,7 +196,7 @@ describe("grade-aware saved progress", () => {
     const next = completeRound(
       first.progress,
       "arithmetic",
-      perfect.map((_, i) => ({ correct: i < 2, speed: false })),
+      perfect.map((_, i) => ({ correct: i < 2, focused: false })),
       new Date(2026, 9, 29),
       "5",
     );
@@ -208,7 +208,9 @@ describe("grade-aware saved progress", () => {
     });
     expect(next.progress.bestRounds.arithmetic).toBe(5);
     expect(next.result.dailyBonus).toBe(false);
-    expect(next.progress.points).toBe(220);
+    // Pattern A: first round 50 answers + 50 perfect + 25 daily = 125
+    // (hinted attempts earn no focus), second round 2 correct = 20.
+    expect(next.progress.points).toBe(145);
     expect(parseProgress(JSON.stringify(next.progress))).toEqual(next.progress);
   });
   it("keeps an existing grade's best result and records an all-incorrect attempt", () => {
@@ -222,14 +224,14 @@ describe("grade-aware saved progress", () => {
     progress = completeRound(
       progress,
       "reading",
-      perfect.map(() => ({ correct: false, speed: false })),
+      perfect.map(() => ({ correct: false, focused: false })),
       undefined,
       "1",
     ).progress;
     progress = completeRound(
       progress,
       "reading",
-      perfect.map(() => ({ correct: false, speed: false })),
+      perfect.map(() => ({ correct: false, focused: false })),
       undefined,
       "2",
     ).progress;

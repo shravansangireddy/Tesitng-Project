@@ -51,7 +51,7 @@ describe("U.S. standards-informed expansion", () => {
       for (const id of curriculumLessonIds) {
         progress = completeRound(
           progress, id,
-          Array.from({ length: 5 }, () => ({ correct: true, speed: false })),
+          Array.from({ length: 5 }, () => ({ correct: true, focused: false })),
           new Date(2026, 9, 29), grade,
         ).progress;
         expect(progress.gradeBestRounds?.[`${grade}:${id}`]).toBe(5);
@@ -59,7 +59,9 @@ describe("U.S. standards-informed expansion", () => {
       expect(parseProgress(JSON.stringify(progress))).toEqual(progress);
       expect(progress.gradeBestRounds?.["1:reading"]).toBe(4);
       expect(progress.rounds).toBe(6);
-      expect(progress.points).toBe(700);
+      // Pattern A: six perfect but hinted rounds — the first also claims
+      // the +25 daily bonus (125), the other five pay 100 each: 625.
+      expect(progress.points).toBe(625);
     });
   }
   it("preserves the original explorer badge for existing learners", () => {

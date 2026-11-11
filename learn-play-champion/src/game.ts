@@ -154,13 +154,15 @@ export type { Question } from "./content";
 
 export interface Attempt {
   correct: boolean;
-  speed: boolean;
+  /** True when the answer was given while the question's hint was NOT shown. */
+  focused: boolean;
 }
 export interface RoundResult {
   activity: ActivityId;
   correct: number;
   points: number;
-  speedPoints: number;
+  focusPoints: number;
+  streakPoints: number;
   perfect: boolean;
   dailyBonus: boolean;
   grade?: GradeId;
@@ -251,13 +253,25 @@ export function completeRound(
   if (championship && (activity !== "spelling" || !grade))
     throw new Error("A spelling bee needs a selected grade and spelling activity.");
   const correct = attempts.filter((attempt) => attempt.correct).length;
-  const speedPoints = championship ? 0 :
-    attempts.filter((attempt) => attempt.correct && attempt.speed).length * 5;
+  // Pattern A (accuracy & streaks): a correct answer given without the
+  // hint earns a +5 focus bonus at any speed — there is no timing element.
+  const focusPoints =
+    attempts.filter((attempt) => attempt.correct && attempt.focused).length * 5;
   const perfect = correct === 5;
+  // The longest run of consecutive correct answers earns +10 once it
+  // reaches three, unless the round is perfect — a perfect round collects
+  // the perfect bonus instead, never both.
+  let longestRun = 0;
+  let currentRun = 0;
+  for (const attempt of attempts) {
+    currentRun = attempt.correct ? currentRun + 1 : 0;
+    if (currentRun > longestRun) longestRun = currentRun;
+  }
+  const streakPoints = !perfect && longestRun >= 3 ? 10 : 0;
   const today = localDate(date);
   const dailyBonus = progress.missionDate !== today;
   const points =
-    correct * 10 + speedPoints + (perfect ? 50 : 0) + (dailyBonus ? 100 : 0);
+    correct * 10 + focusPoints + streakPoints + (perfect ? 50 : 0) + (dailyBonus ? 25 : 0);
   const streak =
     progress.lastPlayedDate === today
       ? progress.streak
@@ -270,7 +284,8 @@ export function completeRound(
       ...(championship ? { championship: true } : {}),
       activity,
       correct,
-      speedPoints,
+      focusPoints,
+      streakPoints,
       perfect,
       dailyBonus,
       points,

@@ -345,7 +345,11 @@ describe("voice and spelling bee in the actual app", () => {
     expect(container.querySelector(".feedback")).toBeNull();
     const value = container.querySelector(".voice-candidate strong")!.textContent!;
     await click(button("Use this answer"));
-    expect(container.querySelector(".feedback")?.textContent).not.toContain("speedy");
+    // The voice letter picks the first option the shuffled round serves
+    // ("B" here), so this submitted answer is incorrect — and an incorrect
+    // answer never shows bonus stars of any kind. (The pre-Pattern-A
+    // assertion, "no speedy stars", passed on the same wrong answer.)
+    expect(container.querySelector(".feedback")?.textContent).not.toContain("focus stars");
     expect(value).toBeTruthy();
   });
   it("reads hints on command even when automatic reading is off", async () => {
@@ -375,7 +379,9 @@ describe("voice and spelling bee in the actual app", () => {
     expect(saved.gradeBestRounds?.["2:spelling"]).toBeUndefined();
     expect(saved.bestRounds.spelling).toBeUndefined();
     expect(saved.rounds).toBe(1);
-    expect(saved.points).toBe(130);
+    // Pattern A bee scoring: 30 answers + 15 focus (no hints used) + 10
+    // streak (the closing run of three) + 25 daily = 80.
+    expect(saved.points).toBe(80);
     expect(saved.answered).toBe(5);
     await click(button("Play again"));
     expect(container.querySelector(".quiz-heading")?.textContent).toContain("Spelling Bee Championship");
