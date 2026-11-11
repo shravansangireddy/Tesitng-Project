@@ -11,7 +11,7 @@ export type PathChecks = Partial<Record<GradeId, PathCheck>>;
 const groups: readonly (readonly LessonId[])[] = [
   ["sight", "vocabulary", "reading", "sentence", "arithmetic", "patterns", "geometry", "place"],
   ["spelling", "informational", "writing", "guitar", "multiply", "problems", "fractions", "measurement"],
-  ["vocabulary", "spelling", "reading", "informational", "data", "arithmetic", "fractions", "measurement"],
+  ["wordpower", "spelling", "reading", "informational", "data", "arithmetic", "fractions", "measurement"],
 ];
 export function makePathCheck(grade: GradeId, rounds: number) {
   const lessons = getLearningContent().grades[grade].lessons;

@@ -20,9 +20,9 @@ const numeric = (answer: string) => {
 };
 
 describe("U.S. standards-informed expansion", () => {
-  it("offers every activity exactly once with seven English, nine Math, and one General paths", () => {
-    expect(new Set(activities.map((activity) => activity.id)).size).toBe(17);
-    expect(activities.filter((activity) => activity.subject === "english")).toHaveLength(7);
+  it("offers every activity exactly once with eight English, nine Math, and one General paths", () => {
+    expect(new Set(activities.map((activity) => activity.id)).size).toBe(18);
+    expect(activities.filter((activity) => activity.subject === "english")).toHaveLength(8);
     expect(activities.filter((activity) => activity.subject === "math")).toHaveLength(9);
     expect(activities.filter((activity) => activity.subject === "general")).toHaveLength(1);
   });

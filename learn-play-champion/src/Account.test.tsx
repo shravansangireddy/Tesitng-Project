@@ -306,7 +306,7 @@ describe("grown-up login screen", () => {
     await mount();
     await click(button("Play as a guest"));
     await click(button("Adventures"));
-    await click(container.querySelectorAll(".activity-card button")[3]);
+    await click(container.querySelectorAll(".activity-card button")[4]);
     expect(container.querySelector(".passage")?.textContent).toContain(
       content.grades["1"].lessons.reading.questions[0].passage,
     );
@@ -378,7 +378,7 @@ describe("grown-up login screen", () => {
     await mount();
     await click(button("Play as a guest"));
     await click(button("Adventures"));
-    await click(container.querySelectorAll(".activity-card button")[4]);
+    await click(container.querySelectorAll(".activity-card button")[5]);
     const wrong = [...container.querySelectorAll(".answer-option")].find(
       (b) => b.getAttribute("data-answer") === "we play outside.",
     );
@@ -398,7 +398,7 @@ describe("grown-up login screen", () => {
       expect(link.rel).toBe("noreferrer");
     }
     await click(button("Adventures"));
-    expect(container.querySelectorAll(".activity-card")).toHaveLength(7);
+    expect(container.querySelectorAll(".activity-card")).toHaveLength(8);
     const writing = activityCard("Develop a Supported Piece")!;
     expect(writing.textContent).toContain("W.5.1");
     expect(writing.textContent).toContain("Drafts and speech are not uploaded");

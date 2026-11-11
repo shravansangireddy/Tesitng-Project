@@ -94,6 +94,7 @@ export interface SkillTaskPreset {
 export const ALL_SKILL_TASKS: readonly SkillTaskPreset[] = [
   { title: "Play Word Safari", activityId: "sight" },
   { title: "Play Meaning Match", activityId: "vocabulary" },
+  { title: "Play Word Power", activityId: "wordpower" },
   { title: "Play Spelling Spark", activityId: "spelling" },
   { title: "Play Story Explorer", activityId: "reading" },
   { title: "Play Sentence Builder", activityId: "sentence" },

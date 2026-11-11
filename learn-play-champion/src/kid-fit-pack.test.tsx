@@ -60,11 +60,11 @@ describe("kid-fit question pack", () => {
         ),
       0,
     );
-    // 16,915 baseline + 230 kid-fit rows + 195 Guitar Quest questions.
-    expect(total).toBe(16915 + 230 + 195);
+    // 16,915 baseline + 230 kid-fit rows + 195 Guitar Quest questions + 200 Word Power questions.
+    expect(total).toBe(16915 + 230 + 195 + 200);
   });
 
-  it("keeps the distinct-question total at 18,016 (12,150 static + 195 guitar + 5,671 template space)", () => {
+  it("keeps the distinct-question total at 18,216 (12,350 static + 195 guitar + 5,671 template space)", () => {
     const prompts = new Set<string>();
     let rows = 0;
     for (const bank of Object.values(banks)) {
@@ -76,9 +76,9 @@ describe("kid-fit question pack", () => {
         rows += lesson.questions.length;
         for (const question of lesson.questions) prompts.add(question.prompt);
       }
-    expect(rows).toBe(17375);
-    expect(prompts.size).toBe(12345);
-    expect(prompts.size + 5671).toBe(18016);
+    expect(rows).toBe(17575);
+    expect(prompts.size).toBe(12545);
+    expect(prompts.size + 5671).toBe(18216);
   });
 
   it("adds pick-the-missing-letter phonics sets to sight for Pre-K through Grade 2", () => {

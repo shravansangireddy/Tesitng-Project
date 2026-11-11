@@ -65,7 +65,7 @@ export const curriculumLessonIds = [
  * like the curriculum lessons, but never part of the grade-less banks,
  * the Curious Explorer badge, or the standards-guide checks.
  */
-export const enrichmentLessonIds = ["guitar"] as const;
+export const enrichmentLessonIds = ["guitar", "wordpower"] as const;
 export const lessonIds = [
   ...coreLessonIds,
   ...curriculumLessonIds,
