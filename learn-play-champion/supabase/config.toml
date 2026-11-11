@@ -1,6 +1,9 @@
 [functions.welcome-email]
 verify_jwt = true
 
+[functions.parent-reminder]
+verify_jwt = true
+
 [functions.paypal-checkout]
 verify_jwt = false
 
