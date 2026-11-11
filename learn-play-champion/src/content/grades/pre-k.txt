@@ -1500,6 +1500,66 @@
           ],
           "Say each word slowly and listen to its sounds.",
           "The word “said” is spelled s-a-i-d."
+        ],
+        [
+          "Which letter completes the word? Clue: a small pet that says meow. c _ t",
+          "a",
+          [
+            "a",
+            "e",
+            "i",
+            "o"
+          ],
+          "Say the word slowly: c-a-t. Listen for the middle sound.",
+          "The letter a completes the word cat."
+        ],
+        [
+          "Which letter completes the word? Clue: it shines in the sky during the day. s _ n",
+          "u",
+          [
+            "a",
+            "e",
+            "i",
+            "u"
+          ],
+          "Say the word slowly: s-u-n. Listen for the middle sound.",
+          "The letter u completes the word sun."
+        ],
+        [
+          "Which letter completes the word? Clue: a pet that barks and wags its tail. _ og",
+          "d",
+          [
+            "b",
+            "d",
+            "h",
+            "l"
+          ],
+          "Listen for the first sound: d-og.",
+          "The letter d completes the word dog."
+        ],
+        [
+          "Which letter completes the word? Clue: it carries children to school. b _ s",
+          "u",
+          [
+            "a",
+            "i",
+            "o",
+            "u"
+          ],
+          "Say the word slowly: b-u-s. Listen for the middle sound.",
+          "The letter u completes the word bus."
+        ],
+        [
+          "Which letter completes the word? Clue: you wear it on your head. _ at",
+          "h",
+          [
+            "b",
+            "c",
+            "h",
+            "m"
+          ],
+          "Listen for the first sound: h-at.",
+          "The letter h completes the word hat."
         ]
       ]
     },
@@ -11475,6 +11535,61 @@
           ],
           "Two, then one, then two, then one.",
           "After one bird, the pattern starts again with two fishs, so next is fish."
+        ],
+        [
+          "Star, moon, moon, star, moon, moon. What comes next?",
+          "star",
+          [
+            "star",
+            "moon",
+            "sun"
+          ],
+          "The pattern repeats: star, moon, moon.",
+          "After two moons, the pattern starts again with a star."
+        ],
+        [
+          "Clap, clap, stomp, clap, clap, stomp. What comes next?",
+          "clap",
+          [
+            "clap",
+            "stomp",
+            "jump"
+          ],
+          "The pattern repeats: clap, clap, stomp.",
+          "Clap starts the pattern again."
+        ],
+        [
+          "Red, red, blue, red, red, blue. Which color comes next?",
+          "red",
+          [
+            "blue",
+            "green",
+            "red"
+          ],
+          "The pattern repeats: red, red, blue.",
+          "Red starts the pattern again."
+        ],
+        [
+          "One block, then two blocks, then three blocks. How many blocks come next?",
+          "four blocks",
+          [
+            "four blocks",
+            "one block",
+            "two blocks"
+          ],
+          "Each group grows by one block.",
+          "1, 2, 3 grows to 4 blocks."
+        ],
+        [
+          "Big dog, small cat, big dog, small cat. What comes next?",
+          "big dog",
+          [
+            "big dog",
+            "small cat",
+            "small dog"
+          ],
+          "The two pictures take turns.",
+          "Big dog comes next in the taking-turns pattern."
         ]
       ]
     },
@@ -17746,6 +17861,287 @@
           ],
           "Read the numbers in the chart carefully.",
           "The chart gives the answer: 13."
+        ]
+      ]
+    },
+    "guitar": {
+      "title": "My First Guitar",
+      "skill": "Meet the guitar: its parts, its six strings, and its high and low sounds",
+      "questions": [
+        [
+          "What is the big, round part of the guitar that rests against your tummy?",
+          "the body",
+          [
+            "the body",
+            "the neck",
+            "the head"
+          ],
+          "It is the biggest part of all.",
+          "The body is the big round part of the guitar, and it helps make the sound big too."
+        ],
+        [
+          "What is the long, thin part of the guitar where your fingers press the strings?",
+          "the neck",
+          [
+            "the body",
+            "the neck",
+            "the sound hole"
+          ],
+          "It stretches out long, like a giraffe's neck.",
+          "The neck is the long part of the guitar. Your fingers press the strings along it."
+        ],
+        [
+          "The strings start at the top of the guitar. What is that top part called?",
+          "the head",
+          [
+            "the head",
+            "the belly",
+            "the foot"
+          ],
+          "It is at the very top, like your own head.",
+          "The head sits at the top of the neck and holds the tuning pegs."
+        ],
+        [
+          "What is the round hole in the middle of the guitar's body called?",
+          "the sound hole",
+          [
+            "the sound hole",
+            "the music door",
+            "the string window"
+          ],
+          "Sound comes out of it when you play.",
+          "The sound hole lets the guitar's sound float out into the room."
+        ],
+        [
+          "What long, thin things stretch all the way along the guitar and make the music?",
+          "the strings",
+          [
+            "the strings",
+            "the ribbons",
+            "the shoelaces"
+          ],
+          "You pluck them and strum them.",
+          "The strings stretch from the head to the body, and they sing when they wiggle."
+        ],
+        [
+          "Count with me: how many strings does a guitar have?",
+          "6 strings",
+          [
+            "4 strings",
+            "6 strings",
+            "10 strings"
+          ],
+          "Count them on your fingers: one, two, three…",
+          "A guitar has 6 strings. Count them slowly from the thickest to the thinnest."
+        ],
+        [
+          "The thickest string makes which kind of sound?",
+          "a low, deep sound",
+          [
+            "a low, deep sound",
+            "a high, squeaky sound",
+            "no sound at all"
+          ],
+          "Think of a big bear's voice.",
+          "Thick strings sound low and deep, like a big bear humming."
+        ],
+        [
+          "The thinnest string makes which kind of sound?",
+          "a high, tiny sound",
+          [
+            "a low, deep sound",
+            "a high, tiny sound",
+            "a loud boom"
+          ],
+          "Think of a little bird singing.",
+          "Thin strings sound high and tiny, like a little bird's song."
+        ],
+        [
+          "What do you do to one string to make it sing all by itself?",
+          "pluck it",
+          [
+            "pluck it",
+            "paint it",
+            "hide it"
+          ],
+          "Pull it gently and let it go.",
+          "Plucking means pulling a string gently and letting it go so it wiggles and sings."
+        ],
+        [
+          "What is it called when you brush your hand across all the strings at once?",
+          "strumming",
+          [
+            "strumming",
+            "stomping",
+            "clapping"
+          ],
+          "Sweep down like a soft waterfall.",
+          "Strumming is brushing across the strings so they all sing together."
+        ],
+        [
+          "A thick string and a thin string are side by side. Which one sounds lower?",
+          "the thick string",
+          [
+            "the thick string",
+            "the thin string",
+            "they sound the same"
+          ],
+          "Big things usually have deep voices.",
+          "The thick string sounds lower. Thick strings move slowly and sing deep."
+        ],
+        [
+          "Which string would a tiny mouse sing on, high and squeaky?",
+          "the thinnest string",
+          [
+            "the thickest string",
+            "the thinnest string",
+            "the middle string"
+          ],
+          "A mouse voice is small and high.",
+          "The thinnest string sings the highest, squeakiest notes."
+        ],
+        [
+          "When you press a string down and pluck it, what happens to the string?",
+          "it wiggles and makes a sound",
+          [
+            "it wiggles and makes a sound",
+            "it falls off",
+            "it turns blue"
+          ],
+          "Watch it shake very fast!",
+          "Pressing and plucking makes the string wiggle fast, and the wiggling makes the sound."
+        ],
+        [
+          "Which of these is a string instrument, like the guitar?",
+          "a violin",
+          [
+            "a violin",
+            "a drum",
+            "a trumpet"
+          ],
+          "It has strings that you play with a bow.",
+          "A violin is a string instrument, just like a guitar. Drums and trumpets make sound in other ways."
+        ],
+        [
+          "The guitar's strings are lined up from thick to thin. How do their sounds go?",
+          "from low to high",
+          [
+            "from low to high",
+            "from loud to quiet",
+            "from fast to slow"
+          ],
+          "Start with the bear voice, end with the bird voice.",
+          "From the thickest string to the thinnest, the sounds climb from low to high."
+        ],
+        [
+          "When you play, where should the guitar's body rest?",
+          "against your tummy, on your leg",
+          [
+            "against your tummy, on your leg",
+            "on top of your head",
+            "under your chair"
+          ],
+          "The guitar likes to sit with you.",
+          "Rest the guitar's body against your tummy with its bottom edge on your leg, so it sits steady."
+        ],
+        [
+          "Which hand presses the strings on the neck for most players?",
+          "the left hand",
+          [
+            "the left hand",
+            "the right hand",
+            "both feet"
+          ],
+          "One hand presses; the other hand strums.",
+          "Most players press strings with the left hand and strum with the right hand."
+        ],
+        [
+          "How should your strumming hand move across the strings?",
+          "softly, like petting a kitten",
+          [
+            "softly, like petting a kitten",
+            "as hard as you can",
+            "with your elbow"
+          ],
+          "Gentle hands make gentle music.",
+          "Strum softly and smoothly, like petting a kitten, so the strings sing sweetly."
+        ],
+        [
+          "What small flat tool can you hold to strum the strings?",
+          "a pick",
+          [
+            "a pick",
+            "a spoon",
+            "a crayon"
+          ],
+          "It is small and shaped like a tiny triangle.",
+          "A pick is a small flat tool you pinch between your fingers to pluck and strum."
+        ],
+        [
+          "What should you do with a guitar when you finish playing?",
+          "put it away in a safe place",
+          [
+            "put it away in a safe place",
+            "leave it on the floor",
+            "use it as a pillow"
+          ],
+          "Safe guitars stay ready for the next song.",
+          "Putting the guitar away in its case or on its stand keeps it safe for next time."
+        ],
+        [
+          "How does a guitar song often make people feel?",
+          "happy and calm",
+          [
+            "happy and calm",
+            "sleepy at lunchtime only",
+            "itchy"
+          ],
+          "Music is a gift we share.",
+          "Guitar music makes people feel happy and calm — that is why we share songs."
+        ],
+        [
+          "What is the steady beat of a song like?",
+          "a heartbeat you can clap to",
+          [
+            "a heartbeat you can clap to",
+            "a running race",
+            "a quiet whisper only"
+          ],
+          "Tap your knee: one, two, one, two.",
+          "A beat is the song's steady heartbeat. You can clap or tap along with it."
+        ],
+        [
+          "If you want the guitar to sound louder, what can you do?",
+          "strum a little stronger",
+          [
+            "strum a little stronger",
+            "cover the sound hole",
+            "close your eyes"
+          ],
+          "Bigger strums make bigger sound.",
+          "Strumming a little stronger makes the strings wiggle more and sound louder."
+        ],
+        [
+          "If you want the guitar to sound soft and quiet, what can you do?",
+          "strum very gently",
+          [
+            "strum very gently",
+            "shake the guitar",
+            "sing over it loudly"
+          ],
+          "Think of a lullaby.",
+          "Gentle, tiny strums make a soft, quiet sound, perfect for a lullaby."
+        ],
+        [
+          "What is the best way to get better at guitar?",
+          "play a little bit every day",
+          [
+            "play a little bit every day",
+            "play only once a year",
+            "never touch a guitar"
+          ],
+          "Little steps every day grow big skills.",
+          "Playing a little bit every day is how guitar players grow. Tiny practice, big music!"
         ]
       ]
     }

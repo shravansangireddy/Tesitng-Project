@@ -246,7 +246,7 @@ async function renderAndFindAddAll() {
 }
 
 describe("KidLogins 'Add all skills' button", () => {
-  it("tops up a kid who has 3 of the 18 skills and says how many were added", async () => {
+  it("tops up a kid who has 3 of the 19 skills and says how many were added", async () => {
     const threeRows = [
       skillRow("sight", "Play Word Safari", 0),
       skillRow("arithmetic", "Play Number Sprint", 1),
@@ -260,18 +260,18 @@ describe("KidLogins 'Add all skills' button", () => {
       button.click();
     });
 
-    expect(inserts).toHaveLength(15);
+    expect(inserts).toHaveLength(16);
     expect(inserts.map((row) => row.activity)).not.toContain("sight");
     expect(inserts.map((row) => row.activity)).not.toContain("arithmetic");
     expect(inserts.map((row) => row.activity)).not.toContain("word-battle");
-    expect(manager.textContent).toContain("Added 15 skills to Zara's list.");
+    expect(manager.textContent).toContain("Added 16 skills to Zara's list.");
     // The refreshed list shows the new skills alongside the old ones.
     expect(manager.textContent).toContain("Play Data Detective");
     expect(manager.textContent).toContain("Read a Motivation Book");
     expect(manager.textContent).toContain("Play Word Safari");
   });
 
-  it("creates nothing and says so when the kid already has all 18 skills", async () => {
+  it("creates nothing and says so when the kid already has all 19 skills", async () => {
     const allRows = ALL_SKILL_TASKS.map((preset, index) =>
       skillRow(preset.activityId, preset.title, index),
     );
@@ -285,7 +285,7 @@ describe("KidLogins 'Add all skills' button", () => {
 
     expect(inserts).toEqual([]);
     expect(manager.textContent).toContain(
-      "All 18 skills are already on Zara's list.",
+      "All 19 skills are already on Zara's list.",
     );
   });
 
@@ -303,9 +303,9 @@ describe("KidLogins 'Add all skills' button", () => {
       button.click();
     });
 
-    expect(inserts).toHaveLength(15);
+    expect(inserts).toHaveLength(16);
     const alert = manager.querySelector('[role="alert"]');
-    expect(alert?.textContent).toContain("Added 14 skills");
+    expect(alert?.textContent).toContain("Added 15 skills");
     expect(alert?.textContent).toContain("1 couldn't be added");
     // The successful additions are on the refreshed list; the failed one is not.
     expect(manager.textContent).toContain("Play Shape Quest");

@@ -88,7 +88,8 @@ export interface SkillTaskPreset {
  * The app bundle cannot import that Deno module, so the list lives here
  * too — and kid-task-defaults.test.ts asserts the two lists are identical,
  * so they can never drift apart. Order matches the server's seed order:
- * English, then Math, then Word Battle and Motivation Books.
+ * English, then Math, then Guitar Quest, then Word Battle and
+ * Motivation Books.
  */
 export const ALL_SKILL_TASKS: readonly SkillTaskPreset[] = [
   { title: "Play Word Safari", activityId: "sight" },
@@ -107,6 +108,7 @@ export const ALL_SKILL_TASKS: readonly SkillTaskPreset[] = [
   { title: "Play Parts & Wholes", activityId: "fractions" },
   { title: "Play Measurement Mission", activityId: "measurement" },
   { title: "Play Data Detective", activityId: "data" },
+  { title: "Play Guitar Quest", activityId: "guitar" },
   { title: "Play Word Battle", activityId: WORD_BATTLE_ACTIVITY },
   { title: "Read a Motivation Book", activityId: MOTIVATION_BOOKS_ACTIVITY },
 ];

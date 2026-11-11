@@ -6905,6 +6905,66 @@
           ],
           "Say each word slowly and listen to its sounds.",
           "The word “people” is spelled p-e-o-p-l-e."
+        ],
+        [
+          "Which letter completes the word? Clue: it swims in water and has fins. f _ sh",
+          "i",
+          [
+            "a",
+            "e",
+            "i",
+            "o"
+          ],
+          "Say the word slowly: f-i-sh.",
+          "The letter i completes the word fish."
+        ],
+        [
+          "Which letter completes the word? Clue: a sweet treat you eat on a birthday. _ ake",
+          "c",
+          [
+            "b",
+            "c",
+            "l",
+            "t"
+          ],
+          "Listen for the first sound: c-ake.",
+          "The letter c completes the word cake."
+        ],
+        [
+          "Which letter completes the word? Clue: it has green leaves and tall branches. tr _ e",
+          "e",
+          [
+            "a",
+            "e",
+            "i",
+            "o"
+          ],
+          "Say the word slowly: t-r-e-e.",
+          "The letter e completes the word tree."
+        ],
+        [
+          "Which letter completes the word? Clue: you read its pages. boo _",
+          "k",
+          [
+            "b",
+            "k",
+            "m",
+            "p"
+          ],
+          "Listen for the last sound: boo-k.",
+          "The letter k completes the word book."
+        ],
+        [
+          "Which letter completes the word? Clue: to move fast on your feet. _ un",
+          "r",
+          [
+            "j",
+            "m",
+            "r",
+            "v"
+          ],
+          "Listen for the first sound: r-un.",
+          "The letter r completes the word run."
         ]
       ]
     },
@@ -16525,6 +16585,63 @@
           ],
           "The pattern repeats two things in turn.",
           "The pattern goes bird, fish, bird, fish, so next is bird."
+        ],
+        [
+          "Triangle, circle, circle, triangle, circle, circle. What comes next?",
+          "triangle",
+          [
+            "circle",
+            "square",
+            "triangle"
+          ],
+          "The pattern repeats: triangle, circle, circle.",
+          "Triangle starts the pattern again."
+        ],
+        [
+          "2, 4, 6, 8. What number comes next?",
+          "10",
+          [
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "Count by twos.",
+          "Each number grows by 2: 8 + 2 = 10."
+        ],
+        [
+          "A, B, B, A, B, B. Which letter comes next?",
+          "A",
+          [
+            "A",
+            "B",
+            "C"
+          ],
+          "The pattern repeats: A, B, B.",
+          "A starts the pattern again."
+        ],
+        [
+          "Hop, hop, skip, hop, hop, skip. What comes next?",
+          "hop",
+          [
+            "hop",
+            "jump",
+            "skip"
+          ],
+          "The pattern repeats: hop, hop, skip.",
+          "Hop starts the pattern again."
+        ],
+        [
+          "5, 10, 15, 20. What number comes next?",
+          "25",
+          [
+            "21",
+            "22",
+            "25",
+            "30"
+          ],
+          "Count by fives.",
+          "Each number grows by 5: 20 + 5 = 25."
         ]
       ]
     },
@@ -19592,6 +19709,287 @@
           ],
           "Add the two groups of shapes: 4 + 1.",
           "Ana drew 4 + 1 = 5 shapes in all."
+        ]
+      ]
+    },
+    "guitar": {
+      "title": "Guitar Parts and String Sounds",
+      "skill": "Name the parts of the guitar and tell thick strings from thin ones",
+      "questions": [
+        [
+          "What are the small metal strips across the guitar's neck called?",
+          "frets",
+          [
+            "frets",
+            "pegs",
+            "steps for ants"
+          ],
+          "They shine like little silver lines.",
+          "The metal strips across the neck are called frets. They help your fingers find the right spots."
+        ],
+        [
+          "What do the tuning pegs on the head do?",
+          "they tighten or loosen the strings",
+          [
+            "they tighten or loosen the strings",
+            "they make the guitar louder",
+            "they hold the guitar case shut"
+          ],
+          "Turning them changes how a string sounds.",
+          "Tuning pegs tighten or loosen strings so each string sings its true note."
+        ],
+        [
+          "What is the flat part on the front of the neck where your fingers press?",
+          "the fretboard",
+          [
+            "the fretboard",
+            "the tabletop",
+            "the runway"
+          ],
+          "Your fingertips dance on it.",
+          "The fretboard is the flat front of the neck, where your fingers press the strings between the frets."
+        ],
+        [
+          "What part holds the strings up on the guitar's body?",
+          "the bridge",
+          [
+            "the bridge",
+            "the tower",
+            "the shelf"
+          ],
+          "It crosses the body like its name crosses a river.",
+          "The bridge is the small part on the body that holds the strings up at that end."
+        ],
+        [
+          "A guitar makes sound when its strings do what?",
+          "wiggle very fast",
+          [
+            "wiggle very fast",
+            "get wet",
+            "turn a different color"
+          ],
+          "It happens too fast for your eyes to follow.",
+          "When strings wiggle — vibrate — very fast, they make the sound we hear."
+        ],
+        [
+          "Guitar strings have numbers. Which string is number 1?",
+          "the thinnest string",
+          [
+            "the thinnest string",
+            "the thickest string",
+            "the longest string"
+          ],
+          "Number 1 sings the highest.",
+          "String 1 is the thinnest string, and it sings the highest notes."
+        ],
+        [
+          "Which string is number 6?",
+          "the thickest string",
+          [
+            "the middle string",
+            "the thickest string",
+            "the thinnest string"
+          ],
+          "Number 6 sings the lowest.",
+          "String 6 is the thickest string, and it sings the lowest notes."
+        ],
+        [
+          "How do the strings change from string 6 to string 1?",
+          "they get thinner and sing higher",
+          [
+            "they get thinner and sing higher",
+            "they get thicker and sing lower",
+            "they all stay the same"
+          ],
+          "Walk from the bear voice to the bird voice.",
+          "From string 6 to string 1, the strings get thinner and their sounds get higher."
+        ],
+        [
+          "If you count the strings starting from the thickest, which number is the middle pair?",
+          "strings 3 and 4",
+          [
+            "strings 3 and 4",
+            "strings 1 and 2",
+            "strings 5 and 6"
+          ],
+          "Six strings — the middle falls between which two?",
+          "With six strings, the middle pair is strings 3 and 4."
+        ],
+        [
+          "When you hold a guitar to play, string 1 sits closest to…",
+          "the floor",
+          [
+            "the floor",
+            "the ceiling",
+            "your chin"
+          ],
+          "The thick strings sit on top; the thin ones hang below.",
+          "In playing position the thickest string is on top and string 1, the thinnest, is at the bottom, closest to the floor."
+        ],
+        [
+          "What happens to a string's sound when you press it down on the neck and pluck it?",
+          "it sings a different, higher note",
+          [
+            "it sings a different, higher note",
+            "it stops making any sound",
+            "it sings the exact same note"
+          ],
+          "Pressing makes the wiggling part shorter.",
+          "Pressing a string makes the part that wiggles shorter, so it sings a higher note."
+        ],
+        [
+          "Why do guitar players press strings at different places?",
+          "to make lots of different notes",
+          [
+            "to make lots of different notes",
+            "to make the strings longer",
+            "to keep the strings from falling off"
+          ],
+          "Each spot is a new sound.",
+          "Pressing at different places gives the string different wiggle lengths, making all the notes of a song."
+        ],
+        [
+          "A low note and a high note are played together. Which one came from a thicker string?",
+          "the low note",
+          [
+            "the low note",
+            "the high note",
+            "neither one"
+          ],
+          "Thick strings, deep voices.",
+          "Low notes come from thick strings; high notes come from thin strings."
+        ],
+        [
+          "What does the word 'tune' mean for a guitar?",
+          "to fix each string so it sings its true note",
+          [
+            "to fix each string so it sings its true note",
+            "to play a whole song",
+            "to clean the guitar"
+          ],
+          "Grown-ups use the pegs for this.",
+          "Tuning means turning the pegs until every string sings exactly its own true note."
+        ],
+        [
+          "Which of these could change a string's sound?",
+          "pressing it at a different fret",
+          [
+            "pressing it at a different fret",
+            "looking at it",
+            "smiling at it"
+          ],
+          "Your fingers are the sound changers.",
+          "Pressing a string at a different fret changes the note it sings."
+        ],
+        [
+          "When you strum DOWN, your hand moves…",
+          "from the thick strings toward the thin strings",
+          [
+            "from the thick strings toward the thin strings",
+            "from the thin strings toward the thick strings",
+            "in a circle in the air"
+          ],
+          "Down means toward the floor.",
+          "A down-strum sweeps from the thick strings (on top) down toward the thin strings and the floor."
+        ],
+        [
+          "How many beats do we count in one group when we play '1, 2, 3, 4'?",
+          "4 beats",
+          [
+            "2 beats",
+            "4 beats",
+            "10 beats"
+          ],
+          "Count on your fingers.",
+          "Counting 1, 2, 3, 4 gives a group of 4 steady beats — most songs march in fours like this."
+        ],
+        [
+          "What can help you keep strumming at a steady speed?",
+          "counting out loud while you play",
+          [
+            "counting out loud while you play",
+            "closing the book",
+            "playing faster and faster"
+          ],
+          "Your voice can be the metronome.",
+          "Counting out loud while you play helps your hand keep a steady beat."
+        ],
+        [
+          "What is a pick made to do?",
+          "pluck and strum the strings",
+          [
+            "pluck and strum the strings",
+            "hold the guitar up",
+            "tune the pegs"
+          ],
+          "You pinch it between two fingers.",
+          "A pick is pinched between your fingers and used to pluck and strum the strings."
+        ],
+        [
+          "Why do we count beats out loud in a song?",
+          "so everyone plays together at the same speed",
+          [
+            "so everyone plays together at the same speed",
+            "so the song ends sooner",
+            "so the guitar sounds louder"
+          ],
+          "Beats are a promise everyone keeps together.",
+          "Counting beats out loud keeps every player moving at the same speed, together."
+        ],
+        [
+          "What should you NEVER do with a guitar?",
+          "bang it or drop it",
+          [
+            "bang it or drop it",
+            "play it every day",
+            "share songs with friends"
+          ],
+          "Guitars are instruments, not toys for throwing.",
+          "A guitar is a careful instrument: never bang it, drop it, or use it as a drum."
+        ],
+        [
+          "Where is a safe home for a guitar when nobody is playing it?",
+          "in its case or on a stand",
+          [
+            "in its case or on a stand",
+            "leaning where people walk",
+            "outside in the rain"
+          ],
+          "Safe spots keep guitars happy.",
+          "A case or a stand keeps a guitar safe from bumps, falls, and weather."
+        ],
+        [
+          "When a friend is playing a song, what is a kind thing to do?",
+          "listen quietly and clap at the end",
+          [
+            "listen quietly and clap at the end",
+            "talk loudly over the music",
+            "grab the guitar away"
+          ],
+          "Good listeners help music grow.",
+          "Listening quietly and clapping at the end is how audiences cheer musicians on."
+        ],
+        [
+          "A person who plays the guitar is called a…",
+          "guitarist",
+          [
+            "guitarist",
+            "guitar keeper",
+            "string counter"
+          ],
+          "It ends like 'artist' for music makers.",
+          "A person who plays the guitar is a guitarist."
+        ],
+        [
+          "What is the happiest reason people play guitar?",
+          "to make music and share it",
+          [
+            "to make music and share it",
+            "to win every time",
+            "to be louder than everyone"
+          ],
+          "Music is for sharing.",
+          "People play guitar to make music and share it — with family, friends, and anyone who loves a song."
         ]
       ]
     }

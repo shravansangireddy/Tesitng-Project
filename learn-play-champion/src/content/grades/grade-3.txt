@@ -289,6 +289,246 @@
           ],
           "One tool measures rainfall.",
           "A rain gauge checks last night's rain."
+        ],
+        [
+          "Which part of a flower attracts bees and other insects with its color?",
+          "the petal",
+          [
+            "the petal",
+            "the root",
+            "the sepal",
+            "the stem"
+          ],
+          "It is often the bright, showy part of the flower.",
+          "Colorful petals attract pollinators like bees."
+        ],
+        [
+          "Which body part sends messages and helps you think, learn, and remember?",
+          "the brain",
+          [
+            "the brain",
+            "the heart",
+            "the knee",
+            "the stomach"
+          ],
+          "It is protected inside your head.",
+          "The brain controls thinking and sends messages through the body."
+        ],
+        [
+          "Which part of a plant anchors it in the ground so it does not blow over?",
+          "the roots",
+          [
+            "the flower",
+            "the leaves",
+            "the petal",
+            "the roots"
+          ],
+          "This part spreads out underground.",
+          "Roots anchor the plant and hold it firmly in the soil."
+        ],
+        [
+          "Which body part breaks down the food you eat?",
+          "the stomach",
+          [
+            "the brain",
+            "the heart",
+            "the lungs",
+            "the stomach"
+          ],
+          "It churns food after you swallow.",
+          "The stomach mixes and breaks down food during digestion."
+        ],
+        [
+          "Which part of a flower bud protects it before it opens?",
+          "the sepal",
+          [
+            "the petal",
+            "the roots",
+            "the sepal",
+            "the stem"
+          ],
+          "It is the small green leaf-like part under the bud.",
+          "Sepals wrap around and protect a young flower bud."
+        ],
+        [
+          "A seed has soaked up water and swollen. What happens next?",
+          "A tiny root pushes out of the seed.",
+          [
+            "A flower opens.",
+            "A tiny root pushes out of the seed.",
+            "Leaves turn brown.",
+            "Seeds scatter."
+          ],
+          "Germination starts below the surface.",
+          "The first thing to emerge is a small root that grows downward."
+        ],
+        [
+          "A butterfly's life goes egg, caterpillar, chrysalis. What stage comes next?",
+          "the adult butterfly",
+          [
+            "another egg mass",
+            "the adult butterfly",
+            "the caterpillar again",
+            "the pupa shell"
+          ],
+          "The chrysalis is the resting stage.",
+          "After the chrysalis stage, an adult butterfly emerges."
+        ],
+        [
+          "A frog lays eggs in a pond. What hatches from the eggs?",
+          "tadpoles",
+          [
+            "froglets",
+            "small frogs",
+            "tadpoles",
+            "water flies"
+          ],
+          "Frogs start life looking very different from their parents.",
+          "Tadpoles hatch from frog eggs and live in the water."
+        ],
+        [
+          "A young plant has grown flowers. What happens after insects pollinate the flowers?",
+          "Seeds begin to form.",
+          [
+            "The plant makes roots.",
+            "The seed sprouts.",
+            "Seeds begin to form.",
+            "The stem falls over."
+          ],
+          "Pollination starts the seed-making step.",
+          "Once flowers are pollinated, seeds begin to form inside the plant."
+        ],
+        [
+          "What comes right before a new bean plant can start growing?",
+          "A ripe seed lands in soil.",
+          [
+            "A flower opens.",
+            "A ripe seed lands in soil.",
+            "Leaves make food.",
+            "Roots drink water."
+          ],
+          "Think about how the cycle repeats.",
+          "The cycle repeats when a ripe seed lands in soil and sprouts."
+        ],
+        [
+          "Which object will a magnet attract?",
+          "an iron nail",
+          [
+            "an iron nail",
+            "a plastic cup",
+            "a rubber eraser",
+            "a wooden ruler"
+          ],
+          "Magnets attract some metals, like iron and steel.",
+          "An iron nail is metal that a magnet can attract."
+        ],
+        [
+          "Two plants are alike. One gets water every week; the other gets none for weeks. What difference would you expect?",
+          "The watered plant stands tall; the dry plant wilts.",
+          [
+            "Both plants look exactly the same.",
+            "The dry plant grows taller.",
+            "The watered plant stands tall; the dry plant wilts.",
+            "The watered plant wilts; the dry plant stands tall."
+          ],
+          "Plants need water to stay firm.",
+          "Water keeps a plant firm; without it, the plant wilts."
+        ],
+        [
+          "Which of these is a solid that keeps its own shape?",
+          "a block of wood",
+          [
+            "a block of wood",
+            "a cup of milk",
+            "a puddle of water",
+            "the air in a balloon"
+          ],
+          "A solid holds its shape instead of spreading out.",
+          "Wood is a solid; liquids and gases change shape to fit their containers."
+        ],
+        [
+          "On which surface would a rolling ball travel the FARTHEST?",
+          "smooth tile",
+          [
+            "rough gravel",
+            "smooth tile",
+            "tall grass",
+            "thick sand"
+          ],
+          "Smooth surfaces slow a ball less.",
+          "A ball rolls farthest on smooth tile because there is less rubbing to slow it."
+        ],
+        [
+          "At noon, a tree's shadow is short. At sunset, the same tree's shadow is ___ than at noon.",
+          "longer",
+          [
+            "gone",
+            "longer",
+            "rounder",
+            "shorter"
+          ],
+          "As the Sun gets lower, shadows stretch out.",
+          "A low Sun makes longer shadows, so sunset shadows are longer than noon shadows."
+        ],
+        [
+          "You typed a story on a computer. What is the correct order of steps?",
+          "Type the story, save it, then share it.",
+          [
+            "Share it, type it, then save it.",
+            "Type the story, save it, then share it.",
+            "Save it, share it, then type it.",
+            "Type it, share it, then save it."
+          ],
+          "Saving must happen before sharing, or there is nothing to share.",
+          "First you type, then you save your work, and only then can you share it."
+        ],
+        [
+          "A robot follows the steps: move forward, turn left, move forward. What must happen FIRST before the robot can start?",
+          "Someone gives the robot its steps.",
+          [
+            "Someone fixes a mistake.",
+            "Someone gives the robot its steps.",
+            "Someone turns the robot off.",
+            "The robot finishes the path."
+          ],
+          "Robots and computers only do what their steps tell them.",
+          "The instructions must be given before the robot can follow them."
+        ],
+        [
+          "Your code does not do what you wanted. What is the best FIRST step to fix it?",
+          "Check each step in order to find the mistake.",
+          [
+            "Check each step in order to find the mistake.",
+            "Delete all the code.",
+            "Guess a new answer.",
+            "Turn the computer off and on."
+          ],
+          "Finding the mistake is the first part of debugging.",
+          "Reading through the steps in order helps you spot exactly where things went wrong."
+        ],
+        [
+          "Which password is the STRONGEST?",
+          "a long mix of letters, numbers, and symbols",
+          [
+            "1234",
+            "a long mix of letters, numbers, and symbols",
+            "your birthday",
+            "your pet's name"
+          ],
+          "Strong passwords are long and hard to guess.",
+          "A long mix of letters, numbers, and symbols is much harder to guess than a name or birthday."
+        ],
+        [
+          "A game website asks for your home address. What should you do?",
+          "Do not share it, and tell a grown-up.",
+          [
+            "Do not share it, and tell a grown-up.",
+            "Share it to keep playing.",
+            "Share only the street name.",
+            "Type a friend's address instead."
+          ],
+          "Personal information stays private online.",
+          "Never share your home address online; tell a grown-up when a site asks for it."
         ]
       ]
     },
@@ -12842,6 +13082,66 @@
           ],
           "The problem is solved at the end.",
           "The story ends with the beetles crossing safely."
+        ],
+        [
+          "What problem did Lila notice FIRST in the story?",
+          "Beetles could not climb past the stream because the water pushed them back.",
+          [
+            "A leaf floated away.",
+            "Beetles could not climb past the stream because the water pushed them back.",
+            "A stick was too high to reach.",
+            "Lila went inside."
+          ],
+          "Start with the scene after the storm.",
+          "Lila first saw beetles being pushed back by the water each time they climbed."
+        ],
+        [
+          "What did Lila try FIRST to help the beetles?",
+          "She laid a smooth leaf over the stream.",
+          [
+            "She balanced a stick between two stones.",
+            "She lowered a stick to the path.",
+            "She laid a smooth leaf over the stream.",
+            "She carried the beetles across."
+          ],
+          "Her first idea used something soft and flat.",
+          "Lila's first try was a leaf bridge, but it floated away."
+        ],
+        [
+          "What happened right AFTER the leaf floated away?",
+          "She balanced a thin stick between two dry stones.",
+          [
+            "A beetle crossed the stream.",
+            "She went inside.",
+            "She balanced a thin stick between two dry stones.",
+            "She lowered the stick."
+          ],
+          "The second idea used something stronger than a leaf.",
+          "Next, Lila tried a stick bridge between two dry stones."
+        ],
+        [
+          "What did Lila change just BEFORE a beetle finally crossed?",
+          "She lowered one end of the stick to the path.",
+          [
+            "She made the stream deeper.",
+            "She lowered one end of the stick to the path.",
+            "She picked up the beetles.",
+            "She added a second leaf."
+          ],
+          "The stick worked only after one small change.",
+          "Lowering the end let the beetles climb onto the stick."
+        ],
+        [
+          "What happened LAST in Lila's story?",
+          "The beetles crossed, and Lila left the bridge in place.",
+          [
+            "Lila laid a leaf on the water.",
+            "A beetle climbed a muddy stone.",
+            "The beetles crossed, and Lila left the bridge in place.",
+            "Lila balanced a stick."
+          ],
+          "Think about the ending.",
+          "The story ends with the beetles across and the bridge left for others."
         ]
       ]
     },
@@ -14986,6 +15286,66 @@
           ],
           "The word “I” is always written with a capital letter.",
           "“I am happy.” is written correctly."
+        ],
+        [
+          "Which word fixes this sentence? 'Right now, the team are winning the game.'",
+          "is",
+          [
+            "are",
+            "be",
+            "is",
+            "were"
+          ],
+          "Team names one group, so it takes a singular verb.",
+          "The team is winning the game."
+        ],
+        [
+          "Which words fix the start of this sentence? 'Me and Josh built a fort.'",
+          "Josh and I",
+          [
+            "I and Josh",
+            "Josh and I",
+            "Josh and me",
+            "Me and Josh"
+          ],
+          "When you are part of the subject, name the other person first and use I.",
+          "Josh and I built a fort is the correct start."
+        ],
+        [
+          "Which word fixes this sentence? 'The girls's coats are red.'",
+          "girls'",
+          [
+            "girl's",
+            "girls",
+            "girls'",
+            "girls's"
+          ],
+          "The coats belong to more than one girl, so the apostrophe goes after the s.",
+          "Girls' shows that several girls own the coats."
+        ],
+        [
+          "Which word fixes this sentence? 'Last night, we watch a movie and ate popcorn.'",
+          "watched",
+          [
+            "watch",
+            "watches",
+            "watched",
+            "watching"
+          ],
+          "Last night and ate are both in the past, so the other verb must match.",
+          "Watched keeps the sentence in the past tense."
+        ],
+        [
+          "Which word fixes this sentence? 'Its raining outside today.'",
+          "It's",
+          [
+            "It",
+            "Its",
+            "It's",
+            "Its'"
+          ],
+          "The sentence means 'it is raining,' so it needs the contraction.",
+          "It's is short for it is."
         ]
       ]
     },
@@ -29159,6 +29519,126 @@
           ],
           "The pattern adds 9, then subtracts 4, over and over.",
           "After adding 9 and subtracting 4 in turn, the next number is 38."
+        ],
+        [
+          "A number line makes equal jumps: 350, 400, __, 500, 550. What number belongs in the blank?",
+          "450",
+          [
+            "425",
+            "450",
+            "475",
+            "500"
+          ],
+          "Each jump adds 50.",
+          "The jumps are 50: 400 + 50 = 450."
+        ],
+        [
+          "A number line makes equal jumps backward: 900, 800, 700, __, 500. What number belongs in the blank?",
+          "600",
+          [
+            "550",
+            "600",
+            "650",
+            "750"
+          ],
+          "Each jump goes back 100.",
+          "Counting back by hundreds: 700, then 600."
+        ],
+        [
+          "A number line makes equal jumps: 275, 300, 325, __, 375. What number belongs in the blank?",
+          "350",
+          [
+            "340",
+            "350",
+            "360",
+            "375"
+          ],
+          "Each jump adds 25.",
+          "The jumps are 25: 325 + 25 = 350."
+        ],
+        [
+          "A number line makes equal jumps: 2,000, 3,000, __, 5,000, 6,000. What number belongs in the blank?",
+          "4,000",
+          [
+            "3,500",
+            "4,000",
+            "4,500",
+            "5,000"
+          ],
+          "Count by thousands.",
+          "The jumps are 1,000: 3,000 + 1,000 = 4,000."
+        ],
+        [
+          "A number line makes equal jumps backward: 640, 620, 600, __, 560. What number belongs in the blank?",
+          "580",
+          [
+            "570",
+            "580",
+            "590",
+            "610"
+          ],
+          "Each jump goes back 20.",
+          "Counting back by twenties: 600, then 580."
+        ],
+        [
+          "4, 7, 11, 16, 22. What number comes next?",
+          "29",
+          [
+            "25",
+            "27",
+            "29",
+            "30"
+          ],
+          "The jumps grow: +3, +4, +5, +6.",
+          "The next jump is +7: 22 + 7 = 29."
+        ],
+        [
+          "5, 9, 7, 11, 9, 13. What number comes next?",
+          "11",
+          [
+            "10",
+            "11",
+            "13",
+            "15"
+          ],
+          "The pattern takes turns: add 4, subtract 2.",
+          "After adding 4 to get 13, the pattern subtracts 2: 13 - 2 = 11."
+        ],
+        [
+          "100, 90, 81, 73, 66. What number comes next?",
+          "60",
+          [
+            "58",
+            "59",
+            "60",
+            "61"
+          ],
+          "The jumps shrink: -10, -9, -8, -7.",
+          "The next jump is -6: 66 - 6 = 60."
+        ],
+        [
+          "1, 2, 4, 7, 11, 16. What number comes next?",
+          "22",
+          [
+            "18",
+            "20",
+            "21",
+            "22"
+          ],
+          "The jumps grow by one: +1, +2, +3, +4, +5.",
+          "The next jump is +6: 16 + 6 = 22."
+        ],
+        [
+          "A, C, F, J. Which letter comes next?",
+          "O",
+          [
+            "K",
+            "M",
+            "N",
+            "O"
+          ],
+          "Count the skips between letters: they grow by one.",
+          "The skips are +2, +3, +4, so the next skip is +5: J plus 5 letters is O."
         ]
       ]
     },
@@ -33092,6 +33572,61 @@
           ],
           "Which number times 8 equals 64?",
           "64 ÷ 8 = 8 teams."
+        ],
+        [
+          "A theater has 7 rows of seats. Each row has 9 seats. How many seats are there in all?",
+          "63",
+          [
+            "56",
+            "63",
+            "72"
+          ],
+          "Multiply the equal groups: 7 × 9.",
+          "7 rows of 9 make 63 seats."
+        ],
+        [
+          "A crafter makes 8 strings of beads. Each string has 7 beads. How many beads are used in all?",
+          "56",
+          [
+            "49",
+            "56",
+            "64"
+          ],
+          "Multiply the equal groups: 8 × 7.",
+          "8 strings of 7 make 56 beads."
+        ],
+        [
+          "A farmer packs 48 eggs into cartons of 6 eggs. How many cartons does the farmer fill?",
+          "8",
+          [
+            "6",
+            "7",
+            "8"
+          ],
+          "Find how many groups of 6 make 48.",
+          "48 ÷ 6 = 8 cartons."
+        ],
+        [
+          "A store has 6 boxes of markers with 8 markers in each box. 9 markers dry out. How many markers still work?",
+          "39",
+          [
+            "37",
+            "39",
+            "41"
+          ],
+          "First multiply: 6 × 8 = 48. Then subtract 9.",
+          "48 - 9 = 39 markers still work."
+        ],
+        [
+          "A photo display has 5 rows. Each row holds 9 photos. How many photos are on the display?",
+          "45",
+          [
+            "40",
+            "45",
+            "50"
+          ],
+          "Multiply the equal groups: 5 × 9.",
+          "5 rows of 9 make 45 photos."
         ]
       ]
     },
@@ -35133,6 +35668,342 @@
           ],
           "Flat shapes are not thick.",
           "A circle is a flat shape."
+        ]
+      ]
+    },
+    "guitar": {
+      "title": "Notes and Chords on the Neck",
+      "skill": "Find notes on the two thickest strings and play Am, C, G, and D",
+      "questions": [
+        [
+          "Played open, the thickest string gives which note?",
+          "E",
+          [
+            "E",
+            "A",
+            "G"
+          ],
+          "The string's name IS its open note.",
+          "The thickest string is the low E string, and open it sings E."
+        ],
+        [
+          "Press the low E string at the 1st fret. What note do you get?",
+          "F",
+          [
+            "F",
+            "G",
+            "E"
+          ],
+          "One fret up from E in the alphabet of notes…",
+          "One fret above E is F, so the low E string at fret 1 plays F."
+        ],
+        [
+          "Press the low E string at the 3rd fret. What note do you get?",
+          "G",
+          [
+            "D",
+            "G",
+            "A"
+          ],
+          "Count up: E, F, then an in-between note, then…",
+          "From E: fret 1 is F, fret 2 is F sharp, and fret 3 is G."
+        ],
+        [
+          "Press the low E string at the 5th fret. What note do you get?",
+          "A",
+          [
+            "A",
+            "B",
+            "C"
+          ],
+          "It matches the open note of the next string!",
+          "At the 5th fret, the low E string plays A — the same note as the open A string beside it."
+        ],
+        [
+          "What is special about the note at the 2nd fret of the low E string, squeezed between F and G?",
+          "it is called F sharp — a half step above F",
+          [
+            "it is called F sharp — a half step above F",
+            "it has no name at all",
+            "it is the lowest note on the guitar"
+          ],
+          "Sharps live in the in-between spots.",
+          "The note between F and G is F sharp, one fret — one half step — above F."
+        ],
+        [
+          "Played open, the 5th string gives which note?",
+          "A",
+          [
+            "A",
+            "D",
+            "B"
+          ],
+          "String 5's name is its note.",
+          "The 5th string is the A string, and open it sings A."
+        ],
+        [
+          "Press the A string at the 2nd fret. What note do you get?",
+          "B",
+          [
+            "B",
+            "C",
+            "D"
+          ],
+          "Two frets up from A: A sharp, then…",
+          "From A: fret 1 is A sharp, and fret 2 is B."
+        ],
+        [
+          "Press the A string at the 3rd fret. What note do you get?",
+          "C",
+          [
+            "G",
+            "C",
+            "E"
+          ],
+          "It is the home note of the C chord you are learning.",
+          "The A string at the 3rd fret plays C — your ring finger lands there for the C chord."
+        ],
+        [
+          "Press the A string at the 5th fret. What note do you get?",
+          "D",
+          [
+            "D",
+            "F",
+            "A"
+          ],
+          "Just like the 5th fret of the low E string matched its neighbor…",
+          "At the 5th fret, the A string plays D — the same note as the open D string beside it."
+        ],
+        [
+          "Why do guitarists learn the notes on the two thickest strings first?",
+          "those strings are the home base for finding chords and notes",
+          [
+            "those strings are the home base for finding chords and notes",
+            "the other strings have no notes",
+            "thick strings are always louder"
+          ],
+          "Chords are built from these roots.",
+          "The low E and A strings carry the root notes of most chords, so their notes are the map's home base."
+        ],
+        [
+          "C is written x-3-2-0-1-0. Which string does your RING finger press at the 3rd fret?",
+          "the A string",
+          [
+            "the A string",
+            "the D string",
+            "the B string"
+          ],
+          "The 3 belongs to the second-thickest string.",
+          "In C, the ring finger presses the A string at the 3rd fret — that note is C itself."
+        ],
+        [
+          "In C, your middle finger presses the D string at which fret?",
+          "the 2nd fret",
+          [
+            "the 1st fret",
+            "the 2nd fret",
+            "the 3rd fret"
+          ],
+          "Middle finger, middle string, second fret.",
+          "C's middle finger presses the D string at the 2nd fret."
+        ],
+        [
+          "In C, your index finger presses the B string at which fret?",
+          "the 1st fret",
+          [
+            "the 1st fret",
+            "the 2nd fret",
+            "the 3rd fret"
+          ],
+          "The same spot your index uses in Am.",
+          "C's index finger presses the B string at the 1st fret — the same spot it uses in Am."
+        ],
+        [
+          "When you strum a C chord, where should your strum start?",
+          "on the A string, skipping the low E string",
+          [
+            "on the A string, skipping the low E string",
+            "on the low E string",
+            "on the high E string"
+          ],
+          "The x in x-3-2-0-1-0 is your clue.",
+          "C is written with an x on the low E string, so the strum starts on the A string."
+        ],
+        [
+          "C is a major chord. How does it sound?",
+          "bright and sunny",
+          [
+            "bright and sunny",
+            "soft and a little sad",
+            "angry and growly"
+          ],
+          "Major chords wear sunshine.",
+          "Major chords like C sound bright and sunny; minor chords sound softer and sadder."
+        ],
+        [
+          "G is written 3-2-0-0-0-3. How many strings are pressed in a G chord?",
+          "three strings",
+          [
+            "two strings",
+            "three strings",
+            "all six strings"
+          ],
+          "Count the numbers that are not zero.",
+          "G presses three strings: the low E at fret 3, the A at fret 2, and the high E at fret 3."
+        ],
+        [
+          "In G, the A string is pressed at which fret?",
+          "the 2nd fret",
+          [
+            "the 1st fret",
+            "the 2nd fret",
+            "the 3rd fret"
+          ],
+          "Read the numbers in order: 3, then…",
+          "In G (320003), the A string is pressed at the 2nd fret."
+        ],
+        [
+          "In G, which strings ring open?",
+          "the D, G, and B strings",
+          [
+            "the D, G, and B strings",
+            "the A and low E strings",
+            "no strings ring open"
+          ],
+          "Look for the three zeros in the middle.",
+          "G's three middle strings — D, G, and B — all ring open."
+        ],
+        [
+          "How many strings do you strum for a full G chord?",
+          "all six strings",
+          [
+            "all six strings",
+            "only four strings",
+            "only three strings"
+          ],
+          "There is no x in 3-2-0-0-0-3.",
+          "G uses every string, so a full strum across all six strings rings the whole chord."
+        ],
+        [
+          "Your G chord's high E string sounds dull. What should you check first?",
+          "that your finger presses it firmly at the 3rd fret and nothing else touches it",
+          [
+            "that your finger presses it firmly at the 3rd fret and nothing else touches it",
+            "that you strum much harder",
+            "that the string is tuned to G"
+          ],
+          "Dull strings usually mean a shy press or a stray touch.",
+          "A dull string in G usually means its fret-3 press is too light, or another finger is brushing it — press firmly and keep the other fingers clear."
+        ],
+        [
+          "D is written x-x-0-2-3-2. How many strings do you leave silent in a D chord?",
+          "two strings — the two thickest",
+          [
+            "two strings — the two thickest",
+            "one string — the thinnest",
+            "no strings"
+          ],
+          "Count the x's at the start.",
+          "D leaves out the two thickest strings (low E and A), so its numbers start with two x's."
+        ],
+        [
+          "In D, your index finger presses which string at the 2nd fret?",
+          "the G string",
+          [
+            "the G string",
+            "the B string",
+            "the high E string"
+          ],
+          "Index takes the string in the middle of the shape.",
+          "D's index finger presses the G string at the 2nd fret."
+        ],
+        [
+          "In D, your ring finger presses the B string at which fret?",
+          "the 3rd fret",
+          [
+            "the 2nd fret",
+            "the 3rd fret",
+            "the 1st fret"
+          ],
+          "Ring reaches one fret farther than the others.",
+          "D's ring finger stretches to the B string at the 3rd fret."
+        ],
+        [
+          "In D, your middle finger presses the high E string at which fret?",
+          "the 2nd fret",
+          [
+            "the 2nd fret",
+            "the 3rd fret",
+            "the 1st fret"
+          ],
+          "It partners with the index finger on the same fret.",
+          "D's middle finger presses the high E string at the 2nd fret, matching the index finger's fret."
+        ],
+        [
+          "A D chord rings only four strings. Which four?",
+          "D, G, B, and high E",
+          [
+            "D, G, B, and high E",
+            "low E, A, D, and G",
+            "A, D, G, and B"
+          ],
+          "Start from the open D string and go thinner.",
+          "D rings from its open D string down through G, B, and high E — four strings in all."
+        ],
+        [
+          "In a song counted 1-2-3-4, a new chord starts on beat 1 of the next bar. When should your fingers move to it?",
+          "just before beat 1 of the new bar",
+          [
+            "just before beat 1 of the new bar",
+            "in the middle of beat 3",
+            "after the new bar has finished"
+          ],
+          "Land ON the beat, not after it.",
+          "Quick, quiet moves just before beat 1 let the new chord ring right on time."
+        ],
+        [
+          "What does 'down-strum on every beat' mean in 1-2-3-4 time?",
+          "four down-strums in each bar",
+          [
+            "four down-strums in each bar",
+            "one long strum per bar",
+            "strum only on beat 1"
+          ],
+          "One strum per beat, four beats per bar.",
+          "Down-strumming every beat in 4/4 time means four even down-strums in every bar."
+        ],
+        [
+          "What is the smartest way to practice a tricky chord change, like C to G?",
+          "play it very slowly first, then speed up little by little",
+          [
+            "play it very slowly first, then speed up little by little",
+            "play it as fast as possible right away",
+            "practice it only once a month"
+          ],
+          "Slow and steady builds fast and clean.",
+          "Slow practice teaches your fingers the path; speed grows on its own from there."
+        ],
+        [
+          "Switching from C to Am is quick because two fingers do not move at all. Which two?",
+          "the index on the B string and the middle on the D string",
+          [
+            "the index on the B string and the middle on the D string",
+            "the ring finger and the pinky finger",
+            "all three fingers have to move"
+          ],
+          "Compare the two shapes side by side.",
+          "C and Am share the index finger (B string, fret 1) and middle finger (D string, fret 2) — only the ring finger travels, from the A string's fret 3 to the G string's fret 2."
+        ],
+        [
+          "What do we call one full group of beats, like one round of 1-2-3-4?",
+          "a bar (or measure)",
+          [
+            "a bar (or measure)",
+            "a fret",
+            "a verse of strings"
+          ],
+          "Chords often change when a new one begins.",
+          "One full group of beats is a bar (also called a measure). Chord changes often happen at the start of a new bar."
         ]
       ]
     }

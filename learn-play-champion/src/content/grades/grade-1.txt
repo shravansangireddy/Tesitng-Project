@@ -289,6 +289,66 @@
           ],
           "The book belongs to everyone.",
           "Take care of it because other readers will use it next."
+        ],
+        [
+          "Which body part pumps blood to the rest of your body?",
+          "the heart",
+          [
+            "the elbow",
+            "the hair",
+            "the heart",
+            "the nose"
+          ],
+          "It beats inside your chest.",
+          "The heart pumps blood all through the body."
+        ],
+        [
+          "Which body part do you use to smell a flower?",
+          "your nose",
+          [
+            "your ear",
+            "your knee",
+            "your nose",
+            "your toe"
+          ],
+          "It is in the middle of your face.",
+          "Your nose takes in smells."
+        ],
+        [
+          "Which body parts help you hear a bell ring?",
+          "your ears",
+          [
+            "your ears",
+            "your elbows",
+            "your teeth",
+            "your toes"
+          ],
+          "They are on the sides of your head.",
+          "Your ears collect sounds, like a ringing bell."
+        ],
+        [
+          "Which body parts fill with air when you breathe in?",
+          "your lungs",
+          [
+            "your feet",
+            "your hair",
+            "your lungs",
+            "your teeth"
+          ],
+          "They are inside your chest and grow bigger as you breathe in.",
+          "Your lungs fill with air each time you breathe."
+        ],
+        [
+          "Which body part do you use to taste a slice of lemon?",
+          "your tongue",
+          [
+            "your chin",
+            "your eyebrow",
+            "your thumb",
+            "your tongue"
+          ],
+          "It is inside your mouth.",
+          "Your tongue tastes sweet, salty, and sour flavors."
         ]
       ]
     },
@@ -8536,6 +8596,66 @@
           ],
           "Say each word slowly and listen to its sounds.",
           "The word “through” is spelled t-h-r-o-u-g-h."
+        ],
+        [
+          "Which letter completes the word? Clue: a big boat that sails on the sea. sh _ p",
+          "i",
+          [
+            "a",
+            "e",
+            "i",
+            "o"
+          ],
+          "Say the word slowly: sh-i-p.",
+          "The letter i completes the word ship."
+        ],
+        [
+          "Which letter completes the word? Clue: a sweet birthday treat. cak _",
+          "e",
+          [
+            "a",
+            "e",
+            "i",
+            "y"
+          ],
+          "The last letter is silent, but it makes the a say its name.",
+          "The silent letter e completes the word cake."
+        ],
+        [
+          "Which letter completes the word? Clue: a green animal that hops. _ rog",
+          "f",
+          [
+            "b",
+            "f",
+            "t",
+            "w"
+          ],
+          "Listen for the first sound: f-rog.",
+          "The letter f completes the word frog."
+        ],
+        [
+          "Which letter completes the word? Clue: a tale you read or hear. stor _",
+          "y",
+          [
+            "a",
+            "e",
+            "o",
+            "y"
+          ],
+          "Listen for the last sound in story.",
+          "The letter y completes the word story."
+        ],
+        [
+          "Which letter completes the word? Clue: you write and draw with it. _ encil",
+          "p",
+          [
+            "b",
+            "m",
+            "p",
+            "t"
+          ],
+          "Listen for the first sound: p-encil.",
+          "The letter p completes the word pencil."
         ]
       ]
     },
@@ -10450,6 +10570,66 @@
           ],
           "The cat waits there with the mitten.",
           "The last part happens at Nia's home."
+        ],
+        [
+          "What happened FIRST in Nia's story?",
+          "Nia looked under her bed for her missing mitten.",
+          [
+            "Nia checked the puppy's basket.",
+            "Nia looked under her bed for her missing mitten.",
+            "Nia put on both mittens.",
+            "Nia found her mitten beside a toy bone."
+          ],
+          "Think about where Nia searched at the very beginning.",
+          "The story begins with Nia looking under her bed."
+        ],
+        [
+          "What happened right AFTER Nia looked under her bed?",
+          "She remembered playing with her puppy near the door.",
+          [
+            "She found her mitten right away.",
+            "She put on both mittens.",
+            "She remembered playing with her puppy near the door.",
+            "She walked to school in the snow."
+          ],
+          "Nia found only a book under the bed. What idea came next?",
+          "After the bed, Nia remembered the puppy near the door, which gave her a new place to look."
+        ],
+        [
+          "Where did Nia search NEXT, after remembering the puppy?",
+          "in the puppy's basket",
+          [
+            "at school",
+            "in the kitchen",
+            "in the puppy's basket",
+            "under her bed again"
+          ],
+          "Follow the order of the story.",
+          "Nia checked the puppy's basket next, and that is where the mitten was."
+        ],
+        [
+          "What happened just BEFORE Nia put on both mittens?",
+          "She found her mitten beside a toy bone.",
+          [
+            "She looked under her bed.",
+            "She lost her mitten.",
+            "She played outside in the snow.",
+            "She found her mitten beside a toy bone."
+          ],
+          "The mittens could go on only after both were found.",
+          "Finding the mitten in the basket happened right before she put both mittens on."
+        ],
+        [
+          "What happened LAST in Nia's story?",
+          "Nia put on both mittens so her hands would stay warm.",
+          [
+            "Nia looked under her bed.",
+            "Nia put on both mittens so her hands would stay warm.",
+            "Nia checked the puppy's basket.",
+            "Nia remembered the puppy."
+          ],
+          "Think about the final sentence of the story.",
+          "The story ends with both mittens on and Nia's hands warm."
         ]
       ]
     },
@@ -19660,6 +19840,124 @@
           ],
           "The numbers grow by 1 each time.",
           "The missing number is 15 + 1 = 16."
+        ],
+        [
+          "A number line makes equal jumps: 5, 10, __, 20, 25. What number belongs in the blank?",
+          "15",
+          [
+            "5",
+            "10",
+            "15",
+            "20"
+          ],
+          "Count by fives.",
+          "The jumps are 5: 5, 10, 15, 20, 25."
+        ],
+        [
+          "A number line makes equal jumps: 12, 14, 16, __, 20. What number belongs in the blank?",
+          "18",
+          [
+            "15",
+            "17",
+            "18",
+            "19"
+          ],
+          "Count by twos.",
+          "The jumps are 2: 16 + 2 = 18."
+        ],
+        [
+          "A number line makes equal jumps: 30, 40, 50, __, 70. What number belongs in the blank?",
+          "60",
+          [
+            "55",
+            "60",
+            "65",
+            "70"
+          ],
+          "Count by tens.",
+          "The jumps are 10: 50 + 10 = 60."
+        ],
+        [
+          "A number line makes equal jumps: 7, 9, 11, 13, __. What number belongs at the end?",
+          "15",
+          [
+            "12",
+            "14",
+            "15",
+            "16"
+          ],
+          "Count by twos to extend the line.",
+          "The jumps are 2: 13 + 2 = 15."
+        ],
+        [
+          "A number line makes equal jumps: 45, 50, 55, 60, __. What number belongs at the end?",
+          "65",
+          [
+            "61",
+            "62",
+            "65",
+            "70"
+          ],
+          "Count by fives to extend the line.",
+          "The jumps are 5: 60 + 5 = 65."
+        ],
+        [
+          "3, 6, 9, 12. What number comes next?",
+          "15",
+          [
+            "13",
+            "14",
+            "15",
+            "18"
+          ],
+          "Count by threes.",
+          "Each number grows by 3: 12 + 3 = 15."
+        ],
+        [
+          "Ant, bee, bee, ant, bee, bee. What comes next?",
+          "ant",
+          [
+            "ant",
+            "bee",
+            "bug"
+          ],
+          "The pattern repeats: ant, bee, bee.",
+          "Ant starts the pattern again."
+        ],
+        [
+          "20, 25, 30, 35. What number comes next?",
+          "40",
+          [
+            "36",
+            "38",
+            "40",
+            "45"
+          ],
+          "Count by fives.",
+          "Each number grows by 5: 35 + 5 = 40."
+        ],
+        [
+          "Sun, sun, moon, star, sun, sun, moon, star. What comes next?",
+          "sun",
+          [
+            "moon",
+            "star",
+            "sun"
+          ],
+          "The pattern repeats: sun, sun, moon, star.",
+          "Sun starts the pattern again."
+        ],
+        [
+          "1, 3, 5, 7. What number comes next?",
+          "9",
+          [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "These are odd numbers growing by 2.",
+          "Each number grows by 2: 7 + 2 = 9."
         ]
       ]
     },
@@ -21941,6 +22239,61 @@
           ],
           "Subtract what is already there from what is needed.",
           "85 − 41 = 44 more needed."
+        ],
+        [
+          "There are 3 rows of chairs. Each row has 4 chairs. How many chairs are there in all?",
+          "12",
+          [
+            "10",
+            "12",
+            "14"
+          ],
+          "Add 4 three times: 4 + 4 + 4.",
+          "3 groups of 4 make 12 chairs."
+        ],
+        [
+          "A sticker page holds 5 stickers. Mia fills 2 pages. How many stickers does she use?",
+          "10",
+          [
+            "7",
+            "10",
+            "12"
+          ],
+          "Add 5 two times.",
+          "2 pages of 5 make 10 stickers."
+        ],
+        [
+          "Each bunch has 5 grapes. There are 3 bunches. How many grapes are there in all?",
+          "15",
+          [
+            "12",
+            "15",
+            "18"
+          ],
+          "Add 5 three times: 5 + 5 + 5.",
+          "3 bunches of 5 make 15 grapes."
+        ],
+        [
+          "Sam puts 8 marbles into each of 2 jars. How many marbles are there in all?",
+          "16",
+          [
+            "14",
+            "16",
+            "18"
+          ],
+          "Add 8 two times.",
+          "2 jars of 8 make 16 marbles."
+        ],
+        [
+          "There are 5 rows of seats. Each row has 3 seats. 4 seats are taken. How many seats are still empty?",
+          "11",
+          [
+            "9",
+            "11",
+            "12"
+          ],
+          "First find all the seats: 3 + 3 + 3 + 3 + 3 = 15. Then subtract 4.",
+          "15 seats in all; 15 - 4 = 11 empty seats."
         ]
       ]
     },
@@ -23322,6 +23675,287 @@
           ],
           "Add the two groups of shapes: 4 + 1.",
           "Ana drew 4 + 1 = 5 shapes in all."
+        ]
+      ]
+    },
+    "guitar": {
+      "title": "Strings Have Names",
+      "skill": "Learn the six string names, meet the frets, and play a first chord",
+      "questions": [
+        [
+          "From the thickest string to the thinnest, the six strings are named…",
+          "E, A, D, G, B, E",
+          [
+            "E, A, D, G, B, E",
+            "A, B, C, D, E, F",
+            "E, B, G, D, A, E"
+          ],
+          "Our silly sentence starts with 'Every Ant'.",
+          "From thickest (string 6) to thinnest (string 1), the strings are E, A, D, G, B, E."
+        ],
+        [
+          "We remember the string names with a silly sentence: 'Every Ant Digs Gigantic Blue Eggs.' In that sentence, 'Every' stands for which string?",
+          "the low E string",
+          [
+            "the low E string",
+            "the A string",
+            "the B string"
+          ],
+          "The first word is the first, thickest string.",
+          "'Every' is the first word, so it stands for the first string in the row — the thick low E string."
+        ],
+        [
+          "In 'Every Ant Digs Gigantic Blue Eggs,' which word stands for the G string?",
+          "Gigantic",
+          [
+            "Digs",
+            "Gigantic",
+            "Blue"
+          ],
+          "Count the words: Every(1) Ant(2) Digs(3) Gigantic(4)…",
+          "The fourth string from the thickest is G, and the fourth word is 'Gigantic.' Every–E, Ant–A, Digs–D, Gigantic–G, Blue–B, Eggs–E."
+        ],
+        [
+          "What is the name of the thinnest string, the one that sings highest?",
+          "high E",
+          [
+            "high E",
+            "low E",
+            "G"
+          ],
+          "Both E strings share a letter; this one is the tiny singer.",
+          "The thinnest string is also an E — the high E. The guitar's two outside strings are both named E."
+        ],
+        [
+          "Your teacher says, 'Pluck the D string.' Which string do you pluck?",
+          "the string between A and G",
+          [
+            "the string between A and G",
+            "the very thinnest string",
+            "the string next to the floor"
+          ],
+          "Sing the row: E, A, D, G, B, E.",
+          "D sits between A and G in the string row E, A, D, G, B, E."
+        ],
+        [
+          "String 2 has a name too. What is it?",
+          "B",
+          [
+            "B",
+            "D",
+            "A"
+          ],
+          "Sing the row backwards from the thinnest: E, B, …",
+          "String 2 is B. From the thinnest, the row runs E, B, G, D, A, E."
+        ],
+        [
+          "String 5 is your second-thickest string. What is its name?",
+          "A",
+          [
+            "A",
+            "G",
+            "E"
+          ],
+          "Count down from the thickest: E is 6, then…",
+          "String 5 is A — counting from the thickest string: 6 is E, 5 is A, 4 is D, 3 is G, 2 is B, 1 is E."
+        ],
+        [
+          "Which two strings share the same name letter?",
+          "strings 6 and 1 are both E",
+          [
+            "strings 6 and 1 are both E",
+            "strings 5 and 2 are both A",
+            "strings 4 and 3 are both D"
+          ],
+          "Look at the two outside strings.",
+          "The thickest string (6) and the thinnest string (1) are both named E — one low, one high."
+        ],
+        [
+          "A note card says: 'Play string 3.' Which string do you play?",
+          "the G string",
+          [
+            "the G string",
+            "the D string",
+            "the B string"
+          ],
+          "String 3 is one of the two middle strings.",
+          "String 3 is G, one of the two middle strings."
+        ],
+        [
+          "Which string number is the D string?",
+          "string 4",
+          [
+            "string 4",
+            "string 2",
+            "string 6"
+          ],
+          "Count from the thinnest: E1, B2, G3, D…",
+          "D is string 4: from the thinnest, E is 1, B is 2, G is 3, and D is 4."
+        ],
+        [
+          "The frets on the neck are made of what?",
+          "thin metal strips",
+          [
+            "thin metal strips",
+            "wooden sticks",
+            "rubber bands"
+          ],
+          "They shine silver in the light.",
+          "Frets are thin metal strips set across the fretboard."
+        ],
+        [
+          "Where exactly should your fingertip press a string for the clearest sound?",
+          "just behind a fret, close to the metal strip",
+          [
+            "just behind a fret, close to the metal strip",
+            "right on top of the metal strip",
+            "as far from the frets as possible"
+          ],
+          "Snuggle up close to the metal line.",
+          "Pressing just behind the fret — close to the metal strip — gives the clearest, cleanest sound."
+        ],
+        [
+          "Which fret space is closest to the guitar's head?",
+          "the first fret",
+          [
+            "the first fret",
+            "the fifth fret",
+            "the twelfth fret"
+          ],
+          "Frets are counted starting at the head end.",
+          "Fret counting starts at the head: the first space past the head end is the first fret."
+        ],
+        [
+          "What happens if you press a string too lightly?",
+          "it buzzes instead of singing clearly",
+          [
+            "it buzzes instead of singing clearly",
+            "it plays a higher note",
+            "nothing changes"
+          ],
+          "The string rattles against the fret.",
+          "A light press lets the string rattle and buzz. A firm press right behind the fret rings clear."
+        ],
+        [
+          "Which part of your finger should press the string?",
+          "the fingertip, with your finger curled",
+          [
+            "the fingertip, with your finger curled",
+            "the flat middle of your finger",
+            "your fingernail"
+          ],
+          "Curl your fingers like you are holding a tiny ball.",
+          "Curled fingertips press the string cleanly and leave room for the other strings to ring."
+        ],
+        [
+          "The Em chord is many players' first chord. How many fingers does it use?",
+          "two fingers",
+          [
+            "two fingers",
+            "four fingers",
+            "no fingers at all"
+          ],
+          "Middle and ring — that's all!",
+          "Em uses just two fingers, which makes it a friendly first chord."
+        ],
+        [
+          "In Em, your middle finger presses the A string at which fret?",
+          "the 2nd fret",
+          [
+            "the 1st fret",
+            "the 2nd fret",
+            "the 3rd fret"
+          ],
+          "Both Em fingers live on the same fret.",
+          "In Em (022000), the middle finger presses the A string at the 2nd fret."
+        ],
+        [
+          "In Em, your ring finger presses which string at the 2nd fret?",
+          "the D string",
+          [
+            "the D string",
+            "the G string",
+            "the B string"
+          ],
+          "It sits right beside the middle finger.",
+          "The ring finger presses the D string at the 2nd fret, right beside the middle finger on the A string."
+        ],
+        [
+          "When you play Em, how many strings can you strum?",
+          "all six strings",
+          [
+            "only two strings",
+            "all six strings",
+            "only the three thinnest"
+          ],
+          "No string needs to hide in Em.",
+          "Every string belongs in Em, so you can strum all six."
+        ],
+        [
+          "Em is a 'minor' chord. How does it sound next to a bright major chord?",
+          "softer and a little sad",
+          [
+            "softer and a little sad",
+            "much louder",
+            "exactly the same"
+          ],
+          "Minor chords wear a gentle, rainy-day feeling.",
+          "Minor chords like Em sound softer and a little sad next to bright, sunny major chords."
+        ],
+        [
+          "A chord picture is a drawing of the guitar's neck. What do its up-and-down lines stand for?",
+          "the strings",
+          [
+            "the strings",
+            "the frets",
+            "the songs"
+          ],
+          "There are six of them, like on the guitar.",
+          "In a chord picture, the six up-and-down lines stand for the six strings."
+        ],
+        [
+          "What do the side-to-side lines in a chord picture stand for?",
+          "the frets",
+          [
+            "the frets",
+            "the strings",
+            "the beats"
+          ],
+          "They cross the strings like the metal strips do.",
+          "The side-to-side lines stand for the frets, just like the metal strips crossing the neck."
+        ],
+        [
+          "What does a fat dot on a string in a chord picture tell you?",
+          "press that string at that fret",
+          [
+            "press that string at that fret",
+            "do not play that string",
+            "pluck that string twice"
+          ],
+          "Dots are finger landing spots.",
+          "A dot marks the exact string and fret where a fingertip should press."
+        ],
+        [
+          "In a chord picture, which side shows the thickest string?",
+          "the left side",
+          [
+            "the left side",
+            "the right side",
+            "the top side"
+          ],
+          "Pictures hold the guitar facing you, thick string on the left.",
+          "Chord pictures are drawn as if the guitar faces you: the thick low E string is the line on the left."
+        ],
+        [
+          "At the top of a chord picture there is often a thick line. What does it stand for?",
+          "the nut, at the end by the head",
+          [
+            "the nut, at the end by the head",
+            "the bridge on the body",
+            "the first song line"
+          ],
+          "It is where the neck meets the head.",
+          "The thick top line stands for the nut — the little bar where the strings leave the head and start down the neck."
         ]
       ]
     }

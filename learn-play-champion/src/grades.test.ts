@@ -38,13 +38,13 @@ const perfect: Attempt[] = Array.from({ length: 5 }, () => ({
 }));
 
 describe("original Pre-K through Grade 5 library", () => {
-  it("contains seven grades, 112 activities, 16915 questions, seven stories and seven nonfiction texts", () => {
+  it("contains seven grades, 119 activities, 17340 questions, seven stories and seven nonfiction texts", () => {
     expect(Object.keys(content.grades).sort()).toEqual([...gradeIds].sort());
     const lessons = Object.values(content.grades).flatMap((pack) =>
       Object.values(pack.lessons),
     );
-    expect(lessons).toHaveLength(112);
-    expect(lessons.flatMap((lesson) => lesson.questions)).toHaveLength(16915);
+    expect(lessons).toHaveLength(119);
+    expect(lessons.flatMap((lesson) => lesson.questions)).toHaveLength(17340);
     const stories = gradeIds.map(
       (grade) => content.grades[grade].lessons.reading.questions[0].passage,
     );

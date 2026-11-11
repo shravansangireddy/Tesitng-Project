@@ -289,6 +289,246 @@
           ],
           "The text names two kinds of plants.",
           "The crossing is planted with grass and shrubs."
+        ],
+        [
+          "Which part of a flower holds the ovules that can become seeds?",
+          "the ovary",
+          [
+            "the ovary",
+            "the petal",
+            "the sepal",
+            "the stamen"
+          ],
+          "It sits at the base of the pistil.",
+          "The ovary holds ovules, which can become seeds after pollination."
+        ],
+        [
+          "Which plant part carries water upward and food made in the leaves to the rest of the plant?",
+          "the stem",
+          [
+            "the flower",
+            "the roots",
+            "the seed",
+            "the stem"
+          ],
+          "Its tiny tubes move materials in both directions.",
+          "The stem's tubes carry water up and food from the leaves to the plant's other parts."
+        ],
+        [
+          "Which part of the eye lets light in?",
+          "the pupil",
+          [
+            "the eyelid",
+            "the iris",
+            "the pupil",
+            "the retina"
+          ],
+          "It is the dark opening in the center of the eye.",
+          "Light enters the eye through the pupil."
+        ],
+        [
+          "Which part of the skeleton protects the brain?",
+          "the skull",
+          [
+            "the jaw",
+            "the ribs",
+            "the skull",
+            "the spine"
+          ],
+          "It is the bone case around your head.",
+          "The skull surrounds and protects the brain."
+        ],
+        [
+          "Which joint lets your lower arm bend at the middle?",
+          "the elbow",
+          [
+            "the ankle",
+            "the elbow",
+            "the neck",
+            "the wrist"
+          ],
+          "It connects your upper arm and forearm.",
+          "The elbow is a hinge joint that lets the arm bend."
+        ],
+        [
+          "During complete metamorphosis, the stage when a caterpillar's body changes inside a chrysalis is called the ___.",
+          "pupa stage",
+          [
+            "egg stage",
+            "larva stage",
+            "pupa stage",
+            "adult stage"
+          ],
+          "It is the quiet stage between caterpillar and adult.",
+          "The changing stage inside the chrysalis is the pupa stage."
+        ],
+        [
+          "Tadpoles breathe with gills. What must they develop before they can live on land as frogs?",
+          "lungs",
+          [
+            "feathers",
+            "lungs",
+            "scales",
+            "shells"
+          ],
+          "Adult frogs breathe air.",
+          "Tadpoles develop lungs so the young frogs can breathe air on land."
+        ],
+        [
+          "After a flower is fertilized, its ovary grows into ___ that holds the seeds.",
+          "a fruit",
+          [
+            "a fruit",
+            "a leaf",
+            "a root",
+            "a stem"
+          ],
+          "In science, many foods we call vegetables are fruits because they hold seeds.",
+          "The ovary grows into a fruit that protects and carries the seeds."
+        ],
+        [
+          "Which plant is OLDER in its life cycle: a seedling or a sapling?",
+          "a sapling",
+          [
+            "a seed",
+            "a seedling",
+            "a sprout",
+            "a sapling"
+          ],
+          "A sapling is a young tree that has grown past the seedling stage.",
+          "A sapling is older; it is a young tree, beyond the seedling stage."
+        ],
+        [
+          "What is the final stage of a flowering plant's life cycle before the cycle repeats?",
+          "The adult plant makes seeds.",
+          [
+            "The adult plant makes seeds.",
+            "The seed lands in soil.",
+            "The seedling sprouts.",
+            "The young plant grows leaves."
+          ],
+          "The cycle repeats when new seeds are ready.",
+          "An adult plant making seeds completes the cycle, and the seeds can begin it again."
+        ],
+        [
+          "Which mixture can be separated by pouring it through a filter?",
+          "sand mixed in water",
+          [
+            "salt dissolved in water",
+            "sand mixed in water",
+            "sugar dissolved in juice",
+            "warm air in a room"
+          ],
+          "A filter catches solid pieces that have not dissolved.",
+          "Sand stays solid in water, so a filter can catch it; dissolved salt would pass through."
+        ],
+        [
+          "Why are cooking pans usually made of metal instead of wood?",
+          "Metal conducts heat well, so food cooks evenly.",
+          [
+            "Metal conducts heat well, so food cooks evenly.",
+            "Metal is lighter than air.",
+            "Metal melts at low heat.",
+            "Wood conducts heat better than metal."
+          ],
+          "The pan's job is to carry heat from the stove to the food.",
+          "Metal carries heat quickly and evenly, which makes it good for cooking."
+        ],
+        [
+          "Which place would most likely have the GREATEST variety of plant life?",
+          "a rainforest",
+          [
+            "a desert",
+            "a parking lot",
+            "a rainforest",
+            "a tundra"
+          ],
+          "Warmth and steady rain support many kinds of plants.",
+          "Rainforests have warmth and water all year, supporting a huge variety of plants."
+        ],
+        [
+          "Which change happens when heat is TAKEN AWAY?",
+          "water freezing into ice",
+          [
+            "butter melting on toast",
+            "ice melting in the sun",
+            "wax melting near a flame",
+            "water freezing into ice"
+          ],
+          "Freezing happens when a liquid loses heat.",
+          "Water freezes into ice when enough heat is removed."
+        ],
+        [
+          "Which sugar would dissolve FASTEST in water?",
+          "sugar stirred into warm water",
+          [
+            "a big sugar cube sitting in cold water",
+            "sugar sitting still in cold water",
+            "sugar stirred into cold water",
+            "sugar stirred into warm water"
+          ],
+          "Warmth and stirring both speed up dissolving.",
+          "Warm water and stirring together make sugar dissolve fastest."
+        ],
+        [
+          "What is the correct order for solving a coding problem?",
+          "Plan the steps, write the code, test it, then fix mistakes.",
+          [
+            "Plan the steps, write the code, test it, then fix mistakes.",
+            "Test it, plan the steps, then write the code.",
+            "Write the code, fix mistakes, then plan the steps.",
+            "Fix mistakes, test it, then plan the steps."
+          ],
+          "Good projects start with a plan.",
+          "Planning first, then coding, testing, and fixing is the order that works."
+        ],
+        [
+          "In coding, a loop means ___.",
+          "a set of steps repeats",
+          [
+            "a mistake in the code",
+            "a set of steps repeats",
+            "the computer turns off",
+            "the screen freezes"
+          ],
+          "Loops save you from writing the same steps again and again.",
+          "A loop repeats steps, like blinking a light many times with one instruction."
+        ],
+        [
+          "Before you post a photo of a friend online, what should you do first?",
+          "Ask your friend and a grown-up for permission.",
+          [
+            "Add a funny caption.",
+            "Ask your friend and a grown-up for permission.",
+            "Post it quickly before they see it.",
+            "Tag everyone in the photo."
+          ],
+          "Photos of other people are their personal information too.",
+          "Permission from your friend and a grown-up comes before posting."
+        ],
+        [
+          "A message says you won a prize and asks you to click a link and type your password. What is it MOST likely?",
+          "a trick trying to steal your information",
+          [
+            "a game update",
+            "a message from your school",
+            "a real prize you won",
+            "a trick trying to steal your information"
+          ],
+          "Real prizes never require your password.",
+          "Messages like this are tricks, sometimes called phishing, that try to steal information."
+        ],
+        [
+          "Which habit keeps your online accounts SAFEST?",
+          "Use a different strong password for each account and keep passwords private.",
+          [
+            "Share one password with close friends.",
+            "Use a different strong password for each account and keep passwords private.",
+            "Use the same password everywhere so you remember it.",
+            "Write your password on the screen for everyone to see."
+          ],
+          "If one account is guessed, the others should still be safe.",
+          "Different strong passwords for each account limit the damage if one is ever guessed."
         ]
       ]
     },
@@ -10465,6 +10705,66 @@
           ],
           "Use the trial's result to predict.",
           "A plant with almost no sunlight would likely grow less."
+        ],
+        [
+          "What did the garden club decide to do FIRST, instead of voting right away?",
+          "Test both watering ideas on two equal beds.",
+          [
+            "Buy the sprinkler.",
+            "Buy the drip hose.",
+            "Test both watering ideas on two equal beds.",
+            "Vote a second time."
+          ],
+          "Rowan and June disagreed, so the club chose an experiment.",
+          "The club tested the sprinkler and the drip hose side by side before choosing."
+        ],
+        [
+          "What happened right AFTER the club chose the two test beds?",
+          "Each bed received the same measured amount of water.",
+          [
+            "One plant grew tallest.",
+            "Each bed received the same measured amount of water.",
+            "Rowan changed his mind.",
+            "The club spent its money."
+          ],
+          "A fair test keeps everything else the same.",
+          "Both beds got the same seedlings and the same measured water."
+        ],
+        [
+          "What did the students do NEXT, during the two weeks of the test?",
+          "They recorded plant heights and checked the soil each afternoon.",
+          [
+            "They recorded plant heights and checked the soil each afternoon.",
+            "They watered only one bed.",
+            "They bought a third system.",
+            "They stopped measuring."
+          ],
+          "The middle of the story is about gathering information.",
+          "For two weeks, students gathered records at the same time each afternoon."
+        ],
+        [
+          "What happened just BEFORE Rowan revised his recommendation?",
+          "June suggested looking at all the records instead of one plant.",
+          [
+            "Rowan pointed to the tallest plant.",
+            "The club voted for the sprinkler.",
+            "June suggested looking at all the records instead of one plant.",
+            "The beds were planted."
+          ],
+          "One tall plant nearly decided everything.",
+          "June's suggestion to use all the data came right before Rowan changed his view."
+        ],
+        [
+          "What happened LAST in the garden club's story?",
+          "Rowan agreed the club should consider water use as well as speed.",
+          [
+            "Rowan agreed the club should consider water use as well as speed.",
+            "The club chose two equal beds.",
+            "One plant grew tallest.",
+            "The students began recording heights."
+          ],
+          "Think about how Rowan's thinking ends.",
+          "In the end, Rowan still liked the sprinkler's speed but weighed water use too."
         ]
       ]
     },
@@ -12609,6 +12909,66 @@
           ],
           "The word “I” is always written with a capital letter.",
           "“I am happy.” is written correctly."
+        ],
+        [
+          "Which word fixes this sentence? 'Between you and I, the plan worked.'",
+          "me",
+          [
+            "I",
+            "me",
+            "us",
+            "we"
+          ],
+          "After a preposition like between, use me, not I.",
+          "Between you and me is correct."
+        ],
+        [
+          "Which sentence correctly fixes 'Running to the bus, the backpack bounced.'?",
+          "Running to the bus, Maya felt her backpack bounce.",
+          [
+            "Running to the bus, Maya felt her backpack bounce.",
+            "Running to the bus, the backpack bounced.",
+            "The backpack, running to the bus, bounced.",
+            "The backpack bounced running to the bus."
+          ],
+          "The opening words must describe the person doing the action, and a backpack cannot run.",
+          "Maya is the one running, so her name follows the opening phrase."
+        ],
+        [
+          "Which word fixes this sentence? 'Each of the students have a locker.'",
+          "has",
+          [
+            "are",
+            "has",
+            "have",
+            "having"
+          ],
+          "Each is singular, even when it points to a group.",
+          "Each of the students has a locker."
+        ],
+        [
+          "Which sentence correctly fixes 'After the assembly ended students went outside.'?",
+          "After the assembly ended, students went outside.",
+          [
+            "After the assembly ended students went outside.",
+            "After the assembly, ended students went outside.",
+            "After the assembly ended, students went outside.",
+            "After, the assembly ended students went outside."
+          ],
+          "A comma follows an introductory phrase at the start of a sentence.",
+          "The comma belongs right after the phrase 'After the assembly ended.'"
+        ],
+        [
+          "Which word fixes this sentence? 'Yesterday, he thinked about the problem.'",
+          "thought",
+          [
+            "thinked",
+            "thinking",
+            "thinks",
+            "thought"
+          ],
+          "Think has an irregular past tense.",
+          "Thought is the past tense of think."
         ]
       ]
     },
@@ -21682,6 +22042,126 @@
           ],
           "The pattern adds 3, then subtracts 4, over and over.",
           "After adding 3 and subtracting 4 in turn, the next number is 5."
+        ],
+        [
+          "A number line makes equal jumps: 3.25, 3.5, __, 4.0, 4.25. What number belongs in the blank?",
+          "3.75",
+          [
+            "3.6",
+            "3.7",
+            "3.75",
+            "3.8"
+          ],
+          "Each jump adds one quarter.",
+          "The jumps are 0.25: 3.5 + 0.25 = 3.75."
+        ],
+        [
+          "A number line makes equal jumps: 1/4, 1/2, 3/4, __, 1 1/4. What number belongs in the blank?",
+          "1",
+          [
+            "7/8",
+            "1",
+            "1 1/8",
+            "1 1/2"
+          ],
+          "Each jump adds one quarter.",
+          "The jumps are 1/4: 3/4 + 1/4 = 1."
+        ],
+        [
+          "A number line makes equal jumps: 12,500, 15,000, __, 20,000, 22,500. What number belongs in the blank?",
+          "17,500",
+          [
+            "16,000",
+            "17,000",
+            "17,500",
+            "18,000"
+          ],
+          "Each jump adds 2,500.",
+          "The jumps are 2,500: 15,000 + 2,500 = 17,500."
+        ],
+        [
+          "A number line makes equal jumps backward: 2.4, 2.2, 2.0, __, 1.6. What number belongs in the blank?",
+          "1.8",
+          [
+            "1.7",
+            "1.8",
+            "1.9",
+            "2.1"
+          ],
+          "Each jump goes back two tenths.",
+          "Counting back by 0.2: 2.0, then 1.8."
+        ],
+        [
+          "A number line makes equal jumps: 1.5, 2.25, __, 3.75, 4.5. What number belongs in the blank?",
+          "3.0",
+          [
+            "2.5",
+            "2.75",
+            "3.0",
+            "3.25"
+          ],
+          "Each jump adds three quarters.",
+          "The jumps are 0.75: 2.25 + 0.75 = 3.0."
+        ],
+        [
+          "1, 4, 9, 16, 25. What number comes next?",
+          "36",
+          [
+            "30",
+            "32",
+            "36",
+            "49"
+          ],
+          "These are square numbers: 1×1, 2×2, 3×3, and so on.",
+          "The next square is 6 × 6 = 36."
+        ],
+        [
+          "0.5, 1.5, 3.0, 5.0, 7.5. What number comes next?",
+          "10.5",
+          [
+            "9.0",
+            "9.5",
+            "10.0",
+            "10.5"
+          ],
+          "The jumps grow: +1, +1.5, +2, +2.5.",
+          "The next jump is +3: 7.5 + 3 = 10.5."
+        ],
+        [
+          "96, 48, 60, 30, 42. What number comes next?",
+          "21",
+          [
+            "21",
+            "24",
+            "54",
+            "84"
+          ],
+          "The pattern takes turns: divide by 2, add 12.",
+          "After 42, divide by 2: 42 ÷ 2 = 21."
+        ],
+        [
+          "2, 3, 6, 11, 18, 27. What number comes next?",
+          "38",
+          [
+            "29",
+            "34",
+            "36",
+            "38"
+          ],
+          "The jumps are odd numbers: +1, +3, +5, +7, +9.",
+          "The next jump is +11: 27 + 11 = 38."
+        ],
+        [
+          "1/8, 1/4, 3/8, 1/2. What fraction comes next?",
+          "5/8",
+          [
+            "5/8",
+            "3/4",
+            "7/8",
+            "1"
+          ],
+          "Write each fraction in eighths and watch the numerators.",
+          "In eighths the pattern is 1, 2, 3, 4, so the next is 5 eighths: 5/8."
         ]
       ]
     },
@@ -25886,6 +26366,61 @@
           ],
           "Which number times 10 equals 30?",
           "30 ÷ 10 = 3 teams."
+        ],
+        [
+          "A warehouse stores 24 boxes on each shelf. There are 15 shelves. How many boxes are stored?",
+          "360",
+          [
+            "340",
+            "360",
+            "390"
+          ],
+          "Multiply 24 × 15.",
+          "24 × 15 = 360 boxes."
+        ],
+        [
+          "A bakery packs muffins in trays of 12. A cafe buys 9 trays and sells 83 muffins. How many muffins are left?",
+          "25",
+          [
+            "24",
+            "25",
+            "27"
+          ],
+          "First multiply: 9 × 12 = 108. Then subtract 83.",
+          "108 - 83 = 25 muffins left."
+        ],
+        [
+          "A floor is covered by 13 rows of tiles with 16 tiles in each row. How many tiles cover the floor?",
+          "208",
+          [
+            "196",
+            "208",
+            "216"
+          ],
+          "Multiply 13 × 16.",
+          "13 × 16 = 208 tiles."
+        ],
+        [
+          "A printer prints 45 pages every minute. How many pages does it print in 12 minutes?",
+          "540",
+          [
+            "480",
+            "540",
+            "585"
+          ],
+          "Multiply 45 × 12.",
+          "45 × 12 = 540 pages."
+        ],
+        [
+          "Seven buses carry students on a trip. Six buses are full with 48 students each. The last bus carries 30 students. How many students are on the trip?",
+          "318",
+          [
+            "306",
+            "318",
+            "336"
+          ],
+          "First multiply: 6 × 48 = 288. Then add 30.",
+          "288 + 30 = 318 students."
         ]
       ]
     },
@@ -28642,6 +29177,342 @@
           ],
           "Touch each pointy corner as you count.",
           "A octagon has 8 corners."
+        ]
+      ]
+    },
+    "guitar": {
+      "title": "The Whole Fretboard",
+      "skill": "Map the first-position notes, discover barre chords and keys, and keep steady time",
+      "questions": [
+        [
+          "On the D string (string 4), the 2nd fret plays which note?",
+          "E",
+          [
+            "E",
+            "F",
+            "G"
+          ],
+          "D, then D sharp, then…",
+          "The D string at fret 2 plays E — that is why E's ring finger presses it there."
+        ],
+        [
+          "On the G string (string 3), the 2nd fret plays which note?",
+          "A",
+          [
+            "A",
+            "B",
+            "C"
+          ],
+          "The G string plus two frets climbs to…",
+          "The G string at the 2nd fret plays A — the note the middle strings lean on for Am."
+        ],
+        [
+          "On the B string (string 2), the 3rd fret plays which note?",
+          "D",
+          [
+            "D",
+            "E",
+            "C"
+          ],
+          "That is the note D's ring finger makes.",
+          "The B string at the 3rd fret plays D — the shining top note of the D chord."
+        ],
+        [
+          "On the high E string, the 3rd fret plays which note?",
+          "G",
+          [
+            "G",
+            "A",
+            "F"
+          ],
+          "Same fret, same note as the low E string's 3rd fret.",
+          "The high E string at the 3rd fret plays G — the note that completes the G chord."
+        ],
+        [
+          "On the A string, the 2nd fret plays which note, squeezed between A and C?",
+          "B",
+          [
+            "B",
+            "D",
+            "F"
+          ],
+          "A climbs: A sharp, then…",
+          "The A string at fret 2 plays B."
+        ],
+        [
+          "What is a barre (bar) chord?",
+          "a chord where one finger presses across several strings at one fret",
+          [
+            "a chord where one finger presses across several strings at one fret",
+            "a chord played only in a café",
+            "a chord with no fingers at all"
+          ],
+          "The finger lies flat like a bar.",
+          "In a barre chord, the index finger lies flat and presses several strings at one fret, working like a movable nut."
+        ],
+        [
+          "Why are barre chords so powerful for guitarists?",
+          "one shape can slide up the neck to become many different chords",
+          [
+            "one shape can slide up the neck to become many different chords",
+            "they are always easier than open chords",
+            "they only work on one string"
+          ],
+          "Slide the same shape, get a new chord.",
+          "A barre shape keeps its pattern and slides: each fret it climbs gives a brand-new chord with the same fingers."
+        ],
+        [
+          "Take the E chord shape and barre it at the 1st fret. What chord do you get?",
+          "F",
+          [
+            "F",
+            "G",
+            "A"
+          ],
+          "Every note of E climbs one fret.",
+          "Barring the E shape at fret 1 raises every note one half step: E becomes F."
+        ],
+        [
+          "Take the E chord shape and barre it at the 3rd fret. What chord do you get?",
+          "G",
+          [
+            "G",
+            "F sharp",
+            "B"
+          ],
+          "Three frets up from E: F, F sharp…",
+          "Three half steps above E is G, so the E shape barred at the 3rd fret is a G chord."
+        ],
+        [
+          "What does the barred index finger replace, compared with open chords?",
+          "the nut — it becomes a moving nut wherever it presses",
+          [
+            "the nut — it becomes a moving nut wherever it presses",
+            "the bridge",
+            "the tuning pegs"
+          ],
+          "Open chords lean on the nut; barre chords carry their own.",
+          "The barred finger does the nut's job — holding all the strings down at one line — but it can move to any fret."
+        ],
+        [
+          "Which single finger change turns an E chord into Em?",
+          "lifting the index finger off the G string so it rings open",
+          [
+            "lifting the index finger off the G string so it rings open",
+            "moving the ring finger to the 3rd fret",
+            "adding the pinky on the B string"
+          ],
+          "You first learned this switch back with the A and E chords!",
+          "E (022100) becomes Em (022000) by lifting the index finger from the G string's 1st fret — one finger changes the whole feeling."
+        ],
+        [
+          "A and Am share most of their shape. Which finger moves, and how?",
+          "the ring finger moves from the B string's 2nd fret to its 1st fret",
+          [
+            "the ring finger moves from the B string's 2nd fret to its 1st fret",
+            "the index finger moves to the low E string",
+            "the middle finger moves to the 3rd fret"
+          ],
+          "Compare x02220 with x02210.",
+          "A (x02220) and Am (x02210) differ by one note: the finger on the B string slides from fret 2 (for A) down to fret 1 (for Am)."
+        ],
+        [
+          "A song feels bright and hopeful in its verse, then gentle and wistful in its chorus. What most likely changed?",
+          "the chords moved from major to minor",
+          [
+            "the chords moved from major to minor",
+            "the guitar simply got louder",
+            "somebody changed the strings"
+          ],
+          "Feelings in songs are painted with chord colors.",
+          "Major chords paint bright, hopeful colors; minor chords paint gentle, wistful ones — switching families changes the song's weather."
+        ],
+        [
+          "A major chord turns into its minor partner when ONE of its notes drops by one fret (a half step). Is that really how E becomes Em?",
+          "yes — lowering one note by a half step turns major into minor",
+          [
+            "yes — lowering one note by a half step turns major into minor",
+            "no — every note has to change",
+            "no — the strings change order"
+          ],
+          "E to Em and A to Am both prove it.",
+          "Yes: a major chord becomes its minor by lowering one of its three notes by one half step — one fret — exactly as E→Em and A→Am show."
+        ],
+        [
+          "Which pair below is a major chord and its minor partner with the SAME home letter?",
+          "A and Am",
+          [
+            "A and Am",
+            "G and Em",
+            "C and Dm"
+          ],
+          "Partners share the letter name.",
+          "A and Am are partners — same home note A, one major, one minor. G's minor partner would be Gm, and Em partners with E."
+        ],
+        [
+          "Songs in the key of C mostly use which three major chords?",
+          "C, F, and G",
+          [
+            "C, F, and G",
+            "C, D, and E",
+            "C, G, and A"
+          ],
+          "Home, plus the two partners a fourth and a fifth above.",
+          "The key of C's main family is C (home), F, and G — the same 1-4-5 pattern as the key of G's family, one key over."
+        ],
+        [
+          "Songs in the key of D mostly use which three major chords?",
+          "D, G, and A",
+          [
+            "D, G, and A",
+            "D, E, and F",
+            "D, A, and B"
+          ],
+          "Start on D and count the family pattern.",
+          "The key of D's family is D (home), G, and A — three shapes you already know."
+        ],
+        [
+          "In ANY key, the three main chords are built on which notes of the key's scale?",
+          "the 1st, 4th, and 5th notes",
+          [
+            "the 1st, 4th, and 5th notes",
+            "the 2nd, 3rd, and 6th notes",
+            "the 1st, 2nd, and 3rd notes"
+          ],
+          "Musicians nickname them I, IV, and V.",
+          "The main chords of a key are built on the 1st, 4th, and 5th scale notes — musicians write them I, IV, and V."
+        ],
+        [
+          "A songwriter says, 'This song is in the key of D.' Where will the song most likely end?",
+          "on the D chord, feeling finished and at home",
+          [
+            "on the D chord, feeling finished and at home",
+            "on any random chord at all",
+            "on the quietest chord it can find"
+          ],
+          "Songs come home at the end.",
+          "Songs usually end on their home chord — in the key of D, the final chord is D, giving that settled, finished feeling."
+        ],
+        [
+          "You can play C, F, G, D, A, E, Am, Em, and Dm (F is on your barre-chord road map). Which keys' main families can you already cover?",
+          "the keys of C, G, D, and A",
+          [
+            "the keys of C, G, D, and A",
+            "only the key of G",
+            "no complete key yet"
+          ],
+          "Four keys from the shapes you know!",
+          "Those shapes cover the I–IV–V families of C, G, D, and A — hundreds of songs live in those keys."
+        ],
+        [
+          "Under some chord diagrams you see small numbers 1, 2, 3, 4. What are they?",
+          "suggested fingers: 1 index, 2 middle, 3 ring, 4 pinky",
+          [
+            "suggested fingers: 1 index, 2 middle, 3 ring, 4 pinky",
+            "the order to strum the strings",
+            "the frets to count out loud"
+          ],
+          "Your fingers have numbers too.",
+          "Finger numbers: 1 is the index finger, 2 the middle, 3 the ring, and 4 the pinky — diagrams print them as playing suggestions."
+        ],
+        [
+          "A chord diagram's top line is thin, not thick, and '3fr' is written beside it. What does that mean?",
+          "the diagram starts at the 3rd fret, not at the nut",
+          [
+            "the diagram starts at the 3rd fret, not at the nut",
+            "play everything three times",
+            "the chord needs exactly three fingers"
+          ],
+          "Labels rescue you from counting from the nut.",
+          "'3fr' means the diagram's top row is the 3rd fret — the picture zooms into a higher neighborhood of the neck."
+        ],
+        [
+          "In a chord diagram, a long curved line across several dots at one fret shows…",
+          "a barre — one finger pressing all those strings",
+          [
+            "a barre — one finger pressing all those strings",
+            "strings to skip silently",
+            "the order of the song's verses"
+          ],
+          "The curve hugs the strings it presses.",
+          "A curved line across strings at one fret marks a barre: one flat finger pressing them all at once."
+        ],
+        [
+          "A diagram marks x over the low E string and the A string, with dots only on the thinner strings. What is the safest strum?",
+          "strum only from the D string down, skipping low E and A",
+          [
+            "strum only from the D string down, skipping low E and A",
+            "strum all six strings anyway",
+            "strum only the low E string"
+          ],
+          "Skipped strings must stay silent.",
+          "With the A string (and low E) marked off, start the strum at the D string so only the ringing strings sound — like the D and Dm chords."
+        ],
+        [
+          "Why do experienced players still glance at chord diagrams?",
+          "a diagram is the fastest way to learn an unfamiliar chord's exact shape",
+          [
+            "a diagram is the fastest way to learn an unfamiliar chord's exact shape",
+            "diagrams tune the guitar for you",
+            "diagrams write the song's words"
+          ],
+          "One picture, six strings of information.",
+          "A chord diagram shows every string's job in one glance — pressed, open, or silent — making it the quickest way to learn a new shape."
+        ],
+        [
+          "What does a metronome do for a practicing guitarist?",
+          "clicks a perfectly steady beat to play along with",
+          [
+            "clicks a perfectly steady beat to play along with",
+            "tunes every string automatically",
+            "counts your practice points"
+          ],
+          "It never rushes and never drags.",
+          "A metronome clicks a steady beat at whatever speed you set, training your hands to keep rock-solid time."
+        ],
+        [
+          "What does TEMPO mean?",
+          "how fast or slow the beat goes",
+          [
+            "how fast or slow the beat goes",
+            "how loud the song is",
+            "how many strings play at once"
+          ],
+          "Tempos can stroll or sprint.",
+          "Tempo is the speed of the beat — slow and stately, or quick and dancing."
+        ],
+        [
+          "Your chord changes always land a hair AFTER the beat. What is the pro fix?",
+          "start the change a hair BEFORE the beat so your fingers land on it",
+          [
+            "start the change a hair BEFORE the beat so your fingers land on it",
+            "strum louder on the beat",
+            "skip every other chord"
+          ],
+          "Arrive early, land on time.",
+          "Moving your fingers just before the beat lets the new chord ring exactly on the beat — the secret of smooth changes."
+        ],
+        [
+          "Which practice plan builds the strongest guitarist over a month?",
+          "fifteen focused minutes every day",
+          [
+            "fifteen focused minutes every day",
+            "one giant five-hour session, once",
+            "watching videos without ever playing"
+          ],
+          "Little and often beats big and rare.",
+          "Short daily practice grows skill steadily — your fingers remember a little more every single day."
+        ],
+        [
+          "What can recording yourself and listening back teach you?",
+          "you hear your timing and buzzes the way everyone else hears them",
+          [
+            "you hear your timing and buzzes the way everyone else hears them",
+            "nothing at all",
+            "only how loud your room is"
+          ],
+          "A recording is an honest mirror.",
+          "Listening back reveals rushing, dragging, and buzzing strings your ears miss while playing — then you know exactly what to practice."
         ]
       ]
     }

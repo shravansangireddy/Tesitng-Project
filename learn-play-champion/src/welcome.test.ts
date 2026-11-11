@@ -72,7 +72,7 @@ describe("buildKidWelcomeEmail", () => {
     for (const fact of [
       "Username: avyan",
       "Grade 4",
-      "All 18 skills",
+      "All 19 skills",
       "4-digit PIN",
       "Parents dashboard → Kid logins",
     ]) {

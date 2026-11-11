@@ -20,10 +20,11 @@ const numeric = (answer: string) => {
 };
 
 describe("U.S. standards-informed expansion", () => {
-  it("offers every activity exactly once with seven English and nine Math paths", () => {
-    expect(new Set(activities.map((activity) => activity.id)).size).toBe(16);
+  it("offers every activity exactly once with seven English, nine Math, and one General paths", () => {
+    expect(new Set(activities.map((activity) => activity.id)).size).toBe(17);
     expect(activities.filter((activity) => activity.subject === "english")).toHaveLength(7);
     expect(activities.filter((activity) => activity.subject === "math")).toHaveLength(9);
+    expect(activities.filter((activity) => activity.subject === "general")).toHaveLength(1);
   });
   for (const grade of gradeIds) {
     it(`${grade} provides six guides with same-grade references and adult practice`, () => {
