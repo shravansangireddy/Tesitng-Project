@@ -15,7 +15,7 @@
 // can tell "mail is not set up yet" apart from a delivery failure, and
 // any SMTP error returns { sent: false, reason } with the error message.
 
-import { SmtpClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
+import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
 declare const Deno: {
   env: { get(name: string): string | undefined };
@@ -51,14 +51,15 @@ export async function sendEmail(
     Number.isInteger(parsedPort) && parsedPort > 0 ? parsedPort : 465;
   const from = env("SMTP_FROM")?.trim() || user;
 
-  const client = new SmtpClient();
-  try {
-    await client.connect({
+  const client = new SMTPClient({
+    connection: {
       hostname: host,
       port,
       tls: port === 465,
       auth: { username: user, password: pass },
-    });
+    },
+  });
+  try {
     await client.send({
       from,
       to: message.to,
