@@ -11,6 +11,20 @@ const mocks = vi.hoisted(() => ({
   signIn: vi.fn(),
   kidSignIn: vi.fn(),
   kidRow: null as unknown,
+  // The generic signed-in grown-up in these tests already has one kid
+  // login, so sign-in lands on Home; the zero-kid landing has its own
+  // describe below (signup plan Step 2).
+  kidListRows: [
+    {
+      kid_user_id: "kid-zara",
+      parent_id: "adult-one",
+      username: "zara",
+      display_name: "Zara",
+      grade: "2",
+      active: true,
+      created_at: "2026-10-30T00:00:00Z",
+    },
+  ] as unknown[],
   signOut: vi.fn(),
   resetPassword: vi.fn(),
   updateUser: vi.fn(),
@@ -20,18 +34,24 @@ const mocks = vi.hoisted(() => ({
   listener: null as ((event: string, session: Session | null) => void) | null,
 }));
 vi.mock("./supabase", () => {
-  const builder: Record<string, unknown> = {
-    select: () => builder,
-    eq: () => builder,
-    order: () => builder,
-    update: () => builder,
-    maybeSingle: async () => ({ data: mocks.kidRow, error: null }),
-    then: (resolve: (value: unknown) => void) =>
-      resolve({ data: [], error: null }),
+  const makeBuilder = (table: string): Record<string, unknown> => {
+    const builder: Record<string, unknown> = {
+      select: () => builder,
+      eq: () => builder,
+      order: () => builder,
+      update: () => builder,
+      maybeSingle: async () => ({ data: mocks.kidRow, error: null }),
+      then: (resolve: (value: unknown) => void) =>
+        resolve({
+          data: table === "kid_accounts" ? mocks.kidListRows : [],
+          error: null,
+        }),
+    };
+    return builder;
   };
   const client = {
     rpc: mocks.rpc,
-    from: () => builder,
+    from: (table: string) => makeBuilder(table),
     auth: {
       getSession: async () => ({ data: { session: mocks.session }, error: null }),
       getUser: async () => ({ data: { user: mocks.session?.user ?? null } }),
@@ -103,6 +123,17 @@ beforeEach(() => {
   mocks.signIn.mockReset().mockResolvedValue({ error: null });
   mocks.kidSignIn.mockReset().mockResolvedValue({ error: null });
   mocks.kidRow = null;
+  mocks.kidListRows = [
+    {
+      kid_user_id: "kid-zara",
+      parent_id: "adult-one",
+      username: "zara",
+      display_name: "Zara",
+      grade: "2",
+      active: true,
+      created_at: "2026-10-30T00:00:00Z",
+    },
+  ];
   mocks.signOut.mockReset().mockResolvedValue({ error: null });
   mocks.resetPassword.mockReset().mockResolvedValue({ error: null });
   mocks.updateUser.mockReset().mockResolvedValue({ error: null });
@@ -859,5 +890,30 @@ describe("paused kid login", () => {
     expect(container.querySelector('[role="alert"]')?.textContent).toContain(
       "This login is turned off right now",
     );
+  });
+});
+
+describe("post-sign-in landing (signup plan Step 2)", () => {
+  it("lands a grown-up with no kid logins on the Parents dashboard, banner showing", async () => {
+    mocks.kidListRows = [];
+    authenticated();
+    await mount();
+    const center = container.querySelector(".privacy-center");
+    expect(center).not.toBeNull();
+    expect(center?.querySelector("h1")?.textContent).toBe("Parents dashboard");
+    const banner = container.querySelector(".kid-logins-banner");
+    expect(banner).not.toBeNull();
+    expect(banner!.textContent).toContain(
+      "You’re 1 step away — add your child to start",
+    );
+    expect(banner!.textContent).toContain("Add your child — takes 2 minutes");
+  });
+
+  it("lands a grown-up who already has a kid login on Home, no banner", async () => {
+    authenticated();
+    await mount();
+    expect(container.querySelector(".privacy-center")).toBeNull();
+    expect(container.querySelector(".kid-logins-banner")).toBeNull();
+    expect(container.querySelector(".points-pill")).not.toBeNull();
   });
 });

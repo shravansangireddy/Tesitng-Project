@@ -90,6 +90,8 @@ export function buildParentWelcomeEmail(): WelcomeEmail {
     "",
     "We're so glad you're here. Learn & Play Champion is free Pre-K–Grade 5 English and Math practice for your family: 18,216 original questions, stories, spelling games, and little adventures — with no ads and no subscriptions, ever.",
     "",
+    "As a grown-up member, you can see exactly what your child practiced today and set the tasks yourself — the spelling list, the times tables, your call. It's safe by design: no ads, no chat, no strangers, and no in-app purchases. Learn & Play Champion was built by a parent who got tired of subscription apps — so this one is free.",
+    "",
     `Start exploring: ${APP_URL}`,
     "",
     "When you're ready, add a login for your child from the Parents dashboard. They'll find games and stories picked for their grade, and you can set gentle tasks and watch their progress grow.",
@@ -101,6 +103,9 @@ export function buildParentWelcomeEmail(): WelcomeEmail {
   const html = wrapHtml(escapeHtml("Welcome to Learn & Play Champion! 🎉"), [
     paragraph(
       "We're so glad you're here. Learn &amp; Play Champion is free Pre-K–Grade 5 English and Math practice for your family: 18,216 original questions, stories, spelling games, and little adventures — with no ads and no subscriptions, ever.",
+    ),
+    paragraph(
+      "As a grown-up member, you can see exactly what your child practiced today and set the tasks yourself — the spelling list, the times tables, your call. It's safe by design: no ads, no chat, no strangers, and no in-app purchases. Learn &amp; Play Champion was built by a parent who got tired of subscription apps — so this one is free.",
     ),
     buttonHtml("Start exploring"),
     paragraph(

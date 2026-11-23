@@ -55,6 +55,18 @@ describe("buildParentWelcomeEmail", () => {
       expect(body).not.toMatch(/\{\{|\}\}|\$\{|undefined|null/);
     }
   });
+
+  it("carries the parent-benefit lines (signup plan Step 3)", () => {
+    for (const benefit of [
+      "see exactly what your child practiced today",
+      "set the tasks yourself",
+      "no chat, no strangers, and no in-app purchases",
+      "built by a parent who got tired of subscription apps",
+    ]) {
+      expect(email.text).toContain(benefit);
+      expect(email.html).toContain(benefit);
+    }
+  });
 });
 
 describe("buildKidWelcomeEmail", () => {
