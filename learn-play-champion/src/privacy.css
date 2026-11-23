@@ -28,6 +28,9 @@
 .payment-table-wrap caption { text-align: left; font-weight: 800; margin: 12px 0; }
 .kid-logins { border-top: 2px solid #d5c9ec; margin-top: 32px; padding-top: 24px; }
 .kid-logins h2 { margin-bottom: 8px; }
+.kid-logins-banner { background: #f5f2fd; border: 2px dashed #b390dc; border-radius: 14px; padding: 16px; margin: 16px 0; display: grid; gap: 10px; justify-items: start; }
+.kid-logins-banner p { margin: 0 !important; }
+.kid-logins-pin-note { margin: 0 !important; color: #5b5480; font-weight: 400; }
 .kid-logins-error { color: #a4133c; font-weight: 700; }
 .kid-logins-notice { color: #1d6f42; font-weight: 700; }
 .kid-logins-list { list-style: none; margin: 20px 0; padding: 0; display: grid; gap: 16px; }

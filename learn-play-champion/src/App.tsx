@@ -470,6 +470,9 @@ export default function App({
   onProgressChange,
   accountControls,
   initialGrade,
+  initialView,
+  guestMode,
+  onGuestSignUp,
   roomClient,
   cloudSaving,
   cloudSaveFailed,
@@ -483,6 +486,14 @@ export default function App({
   onProgressChange?: (progress: Progress) => void;
   accountControls?: ReactNode;
   initialGrade?: GradeId;
+  /** Signed-in grown-ups with no kid logins yet start on the Parents
+   * dashboard, where the add-a-child form lives (signup plan Step 2). */
+  initialView?: View;
+  /** True only for the signed-out "Play as a guest" session: the results
+   * screen offers a free-account card after a finished round (Step 1). */
+  guestMode?: boolean;
+  /** Opens the sign-in/sign-up flow from the guest results card. */
+  onGuestSignUp?: () => void;
   roomClient?: SupabaseClient;
   cloudSaving?: boolean;
   /** A latched cloud-save failure (not an in-flight save): rooms show a retry path for it. */
@@ -514,8 +525,11 @@ export default function App({
     saveTeacherStore(teacherStore);
   }, [teacherStore]);
   const initial = useRef(loaded.progress);
-  const [view, setView] = useState<View>(() => new URLSearchParams(location.search).has("donation_return") ||
-    new URLSearchParams(location.search).has("donation_cancel") ? "privacy" : "home");
+  const [view, setView] = useState<View>(() => initialView ?? (new URLSearchParams(location.search).has("donation_return") ||
+    new URLSearchParams(location.search).has("donation_cancel") ? "privacy" : "home"));
+  // The guest save-progress card shows once per guest session; "Maybe
+  // later" puts it away without blocking further guest play.
+  const [guestCardDismissed, setGuestCardDismissed] = useState(false);
   const [subject, setSubject] = useState<Subject>("english");
   const [grade, setGrade] = useState<GradeId>(initialGrade ?? loaded.progress.selectedGrade ?? "1");
   const chooseGrade = (next: GradeId) => {
@@ -1288,6 +1302,31 @@ export default function App({
                   Back to my island
                 </button>
               </div>
+              {guestMode && !guestCardDismissed && (
+                <div className="guest-save-card">
+                  <h2>Save progress from now on + unlock all 18,216 questions</h2>
+                  <p>
+                    Create a free grown-up account to keep progress safe in
+                    the cloud, add a login for your child, and set their
+                    practice tasks. Free forever — no ads, no subscriptions.
+                  </p>
+                  <div className="result-actions">
+                    <button
+                      className="button primary"
+                      onClick={() => onGuestSignUp?.()}
+                    >
+                      Create a free account
+                      <ArrowRight size={18} />
+                    </button>
+                    <button
+                      className="button secondary"
+                      onClick={() => setGuestCardDismissed(true)}
+                    >
+                      Maybe later
+                    </button>
+                  </div>
+                </div>
+              )}
             </section>
           ) : (
             <>

@@ -22,6 +22,7 @@ import {
 import App from "./App";
 import { supabase } from "./supabase";
 import {
+  fetchMyKidAccounts,
   fetchOwnKidAccount,
   kidEmail,
   kidAuthPassword,
@@ -94,7 +95,14 @@ function AccountPage({ children }: { children: ReactNode }) {
             <ShieldCheck size={23} />
             <div>
               <strong>Grown-up accounts. Kid-friendly adventures.</strong>
-              <p>Parent-made kid logins. No public profiles, ads, or open chat.</p>
+              <p>Parent-made kid logins. Safe by design: no ads, no chat, no strangers, no in-app purchases.</p>
+            </div>
+          </div>
+          <div className="account-benefit">
+            <Check size={23} />
+            <div>
+              <strong>You’re in charge of practice</strong>
+              <p>See exactly what your child practiced today, and set the tasks yourself — the spelling list, the times tables, your call. Built by a parent who got tired of subscription apps, so this one is free.</p>
             </div>
           </div>
         </section>
@@ -393,6 +401,8 @@ export default function Account() {
     return (
       <App
         initialGrade={loginGrade || undefined}
+        guestMode
+        onGuestSignUp={() => setGuest(false)}
         accountControls={
           <button className="account-button" onClick={() => setGuest(false)}>
             <LogIn size={16} />
@@ -776,6 +786,11 @@ function CloudWorkspace({
 }) {
   const [record, setRecord] = useState<CloudRecord | null>(null);
   const [kidAccount, setKidAccount] = useState<KidAccount | null>(null);
+  // A grown-up with no kid logins yet starts on the Parents dashboard,
+  // where the add-a-child form lives (signup plan Step 2). Kid sessions
+  // and grown-ups who already have a kid start on Home as usual; a
+  // failed kid-list read also falls back to Home.
+  const [startOnDashboard, setStartOnDashboard] = useState(false);
   const [loadError, setLoadError] = useState("");
   const [reload, setReload] = useState(0);
   const [desired, setDesired] = useState<Progress | null>(null);
@@ -804,10 +819,12 @@ function CloudWorkspace({
     Promise.all([
       loadCloudProgress(client, userId),
       fetchOwnKidAccount(client, userId).catch(() => null),
+      fetchMyKidAccounts(client, userId).catch(() => null),
     ])
-      .then(([next, kid]) => {
+      .then(([next, kid, myKids]) => {
         if (cancelled) return;
         setKidAccount(kid);
+        setStartOnDashboard(!kid && myKids !== null && myKids.length === 0);
         // A signed-in grown-up session is established: give the
         // welcome-email function its once-per-page-session chance to
         // welcome a brand-new parent. Kid sessions never trigger it
@@ -950,6 +967,7 @@ function CloudWorkspace({
     <>
       <App
         key={reload}
+        initialView={startOnDashboard ? "privacy" : undefined}
         cloudProgress={record.progress}
         roomClient={client}
         cloudSaving={pending || saving || !!saveError}

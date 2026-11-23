@@ -1920,6 +1920,23 @@ progress::-moz-progress-bar {
   color: #ab98bc;
   line-height: 1.9;
 }
+.guest-save-card {
+  margin-top: 28px;
+  padding: 22px;
+  border: 2px dashed #b390dc;
+  border-radius: 16px;
+  background: #fdfaff;
+}
+.guest-save-card h2 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+.guest-save-card p {
+  font-size: 13px;
+  color: #877292;
+  line-height: 1.7;
+  margin: 0 0 6px;
+}
 .result-score {
   display: flex;
   flex-direction: column;

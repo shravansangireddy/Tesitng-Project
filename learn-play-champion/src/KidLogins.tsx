@@ -69,6 +69,7 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
   const [password, setPassword] = useState("");
   const [creating, setCreating] = useState(false);
   const [formError, setFormError] = useState("");
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let active = true;
@@ -99,6 +100,16 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
   if (!loaded || isKid || !parentId) return null;
 
   const refresh = async () => setKids(await fetchMyKidAccounts(client, parentId));
+
+  // The zero-kid banner's button takes the grown-up straight to the
+  // create form's first field (the form renders just below).
+  const focusCreateForm = () => {
+    const input = nameInputRef.current;
+    if (!input) return;
+    if (typeof input.scrollIntoView === "function")
+      input.scrollIntoView({ behavior: "smooth", block: "center" });
+    input.focus();
+  };
 
   const create = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -148,6 +159,22 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
         time. Each login can be shared with another grown-up (use the
         Grown-ups button on a child below), so both parents can manage it.
       </p>
+      {kids.length === 0 && (
+        <div className="kid-logins-banner">
+          <p>
+            <strong>You’re 1 step away — add your child to start.</strong>{" "}
+            Create their login below and they can sign in and play right
+            away.
+          </p>
+          <button
+            className="button primary"
+            type="button"
+            onClick={focusCreateForm}
+          >
+            Add your child — takes 2 minutes
+          </button>
+        </div>
+      )}
       {error && (
         <p className="kid-logins-error" role="alert">
           {error}
@@ -180,6 +207,7 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
           <label>
             Child's first name or nickname
             <input
+              ref={nameInputRef}
               value={name}
               onChange={(event) => setName(event.target.value)}
               placeholder="e.g., Ava"
@@ -231,6 +259,10 @@ export default function KidLogins({ client }: { client: SupabaseClient }) {
               disabled={creating}
             />
           </label>
+          <p className="kid-logins-pin-note">
+            Your child signs in with this username + PIN. You can reset the
+            PIN anytime from your dashboard.
+          </p>
           {formError && (
             <p className="kid-logins-error" role="alert">
               {formError}
