@@ -23,6 +23,10 @@
     "test:content-db": "node scripts/test-content-db.mjs"
   },
   "dependencies": {
+    "@capacitor/android": "^8.6.3",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/cli": "^8.6.3",
+    "@capacitor/core": "^8.6.3",
     "@supabase/supabase-js": "2.118.0",
     "lucide-react": "0.468.0",
     "react": "18.3.1",
