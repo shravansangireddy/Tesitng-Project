@@ -20,7 +20,13 @@ import {
   Sparkles,
 } from "lucide-react";
 import App from "./App";
+import { App as CapacitorApp } from "@capacitor/app";
 import { supabase } from "./supabase";
+import {
+  handleNativeAuthUrl,
+  isNativeApp,
+  NATIVE_AUTH_REDIRECT,
+} from "./native-auth";
 import {
   fetchMyKidAccounts,
   fetchOwnKidAccount,
@@ -214,9 +220,24 @@ export default function Account() {
       setAuthError(
         `Sign-in link failed: ${callbackError}. Request a new email link.`,
       );
+    // Native shell only: Supabase email links that arrive on the
+    // learnplaychampion:// scheme open inside the app (App plugin) instead
+    // of a browser tab. The scheme still has to be allowlisted in
+    // Supabase Auth redirect URLs (dashboard step) before such links are
+    // sent; until then no deep link arrives and this listener stays idle.
+    let deepLink: Promise<{ remove: () => Promise<void> }> | undefined;
+    if (isNativeApp()) {
+      deepLink = CapacitorApp.addListener("appUrlOpen", async ({ url }) => {
+        if (!active) return;
+        await handleNativeAuthUrl(url, client, (message) => {
+          if (active) setAuthError(message);
+        });
+      });
+    }
     return () => {
       active = false;
       subscription.unsubscribe();
+      void deepLink?.then((handle) => handle.remove());
     };
   }, []);
   const signOut = async () => {
@@ -250,7 +271,9 @@ export default function Account() {
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(
         resetEmail.trim(),
-        { redirectTo: `${location.origin}/` },
+        // Native shell: the reset link comes back on the app scheme so the
+        // App plugin can hand it to Supabase; web keeps a normal URL.
+        { redirectTo: isNativeApp() ? NATIVE_AUTH_REDIRECT : `${location.origin}/` },
       );
       if (error) throw error;
       setResetSent(true);
@@ -461,7 +484,11 @@ export default function Account() {
     setAuthError("");
     setSent(false);
     try {
-      const redirect = new URL(`${location.origin}${location.pathname}`);
+      // Native shell: the sign-in link comes back on the app scheme so the
+      // App plugin can hand it to Supabase; web keeps a normal URL.
+      const redirect = new URL(
+        isNativeApp() ? NATIVE_AUTH_REDIRECT : `${location.origin}${location.pathname}`,
+      );
       if (loginGrade) redirect.searchParams.set("learning_grade", loginGrade);
       const donation = donationReturn();
       if (donation) redirect.searchParams.set("donation_return", donation);
