@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Progress } from "./game";
 import PrivacyNotice from "./PrivacyNotice";
 import DonationPanel from "./DonationPanel";
+import { isNativeApp } from "./native-auth";
 import { paymentAdmin } from "./payments";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import ContentStudio from "./ContentStudio";
@@ -98,7 +99,9 @@ export default function PrivacyCenter({ progress, cloud, onErase, paymentClient,
     {adult && !busy ? <ContentStudio client={paymentClient} onDirty={(dirty) => {
       contentDirty.current = dirty; setStudioDirty(dirty); onContentDirty?.(dirty);
     }} /> : <p>Confirm the responsible adult above to open teacher/admin content tools. Server-assigned access is required.</p>}
-    <DonationPanel adult={adult && !busy} client={paymentClient} showPaymentAdmin={isPaymentAdmin === true} />
+    {/* Donations stay on the website only: store rules forbid external
+        payment links in native builds, so the panel never mounts there. */}
+    {!isNativeApp() && <DonationPanel adult={adult && !busy} client={paymentClient} showPaymentAdmin={isPaymentAdmin === true} />}
     {adult && !busy && paymentClient && isPaymentAdmin ? <AdminParents client={paymentClient} /> : null}
   </section>;
 }

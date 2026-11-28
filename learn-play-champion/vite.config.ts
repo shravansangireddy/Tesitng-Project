@@ -14,6 +14,10 @@ export default defineConfig(({ mode }) => {
   assets.set("llms.txt", renderMachineGuide(origin));
   if (origin) assets.set("sitemap.xml", renderSitemap(origin));
   return {
+    // Relative asset paths: the native (Capacitor) shell serves the build
+    // from a local origin, so absolute "/assets/..." URLs would 404.
+    // Relative paths resolve the same on the web build served at root.
+    base: "./",
     plugins: [
       react(),
       {
